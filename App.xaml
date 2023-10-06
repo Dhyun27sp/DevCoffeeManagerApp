@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:DevCoffeeManagerApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <!-- Khai báo ComboBoxTextBox -->
+        <ControlTemplate x:Key="ComboBoxTextBox"
+                     TargetType="TextBox">
+            <!-- Nội dung của ComboBoxTextBox -->
+        </ControlTemplate>
     </Application.Resources>
 </Application>
