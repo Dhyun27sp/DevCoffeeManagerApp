@@ -24,5 +24,29 @@ namespace DevCoffeeManagerApp
         {
             InitializeComponent();
         }
+        private void CloseButton_Click(object sender, MouseButtonEventArgs e)
+        {
+            // Hiển thị hộp thoại xác nhận
+            MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn thoát ứng dụng?",
+                                                      "Xác nhận thoát",
+                                                      MessageBoxButton.YesNo,
+                                                      MessageBoxImage.Question);
+
+            // Kiểm tra kết quả của hộp thoại xác nhận
+            if (result == MessageBoxResult.Yes)
+            {
+                // Thoát ứng dụng
+                Application.Current.Shutdown();
+            }
+        }
+
+        private void ContentSite_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (cb_Shift.IsDropDownOpen == true)
+                cb_Shift.IsDropDownOpen = false;
+            else
+                cb_Shift.IsDropDownOpen = true;
+        }
+
     }
 }
