@@ -21,7 +21,7 @@ namespace DevCoffeeManagerApp.DAOs
             collection = db.GetCollection<StaffModel>("Staff");
         }
 
-        public void createSchedule(StaffModel staff)
+        public void createStaff(StaffModel staff)
         {
             collection.InsertOne(staff);
         }
@@ -30,6 +30,20 @@ namespace DevCoffeeManagerApp.DAOs
         {
             List<StaffModel> listStaff = collection.Find(new BsonDocument()).ToList();
             return listStaff;
+        }
+
+        public void delete_shift_in_schedule(string phone_number, string shiftpresent)
+        {
+            var filter = Builders<StaffModel>.Filter.Eq("phone_number", phone_number); // Tạo bộ lọc theo phone_number
+            var update = Builders<StaffModel>.Update.Pull("schedule", shiftpresent); // Tạo một bản cập nhật để xóa shiftpresent
+
+            UpdateResult updateResult = collection.UpdateOne(filter, update); // Thực hiện cập nhật
+
+            if (updateResult.ModifiedCount == 0)
+            {
+                // Không có bản ghi nào được cập nhật, có thể xảy ra nếu phone_number không tồn tại hoặc shiftpresent không tồn tại trong danh sách shiftpresent của bản ghi.
+                // Xử lý tùy theo yêu cầu của bạn.
+            }
         }
     }
 }

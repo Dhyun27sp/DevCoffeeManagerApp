@@ -41,10 +41,7 @@ namespace DevCoffeeManagerApp
 
         private void ContentSite_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (cb_Shift.IsDropDownOpen == true)
-                cb_Shift.IsDropDownOpen = false;
-            else
-                cb_Shift.IsDropDownOpen = true;
+            
         }
     }
 }

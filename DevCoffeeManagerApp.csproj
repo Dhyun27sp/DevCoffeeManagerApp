@@ -170,8 +170,12 @@
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandLogin\CommandSubmit.cs" />
     <Compile Include="Config\ConnectionMongoDB.cs" />
+    <Compile Include="DAOs\AccountDAO.cs" />
+    <Compile Include="DAOs\EvaluateDAO.cs" />
     <Compile Include="DAOs\ScheduleDAO.cs" />
     <Compile Include="DAOs\StaffDAO.cs" />
+    <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\EvaluateModel.cs" />
     <Compile Include="Models\ScheduleModel.cs" />
     <Compile Include="Models\StaffModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />

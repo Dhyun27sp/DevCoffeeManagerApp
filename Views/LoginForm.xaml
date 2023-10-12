@@ -174,10 +174,10 @@
                      Width="420"
                      Height="40"
                      Canvas.Left="544"
-                     Canvas.Top="227"
+                     Canvas.Top="216"
                      VerticalContentAlignment="Center"
                      Padding="10,0,0,0"
-                     Text="{Binding Phonenumber, UpdateSourceTrigger=PropertyChanged}">
+                     Text="{Binding Phonenumber, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Top">
                 <TextBox.Template>
                     <ControlTemplate TargetType="TextBox">
                         <Grid>
@@ -191,6 +191,48 @@
                             </Border>
                             <TextBlock x:Name="Placeholder"
                                        Text="Phone number *"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="13,0,0,0"
+                                       Foreground="#5F5555"
+                                       Visibility="Collapsed" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text"
+                                               Value="" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Placeholder"
+                                        Property="Visibility"
+                                        Value="Visible" />
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+
+            <TextBox Name="tb_Password"
+                     Width="420"
+                     Height="40"
+                     Canvas.Left="544"
+                     Canvas.Top="288"
+                     VerticalContentAlignment="Center"
+                     Padding="10,0,0,0"
+                     Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <TextBox.Template>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <Border x:Name="Border"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="20">
+                                <!-- Đặt góc cong ở đây -->
+                                <ScrollViewer x:Name="PART_ContentHost" />
+                            </Border>
+                            <TextBlock x:Name="Placeholder"
+                                       Text="Pass Word *"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
                                        Margin="13,0,0,0"
@@ -280,7 +322,7 @@
             <!--==============================================================================================-->
 
 
-            <ComboBox Name="cb_Shift"
+            <!--<ComboBox Name="cb_Shift"
                       Width="420"
                       Height="40"
                       Canvas.Left="544"
@@ -389,13 +431,13 @@
                                 Value="10,0,0,0" />
                     </Style>
                 </ComboBox.ItemContainerStyle>
-            </ComboBox>
+            </ComboBox>-->
             <Button Width="420"
                     Height="40"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Canvas.Left="544"
-                    Canvas.Top="401"
+                    Canvas.Top="368"
                     Name="btn_SignIn"
                     Command="{Binding SubmitCommand}"
                     >
@@ -436,7 +478,7 @@
                     </TextBlock.Style>
                 </TextBlock>
             </Button>
-            <ToggleButton Width="Auto"
+            <!--<ToggleButton Width="Auto"
                           Height="24"
                           HorizontalAlignment="Center"
                           Canvas.Left="544"
@@ -450,26 +492,36 @@
                     <ControlTemplate TargetType="ToggleButton">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <!-- Column for SwitchTrack -->
+                                -->
+            <!-- Column for SwitchTrack -->
+            <!--
                                 <ColumnDefinition Width="Auto" />
 
-                                <!-- Column for TextBlock -->
+                                -->
+            <!-- Column for TextBlock -->
+            <!--
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <!-- Border for SwitchTrack -->
+                            -->
+            <!-- Border for SwitchTrack -->
+            <!--
                             <Border Grid.Column="0"
                                     BorderThickness="1"
                                     BorderBrush="#C8C9CC"
                                     CornerRadius="13">
-                                <!-- Track -->
+                                -->
+            <!-- Track -->
+            <!--
                                 <Rectangle x:Name="SwitchTrack"
                                            Fill="#E0E0E0"
                                            RadiusX="12"
                                            RadiusY="12" />
                             </Border>
 
-                            <!-- Button -->
+                            -->
+            <!-- Button -->
+            <!--
                             <Ellipse x:Name="SwitchButton"
                                      Fill="#D3D3D3"
                                      Width="16"
@@ -477,7 +529,9 @@
                                      Margin="5,4,19,4">
                             </Ellipse>
 
-                            <!-- TextBlock -->
+                            -->
+            <!-- TextBlock -->
+            <!--
                             <TextBlock Grid.Column="1"
                                        Text="Worked"
                                        VerticalAlignment="Center"
@@ -513,7 +567,7 @@
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </ToggleButton.Template>
-            </ToggleButton>
+            </ToggleButton>-->
 
             <TextBlock Width="314"
                        Height="14"
@@ -527,7 +581,7 @@
                        FontStretch="Normal"
                        Text="Are you a manager? Go to the login page for management"
                        Canvas.Left="-76"
-                       Canvas.Top="-552"
+                       Canvas.Top="-574"
                        Cursor="Hand"
                        HorizontalAlignment="Center">
                 <TextBlock.Style>
