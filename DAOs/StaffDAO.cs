@@ -39,11 +39,6 @@ namespace DevCoffeeManagerApp.DAOs
 
             UpdateResult updateResult = collection.UpdateOne(filter, update); // Thực hiện cập nhật
 
-            if (updateResult.ModifiedCount == 0)
-            {
-                // Không có bản ghi nào được cập nhật, có thể xảy ra nếu phone_number không tồn tại hoặc shiftpresent không tồn tại trong danh sách shiftpresent của bản ghi.
-                // Xử lý tùy theo yêu cầu của bạn.
-            }
         }
     }
 }
