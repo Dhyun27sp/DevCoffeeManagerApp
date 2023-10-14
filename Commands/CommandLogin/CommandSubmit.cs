@@ -12,9 +12,8 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
 {
     public class CommandSubmit : CommandBase
     {
-        AccountDAO accountdao = new AccountDAO();
         StaffDAO staffdao = new StaffDAO();
-        EvaluateDAO evaluatedao = new EvaluateDAO();
+        ScheduleDAO scheduledao = new ScheduleDAO();
         private LoginViewModel Viewmodellogin;
         public CommandSubmit(LoginViewModel viewmodellogin)
         {
@@ -26,8 +25,9 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
         }
         public override void Execute(object parameter)
         {
-            string role = accountdao.getAccount(Viewmodellogin.Phonenumber).role.ToString();
-            string pass = accountdao.getAccount(Viewmodellogin.Phonenumber).password.ToString();
+            string month_present = DateTime.Now.Month.ToString();
+            string role = staffdao.GetStaff(Viewmodellogin.Phonenumber, month_present).account.Role.ToString();
+            string pass = staffdao.GetStaff(Viewmodellogin.Phonenumber, month_present).account.Password.ToString();
             if (role == "admin")
             {
                 if (pass == Viewmodellogin.Password)
@@ -36,17 +36,18 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
                     mainWindow.Show();
                 }
             }
-            else if(role == "staff")
+            else if (role == "staff")
             {
                 string shift = GetShift();
                 if (pass == Viewmodellogin.Password)
                 {
+                    string _idstaff = staffdao.GetStaff(Viewmodellogin.Phonenumber, month_present).staffid;
                     MessageBox.Show("đây là trang staff");
-                    EvaluateModel evaluate = new EvaluateModel(Viewmodellogin.Phonenumber, shift, "1", "");
-                    evaluatedao.createEvaluate(evaluate);
-                    staffdao.delete_shift_in_schedule(Viewmodellogin.Phonenumber, shift);
+                    EvaluateModel evaluateModel = new EvaluateModel(_idstaff,true,0);
+                    ScheduleModel scheduleModel = new ScheduleModel(shift, Viewmodellogin.Phonenumber, evaluateModel);
+                    scheduledao.createSchedule(scheduleModel);
+                    staffdao.delete_shift_in_schedule_of_Staff(Viewmodellogin.Phonenumber, month_present, shift);
                 }
-                
             }
         }
 

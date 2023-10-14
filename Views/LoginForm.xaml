@@ -607,8 +607,11 @@
                    Stretch="Fill"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
-                   Cursor="Hand"
-                   MouseLeftButtonDown="CloseButton_Click">
+                   Cursor="Hand">
+
+                <Image.InputBindings>
+                    <MouseBinding Gesture="LeftClick" Command="{Binding CloseCommand, Mode=OneTime}" />
+                </Image.InputBindings>
                 <Image.Style>
                     <Style TargetType="Image">
                         <Setter Property="Opacity"

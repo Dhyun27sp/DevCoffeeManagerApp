@@ -13,10 +13,12 @@ namespace DevCoffeeManagerApp.ViewModels
     public class LoginViewModel: BaseViewModel
     {
         public ICommand SubmitCommand { get; }
+        public ICommand CloseCommand { get; }
         public LoginViewModel()
         {
             // Khởi tạo và điền dữ liệu vào danh sách Items ở đây
             SubmitCommand = new CommandSubmit(this);
+            CloseCommand = new CloseCommand();
         }
 
         private string _phonenumber;
@@ -44,21 +46,6 @@ namespace DevCoffeeManagerApp.ViewModels
             {
                 _password = value;
                 OnPropertyChanged(nameof(Password));
-            }
-        }
-
-        private bool _isWorked = false;
-
-        public bool IsWorked
-        {
-            get { return _isWorked; }
-            set
-            {
-                if (_isWorked != value)
-                {
-                    _isWorked = value;
-                    OnPropertyChanged(nameof(IsWorked));
-                }
             }
         }
 

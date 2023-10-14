@@ -11,28 +11,22 @@ namespace DevCoffeeManagerApp.Models
     [Serializable, BsonIgnoreExtraElements]
     public class EvaluateModel
     {
-        [BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
-        public string id { get; set; }
-
-        [BsonElement("staff_id"), BsonRepresentation(BsonType.String)]
+        [BsonElement("staff_id"), BsonRepresentation(BsonType.ObjectId)]
         public string staff_id { get; set; }
 
-        [BsonElement("shift"), BsonRepresentation(BsonType.String)]
-        public string shift { get; set; }
+        [BsonElement("worked"), BsonRepresentation(BsonType.Boolean)]
+        public Boolean worked { get; set; }
 
-        [BsonElement("timekeeping"), BsonRepresentation(BsonType.String)]
-        public string timekeeping { get; set; }
+        [BsonElement("score"), BsonRepresentation(BsonType.Int32)]
+        public int score { get; set; }
 
-        [BsonElement("score"), BsonRepresentation(BsonType.String)]
-        public string score { get; set; }
-
-        public EvaluateModel(string staff_id, string shift, string timekeeping, string score)
+       public EvaluateModel(string staff_id, bool worked, int score)
         {
             this.staff_id = staff_id;
-            this.shift = shift;
-            this.timekeeping = timekeeping;
+            this.worked = worked;
             this.score = score;
         }
+
         public EvaluateModel() { }
     }
 }
