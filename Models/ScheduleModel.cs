@@ -17,13 +17,13 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("shift"), BsonRepresentation(BsonType.String)]
         public string shift { get; set; }
 
-        [BsonElement("staff_number"), BsonRepresentation(BsonType.String)]
-        public String staff_number { get; set; }
+        [BsonElement("staff_number"), BsonRepresentation(BsonType.Int32)]
+        public int staff_number { get; set; }
 
         [BsonElement("evaluate")]
-        public EvaluateModel evaluate { get; set; }
+        public List<EvaluateModel> evaluate { get; set; }
 
-        public ScheduleModel(string shift, String staff_number, EvaluateModel evaluate)
+        public ScheduleModel(string shift, int staff_number, List<EvaluateModel> evaluate)
         {
             this.shift = shift;
             this.staff_number = staff_number;

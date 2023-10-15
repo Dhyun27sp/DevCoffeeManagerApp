@@ -25,17 +25,13 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("salary")]
         public SalaryModel salary { get; set; }
 
-        [BsonElement("schedule"), BsonRepresentation(BsonType.String)]
-        public List<string>  schedule { get; set; }
-
-        public StaffModel(string staffid, string staffname, string phone_staff, AccountModel account, SalaryModel salary, List<string> schedule)
+        public StaffModel(string staffid, string staffname, string phone_staff, AccountModel account, SalaryModel salary)
         {
             this.staffid = staffid;
             this.staffname = staffname;
             this.phone_staff = phone_staff;
             this.account = account;
             this.salary = salary;
-            this.schedule = schedule;
         }
     }
 }

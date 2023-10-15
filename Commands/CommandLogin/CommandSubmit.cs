@@ -38,15 +38,33 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
             }
             else if (role == "staff")
             {
-                string shift = GetShift();
+                int Add = 0; // cờ thêm nhân viên mới
+                string shift = GetShift();// lấy ca hiện tại
+                List<string> listStaffIdInShift = new List<string>();// danh sách ID nhân viên
+                int staff_number = listStaffIdInShift.Count;// số lượng nhân viên có trong ca
+                listStaffIdInShift = scheduledao.Get_StaffId_In_Shift(shift);//nạp dự liệu cho listStaffIdInShift
+                string _idstaff = staffdao.GetStaff(Viewmodellogin.Phonenumber, month_present).staffid; // lấy Id nhân viên theo số điện thoại và tháng lương hiện tại
                 if (pass == Viewmodellogin.Password)
                 {
-                    string _idstaff = staffdao.GetStaff(Viewmodellogin.Phonenumber, month_present).staffid;
                     MessageBox.Show("đây là trang staff");
-                    EvaluateModel evaluateModel = new EvaluateModel(_idstaff,true,0);
-                    ScheduleModel scheduleModel = new ScheduleModel(shift, Viewmodellogin.Phonenumber, evaluateModel);
-                    scheduledao.createSchedule(scheduleModel);
-                    staffdao.delete_shift_in_schedule_of_Staff(Viewmodellogin.Phonenumber, month_present, shift);
+                    if(staff_number <= 8)
+                    {
+                        foreach (var staffid in listStaffIdInShift)
+                        {
+                            if (staffid == _idstaff)
+                            {
+                                scheduledao.Worked_for_Staff(shift, staffid);// đổi trạng thái worked
+                                Add = -1;
+                                break;
+                            }
+                        }
+                        if (Add == 0)
+                        {
+                            EvaluateModel evaluate = new EvaluateModel(_idstaff,true,0);
+                            scheduledao.AddEvaluate(shift, evaluate);
+                            // thêm staff_id vào evalute của schedule
+                        }
+                    }
                 }
             }
         }

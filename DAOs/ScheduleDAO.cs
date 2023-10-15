@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MongoDB.Driver;
 using DevCoffeeManagerApp.Config;
 using DevCoffeeManagerApp.Models;
+using MongoDB.Bson;
 
 namespace DevCoffeeManagerApp.DAOs
 {
@@ -21,6 +22,53 @@ namespace DevCoffeeManagerApp.DAOs
         public void createSchedule(ScheduleModel scheduleModel)
         {
             collection.InsertOne(scheduleModel);
+        }
+
+        public ScheduleModel GetSchedule(string Shift)
+        {
+            var ShiftFilter = Builders<ScheduleModel>.Filter.Eq("shift", Shift); // Tạo một bộ lọc dựa trên phone_number
+            ScheduleModel ScheduleModel = collection.Find(ShiftFilter).FirstOrDefault(); // Thực hiện truy vấn và lấy bản ghi đầu tiên hoặc null nếu không tìm thấy.
+            return ScheduleModel;
+        }
+
+        public void AddEvaluate(string Shift ,EvaluateModel evaluate)
+        {
+            var shiftFilter = Builders<ScheduleModel>.Filter.Eq("shift", Shift); // Tạo một bộ lọc dựa trên shift
+            var update = Builders<ScheduleModel>.Update.Push("evaluate", evaluate); // Sử dụng $push để thêm một phần tử vào mảng evaluate
+            collection.UpdateOne(shiftFilter, update);
+        }
+
+        public void Worked_for_Staff(string shift, string staffId)
+        {
+            var shiftFilter = Builders<ScheduleModel>.Filter.Eq("shift", shift); // Tạo một bộ lọc dựa trên shift
+            var evaluateFilter = Builders<ScheduleModel>.Filter.ElemMatch("evaluate", Builders<EvaluateModel>.Filter.Eq("staff_id", staffId)); // Tạo bộ lọc để tìm đối tượng EvaluateModel trong mảng evaluate có staff_id tương ứng
+
+            var update = Builders<ScheduleModel>.Update.Set("evaluate.$[elem].worked", true); // Sử dụng $set để cập nhật trường worked của EvaluateModel tương ứng
+
+            var arrayFilters = new List<ArrayFilterDefinition>
+            {
+                new BsonDocumentArrayFilterDefinition<BsonDocument>(new BsonDocument("elem.staff_id", staffId))
+            };
+
+            var options = new UpdateOptions
+            {
+                ArrayFilters = arrayFilters
+            };
+
+            collection.UpdateOne(shiftFilter, update, options);
+        }
+        public List<string> Get_StaffId_In_Shift(string shift)
+        {
+            List<EvaluateModel> evaluates = new List<EvaluateModel>();
+            List<string> staffids = new List<string>();
+            var ShiftFilter = Builders<ScheduleModel>.Filter.Eq("shift", shift);
+            ScheduleModel schedulemodel = collection.Find(ShiftFilter).FirstOrDefault();
+            evaluates = schedulemodel.evaluate;
+            foreach(var evalute in evaluates)
+            {
+                staffids.Add(evalute.staff_id);
+            }
+            return staffids;
         }
     }
 }
