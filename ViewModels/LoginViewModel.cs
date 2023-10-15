@@ -12,6 +12,10 @@ namespace DevCoffeeManagerApp.ViewModels
 {
     public class LoginViewModel: BaseViewModel
     {
+        public ObservableCollection<string> Items
+        {
+            get; set;
+        }
         public ICommand SubmitCommand { get; }
         public ICommand CloseCommand { get; }
         public LoginViewModel()
@@ -19,6 +23,11 @@ namespace DevCoffeeManagerApp.ViewModels
             // Khởi tạo và điền dữ liệu vào danh sách Items ở đây
             SubmitCommand = new CommandSubmit(this);
             CloseCommand = new CloseCommand();
+
+            Items = new ObservableCollection<string>();
+            Items.Add("Choose your mission");
+            Items.Add("Order");
+            Items.Add("Waiters");
         }
 
         private string _phonenumber;
@@ -46,6 +55,20 @@ namespace DevCoffeeManagerApp.ViewModels
             {
                 _password = value;
                 OnPropertyChanged(nameof(Password));
+            }
+        }
+
+        private string _itemShift;
+        public string ItemShift
+        {
+            get
+            {
+                return _itemShift;
+            }
+            set
+            {
+                _itemShift = value;
+                OnPropertyChanged(nameof(_itemShift));
             }
         }
 

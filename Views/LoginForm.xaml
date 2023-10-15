@@ -322,11 +322,11 @@
             <!--==============================================================================================-->
 
 
-            <!--<ComboBox Name="cb_Shift"
+            <ComboBox Name="cb_Shift"
                       Width="420"
                       Height="40"
                       Canvas.Left="544"
-                      Canvas.Top="297"
+                      Canvas.Top="352"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Top"
                       SelectedIndex="0"
@@ -381,8 +381,8 @@
                                                           ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                                                           Margin="10,0,0,0"
                                                           VerticalAlignment="Center"
-                                                          HorizontalAlignment="Left"
-                                                          MouseLeftButtonDown="ContentSite_MouseLeftButtonDown">
+                                                          HorizontalAlignment="Left">
+
                                         </ContentPresenter>
                                         <TextBox x:Name="PART_EditableTextBox"
                                                  Style="{x:Null}"
@@ -431,13 +431,14 @@
                                 Value="10,0,0,0" />
                     </Style>
                 </ComboBox.ItemContainerStyle>
-            </ComboBox>-->
+            </ComboBox>
+            
             <Button Width="420"
                     Height="40"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Canvas.Left="544"
-                    Canvas.Top="368"
+                    Canvas.Top="420"
                     Name="btn_SignIn"
                     Command="{Binding SubmitCommand}"
                     >
@@ -581,7 +582,7 @@
                        FontStretch="Normal"
                        Text="Are you a manager? Go to the login page for management"
                        Canvas.Left="-76"
-                       Canvas.Top="-574"
+                       Canvas.Top="-520"
                        Cursor="Hand"
                        HorizontalAlignment="Center">
                 <TextBlock.Style>
