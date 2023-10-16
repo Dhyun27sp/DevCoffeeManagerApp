@@ -7,7 +7,7 @@ using MongoDB.Driver;
 using DevCoffeeManagerApp.Config;
 using DevCoffeeManagerApp.Models;
 using MongoDB.Bson;
-
+using MongoDB.Bson;
 namespace DevCoffeeManagerApp.DAOs
 {
     public class ScheduleDAO
@@ -38,7 +38,7 @@ namespace DevCoffeeManagerApp.DAOs
             collection.UpdateOne(shiftFilter, update);
         }
 
-        public void Worked_for_Staff(string shift, string staffId)
+        public void Worked_for_Staff(string shift, ObjectId staffId)
         {
             var shiftFilter = Builders<ScheduleModel>.Filter.Eq("shift", shift); // Tạo một bộ lọc dựa trên shift
             var evaluateFilter = Builders<ScheduleModel>.Filter.ElemMatch("evaluate", Builders<EvaluateModel>.Filter.Eq("staff_id", staffId)); // Tạo bộ lọc để tìm đối tượng EvaluateModel trong mảng evaluate có staff_id tương ứng
@@ -46,9 +46,9 @@ namespace DevCoffeeManagerApp.DAOs
             var update = Builders<ScheduleModel>.Update.Set("evaluate.$[elem].worked", true); // Sử dụng $set để cập nhật trường worked của EvaluateModel tương ứng
 
             var arrayFilters = new List<ArrayFilterDefinition>
-            {
-                new BsonDocumentArrayFilterDefinition<BsonDocument>(new BsonDocument("elem.staff_id", staffId))
-            };
+    {
+        new BsonDocumentArrayFilterDefinition<BsonDocument>(new BsonDocument("elem.staff_id", staffId))
+    };
 
             var options = new UpdateOptions
             {
@@ -57,18 +57,14 @@ namespace DevCoffeeManagerApp.DAOs
 
             collection.UpdateOne(shiftFilter, update, options);
         }
-        public List<string> Get_StaffId_In_Shift(string shift)
+        public List<EvaluateModel> GetEvalute(string shift)
         {
             List<EvaluateModel> evaluates = new List<EvaluateModel>();
             List<string> staffids = new List<string>();
             var ShiftFilter = Builders<ScheduleModel>.Filter.Eq("shift", shift);
             ScheduleModel schedulemodel = collection.Find(ShiftFilter).FirstOrDefault();
             evaluates = schedulemodel.evaluate;
-            foreach(var evalute in evaluates)
-            {
-                staffids.Add(evalute.staff_id);
-            }
-            return staffids;
+            return evaluates;
         }
     }
 }

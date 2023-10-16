@@ -11,7 +11,7 @@ namespace DevCoffeeManagerApp.Models
     public class StaffModel
     {
         [BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
-        public string staffid { get; set; }
+        public ObjectId staffid { get; set; }
 
         [BsonElement("name"), BsonRepresentation(BsonType.String)]
         public string staffname { get; set; }
@@ -25,7 +25,7 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("salary")]
         public SalaryModel salary { get; set; }
 
-        public StaffModel(string staffid, string staffname, string phone_staff, AccountModel account, SalaryModel salary)
+        public StaffModel(ObjectId staffid, string staffname, string phone_staff, AccountModel account, SalaryModel salary)
         {
             this.staffid = staffid;
             this.staffname = staffname;

@@ -12,7 +12,7 @@ namespace DevCoffeeManagerApp.Models
     public class ScheduleModel
     {
         [BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
-        public string ScheduleId { get; set; }
+        public ObjectId ScheduleId { get; set; }
 
         [BsonElement("shift"), BsonRepresentation(BsonType.String)]
         public string shift { get; set; }

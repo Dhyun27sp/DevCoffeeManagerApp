@@ -40,16 +40,5 @@ namespace DevCoffeeManagerApp.DAOs
             StaffModel StaffModel = collection.Find(andFilter).FirstOrDefault(); // Thực hiện truy vấn và lấy bản ghi đầu tiên hoặc null nếu không tìm thấy.
             return StaffModel;
         }
-
-        public void delete_shift_in_schedule_of_Staff(string phone_number,string month, string shiftpresent)
-        {
-            var phoneFilter = Builders<StaffModel>.Filter.Eq("phone_number", phone_number); // Tạo bộ lọc theo phone_number
-            var monthFilter = Builders<StaffModel>.Filter.Eq("salary.month", month);
-            var andFilter = Builders<StaffModel>.Filter.And(phoneFilter, monthFilter);
-            var update = Builders<StaffModel>.Update.Pull("schedule", shiftpresent); // Tạo một bản cập nhật để xóa shiftpresent
-
-            UpdateResult updateResult = collection.UpdateOne(andFilter, update); // Thực hiện cập nhật
-
-        }
     }
 }

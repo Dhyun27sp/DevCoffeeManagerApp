@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using DevCoffeeManagerApp.DAOs;
 using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.StaticClass;
+using MongoDB.Bson;
+
 namespace DevCoffeeManagerApp.Commands.CommandLogin
 {
     public class CommandSubmit : CommandBase
@@ -66,8 +68,8 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
             {
                 if (pass == Viewmodellogin.Password)
                 {
-                    Session();
                     Worked_Staff();
+                    Session();
                 }
             }
         }
@@ -76,29 +78,36 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
             string month_present = DateTime.Now.Month.ToString();
             int Add = 0; // cờ thêm nhân viên mới
             string shift = GetShift();// lấy ca hiện tại
-            List<string> listStaffIdInShift = new List<string>();// danh sách ID nhân viên
-            int staff_number = listStaffIdInShift.Count;// số lượng nhân viên có trong ca
-            listStaffIdInShift = scheduledao.Get_StaffId_In_Shift(shift);//nạp dự liệu cho listStaffIdInShift
-            string _idstaff = staffdao.GetStaff(Viewmodellogin.Phonenumber, month_present).staffid; // lấy Id nhân viên theo số điện thoại và tháng lương hiện tại
+            int count_Worked_in_shift = Count_Staff_Had_Worked(shift);
+            List<ObjectId> listStaffIdInShift = new List<ObjectId>(); ;// danh sách ID nhân viên
+            listStaffIdInShift = Get_StaffIDs_in_Evaluate(shift); ;//nạp dự liệu cho listStaffIdInShift
 
-            if (staff_number <= 8)
+            ObjectId _idstaff = staffdao.GetStaff(Viewmodellogin.Phonenumber, month_present).staffid; // lấy Id nhân viên theo số điện thoại và tháng lương hiện tại
+
+            if (Viewmodellogin.ItemShift == "Order" || Viewmodellogin.ItemShift == "Waiters")
             {
-                foreach (var staffid in listStaffIdInShift)
+                if (count_Worked_in_shift < 4)
                 {
-                    if (staffid == _idstaff)
+                    foreach (var staffid in listStaffIdInShift)
                     {
-                        scheduledao.Worked_for_Staff(shift, staffid);// đổi trạng thái worked
-                        Add = -1;
-                        break;
+                        if (staffid == _idstaff)
+                        {
+                            scheduledao.Worked_for_Staff(shift, staffid);// đổi trạng thái worked
+                            Add = -1;
+                            break;
+                        }
                     }
+                    if (Add == 0)
+                    {
+                        EvaluateModel evaluate = new EvaluateModel(_idstaff, true, 0);
+                        scheduledao.AddEvaluate(shift, evaluate);
+                        // thêm staff_id vào evalute của schedule
+                    }
+                    MessageBox.Show("Bạn đã chấm công hôm nay");
                 }
-                if (Add == 0)
-                {
-                    EvaluateModel evaluate = new EvaluateModel(_idstaff, true, 0);
-                    scheduledao.AddEvaluate(shift, evaluate);
-                    // thêm staff_id vào evalute của schedule
-                }
+                else MessageBox.Show("Số lượng nhân viên làm đã tối đa");
             }
+            
         }
 
         private void Session()
@@ -117,15 +126,39 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
                 }
-                else
-                {
-                    MessageBox.Show("Quay Lại trang đăng nhập");
-                }
             }
             else
             {
                 MessageBox.Show("Vui lòng chọn việc làm");
             }
+        }
+
+        private List<ObjectId> Get_StaffIDs_in_Evaluate(string shift)
+        {
+            List<ObjectId> Staffids = new List<ObjectId>();
+            List<EvaluateModel> evaluates = new List<EvaluateModel>();
+            evaluates = scheduledao.GetEvalute(shift);
+            foreach(var evalute in evaluates)
+            {
+                Staffids.Add(evalute.staff_id);
+            }
+            return Staffids;
+        }
+
+        private int Count_Staff_Had_Worked(string shift)
+        {
+            int count = 0;
+            List<ObjectId> Staffids = new List<ObjectId>();
+            List<EvaluateModel> evaluates = new List<EvaluateModel>();
+            evaluates = scheduledao.GetEvalute(shift);
+            foreach (var evalute in evaluates)
+            {
+                if(evalute.worked == true)
+                {
+                    count++;
+                }
+            }
+            return count;
         }
     }
 }

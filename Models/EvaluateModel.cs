@@ -12,7 +12,7 @@ namespace DevCoffeeManagerApp.Models
     public class EvaluateModel
     {
         [BsonElement("staff_id"), BsonRepresentation(BsonType.ObjectId)]
-        public string staff_id { get; set; }
+        public ObjectId staff_id { get; set; }
 
         [BsonElement("worked"), BsonRepresentation(BsonType.Boolean)]
         public Boolean worked { get; set; }
@@ -20,7 +20,7 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("score"), BsonRepresentation(BsonType.Int32)]
         public int score { get; set; }
 
-       public EvaluateModel(string staff_id, bool worked, int score)
+       public EvaluateModel(ObjectId staff_id, bool worked, int score)
         {
             this.staff_id = staff_id;
             this.worked = worked;
