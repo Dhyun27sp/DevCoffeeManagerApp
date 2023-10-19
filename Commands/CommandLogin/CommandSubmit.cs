@@ -10,6 +10,7 @@ using DevCoffeeManagerApp.DAOs;
 using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.StaticClass;
 using MongoDB.Bson;
+using DevCoffeeManagerApp.Views;
 
 namespace DevCoffeeManagerApp.Commands.CommandLogin
 {
@@ -116,15 +117,16 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
             {
                 SessionStatic.SetTask = Viewmodellogin.ItemShift;
                 SessionStatic.SetPhoneNumber = Viewmodellogin.Phonenumber;
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
+                SessionStatic.SetPassWord = int.Parse(Viewmodellogin.Password);
+                MainWindowStaff mainWindowstaff = new MainWindowStaff();
+                mainWindowstaff.Show();
             }
             else if (Viewmodellogin.ItemShift == "Waiters")
             {
                 if (SessionStatic.GetTask != null)
                 {
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
+                    MainWindowStaff mainWindowstaff = new MainWindowStaff();
+                    mainWindowstaff.Show();
                 }
             }
             else

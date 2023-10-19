@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DevCoffeeManagerApp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
         mc:Ignorable="d"
         Title="Login"
@@ -15,7 +16,7 @@
         AllowsTransparency="True"
         Background="Transparent">
     <Window.DataContext>
-        <vms:LoginViewModel/>
+        <vms:LoginViewModel />
     </Window.DataContext>
     <Window.Resources>
         <Style TargetType="TextBox">
@@ -130,309 +131,49 @@
                                         Y="585" />
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <!--<TextBox Name="tb_PhoneNumber"
-                     Width="420"
-                     Height="40"
-                     Canvas.Left="544"
-                     Canvas.Top="239"
-                     VerticalContentAlignment="Center"
-                     Padding="5,0,0,0">
-                <TextBox.Template>
-                    <ControlTemplate TargetType="TextBox">
-                        <Grid>
-                            <Border x:Name="Border"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}">
-                                <ScrollViewer x:Name="PART_ContentHost" />
-                            </Border>
-                            <TextBlock x:Name="Placeholder"
-                                       Text="Phone number *"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Left"
-                                       Margin="8,0,0,0"
-                                       Foreground="#5F5555"
-                                       Visibility="Collapsed" />
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="Text"
-                                               Value="" />
-                                </MultiTrigger.Conditions>
-                                <Setter TargetName="Placeholder"
-                                        Property="Visibility"
-                                        Value="Visible" />
-                            </MultiTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </TextBox.Template>
-            </TextBox>-->
 
-            <!--==============================================================================================-->
-            <TextBox Name="tb_PhoneNumber"
-                     Width="420"
-                     Height="40"
-                     Canvas.Left="544"
-                     Canvas.Top="216"
-                     VerticalContentAlignment="Center"
-                     Padding="10,0,0,0"
-                     Text="{Binding Phonenumber, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <TextBox.Template>
-                    <ControlTemplate TargetType="TextBox">
-                        <Grid>
-                            <Border x:Name="Border"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="20">
-                                <!-- Đặt góc cong ở đây -->
-                                <ScrollViewer x:Name="PART_ContentHost" />
-                            </Border>
-                            <TextBlock x:Name="Placeholder"
-                                       Text="Phone number *"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Left"
-                                       Margin="13,0,0,0"
-                                       Foreground="#5F5555"
-                                       Visibility="Collapsed" />
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="Text"
-                                               Value="" />
-                                </MultiTrigger.Conditions>
-                                <Setter TargetName="Placeholder"
-                                        Property="Visibility"
-                                        Value="Visible" />
-                            </MultiTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </TextBox.Template>
-            </TextBox>
+            <StackPanel Canvas.Left="551"
+                        Canvas.Top="202"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Width="407">
+                <CheckBox x:Name="MaterialDesignFilledTextBoxEnabledComboBox"
+                          Content="Enabled"
+                          IsChecked="True"
+                          Height="20"
+                          Width="411" />
+                <TextBox MaxWidth="400"
+                         Text="{Binding Phonenumber, UpdateSourceTrigger=PropertyChanged}"
+                         materialDesign:HintAssist.Hint="Phone Number"
+                         AcceptsReturn="True"
+                         IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                         Style="{StaticResource MaterialDesignFilledTextBox}"
+                         TextWrapping="Wrap"
+                         Width="403" />
+            </StackPanel>
 
-            <TextBox Name="tb_Password"
-                     Width="420"
-                     Height="40"
-                     Canvas.Left="544"
-                     Canvas.Top="288"
-                     VerticalContentAlignment="Center"
-                     Padding="10,0,0,0"
-                     Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <TextBox.Template>
-                    <ControlTemplate TargetType="TextBox">
-                        <Grid>
-                            <Border x:Name="Border"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="20">
-                                <!-- Đặt góc cong ở đây -->
-                                <ScrollViewer x:Name="PART_ContentHost" />
-                            </Border>
-                            <TextBlock x:Name="Placeholder"
-                                       Text="Pass Word *"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Left"
-                                       Margin="13,0,0,0"
-                                       Foreground="#5F5555"
-                                       Visibility="Collapsed" />
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="Text"
-                                               Value="" />
-                                </MultiTrigger.Conditions>
-                                <Setter TargetName="Placeholder"
-                                        Property="Visibility"
-                                        Value="Visible" />
-                            </MultiTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </TextBox.Template>
-            </TextBox>
-            <!--==============================================================================================-->
-            <!--<ComboBox Width="420"
-                      Height="40"
-                      Canvas.Left="520"
-                      Canvas.Top="416">
-                <ComboBoxItem>ComboBox Item #1</ComboBoxItem>
-                <ComboBoxItem IsSelected="True">ComboBox Item #2</ComboBoxItem>
-                <ComboBoxItem>ComboBox Item #3</ComboBoxItem>
-            </ComboBox>-->
-            <!--==============================================================================================-->
-            <!--<ComboBox Width="420"
-                      Height="40"
-                      Canvas.Left="471"
-                      Canvas.Top="489">
-                <ComboBox.Template>
-                    <ControlTemplate TargetType="ComboBox">
-                        <Grid>
-                            <Border x:Name="Border"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="20">
-                                <Grid>
-                                    <ToggleButton x:Name="Toggle"
-                                                  Content="▼"
-                                                  VerticalAlignment="Center"
-                                                  HorizontalAlignment="Right"
-                                                  Width="20"
-                                                  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
-                                    <TextBlock x:Name="Placeholder"
-                                               Text="Select an item"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Left"
-                                               Margin="8,0,0,0"
-                                               Foreground="#5F5555" />
-                                    <Popup x:Name="PART_Popup"
-                                           AllowsTransparency="True"
-                                           IsOpen="{TemplateBinding IsDropDownOpen}"
-                                           Placement="Bottom"
-                                           PopupAnimation="Slide">
-                                        <Grid>
-                                            <ItemsPresenter />
-                                        </Grid>
-                                    </Popup>
-                                </Grid>
-                            </Border>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="SelectedItem"
-                                               Value="{x:Null}" />
-                                    <Condition Property="IsDropDownOpen"
-                                               Value="False" />
-                                </MultiTrigger.Conditions>
-                                <Setter TargetName="Placeholder"
-                                        Property="Visibility"
-                                        Value="Visible" />
-                            </MultiTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </ComboBox.Template>
-                <ComboBoxItem>ComboBox Item #1</ComboBoxItem>
-                <ComboBoxItem>ComboBox Item #2</ComboBoxItem>
-                <ComboBoxItem>ComboBox Item #3</ComboBoxItem>
-            </ComboBox>-->
-            <!--==============================================================================================-->
+            <StackPanel Canvas.Left="551"
+                        Canvas.Top="282"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Width="407">
+                <TextBox MaxWidth="400"
+                         Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
+                         materialDesign:HintAssist.Hint="PassWord"
+                         AcceptsReturn="True"
+                         IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                         Style="{StaticResource MaterialDesignFilledTextBox}"
+                         TextWrapping="Wrap"
+                         Width="403" />
+            </StackPanel>
 
-
-            <ComboBox Name="cb_Shift"
-                      Width="420"
-                      Height="40"
-                      Canvas.Left="544"
-                      Canvas.Top="352"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Top"
-                      SelectedIndex="0"
-                      Cursor="Hand"
+            <ComboBox materialDesign:HintAssist.Hint="Choose your mission"
+                      Canvas.Left="554"
+                      Canvas.Top="363"
+                      HorizontalAlignment="Left"
+                      Width="398"
                       ItemsSource="{Binding Items}"
-                      SelectedItem="{Binding ItemShift, UpdateSourceTrigger=PropertyChanged}"
-                      >
-                <ComboBox.Style>
-                    <Style TargetType="ComboBox">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="ComboBox">
-                                    <Grid>
-                                        <Border BorderBrush="#C8C9CC"
-                                                BorderThickness="1"
-                                                CornerRadius="20">
-                                            <ToggleButton Name="ToggleButton"
-                                                          BorderBrush="{TemplateBinding BorderBrush}"
-                                                          BorderThickness="{TemplateBinding BorderThickness}"
-                                                          Background="{TemplateBinding Background}"
-                                                          Foreground="{TemplateBinding Foreground}"
-                                                          Focusable="False"
-                                                          ClickMode="Press"
-                                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
-                                                <ToggleButton.Template>
-                                                    <ControlTemplate TargetType="ToggleButton">
-                                                        <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="*" />
-                                                                <ColumnDefinition Width="20" />
-                                                            </Grid.ColumnDefinitions>
-                                                            <Border x:Name="Border"
-                                                                    Grid.ColumnSpan="2"
-                                                                    CornerRadius="20"
-                                                                    Background="{TemplateBinding Background}"
-                                                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                                                    BorderThickness="{TemplateBinding BorderThickness}" />
-                                                            <Path x:Name="Arrow"
-                                                                  Grid.Column="1"
-                                                                  Fill="{TemplateBinding Foreground}"
-                                                                  HorizontalAlignment="Center"
-                                                                  VerticalAlignment="Center"
-                                                                  Data="M 0 0 L 4 4 L 8 0 Z" />
-                                                        </Grid>
-                                                    </ControlTemplate>
-                                                </ToggleButton.Template>
-                                            </ToggleButton>
-                                        </Border>
-                                        <ContentPresenter Name="ContentSite"
-                                                          Content="{TemplateBinding SelectionBoxItem}"
-                                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                                          Margin="10,0,0,0"
-                                                          VerticalAlignment="Center"
-                                                          HorizontalAlignment="Left">
-
-                                        </ContentPresenter>
-                                        <TextBox x:Name="PART_EditableTextBox"
-                                                 Style="{x:Null}"
-                                                 Template="{StaticResource ComboBoxTextBox}"
-                                                 HorizontalAlignment="Left"
-                                                 VerticalAlignment="Center"
-                                                 Margin="3,0,0,0"
-                                                 Focusable="True"
-                                                 Background="Transparent"
-                                                 Visibility="Hidden"
-                                                 IsReadOnly="{TemplateBinding IsReadOnly}" />
-                                        <Popup Name="Popup"
-                                               Placement="Bottom"
-                                               IsOpen="{TemplateBinding IsDropDownOpen}"
-                                               AllowsTransparency="True"
-                                               Focusable="False"
-                                               PopupAnimation="Slide">
-                                            <Grid Name="DropDown"
-                                                  SnapsToDevicePixels="True"
-                                                  MinWidth="{TemplateBinding ActualWidth}"
-                                                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                                <Border x:Name="DropDownBorder"
-                                                        Background="{TemplateBinding Background}"
-                                                        BorderThickness="1"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        CornerRadius="15">
-                                                    <ScrollViewer Margin="4,6,4,6"
-                                                                  SnapsToDevicePixels="True">
-                                                        <StackPanel IsItemsHost="True"
-                                                                    KeyboardNavigation.DirectionalNavigation="Contained" />
-                                                    </ScrollViewer>
-                                                </Border>
-                                            </Grid>
-                                        </Popup>
-                                    </Grid>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ComboBox.Style>
-                <ComboBox.ItemContainerStyle>
-                    <Style TargetType="ComboBoxItem">
-                        <Setter Property="Foreground"
-                                Value="#5F5555" />
-                        <Setter Property="Padding"
-                                Value="10,0,0,0" />
-                    </Style>
-                </ComboBox.ItemContainerStyle>
-            </ComboBox>
-            
+                      SelectedItem="{Binding ItemShift, UpdateSourceTrigger=PropertyChanged}" />
             <Button Width="420"
                     Height="40"
                     HorizontalAlignment="Center"
@@ -440,8 +181,7 @@
                     Canvas.Left="544"
                     Canvas.Top="420"
                     Name="btn_SignIn"
-                    Command="{Binding SubmitCommand}"
-                    >
+                    Command="{Binding SubmitCommand}">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -479,96 +219,6 @@
                     </TextBlock.Style>
                 </TextBlock>
             </Button>
-            <!--<ToggleButton Width="Auto"
-                          Height="24"
-                          HorizontalAlignment="Center"
-                          Canvas.Left="544"
-                          Canvas.Top="358"
-                          Name="tg_Worked"
-                          Cursor="Hand"
-                          VerticalAlignment="Top"
-                          IsChecked="{Binding IsWorked, Mode=TwoWay}"
-                          >
-                <ToggleButton.Template>
-                    <ControlTemplate TargetType="ToggleButton">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                -->
-            <!-- Column for SwitchTrack -->
-            <!--
-                                <ColumnDefinition Width="Auto" />
-
-                                -->
-            <!-- Column for TextBlock -->
-            <!--
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            -->
-            <!-- Border for SwitchTrack -->
-            <!--
-                            <Border Grid.Column="0"
-                                    BorderThickness="1"
-                                    BorderBrush="#C8C9CC"
-                                    CornerRadius="13">
-                                -->
-            <!-- Track -->
-            <!--
-                                <Rectangle x:Name="SwitchTrack"
-                                           Fill="#E0E0E0"
-                                           RadiusX="12"
-                                           RadiusY="12" />
-                            </Border>
-
-                            -->
-            <!-- Button -->
-            <!--
-                            <Ellipse x:Name="SwitchButton"
-                                     Fill="#D3D3D3"
-                                     Width="16"
-                                     Height="16"
-                                     Margin="5,4,19,4">
-                            </Ellipse>
-
-                            -->
-            <!-- TextBlock -->
-            <!--
-                            <TextBlock Grid.Column="1"
-                                       Text="Worked"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Left"
-                                       Margin="5,0,0,0"
-                                       Foreground="Black" />
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsChecked"
-                                     Value="True">
-                                <Setter TargetName="SwitchButton"
-                                        Property="Margin"
-                                        Value="19,4,5,4" />
-                                <Setter TargetName="SwitchButton"
-                                        Property="Fill"
-                                        Value="White" />
-                                <Setter TargetName="SwitchTrack"
-                                        Property="Fill"
-                                        Value="#5F5555" />
-                            </Trigger>
-                            <Trigger Property="IsChecked"
-                                     Value="False">
-                                <Setter TargetName="SwitchButton"
-                                        Property="Margin"
-                                        Value="5,4,19,4" />
-                                <Setter TargetName="SwitchButton"
-                                        Property="Fill"
-                                        Value="#D3D3D3" />
-                                <Setter TargetName="SwitchTrack"
-                                        Property="Fill"
-                                        Value="#E0E0E0" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </ToggleButton.Template>
-            </ToggleButton>-->
 
             <TextBlock Width="314"
                        Height="14"
@@ -611,7 +261,8 @@
                    Cursor="Hand">
 
                 <Image.InputBindings>
-                    <MouseBinding Gesture="LeftClick" Command="{Binding CloseCommand, Mode=OneTime}" />
+                    <MouseBinding Gesture="LeftClick"
+                                  Command="{Binding CloseCommand, Mode=OneTime}" />
                 </Image.InputBindings>
                 <Image.Style>
                     <Style TargetType="Image">

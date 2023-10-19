@@ -25,7 +25,6 @@ namespace DevCoffeeManagerApp.ViewModels
             CloseCommand = new CloseCommand();
 
             Items = new ObservableCollection<string>();
-            Items.Add("Choose your mission");
             Items.Add("Order");
             Items.Add("Waiters");
         }
