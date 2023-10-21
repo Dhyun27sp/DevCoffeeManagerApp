@@ -7,7 +7,6 @@ using MongoDB.Driver;
 using DevCoffeeManagerApp.Config;
 using DevCoffeeManagerApp.Models;
 using MongoDB.Bson;
-using MongoDB.Bson;
 namespace DevCoffeeManagerApp.DAOs
 {
     public class ScheduleDAO

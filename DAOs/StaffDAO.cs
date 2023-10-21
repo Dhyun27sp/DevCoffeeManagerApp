@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using MongoDB.Driver;
 using DevCoffeeManagerApp.Config;
 using DevCoffeeManagerApp.Models;
-using DevCoffeeManagerApp.Models;
 using MongoDB.Bson;
 using System.Windows;
 
