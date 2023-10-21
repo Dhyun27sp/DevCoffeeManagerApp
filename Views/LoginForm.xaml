@@ -133,15 +133,10 @@
             </TextBlock>
 
             <StackPanel Canvas.Left="551"
-                        Canvas.Top="202"
+                        Canvas.Top="222"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Top"
                         Width="407">
-                <CheckBox x:Name="MaterialDesignFilledTextBoxEnabledComboBox"
-                          Content="Enabled"
-                          IsChecked="True"
-                          Height="20"
-                          Width="411" />
                 <TextBox MaxWidth="400"
                          Text="{Binding Phonenumber, UpdateSourceTrigger=PropertyChanged}"
                          materialDesign:HintAssist.Hint="Phone Number"

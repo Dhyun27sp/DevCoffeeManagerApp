@@ -190,12 +190,21 @@
     <Compile Include="StaticClass\SessionStatic.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainStaffViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\OrderFoodViewModel.cs" />
+    <Compile Include="ViewModels\TableViewModel.cs" />
     <Compile Include="Views\LoginForm.xaml.cs">
       <DependentUpon>LoginForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindowStaff.xaml.cs">
       <DependentUpon>MainWindowStaff.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControlStaff\BookTable.xaml.cs">
+      <DependentUpon>BookTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControlStaff\OrderFood.xaml.cs">
+      <DependentUpon>OrderFood.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -214,6 +223,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindowStaff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControlStaff\BookTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControlStaff\OrderFood.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

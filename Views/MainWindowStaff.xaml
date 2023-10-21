@@ -5,13 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DevCoffeeManagerApp.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
+        xmlns:views="clr-namespace:DevCoffeeManagerApp.Views.UserControlStaff"
         mc:Ignorable="d"
-        Title="MainWWindowStaff"
+        Title="MainWindowStaff"
         WindowStyle="ThreeDBorderWindow"
         WindowState="Maximized"
         Height="auto"
         Width="auto">
-    <Grid Background="#FAFAFA">
+    <Window.DataContext>
+        <vms:MainStaffViewModel>
+        </vms:MainStaffViewModel>
+    </Window.DataContext>
+    <Grid Background="#DACDC1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="5*"></ColumnDefinition>
@@ -40,10 +46,10 @@
                     <TextBlock Height="24"
                                Grid.Column="1"
                                LineHeight="20"
-                               FontFamily="Comic Sans MS"
+                               FontFamily="Segoe UI"
+                               FontWeight="DemiBold"
                                Margin="0 0 20 0"
                                FontSize="20"
-                               FontWeight="Regular"
                                FontStretch="Normal"
                                Foreground="#823C10"
                                Text="Dev Coffe Shop" />
@@ -59,7 +65,7 @@
 
                         </DataTemplate>
                     </materialDesign:TreeViewAssist.AdditionalTemplate>
-                    <TreeViewItem Header="MeNu">
+                    <TreeViewItem Header="Menu">
                         <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
                                       Header="Mercury"
                                       FontWeight="Light" />
@@ -93,9 +99,9 @@
                     <Button.Background>
                         <LinearGradientBrush StartPoint="0,1"
                                              EndPoint="1,1">
-                            <GradientStop Color="#ec1a5f"
+                            <GradientStop Color="#70644e"
                                           Offset="0" />
-                            <GradientStop Color="#fc6701"
+                            <GradientStop Color="#b1997b"
                                           Offset="1" />
                         </LinearGradientBrush>
                     </Button.Background>
@@ -115,9 +121,9 @@
                 <Grid.Background>
                     <LinearGradientBrush StartPoint="0,1"
                                          EndPoint="1,1">
-                        <GradientStop Color="#ec1a5f"
+                        <GradientStop Color="#70644e"
                                       Offset="0" />
-                        <GradientStop Color="#fc6701"
+                        <GradientStop Color="#b1997b"
                                       Offset="1" />
                     </LinearGradientBrush>
                 </Grid.Background>
@@ -185,99 +191,104 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0"
                       Margin="10">
-                    <materialDesign:Card Width="Auto"
-                                         Height="Auto"
-                                         Padding="8"
-                                         HorizontalContentAlignment="Stretch"
-                                         VerticalContentAlignment="Stretch">
+                    <Button Width="Auto"
+                            Height="Auto"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch">
                         <TextBlock FontSize="20"
                                    Foreground="White"
-                                   FontWeight="Bold"
-                                   Text="Bặt bàn" />
-                        <materialDesign:Card.Background>
+                                   FontWeight="DemiBold"
+                                   Text="Bặt bàn"
+                                   Margin="0 15 0 0" />
+                        <Button.Background>
                             <LinearGradientBrush StartPoint="1,1"
                                                  EndPoint="0,1">
-                                <GradientStop Color="#f75794"
+                                <GradientStop Color="#5d482f"
                                               Offset="0" />
-                                <GradientStop Color="#fda9ad"
+                                <GradientStop Color="#6b5848"
                                               Offset="1" />
                             </LinearGradientBrush>
-                        </materialDesign:Card.Background>
-                    </materialDesign:Card>
+                        </Button.Background>
+                    </Button>
                 </Grid>
                 <Grid Grid.Column="1"
                       Margin="10">
-                    <materialDesign:Card Width="Auto"
-                                         Height="Auto"
-                                         Padding="8"
-                                         HorizontalContentAlignment="Stretch"
-                                         VerticalContentAlignment="Stretch">
+                    <Button Width="Auto"
+                            Height="Auto"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch">
                         <TextBlock FontSize="20"
                                    Foreground="White"
-                                   FontWeight="Bold"
-                                   Text="Đặt Món" />
-                        <materialDesign:Card.Background>
+                                   FontWeight="DemiBold"
+                                   Text="Đặt Món"
+                                   Margin="0 15 0 0" />
+                        <Button.Background>
                             <LinearGradientBrush StartPoint="1,1"
                                                  EndPoint="0,1">
-                                <GradientStop Color="#ffc645"
+                                <GradientStop Color="#5d482f"
                                               Offset="0" />
-                                <GradientStop Color="#fe8c55"
+                                <GradientStop Color="#6b5848"
                                               Offset="1" />
                             </LinearGradientBrush>
-                        </materialDesign:Card.Background>
-                    </materialDesign:Card>
+                        </Button.Background>
+                    </Button>
                 </Grid>
                 <Grid Grid.Column="2"
                       Margin="10">
-                    <materialDesign:Card Width="Auto"
-                                         Height="Auto"
-                                         Padding="8"
-                                         HorizontalContentAlignment="Stretch"
-                                         VerticalContentAlignment="Stretch">
+                    <Button Width="Auto"
+                            Height="Auto"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch">
                         <TextBlock FontSize="20"
                                    Foreground="White"
-                                   FontWeight="Bold"
-                                   Text="Tùy chọn" />
-                        <materialDesign:Card.Background>
+                                   FontWeight="DemiBold"
+                                   Text="Tùy chọn"
+                                   Margin="0 15 0 0" />
+                        <Button.Background>
                             <LinearGradientBrush StartPoint="1,1"
                                                  EndPoint="0,1">
-                                <GradientStop Color="#c3eed9"
+                                <GradientStop Color="#5d482f"
                                               Offset="0" />
-                                <GradientStop Color="#3db8b5"
+                                <GradientStop Color="#6b5848"
                                               Offset="1" />
                             </LinearGradientBrush>
-                        </materialDesign:Card.Background>
-                    </materialDesign:Card>
+                        </Button.Background>
+                    </Button>
                 </Grid>
                 <Grid Grid.Column="3"
                       Margin="10">
-                    <materialDesign:Card Width="Auto"
-                                         Height="Auto"
-                                         Padding="8"
-                                         HorizontalContentAlignment="Stretch"
-                                         VerticalContentAlignment="Stretch">
+                    <Button Width="Auto"
+                            Height="Auto"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch">
                         <TextBlock FontSize="20"
                                    Foreground="White"
-                                   FontWeight="Bold"
-                                   Text="Thanh Toán" />
-                        <materialDesign:Card.Background>
+                                   FontWeight="DemiBold"
+                                   Text="Thanh Toán"
+                                   Margin="0 15 0 0" />
+                        <Button.Background>
                             <LinearGradientBrush StartPoint="1,1"
                                                  EndPoint="0,1">
-                                <GradientStop Color="#26cddc"
+                                <GradientStop Color="#5d482f"
                                               Offset="0" />
-                                <GradientStop Color="#5781e7"
+                                <GradientStop Color="#6b5848"
                                               Offset="1" />
                             </LinearGradientBrush>
-                        </materialDesign:Card.Background>
-                    </materialDesign:Card>
+                        </Button.Background>
+                    </Button>
                 </Grid>
 
             </Grid>
             <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="6*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <DataTemplate DataType="{x:Type vms:TableViewModel}">
+                        <views:BookTable />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vms:OrderFoodViewModel}">
+                        <views:OrderFood />
+                    </DataTemplate>
+                </Grid.Resources>
+                <ContentControl Content="{Binding CurrentViewModel}" />
             </Grid>
         </Grid>
     </Grid>
