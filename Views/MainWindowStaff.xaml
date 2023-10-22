@@ -139,7 +139,8 @@
                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                         Style="{StaticResource MaterialDesignRaisedLightButton}"
                         ToolTip="MaterialDesignRaisedLightButton with Round Corners"
-                        Margin="0 0 0 10">
+                        Margin="0 0 0 10"
+                        Command="{Binding CommandExit}">
                     <Button.BorderBrush>
                         <ImageBrush/>
                     </Button.BorderBrush>
@@ -234,7 +235,8 @@
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             ToolTip="MaterialDesignRaisedButton with Round Corners"
                             HorizontalContentAlignment="Stretch"
-                            VerticalContentAlignment="Stretch">
+                            VerticalContentAlignment="Stretch"
+                            Command="{Binding CommandTable}">
                         <Button.BorderBrush>
                             <ImageBrush/>
                         </Button.BorderBrush>
@@ -242,7 +244,7 @@
                                    FontSize="20"
                                    Foreground="White"
                                    FontWeight="Normal"
-                                   Text="Bặt Bàn"
+                                   Text="Đặt Bàn"
                                    Margin="0 15 0 0" />
                         <Button.Background>
                             <SolidColorBrush Color="#5F5555" />
@@ -258,7 +260,8 @@
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             ToolTip="MaterialDesignRaisedButton with Round Corners"
                             HorizontalContentAlignment="Stretch"
-                            VerticalContentAlignment="Stretch">
+                            VerticalContentAlignment="Stretch"
+                            Command="{Binding CommandOrder}">
                         <Button.BorderBrush>
                             <ImageBrush/>
                         </Button.BorderBrush>

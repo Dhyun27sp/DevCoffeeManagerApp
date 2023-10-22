@@ -29,7 +29,7 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
         }
         public override void Execute(object parameter)
         {
-            Entrance();
+            Entrance(parameter);
         }
 
         private string GetShift()
@@ -52,7 +52,7 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
             return shift;
         }
 
-        private void Entrance()
+        private void Entrance(object parameter)
         {
             string month_present = DateTime.Now.Month.ToString();
             string role = staffdao.GetStaff(Viewmodellogin.Phonenumber, month_present).account.Role.ToString();
@@ -70,7 +70,7 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
                 if (pass == Viewmodellogin.Password)
                 {
                     Worked_Staff();
-                    Session();
+                    Session(parameter);
                 }
             }
         }
@@ -111,13 +111,17 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
             
         }
 
-        private void Session()
+        private void Session(object parameter)
         {
             if (Viewmodellogin.ItemShift == "Order")
             {
                 SessionStatic.SetTask = Viewmodellogin.ItemShift;
                 SessionStatic.SetPhoneNumber = Viewmodellogin.Phonenumber;
                 SessionStatic.SetPassWord = int.Parse(Viewmodellogin.Password);
+                if (parameter is Window window)
+                {
+                    window.Hide();
+                }
                 MainWindowStaff mainWindowstaff = new MainWindowStaff();
                 mainWindowstaff.Show();
             }

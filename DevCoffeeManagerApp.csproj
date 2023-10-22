@@ -179,6 +179,9 @@
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandLogin\CloseCommand.cs" />
     <Compile Include="Commands\CommandLogin\CommandSubmit.cs" />
+    <Compile Include="Commands\CommandMainStaff\ExitCommand.cs" />
+    <Compile Include="Commands\CommandMainStaff\OrderCommand.cs" />
+    <Compile Include="Commands\CommandMainStaff\TableCommand.cs" />
     <Compile Include="Commands\CommandTable\ReservationCommand.cs" />
     <Compile Include="Commands\CommandTable\LoadTableCommand.cs" />
     <Compile Include="Config\ConnectionMongoDB.cs" />

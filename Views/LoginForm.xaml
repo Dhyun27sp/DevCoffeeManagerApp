@@ -8,6 +8,7 @@
         xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
         mc:Ignorable="d"
         Title="Login"
+        Name="Loginwindow"
         Height="575"
         Width="1039"
         WindowStyle="None"
@@ -176,7 +177,8 @@
                     Canvas.Left="544"
                     Canvas.Top="420"
                     Name="btn_SignIn"
-                    Command="{Binding SubmitCommand}">
+                    Command="{Binding SubmitCommand}"
+                    CommandParameter="{Binding ElementName=Loginwindow}">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
