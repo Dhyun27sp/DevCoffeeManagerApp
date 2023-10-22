@@ -180,9 +180,11 @@
     <Compile Include="Commands\CommandLogin\CloseCommand.cs" />
     <Compile Include="Commands\CommandLogin\CommandSubmit.cs" />
     <Compile Include="Config\ConnectionMongoDB.cs" />
+    <Compile Include="DAOs\TableDAO.cs" />
     <Compile Include="DAOs\ScheduleDAO.cs" />
     <Compile Include="DAOs\StaffDAO.cs" />
     <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\TableModel.cs" />
     <Compile Include="Models\EvaluateModel.cs" />
     <Compile Include="Models\SalaryModel.cs" />
     <Compile Include="Models\ScheduleModel.cs" />

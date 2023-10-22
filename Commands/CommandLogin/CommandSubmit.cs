@@ -37,15 +37,15 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
             var dt = DateTime.Now;
             string shift = "";
             string daymonth = dt.ToString("dd/MM"); // 02/09S DD/mm 2/9S
-            if (dt.Hour >= 7 && dt.Hour <= 12)
+            if (dt.Hour >= 7 && dt.Hour < 12)
             {
                 shift = daymonth + "S";
             }
-            else if (dt.Hour > 12 && dt.Hour <= 17)
+            else if (dt.Hour >= 12 && dt.Hour < 17)
             {
                 shift = daymonth + "C";
             }
-            else if (dt.Hour > 17 && dt.Hour <= 22)
+            else if (dt.Hour >= 17 && dt.Hour < 22)
             {
                 shift = daymonth + "T";
             }
