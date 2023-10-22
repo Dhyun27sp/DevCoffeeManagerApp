@@ -235,7 +235,7 @@
                         <TextBlock FontFamily="Nunito"
                                    FontSize="20"
                                    Foreground="White"
-                                   FontWeight="Regular"
+                                   FontWeight="Normal"
                                    Text="Bặt Bàn"
                                    Margin="0 15 0 0" />
                         <Button.Background>

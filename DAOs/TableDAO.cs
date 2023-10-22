@@ -22,12 +22,21 @@ namespace DevCoffeeManagerApp.DAOs
         {
             collection.InsertOne(tableModel);
         }
-
+        public List<TableModel> ReadAll()
+        {
+            List<TableModel> listTable = collection.Find(new BsonDocument()).ToList();
+            return listTable;
+        }
         public void SetStatus(int no_)
         {
-            var shiftFilter = Builders<TableModel>.Filter.Eq("No.", no_); // Tạo một bộ lọc dựa trên shift
-            var update = Builders<TableModel>.Update.Set("Status", false); // Sử dụng $push để thêm một phần tử vào mảng evaluate
-            collection.UpdateOne(shiftFilter, update);
+            var shiftFilter = Builders<TableModel>.Filter.Eq("No.", no_);
+            var false_update = Builders<TableModel>.Update.Set("Status", false); 
+            UpdateResult result = collection.UpdateOne(shiftFilter, false_update);
+            if (result.ModifiedCount == 0)
+            {
+                var true_update = Builders<TableModel>.Update.Set("Status", true);
+                collection.UpdateOne(shiftFilter, true_update);
+            }
         }
         
     }

@@ -179,6 +179,8 @@
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandLogin\CloseCommand.cs" />
     <Compile Include="Commands\CommandLogin\CommandSubmit.cs" />
+    <Compile Include="Commands\CommandTable\ReservationCommand.cs" />
+    <Compile Include="Commands\CommandTable\LoadTableCommand.cs" />
     <Compile Include="Config\ConnectionMongoDB.cs" />
     <Compile Include="DAOs\TableDAO.cs" />
     <Compile Include="DAOs\ScheduleDAO.cs" />
