@@ -140,6 +140,9 @@
                         Style="{StaticResource MaterialDesignRaisedLightButton}"
                         ToolTip="MaterialDesignRaisedLightButton with Round Corners"
                         Margin="0 0 0 10">
+                    <Button.BorderBrush>
+                        <ImageBrush/>
+                    </Button.BorderBrush>
                     <Button.Background>
                         <SolidColorBrush Color="#7f7777" />
                     </Button.Background>
@@ -232,6 +235,9 @@
                             ToolTip="MaterialDesignRaisedButton with Round Corners"
                             HorizontalContentAlignment="Stretch"
                             VerticalContentAlignment="Stretch">
+                        <Button.BorderBrush>
+                            <ImageBrush/>
+                        </Button.BorderBrush>
                         <TextBlock FontFamily="Nunito"
                                    FontSize="20"
                                    Foreground="White"
@@ -253,6 +259,9 @@
                             ToolTip="MaterialDesignRaisedButton with Round Corners"
                             HorizontalContentAlignment="Stretch"
                             VerticalContentAlignment="Stretch">
+                        <Button.BorderBrush>
+                            <ImageBrush/>
+                        </Button.BorderBrush>
                         <TextBlock FontFamily="Nunito"
                                    FontSize="20"
                                    Foreground="White"
@@ -274,6 +283,9 @@
                             ToolTip="MaterialDesignRaisedButton with Round Corners"
                             HorizontalContentAlignment="Stretch"
                             VerticalContentAlignment="Stretch">
+                        <Button.BorderBrush>
+                            <ImageBrush/>
+                        </Button.BorderBrush>
                         <TextBlock FontFamily="Nunito"
                                    FontSize="20"
                                    Foreground="White"
@@ -295,6 +307,9 @@
                             ToolTip="MaterialDesignRaisedButton with Round Corners"
                             HorizontalContentAlignment="Stretch"
                             VerticalContentAlignment="Stretch">
+                        <Button.BorderBrush>
+                            <ImageBrush/>
+                        </Button.BorderBrush>
                         <TextBlock FontFamily="Nunito"
                                    FontSize="20"
                                    Foreground="White"
