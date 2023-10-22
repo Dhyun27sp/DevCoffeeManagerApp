@@ -8,8 +8,31 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <DataGrid materialDesign:DataGridAssist.SelectedCellBorderBrush="Crimson"
-                  CanUserAddRows="False"
-                  ItemsSource="{Binding Items4}" />
+        <ListView>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="150">
+                        <GridViewColumnHeader>
+                            Id bàn
+                        </GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Width="150">
+                        <GridViewColumnHeader>
+                            Số chỗ ngồi
+                        </GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Width="130">
+                        <GridViewColumnHeader>
+                            Trạng thái
+                        </GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Width="120">
+                        <GridViewColumnHeader>
+                            Chọn
+                        </GridViewColumnHeader>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>

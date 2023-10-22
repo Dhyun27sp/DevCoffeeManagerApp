@@ -17,7 +17,7 @@
         <vms:MainStaffViewModel>
         </vms:MainStaffViewModel>
     </Window.DataContext>
-    <Grid Background="#DACDC1">
+    <Grid Background="#8f8888">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="5*"></ColumnDefinition>
@@ -30,36 +30,42 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <Image Source="/img/logo.png"
-                           Margin="10"
-                           Width="40"
-                           Height="40">
-                    </Image>
+            <Border BorderBrush="#5f5555"
+                    BorderThickness="0 0 0 1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Image Source="/img/logo.png"
+                               Margin="10"
+                               Width="40"
+                               Height="40">
+                        </Image>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <TextBlock FontFamily="Nunito"
+                                   Height="24"
+                                   Grid.Column="1"
+                                   LineHeight="20"
+                                   FontWeight="DemiBold"
+                                   Margin="0 0 20 0"
+                                   FontSize="20"
+                                   FontStretch="Normal"
+                                   Foreground="#4c4444"
+                                   Text="Dev Coffee Shop" />
+                    </Grid>
                 </Grid>
-                <Grid Grid.Column="1">
-                    <TextBlock Height="24"
-                               Grid.Column="1"
-                               LineHeight="20"
-                               FontFamily="Segoe UI"
-                               FontWeight="DemiBold"
-                               Margin="0 0 20 0"
-                               FontSize="20"
-                               FontStretch="Normal"
-                               Foreground="#823C10"
-                               Text="Dev Coffe Shop" />
-                </Grid>
-            </Grid>
+            </Border>
+
 
 
             <Grid Grid.Row="1">
                 <TreeView FontSize="20"
-                          FontWeight="DemiBold">
+                          Foreground="White"
+                          FontFamily="Nunito"
+                          FontWeight="Regular">
                     <materialDesign:TreeViewAssist.AdditionalTemplate>
                         <DataTemplate>
 
@@ -84,34 +90,67 @@
                         <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
                                       Header="Neptune" />
                     </TreeViewItem>
+                    <TreeViewItem Header="Menu">
+                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
+                                      Header="Mercury"
+                                      FontWeight="Light" />
+                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
+                                      Header="Venus" />
+                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
+                                      Header="Earth" />
+                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
+                                      Header="Mars" />
+                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
+                                      Header="Jupiter" />
+                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
+                                      Header="Saturn" />
+                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
+                                      Header="Uranus" />
+                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
+                                      Header="Neptune" />
+                    </TreeViewItem>
+                    <TreeViewItem Header="Menu">
+                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
+                                      Header="Mercury"
+                                      FontWeight="Light" />
+                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
+                                      Header="Venus" />
+                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
+                                      Header="Earth" />
+                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
+                                      Header="Mars" />
+                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
+                                      Header="Jupiter" />
+                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
+                                      Header="Saturn" />
+                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
+                                      Header="Uranus" />
+                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
+                                      Header="Neptune" />
+                    </TreeViewItem>
                 </TreeView>
-
             </Grid>
 
 
             <Grid Width="90"
                   Height="50"
                   Grid.Row="2">
-                <Button materialDesign:ButtonAssist.CornerRadius="5"
+                <Button materialDesign:ButtonAssist.CornerRadius="10"
                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                         Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        ToolTip="MaterialDesignRaisedLightButton with Round Corners">
+                        ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                        Margin="0 0 0 10">
                     <Button.Background>
-                        <LinearGradientBrush StartPoint="0,1"
-                                             EndPoint="1,1">
-                            <GradientStop Color="#70644e"
-                                          Offset="0" />
-                            <GradientStop Color="#b1997b"
-                                          Offset="1" />
-                        </LinearGradientBrush>
+                        <SolidColorBrush Color="#7f7777" />
                     </Button.Background>
-                    <TextBlock Text="Exit"
+                    <TextBlock FontFamily="Nunito"
+                               Text="Exit"
                                Foreground="White" />
                 </Button>
             </Grid>
         </Grid>
         <Grid Grid.Column="1"
-              Background="#DBDADA">
+              Background="#cfcccc">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"></RowDefinition>
                 <RowDefinition Height="3*"></RowDefinition>
@@ -119,13 +158,7 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.Background>
-                    <LinearGradientBrush StartPoint="0,1"
-                                         EndPoint="1,1">
-                        <GradientStop Color="#70644e"
-                                      Offset="0" />
-                        <GradientStop Color="#b1997b"
-                                      Offset="1" />
-                    </LinearGradientBrush>
+                    <SolidColorBrush Color="#7f7777" />
                 </Grid.Background>
                 <materialDesign:ColorZone Padding="auto"
                                           VerticalAlignment="Center"
@@ -190,90 +223,86 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0"
-                      Margin="10">
-                    <Button Width="Auto"
-                            Height="Auto"
+                      Width="Auto"
+                      Margin="35 30 0 0">
+                    <Button Height="Auto"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            ToolTip="MaterialDesignRaisedButton with Round Corners"
                             HorizontalContentAlignment="Stretch"
                             VerticalContentAlignment="Stretch">
-                        <TextBlock FontSize="20"
+                        <TextBlock FontFamily="Nunito"
+                                   FontSize="20"
                                    Foreground="White"
-                                   FontWeight="DemiBold"
-                                   Text="Bặt bàn"
+                                   FontWeight="Regular"
+                                   Text="Bặt Bàn"
                                    Margin="0 15 0 0" />
                         <Button.Background>
-                            <LinearGradientBrush StartPoint="1,1"
-                                                 EndPoint="0,1">
-                                <GradientStop Color="#5d482f"
-                                              Offset="0" />
-                                <GradientStop Color="#6b5848"
-                                              Offset="1" />
-                            </LinearGradientBrush>
+                            <SolidColorBrush Color="#5F5555" />
                         </Button.Background>
                     </Button>
                 </Grid>
                 <Grid Grid.Column="1"
-                      Margin="10">
-                    <Button Width="Auto"
-                            Height="Auto"
+                      Width="Auto"
+                      Margin="35 30 0 0">
+                    <Button Height="Auto"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            ToolTip="MaterialDesignRaisedButton with Round Corners"
                             HorizontalContentAlignment="Stretch"
                             VerticalContentAlignment="Stretch">
-                        <TextBlock FontSize="20"
+                        <TextBlock FontFamily="Nunito"
+                                   FontSize="20"
                                    Foreground="White"
-                                   FontWeight="DemiBold"
+                                   FontWeight="Regular"
                                    Text="Đặt Món"
                                    Margin="0 15 0 0" />
                         <Button.Background>
-                            <LinearGradientBrush StartPoint="1,1"
-                                                 EndPoint="0,1">
-                                <GradientStop Color="#5d482f"
-                                              Offset="0" />
-                                <GradientStop Color="#6b5848"
-                                              Offset="1" />
-                            </LinearGradientBrush>
+                            <SolidColorBrush Color="#5F5555" />
                         </Button.Background>
                     </Button>
                 </Grid>
                 <Grid Grid.Column="2"
-                      Margin="10">
-                    <Button Width="Auto"
-                            Height="Auto"
+                      Width="Auto"
+                      Margin="35 30 0 0">
+                    <Button Height="Auto"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            ToolTip="MaterialDesignRaisedButton with Round Corners"
                             HorizontalContentAlignment="Stretch"
                             VerticalContentAlignment="Stretch">
-                        <TextBlock FontSize="20"
+                        <TextBlock FontFamily="Nunito"
+                                   FontSize="20"
                                    Foreground="White"
-                                   FontWeight="DemiBold"
-                                   Text="Tùy chọn"
+                                   FontWeight="Regular"
+                                   Text="Tùy Chọn"
                                    Margin="0 15 0 0" />
                         <Button.Background>
-                            <LinearGradientBrush StartPoint="1,1"
-                                                 EndPoint="0,1">
-                                <GradientStop Color="#5d482f"
-                                              Offset="0" />
-                                <GradientStop Color="#6b5848"
-                                              Offset="1" />
-                            </LinearGradientBrush>
+                            <SolidColorBrush Color="#5F5555" />
                         </Button.Background>
                     </Button>
                 </Grid>
                 <Grid Grid.Column="3"
-                      Margin="10">
-                    <Button Width="Auto"
-                            Height="Auto"
+                      Width="Auto"
+                      Margin="35 30 35 0">
+                    <Button Height="Auto"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            ToolTip="MaterialDesignRaisedButton with Round Corners"
                             HorizontalContentAlignment="Stretch"
                             VerticalContentAlignment="Stretch">
-                        <TextBlock FontSize="20"
+                        <TextBlock FontFamily="Nunito"
+                                   FontSize="20"
                                    Foreground="White"
-                                   FontWeight="DemiBold"
+                                   FontWeight="Regular"
                                    Text="Thanh Toán"
                                    Margin="0 15 0 0" />
                         <Button.Background>
-                            <LinearGradientBrush StartPoint="1,1"
-                                                 EndPoint="0,1">
-                                <GradientStop Color="#5d482f"
-                                              Offset="0" />
-                                <GradientStop Color="#6b5848"
-                                              Offset="1" />
-                            </LinearGradientBrush>
+                            <SolidColorBrush Color="#5F5555" />
                         </Button.Background>
                     </Button>
                 </Grid>
