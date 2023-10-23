@@ -22,7 +22,7 @@ namespace DevCoffeeManagerApp.Commands.CommandMainStaff
                                                       MessageBoxImage.Question);
 
             // Kiểm tra kết quả của hộp thoại xác nhận
-            if (result == MessageBoxResult.Yes)
+            if (result == MessageBoxResult.Yes) 
             {
                 // Thoát ứng dụng
                 Application.Current.Shutdown();
