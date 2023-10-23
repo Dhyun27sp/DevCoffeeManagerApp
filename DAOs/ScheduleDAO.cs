@@ -7,6 +7,8 @@ using MongoDB.Driver;
 using DevCoffeeManagerApp.Config;
 using DevCoffeeManagerApp.Models;
 using MongoDB.Bson;
+using System.Windows;
+
 namespace DevCoffeeManagerApp.DAOs
 {
     public class ScheduleDAO
@@ -62,7 +64,19 @@ namespace DevCoffeeManagerApp.DAOs
             List<string> staffids = new List<string>();
             var ShiftFilter = Builders<ScheduleModel>.Filter.Eq("shift", shift);
             ScheduleModel schedulemodel = collection.Find(ShiftFilter).FirstOrDefault();
-            evaluates = schedulemodel.evaluate;
+            try
+            {
+                if(schedulemodel != null)
+                { 
+                    evaluates = schedulemodel.evaluate;
+                }
+                else
+                {
+                    return evaluates;
+                }
+            }
+            catch { }
+                
             return evaluates;
         }
     }

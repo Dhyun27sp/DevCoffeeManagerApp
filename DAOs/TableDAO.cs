@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +23,10 @@ namespace DevCoffeeManagerApp.DAOs
         {
             collection.InsertOne(tableModel);
         }
-        public List<TableModel> ReadAll()
+        public ObservableCollection<TableModel> ReadAll()
         {
             List<TableModel> listTable = collection.Find(new BsonDocument()).ToList();
-            return listTable;
+            return new ObservableCollection<TableModel>(listTable);
         }
         public void SetStatus(int no_)
         {

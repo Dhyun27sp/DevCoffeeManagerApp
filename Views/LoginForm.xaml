@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:DevCoffeeManagerApp"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
+        xmlns:passwordboxComponent="clr-namespace:DevCoffeeManagerApp.Component"
         mc:Ignorable="d"
         Title="Login"
         Name="Loginwindow"
@@ -153,14 +154,15 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Width="407">
-                <TextBox MaxWidth="400"
-                         Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
+                <passwordboxComponent:BindablePasswordBox
+                    MaxWidth="400"
+                         Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                          materialDesign:HintAssist.Hint="PassWord"
-                         AcceptsReturn="True"
                          IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
-                         Style="{StaticResource MaterialDesignFilledTextBox}"
-                         TextWrapping="Wrap"
-                         Width="403" />
+                         Width="403" 
+                    />
+
+                
             </StackPanel>
 
             <ComboBox materialDesign:HintAssist.Hint="Choose your mission"

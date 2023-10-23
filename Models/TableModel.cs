@@ -19,5 +19,8 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("Status"), BsonRepresentation(BsonType.Boolean)]
         public bool Status { get; set; }
 
+        [BsonElement("IsSelected"), BsonRepresentation(BsonType.Boolean)]
+        public bool IsSelected { get; set; }
+
     }
 }
