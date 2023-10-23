@@ -7,9 +7,9 @@ using System.Windows;
 
 namespace DevCoffeeManagerApp.Commands.CommandMainStaff
 {
-    public class ExitCommand : CommandBase
+    public class ExitCommand : CommandBase 
     {
-        public override bool CanExecute(object parameter)
+        public override bool CanExecute(object parameter)  
         {
             return true;
         }
