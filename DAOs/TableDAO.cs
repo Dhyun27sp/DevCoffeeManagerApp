@@ -16,7 +16,7 @@ namespace DevCoffeeManagerApp.DAOs
         public TableDAO()
         {
             IMongoDatabase db = ConnectionMongoDB.getdatabase();
-            collection = db.GetCollection<TableModel>("table");
+            collection = db.GetCollection<TableModel>("Table");
         }
         public void createTable(TableModel tableModel)
         {

@@ -14,7 +14,7 @@ namespace DevCoffeeManagerApp.ViewModels
     {
         public List<TableModel> Items
         {
-            get; set;
+            get; set; 
         }
         public ICommand ReservationCommand { get; }
         public ICommand CloseCommand { get; }
