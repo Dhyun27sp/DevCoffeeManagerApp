@@ -154,15 +154,11 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Width="407">
-                <passwordboxComponent:BindablePasswordBox
-                    MaxWidth="400"
-                         Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                         materialDesign:HintAssist.Hint="PassWord"
-                         IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
-                         Width="403" 
-                    />
-
-                
+                <passwordboxComponent:BindablePasswordBox MaxWidth="400"
+                                                          Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                          materialDesign:HintAssist.Hint="PassWord"
+                                                          IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                                          Width="403" />
             </StackPanel>
 
             <ComboBox materialDesign:HintAssist.Hint="Choose your mission"

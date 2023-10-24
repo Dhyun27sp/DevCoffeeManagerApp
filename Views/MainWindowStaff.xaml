@@ -326,7 +326,8 @@
                 </Grid>
 
             </Grid>
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="2"
+                  Margin="35 10">
                 <Grid.Resources>
                     <DataTemplate DataType="{x:Type vms:TableViewModel}">
                         <views:BookTable />
