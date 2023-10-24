@@ -53,7 +53,7 @@
                                    Margin="0 0 20 0"
                                    FontSize="20"
                                    FontStretch="Normal"
-                                   Foreground="#4c4444"
+                                   Foreground="#FFECE0D1"
                                    Text="Dev Coffee Shop" />
                     </Grid>
                 </Grid>
@@ -145,7 +145,7 @@
                         <ImageBrush/>
                     </Button.BorderBrush>
                     <Button.Background>
-                        <SolidColorBrush Color="#7f7777" />
+                        <SolidColorBrush Color="#FF38220F" />
                     </Button.Background>
                     <TextBlock FontFamily="Nunito"
                                Text="Exit"
@@ -154,7 +154,7 @@
             </Grid>
         </Grid>
         <Grid Grid.Column="1"
-              Background="#cfcccc">
+              Background="#FFD3D3D3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"></RowDefinition>
                 <RowDefinition Height="3*"></RowDefinition>
@@ -162,7 +162,7 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.Background>
-                    <SolidColorBrush Color="#7f7777" />
+                    <SolidColorBrush Color="#5F5555" />
                 </Grid.Background>
                 <materialDesign:ColorZone Padding="auto"
                                           VerticalAlignment="Center"
@@ -219,15 +219,15 @@
             </Grid>
 
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1"
+                  Margin="0 0 35 0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0"
-                      Width="Auto"
                       Margin="35 30 0 0">
                     <Button Height="Auto"
                             materialDesign:ButtonAssist.CornerRadius="10"
@@ -252,7 +252,6 @@
                     </Button>
                 </Grid>
                 <Grid Grid.Column="1"
-                      Width="Auto"
                       Margin="35 30 0 0">
                     <Button Height="Auto"
                             materialDesign:ButtonAssist.CornerRadius="10"
@@ -277,7 +276,6 @@
                     </Button>
                 </Grid>
                 <Grid Grid.Column="2"
-                      Width="Auto"
                       Margin="35 30 0 0">
                     <Button Height="Auto"
                             materialDesign:ButtonAssist.CornerRadius="10"
@@ -301,8 +299,7 @@
                     </Button>
                 </Grid>
                 <Grid Grid.Column="3"
-                      Width="Auto"
-                      Margin="35 30 35 0">
+                      Margin="35 30 0 0">
                     <Button Height="Auto"
                             materialDesign:ButtonAssist.CornerRadius="10"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
