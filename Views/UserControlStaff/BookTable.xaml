@@ -34,8 +34,6 @@
                                         Value="10" />
                                 <Setter Property="Foreground"
                                         Value="Black" />
-                                <!--<Setter Property="BorderThickness"
-                                        Value="10" />-->
                                 <Setter Property="HorizontalContentAlignment"
                                         Value="Left" />
                             </Style>
@@ -90,7 +88,17 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
-                                              FontSize="20" />
+                                              FontSize="20">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter Property="Foreground" Value="#5F5555" />
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
