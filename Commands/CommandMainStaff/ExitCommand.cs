@@ -24,8 +24,12 @@ namespace DevCoffeeManagerApp.Commands.CommandMainStaff
             // Kiểm tra kết quả của hộp thoại xác nhận
             if (result == MessageBoxResult.Yes) 
             {
-                // Thoát ứng dụng
-                Application.Current.Shutdown();
+                if (parameter is Window window)
+                {
+                    window.Hide();
+                }
+                LoginWindow login = new LoginWindow();
+                login.Show();
             }
         }
     }

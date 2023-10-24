@@ -36,6 +36,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AWSSDK.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
       <HintPath>packages\AWSSDK.Core.3.7.100.14\lib\net45\AWSSDK.Core.dll</HintPath>
@@ -182,8 +202,10 @@
     <Compile Include="Commands\CommandMainStaff\ExitCommand.cs" />
     <Compile Include="Commands\CommandMainStaff\OrderCommand.cs" />
     <Compile Include="Commands\CommandMainStaff\TableCommand.cs" />
-    <Compile Include="Commands\CommandTable\ReservationCommand.cs" />
-    <Compile Include="Commands\CommandTable\LoadTableCommand.cs" />
+    <Compile Include="Commands\CommandTable\CommandBookTable.cs" />
+    <Compile Include="Component\BindablePasswordBox.xaml.cs">
+      <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Config\ConnectionMongoDB.cs" />
     <Compile Include="DAOs\TableDAO.cs" />
     <Compile Include="DAOs\ScheduleDAO.cs" />
@@ -213,6 +235,10 @@
     <Compile Include="Views\UserControlStaff\OrderFood.xaml.cs">
       <DependentUpon>OrderFood.xaml</DependentUpon>
     </Compile>
+    <Page Include="Component\BindablePasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

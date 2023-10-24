@@ -24,5 +24,9 @@ namespace DevCoffeeManagerApp
             InitializeComponent();
         }
 
+        private void TextBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

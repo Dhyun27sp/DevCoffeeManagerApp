@@ -11,6 +11,8 @@ using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.StaticClass;
 using MongoDB.Bson;
 using DevCoffeeManagerApp.Views;
+using System.Text.RegularExpressions;
+using static MongoDB.Bson.Serialization.Serializers.SerializerHelper;
 
 namespace DevCoffeeManagerApp.Commands.CommandLogin
 {
@@ -27,9 +29,34 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
         {
             return true;
         }
+        public bool checkInput()
+        {
+            if (Viewmodellogin.Phonenumber == null)
+            {
+                MessageBox.Show("Xin vui lòng nhập tài khoản");
+                return false;
+            }
+            else if (Viewmodellogin.Password == null)
+            {
+                MessageBox.Show("Xin vui lòng nhập mật khẩu");
+                return false;
+            }
+            if (Viewmodellogin.Phonenumber != null)
+            {
+                if (!Regex.Match(Viewmodellogin.Phonenumber, @"^(0[3|5|7|8|9][0-9]{8})$").Success)
+                {
+                    MessageBox.Show("Đây không phải là số điện thoại!");
+                    return false;
+                }
+            }
+            return true;
+        }
         public override void Execute(object parameter)
         {
-            Entrance(parameter);
+            if(checkInput() == true)
+            {
+                Entrance(parameter);
+            }
         }
 
         private string GetShift()
@@ -37,7 +64,7 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
             var dt = DateTime.Now;
             string shift = "";
             string daymonth = dt.ToString("dd/MM"); // 02/09S DD/mm 2/9S
-            if (dt.Hour >= 7 && dt.Hour < 12)
+            if (dt.Hour >= 7 && dt.Hour < 12) //>=7 < 12
             {
                 shift = daymonth + "S";
             }
@@ -45,7 +72,7 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
             {
                 shift = daymonth + "C";
             }
-            else if (dt.Hour >= 17 && dt.Hour < 22)
+            else if (dt.Hour >= 17 && dt.Hour <= 22)// chỉnh lại 10 h
             {
                 shift = daymonth + "T";
             }
@@ -54,9 +81,30 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
 
         private void Entrance(object parameter)
         {
+            string role = "";
+            string pass = "";
             string month_present = DateTime.Now.Month.ToString();
-            string role = staffdao.GetStaff(Viewmodellogin.Phonenumber, month_present).account.Role.ToString();
-            string pass = staffdao.GetStaff(Viewmodellogin.Phonenumber, month_present).account.Password.ToString();
+
+            try
+            {
+                var staff = staffdao.GetStaff(Viewmodellogin.Phonenumber, month_present);
+
+                if (staff != null)
+                {
+                    role = staff.account.Role.ToString();
+                    pass = staff.account.Password.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("không tìm thấy số điện thoại này");
+                }
+
+            }
+            catch (NullReferenceException ex)
+            {
+                
+            }
+
             if (role == "admin")
             {
                 if (pass == Viewmodellogin.Password)
@@ -69,19 +117,30 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
             {
                 if (pass == Viewmodellogin.Password)
                 {
-                    Worked_Staff();
-                    Session(parameter);
+                    if(Worked_Staff() == 1)
+                    {
+                        Session(parameter);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Sai Mật Khẩu");
                 }
             }
         }
-        private void Worked_Staff()
+        private int Worked_Staff()
         {
             string month_present = DateTime.Now.Month.ToString();
             int Add = 0; // cờ thêm nhân viên mới
             string shift = GetShift();// lấy ca hiện tại
             int count_Worked_in_shift = Count_Staff_Had_Worked(shift);
             List<ObjectId> listStaffIdInShift = new List<ObjectId>(); ;// danh sách ID nhân viên
-            listStaffIdInShift = Get_StaffIDs_in_Evaluate(shift); ;//nạp dự liệu cho listStaffIdInShift
+            listStaffIdInShift = Get_StaffIDs_in_Evaluate(shift); //nạp dự liệu cho listStaffIdInShift
+            if (listStaffIdInShift.Count == 0) {
+                MessageBox.Show("Không có lịch làm hôm nay");
+                return 0; // lịch làm rỗng
+            } 
+
 
             ObjectId _idstaff = staffdao.GetStaff(Viewmodellogin.Phonenumber, month_present).staffid; // lấy Id nhân viên theo số điện thoại và tháng lương hiện tại
 
@@ -93,7 +152,8 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
                     {
                         if (staffid == _idstaff)
                         {
-                            scheduledao.Worked_for_Staff(shift, staffid);// đổi trạng thái worked
+                            scheduledao.Worked_for_Staff(shift, staffid);
+                            MessageBox.Show("Bạn đã chấm công hôm nay");// đổi trạng thái worked
                             Add = -1;
                             break;
                         }
@@ -103,12 +163,13 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
                         EvaluateModel evaluate = new EvaluateModel(_idstaff, true, 0);
                         scheduledao.AddEvaluate(shift, evaluate);
                         // thêm staff_id vào evalute của schedule
+                        MessageBox.Show("Bạn đã chấm công hôm nay");
                     }
-                    MessageBox.Show("Bạn đã chấm công hôm nay");
+                    
                 }
                 else MessageBox.Show("Số lượng nhân viên làm đã tối đa");
             }
-            
+            return 1;
         }
 
         private void Session(object parameter)

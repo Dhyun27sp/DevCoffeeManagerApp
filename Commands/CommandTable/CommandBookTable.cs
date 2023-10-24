@@ -1,5 +1,4 @@
 ﻿using DevCoffeeManagerApp.DAOs;
-using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -7,13 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevCoffeeManagerApp.Commands.CommandLogin
+namespace DevCoffeeManagerApp.Commands.newe
 {
-    public class LoadTableCommand : CommandBase
+    public class CommandBookTable: CommandBase
     {
-        TableDAO tableDAO = new TableDAO();    
+        public CommandBookTable() { }
+        TableDAO tableDAO = new TableDAO();
         private TableViewModel Viewmodeltable;
-        public LoadTableCommand(TableViewModel viewmodeltable)
+        public CommandBookTable(TableViewModel viewmodeltable)
         {
             Viewmodeltable = viewmodeltable;
         }
@@ -24,13 +24,11 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
 
         public override void Execute(object parameter)
         {
-            getAll();
-        }
-        public void getAll()
-        {
-            Viewmodeltable.Items = tableDAO.ReadAll();
+            foreach (var item in Viewmodeltable.Items)
+            {
+                // lấy đa ta sử lý ở đây nhé
+            }
         }
 
     }
-
 }
