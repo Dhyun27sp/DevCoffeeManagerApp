@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
 
 namespace DevCoffeeManagerApp.Commands.newe
 {
@@ -24,11 +26,8 @@ namespace DevCoffeeManagerApp.Commands.newe
 
         public override void Execute(object parameter)
         {
-            foreach (var item in Viewmodeltable.Items)
-            {
-                // lấy đa ta sử lý ở đây nhé
-            }
+            MessageBox.Show("lol");
+            Viewmodeltable.Foreground = Colors.Blue;
         }
-
     }
 }
