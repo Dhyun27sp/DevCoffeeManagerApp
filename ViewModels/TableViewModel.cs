@@ -12,40 +12,17 @@ namespace DevCoffeeManagerApp.ViewModels
     public class TableViewModel : BaseViewModel
     {
         TableDAO tableDAO = new TableDAO();
-        public ICommand BookTable { get; set; }
-        private Brush _foreground = Brushes.Red;
+        public ICommand ClickInRowCommand { get; set; }
+        public ICommand SelectionCommand { get; set; }
 
-        public Brush Foreground
-        {
-            get
-            {
-                return _foreground;
-            }
-            set
-            {
-                _foreground = value;
-                OnPropertyChanged(nameof(Foreground));
-            }
-        }
-        private int _isselected = 1;
-
-        public int IsSelected
-        {
-            get
-            {
-                return _isselected;
-            }
-            set
-            {
-                _isselected = value;
-                OnPropertyChanged(nameof(IsSelected));
-            }
-        }
+        public TableModel SelectedItem { get; set; }
         public ObservableCollection<TableModel> Items { get; set; }
+
         public TableViewModel()
         {
+            SelectionCommand = new CommandBookTable(this);
             Items = tableDAO.ReadAll();
-            BookTable = new CommandBookTable(this);
+
         }
     }
 }
