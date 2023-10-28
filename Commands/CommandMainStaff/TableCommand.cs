@@ -24,8 +24,7 @@ namespace DevCoffeeManagerApp.Commands.CommandMainStaff
             return true;
         }
         public override void Execute(object parameter)
-        {
-            tableViewModel.Items = tableDAO.ReadAll();
+        {            
             mainStaffViewModel.CurrentViewModel = tableViewModel;
         }
     }

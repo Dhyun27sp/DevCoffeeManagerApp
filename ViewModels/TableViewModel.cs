@@ -13,9 +13,9 @@ namespace DevCoffeeManagerApp.ViewModels
     {
         TableDAO tableDAO = new TableDAO();
         public ICommand BookTable { get; set; }
-        public Color _foreground = Colors.Red;
+        private Brush _foreground = Brushes.Red;
 
-        public Color Foreground
+        public Brush Foreground
         {
             get
             {
@@ -27,9 +27,24 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(Foreground));
             }
         }
+        private int _isselected = 1;
+
+        public int IsSelected
+        {
+            get
+            {
+                return _isselected;
+            }
+            set
+            {
+                _isselected = value;
+                OnPropertyChanged(nameof(IsSelected));
+            }
+        }
         public ObservableCollection<TableModel> Items { get; set; }
         public TableViewModel()
         {
+            Items = tableDAO.ReadAll();
             BookTable = new CommandBookTable(this);
         }
     }

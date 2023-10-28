@@ -26,8 +26,11 @@ namespace DevCoffeeManagerApp.Commands.newe
 
         public override void Execute(object parameter)
         {
+
+            Viewmodeltable.IsSelected = 0;
+            Viewmodeltable.Foreground = Brushes.Blue;
             MessageBox.Show("lol");
-            Viewmodeltable.Foreground = Colors.Blue;
+            
         }
     }
 }
