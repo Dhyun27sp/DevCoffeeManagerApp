@@ -32,7 +32,7 @@
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Style.Setters>
-                            <Setter Property="IsSelected" Value="{Binding DataContext.Status, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanNegationConverter}}"/>
+                            <Setter Property="IsSelected" Value="{Binding DataContext.Status, RelativeSource={RelativeSource Self}}"/>
                         </Style.Setters>
                         <Style.Triggers>
                             <MultiTrigger>
@@ -45,7 +45,7 @@
                             </MultiTrigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
-                                    <Condition Property="IsSelected" Value="True"/>
+                                    <Condition Property="IsSelected" Value="False"/>
                                 </MultiTrigger.Conditions>
                                 <MultiTrigger.Setters>
                                     <Setter Property="Opacity" Value="0.5"/>
@@ -53,7 +53,7 @@
                             </MultiTrigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
-                                    <Condition Property="IsSelected" Value="False"/>
+                                    <Condition Property="IsSelected" Value="True"/>
                                 </MultiTrigger.Conditions>
                                 <MultiTrigger.Setters>
                                     <Setter Property="Opacity" Value="1.0"></Setter>
@@ -134,6 +134,72 @@
 
             </ListView>
 
+                </Grid>
+            </Border>
+            <Border BorderBrush="#5f5555"
+                    BorderThickness="0.5"
+                    CornerRadius="10"
+                    Grid.Column="1">
+                <Grid Background="Transparent"
+                      Width="auto"
+                      Height="auto">
+                </Grid>
+            </Border>
         </Grid>
-    </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Height="50"
+                    Width="100"
+                    Grid.Column="0"
+                    materialDesign:ButtonAssist.CornerRadius="10"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="MaterialDesignRaisedButton with Round Corners"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    Command="{Binding CommandBookTable}"
+                    CommandParameter="{Binding ElementName=lvUser}">
+                <Button.BorderBrush>
+                    <ImageBrush />
+                </Button.BorderBrush>
+                <TextBlock FontFamily="Nunito"
+                           FontSize="20"
+                           Foreground="White"
+                           FontWeight="Normal"
+                           Text="Trả Bàn"
+                           VerticalAlignment="Center" />
+                <Button.Background>
+                    <SolidColorBrush Color="#5F5555" />
+                </Button.Background>
+            </Button>
+            <Button Height="50"
+                    Width="100"
+                    Grid.Column="1"
+                    materialDesign:ButtonAssist.CornerRadius="10"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="MaterialDesignRaisedButton with Round Corners"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    Command="{Binding CommandBookTable}"
+                    CommandParameter="{Binding ElementName=lvUser}">
+                <Button.BorderBrush>
+                    <ImageBrush />
+                </Button.BorderBrush>
+                <TextBlock FontFamily="Nunito"
+                           FontSize="20"
+                           Foreground="White"
+                           FontWeight="Normal"
+                           Text="Đặt Bàn"
+                           VerticalAlignment="Center" />
+                <Button.Background>
+                    <SolidColorBrush Color="#5F5555" />
+                </Button.Background>
+            </Button>
+        </Grid>
+    </Grid>
+    
 </UserControl>
