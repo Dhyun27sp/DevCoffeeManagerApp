@@ -207,10 +207,14 @@
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Config\ConnectionMongoDB.cs" />
+    <Compile Include="DAOs\MenuDAO.cs" />
     <Compile Include="DAOs\TableDAO.cs" />
     <Compile Include="DAOs\ScheduleDAO.cs" />
     <Compile Include="DAOs\StaffDAO.cs" />
     <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\DishModel.cs" />
+    <Compile Include="Models\IngredientModel.cs" />
+    <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\TableModel.cs" />
     <Compile Include="Models\EvaluateModel.cs" />
     <Compile Include="Models\SalaryModel.cs" />
