@@ -28,7 +28,9 @@
                       ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" SelectionMode="Multiple">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
-
+                        <Style.Setters>
+                            <Setter Property="IsSelected" Value="{Binding DataContext.Status, RelativeSource={RelativeSource Self}}"/>
+                        </Style.Setters>
                         <Style.Triggers>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
@@ -40,10 +42,18 @@
                             </MultiTrigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.Setters>
+                                    <Setter Property="Opacity" Value="0.5"/>
+                                </MultiTrigger.Setters>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
                                     <Condition Property="IsSelected" Value="True"/>
                                 </MultiTrigger.Conditions>
                                 <MultiTrigger.Setters>
-                                    <Setter Property="Background" Value="Red"></Setter>
+                                    <Setter Property="Opacity" Value="1.0"></Setter>
                                 </MultiTrigger.Setters>
                             </MultiTrigger>
                             <!--<Trigger Property="IsSelected" Value="True">
@@ -56,7 +66,7 @@
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding SelectionCommand}" CommandParameter="{Binding  ElementName=lvUser}"/>
                     </i:EventTrigger>
-                </i:Interaction.Triggers>
+                </i:Interaction.Triggers>                
                 <ListView.View>
                     <GridView x:Name="GridView">
                         <GridView.ColumnHeaderContainerStyle>

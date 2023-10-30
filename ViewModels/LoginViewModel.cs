@@ -67,7 +67,7 @@ namespace DevCoffeeManagerApp.ViewModels
             set
             {
                 _itemShift = value;
-                OnPropertyChanged(nameof(_itemShift));
+                OnPropertyChanged(nameof(ItemShift));
             }
         }
 

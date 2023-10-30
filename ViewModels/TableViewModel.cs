@@ -12,9 +12,7 @@ namespace DevCoffeeManagerApp.ViewModels
     public class TableViewModel : BaseViewModel
     {
         TableDAO tableDAO = new TableDAO();
-        public ICommand ClickInRowCommand { get; set; }
         public ICommand SelectionCommand { get; set; }
-
         public TableModel SelectedItem { get; set; }
         public ObservableCollection<TableModel> Items { get; set; }
 
