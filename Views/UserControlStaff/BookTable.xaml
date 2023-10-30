@@ -5,11 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:local="clr-namespace:DevCoffeeManagerApp.Views.UserControlStaff"
+             xmlns:local="clr-namespace:DevCoffeeManagerApp.Config"
              mc:Ignorable="d" 
              xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
              Name="UCtable"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <local:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
+    </UserControl.Resources>
     <UserControl.DataContext>
         <vms:TableViewModel />
     </UserControl.DataContext>
@@ -29,7 +32,7 @@
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Style.Setters>
-                            <Setter Property="IsSelected" Value="{Binding DataContext.Status, RelativeSource={RelativeSource Self}}"/>
+                            <Setter Property="IsSelected" Value="{Binding DataContext.Status, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanNegationConverter}}"/>
                         </Style.Setters>
                         <Style.Triggers>
                             <MultiTrigger>
@@ -42,7 +45,7 @@
                             </MultiTrigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
-                                    <Condition Property="IsSelected" Value="False"/>
+                                    <Condition Property="IsSelected" Value="True"/>
                                 </MultiTrigger.Conditions>
                                 <MultiTrigger.Setters>
                                     <Setter Property="Opacity" Value="0.5"/>
@@ -50,7 +53,7 @@
                             </MultiTrigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
-                                    <Condition Property="IsSelected" Value="True"/>
+                                    <Condition Property="IsSelected" Value="False"/>
                                 </MultiTrigger.Conditions>
                                 <MultiTrigger.Setters>
                                     <Setter Property="Opacity" Value="1.0"></Setter>
