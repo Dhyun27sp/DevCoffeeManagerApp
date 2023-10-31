@@ -13,10 +13,10 @@ namespace DevCoffeeManagerApp.Commands.CommandMainStaff
     {
         TableDAO tableDAO = new TableDAO();
         TableViewModel tableViewModel = new TableViewModel();
-        private MainStaffViewModel mainStaffViewModel;
-        public TableCommand (MainStaffViewModel mainStaffViewModel)
+        private SellViewModel SellViewModel;
+        public TableCommand (SellViewModel SellViewModel)
         {
-            this.mainStaffViewModel = mainStaffViewModel;
+            this.SellViewModel = SellViewModel;
         }
 
         public override bool CanExecute(object parameter)
@@ -24,8 +24,8 @@ namespace DevCoffeeManagerApp.Commands.CommandMainStaff
             return true;
         }
         public override void Execute(object parameter)
-        {            
-            mainStaffViewModel.CurrentViewModel = tableViewModel;
+        {
+            SellViewModel.CurrentViewModel = tableViewModel;
         }
     }
 }

@@ -7,22 +7,20 @@ using System.Threading.Tasks;
 
 namespace DevCoffeeManagerApp.Commands.CommandMainStaff
 {
-    public class OrderCommand : CommandBase
+    public class OrderFoodCommand: CommandBase
     {
-        OrderFoodViewModel orderFoodViewModel = new OrderFoodViewModel();
-        private MainStaffViewModel mainStaffViewModel;
-        public OrderCommand(MainStaffViewModel mainStaffViewModel)
-        {
-            this.mainStaffViewModel = mainStaffViewModel;
+        private MainStaffViewModel MainStaffViewModel;
+        private SellViewModel SellViewModel = new SellViewModel();
+        public OrderFoodCommand(MainStaffViewModel MainStaffViewModel) { 
+            this.MainStaffViewModel = MainStaffViewModel;
         }
-
         public override bool CanExecute(object parameter)
         {
             return true;
         }
         public override void Execute(object parameter)
         {
-            mainStaffViewModel.CurrentViewModel = orderFoodViewModel;
+            MainStaffViewModel.CurrentViewModel = SellViewModel;
         }
     }
 }

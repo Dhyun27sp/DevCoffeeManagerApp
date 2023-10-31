@@ -200,8 +200,9 @@
     <Compile Include="Commands\CommandLogin\CloseCommand.cs" />
     <Compile Include="Commands\CommandLogin\CommandSubmit.cs" />
     <Compile Include="Commands\CommandMainStaff\ExitCommand.cs" />
-    <Compile Include="Commands\CommandMainStaff\OrderCommand.cs" />
-    <Compile Include="Commands\CommandMainStaff\TableCommand.cs" />
+    <Compile Include="Commands\CommandMainStaff\OrderFoodCommand.cs" />
+    <Compile Include="Commands\CommandSell\OrderCommand.cs" />
+    <Compile Include="Commands\CommandSell\TableCommand.cs" />
     <Compile Include="Commands\CommandTable\CommandBookTable.cs" />
     <Compile Include="Component\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
