@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+
 namespace DevCoffeeManagerApp.Models
 {
     [Serializable, BsonIgnoreExtraElements]

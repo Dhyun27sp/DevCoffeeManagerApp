@@ -209,24 +209,31 @@
     <Compile Include="Config\BooleanNegationConverter.cs" />
     <Compile Include="Config\ConnectionMongoDB.cs" />
     <Compile Include="DAOs\MenuDAO.cs" />
+    <Compile Include="DAOs\ReceiptDAO.cs" />
     <Compile Include="DAOs\TableDAO.cs" />
     <Compile Include="DAOs\ScheduleDAO.cs" />
     <Compile Include="DAOs\StaffDAO.cs" />
     <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\DiscountReceipt.cs" />
     <Compile Include="Models\DishModel.cs" />
+    <Compile Include="Models\DishsRecieptModel.cs" />
     <Compile Include="Models\IngredientModel.cs" />
     <Compile Include="Models\MenuModel.cs" />
+    <Compile Include="Models\PhoneNumberReceiptModel.cs" />
+    <Compile Include="Models\ReceiptModel.cs" />
     <Compile Include="Models\TableModel.cs" />
     <Compile Include="Models\EvaluateModel.cs" />
     <Compile Include="Models\SalaryModel.cs" />
     <Compile Include="Models\ScheduleModel.cs" />
     <Compile Include="Models\StaffModel.cs" />
+    <Compile Include="Models\TableReceiptModel.cs" />
     <Compile Include="StaticClass\SessionStatic.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainStaffViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\OrderFoodViewModel.cs" />
+    <Compile Include="ViewModels\SellViewModel.cs" />
     <Compile Include="ViewModels\TableViewModel.cs" />
     <Compile Include="Views\LoginForm.xaml.cs">
       <DependentUpon>LoginForm.xaml</DependentUpon>
@@ -236,6 +243,9 @@
     </Compile>
     <Compile Include="Views\UserControlStaff\BookTable.xaml.cs">
       <DependentUpon>BookTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControlStaff\MainSell.xaml.cs">
+      <DependentUpon>MainSell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControlStaff\OrderFood.xaml.cs">
       <DependentUpon>OrderFood.xaml</DependentUpon>
@@ -293,6 +303,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControlStaff\BookTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControlStaff\MainSell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
