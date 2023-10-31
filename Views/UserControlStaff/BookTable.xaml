@@ -153,44 +153,41 @@
                             FontSize="15"
                             FontWeight="Regular"
                             Margin="10">Tầng 1</TextBlock>
+                        <ItemsControl></ItemsControl>
                         <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Command="{Binding SeatSelectedCommand}"
-                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
                                       Width="65"
                                       Height="65"
                                       HorizontalAlignment="Left"
                                       VerticalAlignment="Top"
-                                      Margin="100 10 0 0">
+                                      Margin="100 10 0 0"
+                                      IsChecked="{Binding Items[0].Status, Converter={StaticResource BooleanNegationConverter}}">
                             <Image Source="/img/seat.png" />
                         </ToggleButton>
                         <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Command="{Binding SeatSelectedCommand}"
-                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
                                       Width="65"
                                       Height="65"
                                       HorizontalAlignment="Left"
                                       VerticalAlignment="Center"
-                                      Margin="100 0 0 0">
+                                      Margin="100 0 0 0"
+                                      IsChecked="{Binding Items[1].Status, Converter={StaticResource BooleanNegationConverter}}">
                             <Image Source="/img/seat.png" />
                         </ToggleButton>
                         <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Command="{Binding SeatSelectedCommand}"
-                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
                                       Width="65"
                                       Height="65"
                                       HorizontalAlignment="Left"
                                       VerticalAlignment="Bottom"
-                                      Margin="100 0 0 10">
+                                      Margin="100 0 0 10"
+                                      IsChecked="{Binding Items[2].Status, Converter={StaticResource BooleanNegationConverter}}">
                             <Image Source="/img/seat.png" />
                         </ToggleButton>
                         <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Command="{Binding SeatSelectedCommand}"
-                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
                                       Width="65"
                                       Height="65"
                                       HorizontalAlignment="Right"
                                       VerticalAlignment="Center"
-                                      Margin="0 0 100 0">
+                                      Margin="0 0 100 0"
+                                      IsChecked="{Binding Items[3].Status, Converter={StaticResource BooleanNegationConverter}}">
                             <Image Source="/img/seat.png" />
                         </ToggleButton>
                         <Rectangle Height="0.5"
@@ -198,49 +195,63 @@
                                    VerticalAlignment="Bottom" />
                     </Grid>
 
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="1">
                         <TextBlock FontFamily="Nunito"
                                    FontSize="15"
                                    FontWeight="Regular"
                                    Margin="10">Tầng 2</TextBlock>
                         <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Command="{Binding SeatSelectedCommand}"
-                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
                                       Width="65"
                                       Height="65"
                                       HorizontalAlignment="Left"
                                       VerticalAlignment="Top"
-                                      Margin="100 10 0 0">
+                                      Margin="100 10 0 0"
+                                      IsChecked="{Binding Items[4].Status, Converter={StaticResource BooleanNegationConverter}}">
                             <Image Source="/img/seat.png" />
                         </ToggleButton>
                         <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Command="{Binding SeatSelectedCommand}"
-                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
                                       Width="65"
                                       Height="65"
                                       HorizontalAlignment="Left"
                                       VerticalAlignment="Center"
-                                      Margin="100 0 0 0">
+                                      Margin="100 0 0 0"
+                                      IsChecked="{Binding Items[5].Status, Converter={StaticResource BooleanNegationConverter}}">
                             <Image Source="/img/seat.png" />
                         </ToggleButton>
                         <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Command="{Binding SeatSelectedCommand}"
-                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
                                       Width="65"
                                       Height="65"
                                       HorizontalAlignment="Left"
                                       VerticalAlignment="Bottom"
-                                      Margin="100 0 0 10">
+                                      Margin="100 0 0 10"
+                                      IsChecked="{Binding Items[6].Status, Converter={StaticResource BooleanNegationConverter}}">
                             <Image Source="/img/seat.png" />
                         </ToggleButton>
                         <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Command="{Binding SeatSelectedCommand}"
-                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                                      Width="65"
+                                      Height="65"
+                                      HorizontalAlignment="Right"
+                                      VerticalAlignment="Top"
+                                      Margin="0 10 100 0"
+                                      IsChecked="{Binding Items[7].Status, Converter={StaticResource BooleanNegationConverter}}">
+                            <Image Source="/img/seat.png" />
+                        </ToggleButton>
+                        <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
                                       Width="65"
                                       Height="65"
                                       HorizontalAlignment="Right"
                                       VerticalAlignment="Center"
-                                      Margin="0 0 100 0">
+                                      Margin="0 0 100 0"
+                                      IsChecked="{Binding Items[8].Status, Converter={StaticResource BooleanNegationConverter}}">
+                            <Image Source="/img/seat.png" />
+                        </ToggleButton>
+                        <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
+                                      Width="65"
+                                      Height="65"
+                                      HorizontalAlignment="Right"
+                                      VerticalAlignment="Bottom"
+                                      Margin="0 0 100 10"
+                                      IsChecked="{Binding Items[9].Status, Converter={StaticResource BooleanNegationConverter}}">
                             <Image Source="/img/seat.png" />
                         </ToggleButton>
                     </Grid>
