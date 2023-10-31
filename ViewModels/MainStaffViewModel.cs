@@ -34,6 +34,7 @@ namespace DevCoffeeManagerApp.ViewModels
             CommandTable = new TableCommand(this);
             CommandOrder = new OrderCommand(this);
             CommandExit = new ExitCommand();
+
         }
     }
 }

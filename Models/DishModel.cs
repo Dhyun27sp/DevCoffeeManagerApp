@@ -27,5 +27,18 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("image"), BsonRepresentation(BsonType.String)]
         public string image { get; set; }
 
+        public byte[] imageconvert
+        {
+            get
+            {
+                string resuildimg = image;
+                byte[] imageBytes = Convert.FromBase64String(resuildimg);
+                return imageBytes;
+            }
+            set
+            {
+
+            }
+        }
     }
 }

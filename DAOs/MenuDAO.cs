@@ -26,5 +26,11 @@ namespace DevCoffeeManagerApp.DAOs
             MenuModel type_of_dish = collection.Find(type_of_dish_Filter).FirstOrDefault();
             return type_of_dish;
         }
+        public List<MenuModel> ReadAll_Type_dish()
+        {
+            List<MenuModel> type_of_dish = collection.Find(new BsonDocument()).ToList();
+            return type_of_dish;
+
+        }
     }
 }
