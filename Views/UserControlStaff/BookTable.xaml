@@ -16,6 +16,42 @@
     </UserControl.DataContext>
     <UserControl.Resources>
         <local:BooleanNegationConverter x:Key="BooleanNegationConverter" />
+        <Style TargetType="Grid"
+               x:Key="Grid1">
+            <Setter Property="Visibility"
+                    Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=cb_Floor, Path=SelectedItem.Content}"
+                             Value="Tầng 1">
+                    <Setter Property="Visibility"
+                            Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=cb_Floor, Path=SelectedItem.Content}"
+                             Value="Tầng 2">
+                    <Setter Property="Visibility"
+                            Value="Collapsed" />
+
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Grid"
+               x:Key="Grid2">
+            <Setter Property="Visibility"
+                    Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=cb_Floor, Path=SelectedItem.Content}"
+                             Value="Tầng 1">
+                    <Setter Property="Visibility"
+                            Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=cb_Floor, Path=SelectedItem.Content}"
+                             Value="Tầng 2">
+                    <Setter Property="Visibility"
+                            Value="Visible" />
+
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Grid Margin="0 20 0 0">
         <Grid.RowDefinitions>
@@ -143,117 +179,114 @@
                 <Grid Background="Transparent"
                       Width="auto"
                       Height="auto">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"></RowDefinition>
-                        <RowDefinition Height="1*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <TextBlock
-                            FontFamily="Nunito"
-                            FontSize="15"
-                            FontWeight="Regular"
-                            Margin="10">Tầng 1</TextBlock>
-                        <ItemsControl></ItemsControl>
-                        <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Width="65"
-                                      Height="65"
-                                      HorizontalAlignment="Left"
-                                      VerticalAlignment="Top"
-                                      Margin="100 10 0 0"
-                                      IsChecked="{Binding Items[0].Status, Converter={StaticResource BooleanNegationConverter}}">
-                            <Image Source="/img/seat.png" />
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Width="65"
-                                      Height="65"
-                                      HorizontalAlignment="Left"
-                                      VerticalAlignment="Center"
-                                      Margin="100 0 0 0"
-                                      IsChecked="{Binding Items[1].Status, Converter={StaticResource BooleanNegationConverter}}">
-                            <Image Source="/img/seat.png" />
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Width="65"
-                                      Height="65"
-                                      HorizontalAlignment="Left"
-                                      VerticalAlignment="Bottom"
-                                      Margin="100 0 0 10"
-                                      IsChecked="{Binding Items[2].Status, Converter={StaticResource BooleanNegationConverter}}">
-                            <Image Source="/img/seat.png" />
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Width="65"
-                                      Height="65"
-                                      HorizontalAlignment="Right"
-                                      VerticalAlignment="Center"
-                                      Margin="0 0 100 0"
-                                      IsChecked="{Binding Items[3].Status, Converter={StaticResource BooleanNegationConverter}}">
-                            <Image Source="/img/seat.png" />
-                        </ToggleButton>
-                        <Rectangle Height="0.5"
-                                   Fill="#5f5555"
-                                   VerticalAlignment="Bottom" />
-                    </Grid>
 
-                    <Grid Grid.Row="1">
-                        <TextBlock FontFamily="Nunito"
-                                   FontSize="15"
-                                   FontWeight="Regular"
-                                   Margin="10">Tầng 2</TextBlock>
-                        <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Width="65"
-                                      Height="65"
-                                      HorizontalAlignment="Left"
-                                      VerticalAlignment="Top"
-                                      Margin="100 10 0 0"
-                                      IsChecked="{Binding Items[4].Status, Converter={StaticResource BooleanNegationConverter}}">
-                            <Image Source="/img/seat.png" />
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Width="65"
-                                      Height="65"
-                                      HorizontalAlignment="Left"
-                                      VerticalAlignment="Center"
-                                      Margin="100 0 0 0"
-                                      IsChecked="{Binding Items[5].Status, Converter={StaticResource BooleanNegationConverter}}">
-                            <Image Source="/img/seat.png" />
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Width="65"
-                                      Height="65"
-                                      HorizontalAlignment="Left"
-                                      VerticalAlignment="Bottom"
-                                      Margin="100 0 0 10"
-                                      IsChecked="{Binding Items[6].Status, Converter={StaticResource BooleanNegationConverter}}">
-                            <Image Source="/img/seat.png" />
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Width="65"
-                                      Height="65"
-                                      HorizontalAlignment="Right"
-                                      VerticalAlignment="Top"
-                                      Margin="0 10 100 0"
-                                      IsChecked="{Binding Items[7].Status, Converter={StaticResource BooleanNegationConverter}}">
-                            <Image Source="/img/seat.png" />
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Width="65"
-                                      Height="65"
-                                      HorizontalAlignment="Right"
-                                      VerticalAlignment="Center"
-                                      Margin="0 0 100 0"
-                                      IsChecked="{Binding Items[8].Status, Converter={StaticResource BooleanNegationConverter}}">
-                            <Image Source="/img/seat.png" />
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
-                                      Width="65"
-                                      Height="65"
-                                      HorizontalAlignment="Right"
-                                      VerticalAlignment="Bottom"
-                                      Margin="0 0 100 10"
-                                      IsChecked="{Binding Items[9].Status, Converter={StaticResource BooleanNegationConverter}}">
-                            <Image Source="/img/seat.png" />
-                        </ToggleButton>
+                    <Grid>
+                        <ComboBox Name="cb_Floor"
+                                  Width="70"
+                                  VerticalAlignment="Top"
+                                  HorizontalAlignment="Left"
+                                  Margin="10"
+                                  SelectedIndex= "0">
+                            <ComboBoxItem Content="Tầng 1" />
+                            <ComboBoxItem Content="Tầng 2" />
+                        </ComboBox>
+                        <Grid Name="Tang_1"
+                              Style="{StaticResource Grid1}">
+                            <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
+                                          Width="120"
+                                          Height="120"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Top"
+                                          Margin="100 40 0 0"
+                                          IsChecked="{Binding Items[0].Status, Converter={StaticResource BooleanNegationConverter}}">
+                                <Image Source="/img/seat.png" />
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
+                                          Width="120"
+                                          Height="120"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Center"
+                                          Margin="100 0 0 0"
+                                          IsChecked="{Binding Items[1].Status, Converter={StaticResource BooleanNegationConverter}}">
+                                <Image Source="/img/seat.png" />
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
+                                          Width="120"
+                                          Height="120"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Bottom"
+                                          Margin="100 0 0 40"
+                                          IsChecked="{Binding Items[2].Status, Converter={StaticResource BooleanNegationConverter}}">
+                                <Image Source="/img/seat.png" />
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
+                                          Width="120"
+                                          Height="120"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Margin="0 0 100 0"
+                                          IsChecked="{Binding Items[3].Status, Converter={StaticResource BooleanNegationConverter}}">
+                                <Image Source="/img/seat.png" />
+                            </ToggleButton>
+                        </Grid>
+                        <Grid Name="Tang_2"
+                              Style="{StaticResource Grid2}">
+                            <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
+                                          Width="120"
+                                          Height="120"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Top"
+                                          Margin="100 40 0 0"
+                                          IsChecked="{Binding Items[4].Status, Converter={StaticResource BooleanNegationConverter}}">
+                                <Image Source="/img/seat.png" />
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
+                                          Width="120"
+                                          Height="120"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Center"
+                                          Margin="100 0 0 0"
+                                          IsChecked="{Binding Items[5].Status, Converter={StaticResource BooleanNegationConverter}}">
+                                <Image Source="/img/seat.png" />
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
+                                          Width="120"
+                                          Height="120"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Bottom"
+                                          Margin="100 0 0 40"
+                                          IsChecked="{Binding Items[6].Status, Converter={StaticResource BooleanNegationConverter}}">
+                                <Image Source="/img/seat.png" />
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
+                                          Width="120"
+                                          Height="120"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Top"
+                                          Margin="0 40 100 0"
+                                          IsChecked="{Binding Items[7].Status, Converter={StaticResource BooleanNegationConverter}}">
+                                <Image Source="/img/seat.png" />
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
+                                          Width="120"
+                                          Height="120"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Margin="0 0 100 0"
+                                          IsChecked="{Binding Items[8].Status, Converter={StaticResource BooleanNegationConverter}}">
+                                <Image Source="/img/seat.png" />
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource MyToggleButtonStyle2}"
+                                          Width="120"
+                                          Height="120"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Bottom"
+                                          Margin="0 0 100 40"
+                                          IsChecked="{Binding Items[9].Status, Converter={StaticResource BooleanNegationConverter}}">
+                                <Image Source="/img/seat.png" />
+                            </ToggleButton>
+                        </Grid>
+
                     </Grid>
                 </Grid>
             </Border>
