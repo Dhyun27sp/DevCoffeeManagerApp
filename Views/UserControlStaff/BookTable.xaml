@@ -79,7 +79,7 @@
                             </Style>
                         </ListView.ItemContainerStyle>
                         <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
+                            <i:EventTrigger EventName="MouseClick">
                                 <i:InvokeCommandAction Command="{Binding SelectionCommand}"
                                                        CommandParameter="{Binding  ElementName=lvUser}" />
                             </i:EventTrigger>
