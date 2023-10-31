@@ -33,6 +33,7 @@ namespace DevCoffeeManagerApp.Commands.newe
 
                 // Bây giờ, `selectedItems` chứa danh sách các hàng đã chọn
                 // Bạn có thể duyệt qua danh sách này để làm bất kỳ thao tác nào bạn cần
+                Viewmodeltable.SelectedItem = selectedItems;
                 foreach (TableModel selectedItem in selectedItems)
                 {
                     MessageBox.Show(selectedItem.No_.ToString());
