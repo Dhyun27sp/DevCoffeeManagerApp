@@ -9,7 +9,7 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace DevCoffeeManagerApp.Models
 {
     [Serializable, BsonIgnoreExtraElements]
-    public class DiscountReceipt
+    public class DiscountModel
     {
         [BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
         public ObjectId _id { get; set; }

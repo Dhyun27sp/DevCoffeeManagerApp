@@ -14,7 +14,7 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("No."), BsonRepresentation(BsonType.Int32)]
         public int No_ { get; set; }
 
-        [BsonElement("Number_of_seat"), BsonRepresentation(BsonType.Int32)]
+        [BsonElement("Number_of_seat"), BsonRepresentation(BsonType.Int32), BsonIgnoreIfNull]
         public int Seat { get; set; }
         [BsonElement("Status"), BsonRepresentation(BsonType.Boolean)]
         public bool Status { get; set; }

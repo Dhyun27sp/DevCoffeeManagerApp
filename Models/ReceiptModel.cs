@@ -17,20 +17,20 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("time"), BsonRepresentation(BsonType.String)]
         public string time { get; set; }
 
-        [BsonElement("phone_number")]
-        public PhoneNumberReceiptModel phone_number { get; set; }
+        [BsonElement("customer")]
+        public CustomerModel phone_number { get; set; }
 
         [BsonElement("tables")]
-        public List<TableReceiptModel> tables { get; set; }
+        public List<TableModel> tables { get; set; }
 
         [BsonElement("staff_id"), BsonRepresentation(BsonType.ObjectId)]
         public ObjectId staff_id { get; set; }
 
         [BsonElement("Dishes")]
-        public List<DishsRecieptModel> Dishes { get; set; }
+        public List<DishModel> Dishes { get; set; }
 
         [BsonElement("discounts")]
-        public List<DiscountReceipt> discounts { get; set; }
+        public List<DiscountModel> discounts { get; set; }
 
         [BsonElement("payments"), BsonRepresentation(BsonType.String)]
         public string payments { get; set; }
