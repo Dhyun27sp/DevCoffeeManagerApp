@@ -15,6 +15,27 @@ namespace DevCoffeeManagerApp.ViewModels
     public class OrderFoodViewModel : BaseViewModel
     {
         MenuDAO menuDao = new MenuDAO();
+
+        public List<string> types_dish
+        {
+            get; set;
+        }
+        private string _type;
+        public string Type
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                _type = value;
+                OnPropertyChanged(nameof(Type));
+                Dishs = menuDao.ReadAll(Type).dish;
+            }
+        }
+
+
         private List<DishModel> _dish;
         public List<DishModel> Dishs
         {
@@ -28,25 +49,16 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(Dishs));
             }
         }
-        public ICommand testchageitem { get; set; }
-
-        private string _type_dish = "Coffee";
-        public string Type_dish
-        {
-            get
-            {
-                return _type_dish;
-            }
-            set
-            {
-                _type_dish = value;
-                OnPropertyChanged(nameof(Type_dish));
-            }
-        }
 
         public OrderFoodViewModel()
         {
-            Dishs = menuDao.ReadAll(Type_dish).dish;
+            List<MenuModel> menuModels = menuDao.ReadAll_Type_dish();
+            List<string> temp = new List<string>();
+            foreach (var item in menuModels)
+            {
+                temp.Add(item.type_of_dish);
+            }
+            types_dish = temp;          
         }
     }
 }

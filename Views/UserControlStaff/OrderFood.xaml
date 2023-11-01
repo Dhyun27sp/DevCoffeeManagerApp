@@ -72,25 +72,21 @@
                         </StackPanel>
                         <Grid Width="auto">
                             <ComboBox
+                             ItemsSource="{Binding types_dish}"
+                             SelectedItem="{Binding Type, UpdateSourceTrigger=PropertyChanged}"
                              x:Name="OutlinedComboBox"
                              Padding="12"
                              HorizontalAlignment="Left"
                              Margin="30 0 0 0"
                              Width="180"
-                             materialDesign:HintAssist.Hint="Some item"
+                             materialDesign:HintAssist.Hint="Chọn loại món"
                              Opacity="1"
                              FontSize="12"
-                            
                              BorderThickness="0"
                              Foreground="Black" Background="#FFFAFAFA" >
                                 <ComboBox.Effect>
                                     <DropShadowEffect  Direction="230" ShadowDepth="3" Color="Gray" Opacity="0.2" BlurRadius="2"/>
                                 </ComboBox.Effect>
-                                <CheckBox/>
-                                <CheckBox/>
-                                <CheckBox/>
-                                <CheckBox/>
-                                <CheckBox/>
                             </ComboBox>
                         </Grid>
 

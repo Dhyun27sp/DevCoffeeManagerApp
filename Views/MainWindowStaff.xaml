@@ -63,73 +63,54 @@
 
 
             <Grid Grid.Row="1">
-                <TreeView FontSize="20"
-                          Foreground="White"
-                          FontFamily="Nunito"
-                          FontWeight="Regular">
-                    <materialDesign:TreeViewAssist.AdditionalTemplate>
-                        <DataTemplate>
-
-                        </DataTemplate>
-                    </materialDesign:TreeViewAssist.AdditionalTemplate>
-                    <TreeViewItem Header="Menu">
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Mercury"
-                                      FontWeight="Light" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Venus" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Earth" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Mars" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Jupiter" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Saturn" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Uranus" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Neptune" />
-                    </TreeViewItem>
-                    <TreeViewItem Header="Menu">
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Mercury"
-                                      FontWeight="Light" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Venus" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Earth" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Mars" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Jupiter" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Saturn" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Uranus" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Neptune" />
-                    </TreeViewItem>
-                    <TreeViewItem Header="Menu">
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Mercury"
-                                      FontWeight="Light" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Venus" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Earth" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Mars" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Jupiter" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Saturn" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Uranus" />
-                        <TreeViewItem materialDesign:TreeViewAssist.AdditionalTemplate="{x:Static materialDesign:TreeViewAssist.SuppressAdditionalTemplate}"
-                                      Header="Neptune" />
-                    </TreeViewItem>
-                </TreeView>
+                <StackPanel>
+                    <Button
+                        Command="{Binding FoodOrder}"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignFlatButton}"
+                    ToolTip="MaterialDesignFlatButton">
+                        <Button.Background>
+                            <SolidColorBrush Color="#FF38220F" />
+                        </Button.Background>
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Sử dụng StackPanel để chứa cả biểu tượng và văn bản -->
+                            <materialDesign:PackIcon Kind="Food" Margin="0 0 5 0" Foreground="White" />
+                            <!-- Thay "ExitToApp" bằng mã biểu tượng bạn muốn -->
+                            <TextBlock FontSize="18" FontFamily="Nunito" Text="Food Order" Foreground="White" />
+                        </StackPanel>
+                    </Button>
+                    
+                    <Button
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignFlatButton}"
+                    ToolTip="MaterialDesignFlatButton">
+                        <Button.Background>
+                            <SolidColorBrush Color="#FF38220F" />
+                        </Button.Background>
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Sử dụng StackPanel để chứa cả biểu tượng và văn bản -->
+                            <materialDesign:PackIcon  Kind="FolderInformationOutline" Margin="0 0 5 0" Foreground="White" />
+                            <!-- Thay "ExitToApp" bằng mã biểu tượng bạn muốn -->
+                            <TextBlock FontSize="18" FontFamily="Nunito" Text="Imfomation" Foreground="White" />
+                        </StackPanel>
+                    </Button>
+                    
+                    <Button
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignFlatButton}"
+                    ToolTip="MaterialDesignFlatButton">
+                        <Button.Background>
+                            <SolidColorBrush Color="#FF38220F" />
+                        </Button.Background>
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Sử dụng StackPanel để chứa cả biểu tượng và văn bản -->
+                            <materialDesign:PackIcon Kind="CalendarMultipleCheck" Margin="0 0 5 0" Foreground="White" />
+                            <!-- Thay "ExitToApp" bằng mã biểu tượng bạn muốn -->
+                            <TextBlock FontSize="18" FontFamily="Nunito" Text="Check In" Foreground="White" Width="97" />
+                        </StackPanel>
+                    </Button>
+                    
+                </StackPanel>
             </Grid>
 
 
@@ -141,7 +122,7 @@
                         Style="{StaticResource MaterialDesignRaisedLightButton}"
                         ToolTip="MaterialDesignRaisedLightButton with Round Corners"
                         Margin="0 0 0 10"
-                        Command="{Binding CommandExit}"
+                        Command="{Binding Exit}"
                         CommandParameter="{Binding ElementName=WindowStaff}"
                         >
                     <Button.BorderBrush>
@@ -150,9 +131,12 @@
                     <Button.Background>
                         <SolidColorBrush Color="#FF38220F" />
                     </Button.Background>
-                    <TextBlock FontFamily="Nunito"
-                               Text="Exit"
-                               Foreground="White" />
+                    <StackPanel Orientation="Horizontal">
+                        <!-- Sử dụng StackPanel để chứa cả biểu tượng và văn bản -->
+                        <materialDesign:PackIcon Kind="ExitToApp" Margin="0 0 5 0" Foreground="White" />
+                        <!-- Thay "ExitToApp" bằng mã biểu tượng bạn muốn -->
+                        <TextBlock FontFamily="Nunito" Text="Exit" Foreground="White" />
+                    </StackPanel>
                 </Button>
             </Grid>
         </Grid>
@@ -160,8 +144,7 @@
               Background="#FFD3D3D3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"></RowDefinition>
-                <RowDefinition Height="3*"></RowDefinition>
-                <RowDefinition Height="13*"></RowDefinition>
+                <RowDefinition Height="16*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.Background>
@@ -180,7 +163,7 @@
                         <StackPanel materialDesign:RippleAssist.IsCentered="True"
                                     Orientation="Horizontal">
                             <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
-                           
+
                             <Button Margin="8,0,0,0"
                                     Panel.ZIndex="0"
                                     Style="{StaticResource MaterialDesignToolForegroundButton}"/>
@@ -188,120 +171,10 @@
                     </DockPanel>
                 </materialDesign:ColorZone>
             </Grid>
-
-
-            <Grid Grid.Row="1"
-                  Margin="0 0 35 0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0"
-                      Margin="35 30 0 0">
-                    <Button Height="Auto"
-                            materialDesign:ButtonAssist.CornerRadius="10"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            Style="{StaticResource MaterialDesignRaisedButton}"
-                            ToolTip="MaterialDesignRaisedButton with Round Corners"
-                            HorizontalContentAlignment="Stretch"
-                            VerticalContentAlignment="Stretch"
-                            Command="{Binding CommandTable}">
-                        <Button.BorderBrush>
-                            <ImageBrush/>
-                        </Button.BorderBrush>
-                        <TextBlock FontFamily="Nunito"
-                                   FontSize="20"
-                                   Foreground="White"
-                                   FontWeight="Normal"
-                                   Text="Đặt Bàn"
-                                   Margin="0 15 0 0" />
-                        <Button.Background>
-                            <SolidColorBrush Color="#5F5555" />
-                        </Button.Background>
-                    </Button>
-                </Grid>
-                <Grid Grid.Column="1"
-                      Margin="35 30 0 0">
-                    <Button Height="Auto"
-                            materialDesign:ButtonAssist.CornerRadius="10"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            Style="{StaticResource MaterialDesignRaisedButton}"
-                            ToolTip="MaterialDesignRaisedButton with Round Corners"
-                            HorizontalContentAlignment="Stretch"
-                            VerticalContentAlignment="Stretch"
-                            Command="{Binding CommandOrder}">
-                        <Button.BorderBrush>
-                            <ImageBrush/>
-                        </Button.BorderBrush>
-                        <TextBlock FontFamily="Nunito"
-                                   FontSize="20"
-                                   Foreground="White"
-                                   FontWeight="Regular"
-                                   Text="Đặt Món"
-                                   Margin="0 15 0 0" />
-                        <Button.Background>
-                            <SolidColorBrush Color="#5F5555" />
-                        </Button.Background>
-                    </Button>
-                </Grid>
-                <Grid Grid.Column="2"
-                      Margin="35 30 0 0">
-                    <Button Height="Auto"
-                            materialDesign:ButtonAssist.CornerRadius="10"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            Style="{StaticResource MaterialDesignRaisedButton}"
-                            ToolTip="MaterialDesignRaisedButton with Round Corners"
-                            HorizontalContentAlignment="Stretch"
-                            VerticalContentAlignment="Stretch">
-                        <Button.BorderBrush>
-                            <ImageBrush/>
-                        </Button.BorderBrush>
-                        <TextBlock FontFamily="Nunito"
-                                   FontSize="20"
-                                   Foreground="White"
-                                   FontWeight="Regular"
-                                   Text="Tùy Chọn"
-                                   Margin="0 15 0 0" />
-                        <Button.Background>
-                            <SolidColorBrush Color="#5F5555" />
-                        </Button.Background>
-                    </Button>
-                </Grid>
-                <Grid Grid.Column="3"
-                      Margin="35 30 0 0">
-                    <Button Height="Auto"
-                            materialDesign:ButtonAssist.CornerRadius="10"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            Style="{StaticResource MaterialDesignRaisedButton}"
-                            ToolTip="MaterialDesignRaisedButton with Round Corners"
-                            HorizontalContentAlignment="Stretch"
-                            VerticalContentAlignment="Stretch">
-                        <Button.BorderBrush>
-                            <ImageBrush/>
-                        </Button.BorderBrush>
-                        <TextBlock FontFamily="Nunito"
-                                   FontSize="20"
-                                   Foreground="White"
-                                   FontWeight="Regular"
-                                   Text="Thanh Toán"
-                                   Margin="0 15 0 0" />
-                        <Button.Background>
-                            <SolidColorBrush Color="#5F5555" />
-                        </Button.Background>
-                    </Button>
-                </Grid>
-
-            </Grid>
-            <Grid Grid.Row="2"
-                  Margin="35 10">
+            <Grid Grid.Row="1">
                 <Grid.Resources>
-                    <DataTemplate DataType="{x:Type vms:TableViewModel}">
-                        <views:BookTable />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type vms:OrderFoodViewModel}">
-                        <views:OrderFood />
+                    <DataTemplate DataType="{x:Type vms:SellViewModel}">
+                        <views:MainSell/>
                     </DataTemplate>
                 </Grid.Resources>
                 <ContentControl Content="{Binding CurrentViewModel}" />

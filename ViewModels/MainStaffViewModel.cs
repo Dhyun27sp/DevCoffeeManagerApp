@@ -13,13 +13,7 @@ namespace DevCoffeeManagerApp.ViewModels
 {
     public class MainStaffViewModel : BaseViewModel
     {
-        private List<ReceiptModel> testReceipt;
-        ReceiptDAO receiptDAO = new ReceiptDAO();
-        public ICommand CommandTable { get; set; }
-        public ICommand CommandOrder { get; set; }
-        public ICommand CommandExit { get; }
-
-
+      
         private object _currentViewModel;
 
         public object CurrentViewModel
@@ -34,12 +28,12 @@ namespace DevCoffeeManagerApp.ViewModels
                 }
             }
         }
+        public ICommand Exit { get; }
+        public ICommand FoodOrder { get; }
         public MainStaffViewModel()
         {
-            CommandTable = new TableCommand(this);
-            CommandOrder = new OrderCommand(this);
-            CommandExit = new ExitCommand();
-            testReceipt = receiptDAO.ReadAll();
+            FoodOrder = new OrderFoodCommand(this);
+            Exit = new ExitCommand();
         }
     }
 }
