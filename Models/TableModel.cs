@@ -15,8 +15,19 @@ namespace DevCoffeeManagerApp.Models
         public int No_ { get; set; }
 
         [BsonElement("Number_of_seat"), BsonRepresentation(BsonType.Int32), BsonIgnoreIfNull]
-        public int Seat { get; set; }
-        [BsonElement("Status"), BsonRepresentation(BsonType.Boolean)]
-        public bool Status { get; set; }
+        public int? Seat { get; set; }
+        [BsonElement("Status"), BsonRepresentation(BsonType.Boolean), BsonIgnoreIfNull]
+        public bool? Status { get; set; }
+
+        public TableModel(int no_, int seat, bool status)
+        {
+            No_ = no_;
+            Seat = seat;
+            Status = status;
+        }
+        public TableModel(int no_)
+        {
+            No_ = no_;
+        }
     }
 }

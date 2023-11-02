@@ -15,16 +15,16 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
         public ObjectId _id { get; set; }
 
-        [BsonElement("dish_name"), BsonRepresentation(BsonType.String)]
+        [BsonElement("dish_name"), BsonRepresentation(BsonType.String),BsonIgnoreIfNull]
         public string dish_name { get; set; }
 
-        [BsonElement("ingredient")]
+        [BsonElement("ingredient"), BsonIgnoreIfNull]
         public List<IngredientModel> ingredient { get; set; }
 
-        [BsonElement("price"), BsonRepresentation(BsonType.Int32)]
-        public int price { get; set; }
+        [BsonElement("price"), BsonRepresentation(BsonType.Int32), BsonIgnoreIfNull]
+        public int? price { get; set; }
 
-        [BsonElement("image"), BsonRepresentation(BsonType.String)]
+        [BsonElement("image"), BsonRepresentation(BsonType.String), BsonIgnoreIfNull]
         public string image { get; set; }
 
         public byte[] imageconvert

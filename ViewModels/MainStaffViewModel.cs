@@ -15,7 +15,6 @@ namespace DevCoffeeManagerApp.ViewModels
     {
       
         private object _currentViewModel;
-
         public object CurrentViewModel
         {
             get { return _currentViewModel; }
