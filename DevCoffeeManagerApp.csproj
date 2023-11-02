@@ -196,6 +196,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\CommadOrders\Add_Munix_Delete_Command.cs" />
+    <Compile Include="Commands\CommadOrders\ReserveCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandLogin\CloseCommand.cs" />
     <Compile Include="Commands\CommandLogin\CommandSubmit.cs" />
@@ -207,6 +209,7 @@
     <Compile Include="Component\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Component\ComponentOrder\StructOfOrderedItem.cs" />
     <Compile Include="Config\BooleanNegationConverter.cs" />
     <Compile Include="Config\ConnectionMongoDB.cs" />
     <Compile Include="DAOs\MenuDAO.cs" />
