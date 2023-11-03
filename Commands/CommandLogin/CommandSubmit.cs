@@ -53,7 +53,7 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
         }
         public override void Execute(object parameter)
         {
-            if(checkInput() == true)
+            if (checkInput() == true)
             {
                 Entrance(parameter);
             }
@@ -84,90 +84,75 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
             string role = "";
             string pass = "";
             string month_present = DateTime.Now.Month.ToString();
+            var staff = staffdao.GetStaff(Viewmodellogin.Phonenumber);
 
-            try
+            if (staff != null)
             {
-                var staff = staffdao.GetStaff(Viewmodellogin.Phonenumber, month_present);
-
-                if (staff != null)
+                role = staff.account.Role.ToString();
+                pass = staff.account.Password.ToString();
+                switch (role)
                 {
-                    role = staff.account.Role.ToString();
-                    pass = staff.account.Password.ToString();
+                    case "admin":
+                        if (pass == Viewmodellogin.Password)
+                        {
+                            MainWindow mainWindow = new MainWindow();
+                            mainWindow.Show();
+                        }
+                        break;
+                    case "staff":
+                        if (pass == Viewmodellogin.Password)
+                        {
+                            if (Worked_Staff() == 1)
+                            {
+                                Session(parameter);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Sai Mật Khẩu");
+                        }
+                        break;
                 }
-                else
-                {
-                    MessageBox.Show("không tìm thấy số điện thoại này");
-                }
-
             }
-            catch (NullReferenceException ex)
+            else
             {
-                
-            }
-
-            if (role == "admin")
-            {
-                if (pass == Viewmodellogin.Password)
-                {
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-                }
-            }
-            else if (role == "staff")
-            {
-                if (pass == Viewmodellogin.Password)
-                {
-                    if(Worked_Staff() == 1)
-                    {
-                        Session(parameter);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Sai Mật Khẩu");
-                }
+                MessageBox.Show("không tìm thấy số điện thoại này");
             }
         }
         private int Worked_Staff()
         {
             string month_present = DateTime.Now.Month.ToString();
-            int Add = 0; // cờ thêm nhân viên mới
             string shift = GetShift();// lấy ca hiện tại
-            int count_Worked_in_shift = Count_Staff_Had_Worked(shift);
-            List<ObjectId> listStaffIdInShift = new List<ObjectId>(); ;// danh sách ID nhân viên
-            listStaffIdInShift = Get_StaffIDs_in_Evaluate(shift); //nạp dự liệu cho listStaffIdInShift
-            if (listStaffIdInShift.Count == 0) {
+            ScheduleModel schedule = scheduledao.GetSchedule(shift); //nạp dự liệu cho listStaffIdInShift
+            if (schedule is null)
+            {
                 MessageBox.Show("Không có lịch làm hôm nay");
                 return 0; // lịch làm rỗng
-            } 
+            }
 
 
-            ObjectId _idstaff = staffdao.GetStaff(Viewmodellogin.Phonenumber, month_present).staffid; // lấy Id nhân viên theo số điện thoại và tháng lương hiện tại
+            ObjectId _idstaff = staffdao.GetStaff(Viewmodellogin.Phonenumber).staffid; // lấy Id nhân viên theo số điện thoại và tháng lương hiện tại
 
-            if (Viewmodellogin.ItemShift == "Order" || Viewmodellogin.ItemShift == "Waiters")
+            if (Viewmodellogin.ItemShift != null)
             {
-                if (count_Worked_in_shift < 4)
+
+                foreach (var staff in schedule.evaluate)
                 {
-                    foreach (var staffid in listStaffIdInShift)
+                    if (_idstaff == staff.staff_id)
                     {
-                        if (staffid == _idstaff)
+                        if (staff.worked == false)
                         {
-                            scheduledao.Worked_for_Staff(shift, staffid);
-                            MessageBox.Show("Bạn đã chấm công hôm nay");// đổi trạng thái worked
-                            Add = -1;
-                            break;
+                            // đổi trạng thái worked 
+                            scheduledao.Worked_for_Staff(shift, _idstaff);                                                     
                         }
-                    }
-                    if (Add == 0)
-                    {
-                        EvaluateModel evaluate = new EvaluateModel(_idstaff, true, 0);
-                        scheduledao.AddEvaluate(shift, evaluate);
-                        // thêm staff_id vào evalute của schedule
                         MessageBox.Show("Bạn đã chấm công hôm nay");
+                        return 1;
                     }
-                    
                 }
-                else MessageBox.Show("Số lượng nhân viên làm đã tối đa");
+
+                EvaluateModel evaluate = new EvaluateModel(_idstaff, true, 0);
+                scheduledao.AddEvaluate(shift, evaluate); // thêm staff_id vào evalute của schedule                        
+                MessageBox.Show("Bạn đã chấm công hôm nay");
             }
             return 1;
         }
@@ -200,32 +185,5 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
             }
         }
 
-        private List<ObjectId> Get_StaffIDs_in_Evaluate(string shift)
-        {
-            List<ObjectId> Staffids = new List<ObjectId>();
-            List<EvaluateModel> evaluates = new List<EvaluateModel>();
-            evaluates = scheduledao.GetEvalute(shift);
-            foreach(var evalute in evaluates)
-            {
-                Staffids.Add(evalute.staff_id);
-            }
-            return Staffids;
-        }
-
-        private int Count_Staff_Had_Worked(string shift)
-        {
-            int count = 0;
-            List<ObjectId> Staffids = new List<ObjectId>();
-            List<EvaluateModel> evaluates = new List<EvaluateModel>();
-            evaluates = scheduledao.GetEvalute(shift);
-            foreach (var evalute in evaluates)
-            {
-                if(evalute.worked == true)
-                {
-                    count++;
-                }
-            }
-            return count;
-        }
     }
 }

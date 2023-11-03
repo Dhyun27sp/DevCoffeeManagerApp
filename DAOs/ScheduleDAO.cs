@@ -27,7 +27,7 @@ namespace DevCoffeeManagerApp.DAOs
 
         public ScheduleModel GetSchedule(string Shift)
         {
-            var ShiftFilter = Builders<ScheduleModel>.Filter.Eq("shift", Shift); // Tạo một bộ lọc dựa trên phone_number
+            var ShiftFilter = Builders<ScheduleModel>.Filter.Eq("shift", Shift); // Tạo một bộ lọc dựa trên mã shift
             ScheduleModel ScheduleModel = collection.Find(ShiftFilter).FirstOrDefault(); // Thực hiện truy vấn và lấy bản ghi đầu tiên hoặc null nếu không tìm thấy.
             return ScheduleModel;
         }
