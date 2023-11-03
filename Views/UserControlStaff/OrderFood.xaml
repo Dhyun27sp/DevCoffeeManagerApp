@@ -1,212 +1,387 @@
 ﻿<UserControl x:Class="DevCoffeeManagerApp.Views.UserControlStaff.OrderFood"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:DevCoffeeManagerApp.Views.UserControlStaff"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450"
+             d:DesignWidth="800">
     <UserControl.DataContext>
         <vms:OrderFoodViewModel />
     </UserControl.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"></ColumnDefinition>
             <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Background="White">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*"></RowDefinition>
-                <RowDefinition Height="17*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Grid.Background>
-                    <SolidColorBrush Color="Transparent" />
-                </Grid.Background>
-                <materialDesign:ColorZone Padding="auto"
-                              VerticalAlignment="Center"
-                              Mode="PrimaryMid">
-                    <materialDesign:ColorZone.Background>
-                        <SolidColorBrush Color="#FFFFFF"
-                             Opacity="0" />
-                    </materialDesign:ColorZone.Background>
-                    <DockPanel>
+        <Border BorderBrush="#5f5555"
+                BorderThickness="0.5"
+                CornerRadius="10"
+                Background="White"
+                Grid.Column="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="17*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.Background>
+                        <SolidColorBrush Color="Transparent" />
+                    </Grid.Background>
+                    <materialDesign:ColorZone Padding="auto"
+                                              VerticalAlignment="Center"
+                                              Mode="PrimaryMid">
+                        <materialDesign:ColorZone.Background>
+                            <SolidColorBrush Color="#FFFFFF"
+                                             Opacity="0" />
+                        </materialDesign:ColorZone.Background>
+                        <DockPanel>
 
-                        <StackPanel materialDesign:RippleAssist.IsCentered="True"
-                        Orientation="Horizontal">
+                            <StackPanel materialDesign:RippleAssist.IsCentered="True"
+                                        Orientation="Horizontal">
 
-                            <materialDesign:ColorZone Margin="5,0,0,0"
-                                                      VerticalAlignment="Center"
-                                          
-                                          Padding="8,4,8,4"
-                                          Panel.ZIndex="1"
-                                          materialDesign:ElevationAssist.Elevation="Dp2"
-                                          CornerRadius="2"
-                                          Mode="Standard">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="23*"/>
-                                        <RowDefinition Height="9*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Button Style="{StaticResource MaterialDesignToolButton}" Grid.RowSpan="2">
-                                        <materialDesign:PackIcon Kind="Search"
-                                                     Opacity=".56" />
-                                    </Button>
-                                    <TextBox Grid.Column="1"
-                                 MinWidth="200"
-                                 Margin="8,4,0,0"
-                                 VerticalAlignment="Top"
-                                 materialDesign:HintAssist.Hint="Build a search bar"
-                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                 BorderThickness="0" Grid.RowSpan="2" />
-                                </Grid>
-                            </materialDesign:ColorZone>
-
-                        </StackPanel>
-                        <Grid Width="auto">
-                            <ComboBox
-                             ItemsSource="{Binding types_dish}"
-                             SelectedItem="{Binding Type, UpdateSourceTrigger=PropertyChanged}"
-                             x:Name="OutlinedComboBox"
-                             Padding="12"
-                             HorizontalAlignment="Left"
-                             Margin="30 0 0 0"
-                             Width="180"
-                             materialDesign:HintAssist.Hint="Chọn loại món"
-                             Opacity="1"
-                             FontSize="12"
-                             BorderThickness="0"
-                             Foreground="Black" Background="#FFFAFAFA" >
-                                <ComboBox.Effect>
-                                    <DropShadowEffect  Direction="230" ShadowDepth="3" Color="Gray" Opacity="0.2" BlurRadius="2"/>
-                                </ComboBox.Effect>
-                            </ComboBox>
-                        </Grid>
-
-                    </DockPanel>
-
-                </materialDesign:ColorZone>
-
+                                <materialDesign:ColorZone Margin="5,0,0,0"
+                                                          VerticalAlignment="Center"
+                                                          Padding="8,4,8,4"
+                                                          Panel.ZIndex="1"
+                                                          materialDesign:ElevationAssist.Elevation="Dp2"
+                                                          CornerRadius="2"
+                                                          Mode="Standard">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="23*" />
+                                            <RowDefinition Height="9*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Button Style="{StaticResource MaterialDesignToolButton}"
+                                                Grid.RowSpan="2">
+                                            <materialDesign:PackIcon Kind="Search"
+                                                                     Opacity=".56" />
+                                        </Button>
+                                        <TextBox Grid.Column="1"
+                                                 MinWidth="200"
+                                                 Margin="8,4,0,0"
+                                                 VerticalAlignment="Top"
+                                                 materialDesign:HintAssist.Hint="Build a search bar"
+                                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                 BorderThickness="0"
+                                                 Grid.RowSpan="2" />
+                                    </Grid>
+                                </materialDesign:ColorZone>
+                            </StackPanel>
+                            <Grid Width="auto">
+                                <ComboBox ItemsSource="{Binding types_dish}"
+                                          SelectedItem="{Binding Type, UpdateSourceTrigger=PropertyChanged}"
+                                          x:Name="OutlinedComboBox"
+                                          Padding="12"
+                                          HorizontalAlignment="Left"
+                                          Margin="30 0 0 0"
+                                          Width="180"
+                                          materialDesign:HintAssist.Hint="All Dishs"
+                                          Opacity="1"
+                                          FontSize="12"
+                                          BorderThickness="0"
+                                          Foreground="Black"
+                                          Background="#FFFAFAFA">
+                                    <ComboBox.Effect>
+                                        <DropShadowEffect  Direction="230"
+                                                           ShadowDepth="3"
+                                                           Color="Gray"
+                                                           Opacity="0.2"
+                                                           BlurRadius="2" />
+                                    </ComboBox.Effect>
+                                </ComboBox>
+                            </Grid>
+                        </DockPanel>
+                    </materialDesign:ColorZone>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <ScrollViewer>
+                        <ItemsControl ItemsSource="{Binding Dishs}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <materialDesign:Card Width="220"
+                                                         Margin="10"
+                                                         Height="auto"
+                                                         VerticalAlignment="Top">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="140" />
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Image Height="140"
+                                                   Source="{Binding imageconvert}"
+                                                   Stretch="UniformToFill" />
+                                            <Button Grid.Row="0"
+                                                    Margin="0,0,16,-20"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Bottom"
+                                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
+                                                <TextBlock Text="Sale"></TextBlock>
+                                            </Button>
+                                            <StackPanel Grid.Row="1"
+                                                        Margin="8,24,8,4">
+                                                <TextBlock Margin="0"
+                                                           Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                                           Text="{Binding dish_name}" />
+                                                <TextBlock Text="{Binding price}"
+                                                           Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                                                <TextBlock VerticalAlignment="Center"
+                                                           Text="Mô tả ở đây"
+                                                           TextWrapping="Wrap" />
+                                            </StackPanel>
+                                            <Separator Grid.Row="2"
+                                                       Margin="8,0,8,0"
+                                                       Style="{StaticResource MaterialDesignDarkSeparator}" />
+                                            <StackPanel Grid.Row="3">
+                                                <Button Margin="8,4,8,8"
+                                                        HorizontalAlignment="Left"
+                                                        Content="RESERVE"
+                                                        Command="{Binding DataContext.ReserveCommand , UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                        CommandParameter="{Binding}"
+                                                        Style="{StaticResource MaterialDesignFlatButton}" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </materialDesign:Card>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
             </Grid>
-            <Grid Grid.Row="1">
-                <ItemsControl ItemsSource="{Binding Dishs}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate >
-                            <materialDesign:Card Width="220" Margin="10" Height="auto" VerticalAlignment="Top">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="140" />
-                                        <RowDefinition Height="auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Image Height="140" Source="{Binding imageconvert}" Stretch="UniformToFill" />
-                                    <Button Grid.Row="0"
-                                       Margin="0,0,16,-20"
-                                       HorizontalAlignment="Right"
-                                       VerticalAlignment="Bottom"
-                                       Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
-                                     <TextBlock Text="Sale"></TextBlock>
-                                     </Button>
-                                     <StackPanel Grid.Row="1" Margin="8,24,8,4">
-                                     <TextBlock Margin="0"
-                                        Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
-                                        Text="{Binding dish_name}" />
-                                        <TextBlock Text="{Binding price}" 
-                                                 Style="{StaticResource MaterialDesignBody1TextBlock}"/>
-                                                            <TextBlock VerticalAlignment="Center"
-                                        Text="Mô tả ở đây"
-                                        TextWrapping="Wrap" />      
-                                    </StackPanel>
-                                    <Separator Grid.Row="2"
-                                      Margin="8,0,8,0"
-                                      Style="{StaticResource MaterialDesignDarkSeparator}" />
-                                    <StackPanel Grid.Row="3">
-                                     <Button Margin="8,4,8,8"
-                                     HorizontalAlignment="Left"
-                                     Content="RESERVE"
-                                     Style="{StaticResource MaterialDesignFlatButton}" />   
-                                    </StackPanel>
-                                </Grid>
-                            </materialDesign:Card>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-                
-            </Grid>
-        </Grid>
-        <Grid Grid.Column="1" Margin="10 0 0 0" Background="White">
-            <Grid.Effect>
-                <DropShadowEffect Direction="230"  ShadowDepth="3" Color="Gray" Opacity="0.5" BlurRadius="2"/>
-            </Grid.Effect>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*"></RowDefinition>
-                <RowDefinition Height="15*"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-            </Grid.RowDefinitions>
+        </Border>
+        <Border BorderBrush="#5f5555"
+                BorderThickness="0.5"
+                CornerRadius="10"
+                Background="White"
+                Grid.Column="1"
+                Margin="10 0 0 0">
             <Grid>
                 <Grid.Effect>
-                    <DropShadowEffect   ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="0"/>
+                    <DropShadowEffect Direction="230"
+                                      ShadowDepth="3"
+                                      Color="Gray"
+                                      Opacity="0.5"
+                                      BlurRadius="2" />
                 </Grid.Effect>
-                <WrapPanel VerticalAlignment="Center" >
-                    <Grid Margin="20 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="15*"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.Effect>
+                        <DropShadowEffect   ShadowDepth="0"
+                                            Color="Black"
+                                            Opacity="1"
+                                            BlurRadius="0" />
+                    </Grid.Effect>
+                    <WrapPanel VerticalAlignment="Center">
+                        <Grid Margin="20 0">
+                            <TextBlock FontFamily="Nunito"
+                                       FontWeight="DemiBold"
+                                       FontSize="15"
+                                       VerticalAlignment="Center"
+                                       FontStretch="Normal"
+                                       Text="Current Order" />
+                        </Grid>
+                        <Grid Width="124"
+                              VerticalAlignment="Center"
+                              Margin="20 0">
+                            <Button Content="Clear All"
+                                    Background="#FFE48585"
+                                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                                    ToolTip="MaterialDesignFlatLightButton" />
+                        </Grid>
+                    </WrapPanel>
+                </Grid>
+
+                <Grid Grid.Row="1"
+                      Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.Effect>
+                        <DropShadowEffect Direction="230"
+                                          ShadowDepth="3"
+                                          Color="Gray"
+                                          Opacity="0.5"
+                                          BlurRadius="2" />
+                    </Grid.Effect>
+                    <materialDesign:ColorZone Padding="3"
+                                              Grid.Row="0"
+                                              Margin="0 2"
+                                              Background="#FF38220F">
+                        <DockPanel>
+                            <StackPanel HorizontalAlignment="Center"
+                                        materialDesign:RippleAssist.IsCentered="True"
+                                        Orientation="Horizontal">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               Foreground="Wheat"
+                                               FontSize="15"
+                                               FontFamily="Nunito"
+                                               VerticalAlignment="Center"
+                                               Text="Dish Name"
+                                               Margin="0,0,15,0"/>
+                                    <Grid  Grid.Column="1"
+                                           HorizontalAlignment="Right">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock  Foreground="Wheat"
+                                                    FontSize="15"
+                                                    FontFamily="Nunito"
+                                                    Margin="30 0 20 0"
+                                                    VerticalAlignment="Center"
+                                                    Text="Quantity"></TextBlock>
+                                        <TextBox Grid.Column="1"
+                                                 Text="Delete"
+                                                 Foreground="Wheat"
+                                                 FontSize="15"
+                                                 FontFamily="Nunito"></TextBox>
+                                    </Grid>
+                                </Grid>
+                            </StackPanel>
+                        </DockPanel>
+                    </materialDesign:ColorZone>
+                    <ItemsControl Grid.Row="1"
+                                  ItemsSource="{Binding Ordereds}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <materialDesign:ColorZone Padding="3"
+                                                          Margin="0 2"
+                                                          Background="#FF38220F">
+                                    <DockPanel>
+                                        <StackPanel HorizontalAlignment="Right"
+                                                    materialDesign:RippleAssist.IsCentered="True"
+                                                    Orientation="Horizontal">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0"
+                                                           Foreground="Wheat"
+                                                           FontSize="15"
+                                                           FontFamily="Nunito"
+                                                           VerticalAlignment="Center"
+                                                           Text="{Binding Name_Dish , UpdateSourceTrigger=PropertyChanged}"
+                                                           Margin="0,0,15,0"/>
+                                                <Grid  Grid.Column="1"
+                                                       HorizontalAlignment="Right">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition />
+                                                    </Grid.ColumnDefinitions>
+                                                    <materialDesign:ColorZone Margin="5,0,0,0"
+                                                                              Padding="0"
+                                                                              Panel.ZIndex="1"
+                                                                              materialDesign:ElevationAssist.Elevation="Dp2"
+                                                                              CornerRadius="2"
+                                                                              Mode="Standard">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <Button Command="{Binding DataContext.MinusCommad ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                    CommandParameter="{Binding}"
+                                                                    Grid.Column="0"
+                                                                    Style="{StaticResource MaterialDesignToolButton}">
+                                                                <materialDesign:PackIcon Kind="MinusBox"
+                                                                                         Width="30"
+                                                                                         Height="25"
+                                                                                         Opacity=".56" />
+                                                            </Button>
+                                                            <TextBox Text="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                     IsReadOnly="True"
+                                                                     Grid.Column="1"
+                                                                     MinWidth="10"
+                                                                     Margin="8,0,0,0"
+                                                                     VerticalAlignment="Center"
+                                                                     materialDesign:HintAssist.Hint="0"
+                                                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                                     BorderThickness="0" />
+                                                            <Button Grid.Column="2"
+                                                                    Style="{StaticResource MaterialDesignToolButton}"
+                                                                    Command="{Binding DataContext.PlusCommad ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                    CommandParameter="{Binding}">
+                                                                <materialDesign:PackIcon Kind="PlusBox"
+                                                                                         Width="30"
+                                                                                         Height="25"
+                                                                                         Opacity=".56" />
+                                                            </Button>
+                                                        </Grid>
+                                                    </materialDesign:ColorZone>
+                                                    <Button Grid.Column="1"
+                                                            Panel.ZIndex="0"
+                                                            Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                                            Command="{Binding DataContext.DeleteCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                            CommandParameter="{Binding}">
+                                                        <materialDesign:PackIcon Foreground="White"
+                                                                                 Opacity=".80"
+                                                                                 Kind="DeleteForever"
+                                                                                 Width="30"
+                                                                                 Height="25" />
+                                                    </Button>
+                                                </Grid>
+                                            </Grid>
+                                        </StackPanel>
+                                    </DockPanel>
+                                </materialDesign:ColorZone>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+
+                <Grid Width="200"
+                      Height="50"
+                      Grid.Row="2">
+                    <Button materialDesign:ButtonAssist.CornerRadius="10"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            Style="{StaticResource MaterialDesignRaisedLightButton}"
+                            ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                            Margin="0 0 0 10"
+                            Command="{Binding CommandExit}"
+                            CommandParameter="{Binding ElementName=WindowStaff}">
+                        <Button.BorderBrush>
+                            <ImageBrush />
+                        </Button.BorderBrush>
+                        <Button.Background>
+                            <SolidColorBrush Color="#FF38220F" />
+                        </Button.Background>
                         <TextBlock FontFamily="Nunito"
-                         FontWeight="DemiBold"
-                         FontSize="15"
-                                VerticalAlignment="Center"   
-                         FontStretch="Normal"
-                         Text="Current Order" />
-                    </Grid>
-                    <Grid Width="124" VerticalAlignment="Center" Margin="20 0">
-                        <Button
-                          Content="Clear All"
-                          Background="#FFE48585"
-                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                          Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                          ToolTip="MaterialDesignFlatLightButton" />
-                    </Grid>
-                </WrapPanel>
+                                   Text="Đặt Món"
+                                   Foreground="White" />
+                    </Button>
+                </Grid>
             </Grid>
-            <Grid Grid.Row="1">
-
-            </Grid>
-
-            <Grid Width="200"
-              Height="50"
-              Grid.Row="2">
-                <Button materialDesign:ButtonAssist.CornerRadius="10"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource MaterialDesignRaisedLightButton}"
-                    ToolTip="MaterialDesignRaisedLightButton with Round Corners"
-                    Margin="0 0 0 10"
-                    Command="{Binding CommandExit}"
-                    CommandParameter="{Binding ElementName=WindowStaff}"
-                    >
-                    <Button.BorderBrush>
-                        <ImageBrush/>
-                    </Button.BorderBrush>
-                    <Button.Background>
-                        <SolidColorBrush Color="#FF38220F" />
-                    </Button.Background>
-                    <TextBlock FontFamily="Nunito"
-                           Text="Đạt Món"
-                           Foreground="White" />
-                </Button>
-            </Grid>
-        </Grid>
-
+        </Border>
     </Grid>
 </UserControl>
