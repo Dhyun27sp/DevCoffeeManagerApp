@@ -59,57 +59,65 @@
                     </Grid>
                 </Grid>
             </Border>
-
-
-
             <Grid Grid.Row="1">
                 <StackPanel>
-                    <Button
-                        Command="{Binding FoodOrder}"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource MaterialDesignFlatButton}"
-                    ToolTip="MaterialDesignFlatButton">
+                    <Button Command="{Binding FoodOrder}"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            ToolTip="MaterialDesignFlatButton"
+                            Height="50"
+                            Margin="0 0 0 2">
                         <Button.Background>
-                            <SolidColorBrush Color="#FF38220F" />
+                            <SolidColorBrush Color="#5F5555" />
                         </Button.Background>
                         <StackPanel Orientation="Horizontal">
-                            <!-- Sử dụng StackPanel để chứa cả biểu tượng và văn bản -->
-                            <materialDesign:PackIcon Kind="Food" Margin="0 0 5 0" Foreground="White" />
-                            <!-- Thay "ExitToApp" bằng mã biểu tượng bạn muốn -->
-                            <TextBlock FontSize="18" FontFamily="Nunito" Text="Food Order" Foreground="White" />
+                            <materialDesign:PackIcon Kind="Food"
+                                                     Margin="0 0 5 0"
+                                                     Foreground="White" />
+                            <TextBlock FontSize="18"
+                                       FontFamily="Nunito"
+                                       Text="Food Order"
+                                       Foreground="White" />
                         </StackPanel>
                     </Button>
-                    
-                    <Button
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource MaterialDesignFlatButton}"
-                    ToolTip="MaterialDesignFlatButton">
+
+                    <Button IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            ToolTip="MaterialDesignFlatButton"
+                            Height="50"
+                            Margin="0 0 0 2">
                         <Button.Background>
-                            <SolidColorBrush Color="#FF38220F" />
+                            <SolidColorBrush Color="#5F5555" />
                         </Button.Background>
                         <StackPanel Orientation="Horizontal">
-                            <!-- Sử dụng StackPanel để chứa cả biểu tượng và văn bản -->
-                            <materialDesign:PackIcon  Kind="FolderInformationOutline" Margin="0 0 5 0" Foreground="White" />
-                            <!-- Thay "ExitToApp" bằng mã biểu tượng bạn muốn -->
-                            <TextBlock FontSize="18" FontFamily="Nunito" Text="Imfomation" Foreground="White" />
+                            <materialDesign:PackIcon  Kind="FolderInformationOutline"
+                                                      Margin="0 0 5 0"
+                                                      Foreground="White" />
+                            <TextBlock FontSize="18"
+                                       FontFamily="Nunito"
+                                       Text="Information"
+                                       Foreground="White" />
                         </StackPanel>
                     </Button>
-                    
-                    <Button
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource MaterialDesignFlatButton}"
-                    ToolTip="MaterialDesignFlatButton">
+
+                    <Button IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            ToolTip="MaterialDesignFlatButton"
+                            Height="50">
                         <Button.Background>
-                            <SolidColorBrush Color="#FF38220F" />
+                            <SolidColorBrush Color="#5F5555" />
                         </Button.Background>
                         <StackPanel Orientation="Horizontal">
-                            <!-- Sử dụng StackPanel để chứa cả biểu tượng và văn bản -->
-                            <materialDesign:PackIcon Kind="CalendarMultipleCheck" Margin="0 0 5 0" Foreground="White" />
-                            <!-- Thay "ExitToApp" bằng mã biểu tượng bạn muốn -->
-                            <TextBlock FontSize="18" FontFamily="Nunito" Text="Check In" Foreground="White" Width="97" />
+                            <materialDesign:PackIcon Kind="CalendarMultipleCheck"
+                                                     Margin="0 0 5 0"
+                                                     Foreground="White" />
+                            <TextBlock FontSize="18"
+                                       FontFamily="Nunito"
+                                       Text="Check In"
+                                       Foreground="White"
+                                       Width="97" />
                         </StackPanel>
                     </Button>
-                    
                 </StackPanel>
             </Grid>
 
@@ -123,19 +131,22 @@
                         ToolTip="MaterialDesignRaisedLightButton with Round Corners"
                         Margin="0 0 0 10"
                         Command="{Binding Exit}"
-                        CommandParameter="{Binding ElementName=WindowStaff}"
-                        >
+                        CommandParameter="{Binding ElementName=WindowStaff}">
                     <Button.BorderBrush>
-                        <ImageBrush/>
+                        <ImageBrush />
                     </Button.BorderBrush>
                     <Button.Background>
                         <SolidColorBrush Color="#FF38220F" />
                     </Button.Background>
                     <StackPanel Orientation="Horizontal">
                         <!-- Sử dụng StackPanel để chứa cả biểu tượng và văn bản -->
-                        <materialDesign:PackIcon Kind="ExitToApp" Margin="0 0 5 0" Foreground="White" />
+                        <materialDesign:PackIcon Kind="ExitToApp"
+                                                 Margin="0 0 5 0"
+                                                 Foreground="White" />
                         <!-- Thay "ExitToApp" bằng mã biểu tượng bạn muốn -->
-                        <TextBlock FontFamily="Nunito" Text="Exit" Foreground="White" />
+                        <TextBlock FontFamily="Nunito"
+                                   Text="Exit"
+                                   Foreground="White" />
                     </StackPanel>
                 </Button>
             </Grid>
@@ -166,7 +177,7 @@
 
                             <Button Margin="8,0,0,0"
                                     Panel.ZIndex="0"
-                                    Style="{StaticResource MaterialDesignToolForegroundButton}"/>
+                                    Style="{StaticResource MaterialDesignToolForegroundButton}" />
                         </StackPanel>
                     </DockPanel>
                 </materialDesign:ColorZone>
@@ -174,7 +185,7 @@
             <Grid Grid.Row="1">
                 <Grid.Resources>
                     <DataTemplate DataType="{x:Type vms:SellViewModel}">
-                        <views:MainSell/>
+                        <views:MainSell />
                     </DataTemplate>
                 </Grid.Resources>
                 <ContentControl Content="{Binding CurrentViewModel}" />
