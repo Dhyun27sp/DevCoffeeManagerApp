@@ -31,12 +31,10 @@ namespace DevCoffeeManagerApp.DAOs
             return listStaff;
         }
 
-        public StaffModel GetStaff(string phone_number, string month)
+        public StaffModel GetStaff(string phone_number)
         {
             var phoneFilter = Builders<StaffModel>.Filter.Eq("phone_number", phone_number); // Tạo một bộ lọc dựa trên phone_number
-            var monthFilter = Builders<StaffModel>.Filter.Eq("salary.month", month);
-            var andFilter = Builders<StaffModel>.Filter.And(phoneFilter, monthFilter);
-            StaffModel StaffModel = collection.Find(andFilter).FirstOrDefault(); // Thực hiện truy vấn và lấy bản ghi đầu tiên hoặc null nếu không tìm thấy.
+            StaffModel StaffModel = collection.Find(phoneFilter).FirstOrDefault(); // Thực hiện truy vấn và lấy bản ghi đầu tiên hoặc null nếu không tìm thấy.
             return StaffModel;
         }
     }

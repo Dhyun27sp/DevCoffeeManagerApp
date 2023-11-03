@@ -2,6 +2,7 @@
 using DevCoffeeManagerApp.Commands.newe;
 using DevCoffeeManagerApp.DAOs;
 using DevCoffeeManagerApp.Models;
+using DevCoffeeManagerApp.StaticClass;
 using DevCoffeeManagerApp.Views.UserControlStaff;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -18,6 +19,8 @@ namespace DevCoffeeManagerApp.ViewModels
 
         public TableViewModel()
         {
+            if (SessionStatic.GetTables != null)
+                SelectedItem = new ObservableCollection<TableModel>(SessionStatic.GetTables);
             SelectionCommand = new CommandBookTable(this);
             Items = tableDAO.ReadAll();
 

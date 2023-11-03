@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,10 @@ namespace DevCoffeeManagerApp.Models
     [Serializable, BsonIgnoreExtraElements]
     public class ReceiptModel
     {
+        public ReceiptModel()
+        {
+        }
+
         [BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
         public ObjectId _id { get; set; }
 
@@ -34,5 +39,7 @@ namespace DevCoffeeManagerApp.Models
 
         [BsonElement("payments"), BsonRepresentation(BsonType.String)]
         public string payments { get; set; }
+
+
     }
 }

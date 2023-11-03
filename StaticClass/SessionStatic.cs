@@ -1,6 +1,7 @@
 ﻿using DevCoffeeManagerApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace DevCoffeeManagerApp.StaticClass
         private static string _phone_number;
         private static string _task;
         private static int _password;
-        private static ReceiptModel _receipt;
+        private static ReceiptModel _receipt = new ReceiptModel();
         public static string GetPhoneNumber { get { return _phone_number; } }
         public static string SetPhoneNumber { set { _phone_number = value; } }
 
@@ -21,7 +22,7 @@ namespace DevCoffeeManagerApp.StaticClass
 
         public static string GetTask { get { return _task; } }
         public static string SetTask { set { _task = value; } }
-        public static string GetTables { get { return _task; } }
-        public static string SetTables { set { _task = value; } }
+        public static List<TableModel> GetTables { get { return _receipt.tables; } }
+        public static List<TableModel> SetTables { set { _receipt.tables = value; } }
     }
 }
