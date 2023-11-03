@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DevCoffeeManagerApp.ViewModels;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -10,7 +11,7 @@ namespace DevCoffeeManagerApp.Models
 {
 
     [Serializable, BsonIgnoreExtraElements]
-    public class DishModel
+    public class DishModel :BaseViewModel
     {
         [BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
         public ObjectId _id { get; set; }
@@ -38,6 +39,26 @@ namespace DevCoffeeManagerApp.Models
             set
             {
 
+            }
+        }
+
+        public string newDish { get; set; }
+
+        public string HotDish { get; set; }
+
+        public string SaleDish { get; set; }
+
+        private string _hidden = "Hidden";
+        public string Hidden
+        {
+            get
+            {
+                return _hidden;
+            }
+            set
+            {
+                _hidden = value;
+                OnPropertyChanged(nameof(Hidden));
             }
         }
     }

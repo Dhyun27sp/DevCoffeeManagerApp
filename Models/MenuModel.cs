@@ -18,9 +18,9 @@ namespace DevCoffeeManagerApp.Models
         public string type_of_dish { get; set; }
 
         [BsonElement("detail"), BsonRepresentation(BsonType.String)]
-        public string detail { get; set; }
+        public string detail { get; set;}
 
-        [BsonElement("dish")]
+        [BsonElement("dish"), BsonIgnoreIfNull]
         public List<DishModel> dish { get; set; }
     }
 }

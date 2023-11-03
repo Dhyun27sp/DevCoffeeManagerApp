@@ -32,5 +32,15 @@ namespace DevCoffeeManagerApp.DAOs
             return new ObservableCollection<MenuModel>(type_of_dish);
 
         }
+        public List<DishModel> ReadAll_Dish()
+        {
+            ObservableCollection<MenuModel> All_Type_dish = ReadAll_Type_dish();
+            List<DishModel> All_Dishs = new List< DishModel>();
+            foreach (var item in All_Type_dish)
+            {
+                All_Dishs.AddRange(item.dish);
+            }
+            return All_Dishs;
+        }
     }
 }

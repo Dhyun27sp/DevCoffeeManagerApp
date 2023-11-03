@@ -60,7 +60,7 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                         }
                     }
                 }
-                else
+                else if (sign == "Delete")
                 {
                     foreach (var Item in OrderFoodViewModel.Ordereds)
                     {
@@ -71,6 +71,11 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                         }
                     }
                 }
+            }
+
+            if (sign == "DeleteAll")
+            {
+                OrderFoodViewModel.Ordereds.Clear();
             }
         }
 

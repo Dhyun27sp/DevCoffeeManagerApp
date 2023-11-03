@@ -9,7 +9,7 @@
              xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="450"
-             d:DesignWidth="800">
+             d:DesignWidth="1080">
     <UserControl.DataContext>
         <vms:OrderFoodViewModel />
     </UserControl.DataContext>
@@ -74,7 +74,9 @@
                                                  materialDesign:HintAssist.Hint="Build a search bar"
                                                  materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                                  BorderThickness="0"
-                                                 Grid.RowSpan="2" />
+                                                 Grid.RowSpan="2" 
+                                                 Text="{Binding types_dish_search , UpdateSourceTrigger=PropertyChanged}"
+                                                 />
                                     </Grid>
                                 </materialDesign:ColorZone>
                             </StackPanel>
@@ -98,6 +100,28 @@
                                                            Color="Gray"
                                                            Opacity="0.2"
                                                            BlurRadius="2" />
+                                    </ComboBox.Effect>
+                                </ComboBox>
+                            </Grid>
+                            <Grid Width="auto">
+                                <ComboBox ItemsSource="{Binding Specials}"
+                                  SelectedItem="{Binding Type_Special, UpdateSourceTrigger=PropertyChanged}"
+                                  Padding="12"
+                                  HorizontalAlignment="Left"
+                                  Margin="30 0 0 0"
+                                  Width="180"
+                                  materialDesign:HintAssist.Hint="Special"
+                                  Opacity="1"
+                                  FontSize="12"
+                                  BorderThickness="0"
+                                  Foreground="Black"
+                                  Background="#FFFAFAFA">
+                                    <ComboBox.Effect>
+                                        <DropShadowEffect  Direction="230"
+                                   ShadowDepth="3"
+                                   Color="Gray"
+                                   Opacity="0.2"
+                                   BlurRadius="2" />
                                     </ComboBox.Effect>
                                 </ComboBox>
                             </Grid>
@@ -125,16 +149,45 @@
                                                 <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
-                                            <Image Height="140"
+                                            <Grid Grid.Row="0">
+                                                <Image Height="140"
                                                    Source="{Binding imageconvert}"
                                                    Stretch="UniformToFill" />
-                                            <Button Grid.Row="0"
-                                                    Margin="0,0,16,-20"
-                                                    HorizontalAlignment="Right"
-                                                    VerticalAlignment="Bottom"
-                                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
-                                                <TextBlock Text="Sale"></TextBlock>
-                                            </Button>
+                                                <Grid Visibility="{Binding Hidden, UpdateSourceTrigger=PropertyChanged}"
+                                                    Margin="5 5"
+                                                    Width="80"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Top"
+                                                    >
+                                                    <Border CornerRadius="10" Background="#aeea00">
+                                                    <Grid HorizontalAlignment="Center">
+                                                            <TextBlock FontSize="10" Text="{Binding SaleDish , UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                    </Grid>
+                                                    </Border>
+                                                </Grid>
+                                                <Grid Visibility="{Binding Hidden}"
+                                                        Margin="30 5"
+                                                        Width="50"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                                                >
+                                                    <Border CornerRadius="10" Background="Red" Margin="66,0,-66,0">
+                                                        <Grid HorizontalAlignment="Center">
+                                                            <TextBlock FontSize="10" Text="Hot"></TextBlock>
+                                                        </Grid>
+                                                    </Border>
+                                                </Grid>
+                                                <Button Visibility="{Binding Hidden}"
+                                                  Grid.Row="0"
+                                                  Margin="0,0,16,-20"
+                                                  HorizontalAlignment="Right"
+                                                  VerticalAlignment="Bottom"
+                                                  Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
+                                                    <TextBlock Text="New"></TextBlock>
+                                                </Button>
+                                            </Grid>
+
+
                                             <StackPanel Grid.Row="1"
                                                         Margin="8,24,8,4">
                                                 <TextBlock Margin="0"
@@ -209,7 +262,9 @@
                                     Background="#FFE48585"
                                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                     Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                                    ToolTip="MaterialDesignFlatLightButton" />
+                                    ToolTip="MaterialDesignFlatLightButton"
+                                    Command="{Binding Deleteall , UpdateSourceTrigger=PropertyChanged}"
+                                    />
                         </Grid>
                     </WrapPanel>
                 </Grid>
