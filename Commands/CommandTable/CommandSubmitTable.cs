@@ -1,5 +1,4 @@
-﻿using DevCoffeeManagerApp.DAOs;
-using DevCoffeeManagerApp.Models;
+﻿using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -7,16 +6,18 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
+using System.Windows;
+using DevCoffeeManagerApp.StaticClass;
+using DevCoffeeManagerApp.Views;
 
 namespace DevCoffeeManagerApp.Commands.CommandTable
 {
-    public class CommandBookTable: CommandBase
+    public class CommandSubmitTable : CommandBase
     {
+        OrderFoodViewModel orderFoodViewModel = new OrderFoodViewModel();
         private TableViewModel Viewmodeltable;
-        public CommandBookTable(TableViewModel viewmodeltable)
+        public CommandSubmitTable(TableViewModel viewmodeltable)
         {
             Viewmodeltable = viewmodeltable;
         }
@@ -29,16 +30,12 @@ namespace DevCoffeeManagerApp.Commands.CommandTable
             if (parameter is ListView listView)
             {
                 // Lấy danh sách các mục đã chọn từ SelectedItems
-                ObservableCollection<TableModel> selectedItems = new ObservableCollection<TableModel>(listView.SelectedItems.Cast<TableModel>());
-
+                List<TableModel> Items = new List<TableModel>(listView.Items.Cast<TableModel>());
+                int countSelected = listView.SelectedItems.Count;
                 // Bây giờ, `selectedItems` chứa danh sách các hàng đã chọn
                 // Bạn có thể duyệt qua danh sách này để làm bất kỳ thao tác nào bạn cần
-                Viewmodeltable.SelectedItem = selectedItems;
-                MessageBox.Show("lol");
-                //foreach (TableModel selectedItem in selectedItems)
-                //{
-                //    MessageBox.Show(selectedItem.No_.ToString());
-                //}
+                SessionStatic.SetTables = new List<TableModel>(Items);
+                MessageBox.Show(countSelected.ToString());
             }
         }
     }

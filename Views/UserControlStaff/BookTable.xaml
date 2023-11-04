@@ -73,6 +73,7 @@
                       Height="auto">
                     <ListView x:Name="lvUser"
                               ItemsSource="{Binding Items}"
+                              SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                               SelectionMode="Multiple">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
@@ -115,7 +116,7 @@
                             </Style>
                         </ListView.ItemContainerStyle>
                         <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseClick">
+                            <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding SelectionCommand}"
                                                        CommandParameter="{Binding  ElementName=lvUser}" />
                             </i:EventTrigger>
@@ -329,7 +330,7 @@
                     ToolTip="MaterialDesignRaisedButton with Round Corners"
                     HorizontalContentAlignment="Stretch"
                     VerticalContentAlignment="Stretch"
-                    Command="{Binding CommandBookTable}"
+                    Command="{Binding SubmitCommand}"
                     CommandParameter="{Binding ElementName=lvUser}">
                 <Button.BorderBrush>
                     <ImageBrush />
