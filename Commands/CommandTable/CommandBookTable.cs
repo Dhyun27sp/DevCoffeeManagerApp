@@ -28,12 +28,7 @@ namespace DevCoffeeManagerApp.Commands.CommandTable
         {
             if (parameter is ListView listView)
             {
-                // Lấy danh sách các mục đã chọn từ SelectedItems
-                ObservableCollection<TableModel> selectedItems = new ObservableCollection<TableModel>(listView.SelectedItems.Cast<TableModel>());
 
-                // Bây giờ, `selectedItems` chứa danh sách các hàng đã chọn
-                // Bạn có thể duyệt qua danh sách này để làm bất kỳ thao tác nào bạn cần
-                Viewmodeltable.SelectedItem = selectedItems;
                 MessageBox.Show("lol");
                 //foreach (TableModel selectedItem in selectedItems)
                 //{

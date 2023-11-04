@@ -29,13 +29,14 @@ namespace DevCoffeeManagerApp.Commands.CommandTable
         {
             if (parameter is ListView listView)
             {
+                MessageBox.Show("Đã vô lôl");
                 // Lấy danh sách các mục đã chọn từ SelectedItems
-                List<TableModel> Items = new List<TableModel>(listView.Items.Cast<TableModel>());
+                List<TableModel> Items = new List<TableModel>(listView.SelectedItems.Cast<TableModel>());
                 int countSelected = listView.SelectedItems.Count;
-                // Bây giờ, `selectedItems` chứa danh sách các hàng đã chọn
-                // Bạn có thể duyệt qua danh sách này để làm bất kỳ thao tác nào bạn cần
-                SessionStatic.SetTables = new List<TableModel>(Items);
-                MessageBox.Show(countSelected.ToString());
+                //// Bây giờ, `selectedItems` chứa danh sách các hàng đã chọn
+                //// Bạn có thể duyệt qua danh sách này để làm bất kỳ thao tác nào bạn cần
+                SessionStatic.SetTables = Items;
+                //MessageBox.Show(countSelected.ToString());
             }
         }
     }

@@ -71,9 +71,8 @@
                 <Grid Background="Transparent"
                       Width="auto"
                       Height="auto">
-                    <ListView x:Name="lvUser"
+                    <ListView Name="lvUser"
                               ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                               SelectionMode="Multiple">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
@@ -102,16 +101,7 @@
                                                     Value="0.2" />
                                         </MultiTrigger.Setters>
                                     </MultiTrigger>
-                                    <MultiTrigger>
-                                        <MultiTrigger.Conditions>
-                                            <Condition Property="IsSelected"
-                                                       Value="False" />
-                                        </MultiTrigger.Conditions>
-                                        <MultiTrigger.Setters>
-                                            <Setter Property="Opacity"
-                                                    Value="1.0"></Setter>
-                                        </MultiTrigger.Setters>
-                                    </MultiTrigger>
+
                                 </Style.Triggers>
                             </Style>
                         </ListView.ItemContainerStyle>
@@ -305,9 +295,7 @@
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     ToolTip="MaterialDesignRaisedButton with Round Corners"
                     HorizontalContentAlignment="Stretch"
-                    VerticalContentAlignment="Stretch"
-                    Command="{Binding CommandBookTable}"
-                    CommandParameter="{Binding ElementName=lvUser}">
+                    VerticalContentAlignment="Stretch">
                 <Button.BorderBrush>
                     <ImageBrush />
                 </Button.BorderBrush>
@@ -325,8 +313,8 @@
                     Width="100"
                     Grid.Column="1"
                     materialDesign:ButtonAssist.CornerRadius="10"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     ToolTip="MaterialDesignRaisedButton with Round Corners"
                     HorizontalContentAlignment="Stretch"
                     VerticalContentAlignment="Stretch"
