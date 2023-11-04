@@ -161,7 +161,7 @@
                                                     >
                                                     <Border CornerRadius="10" Background="#aeea00">
                                                     <Grid HorizontalAlignment="Center">
-                                                            <TextBlock FontSize="10" Text="{Binding SaleDish , UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                            <TextBlock FontSize="10" Text="new"></TextBlock>
                                                     </Grid>
                                                     </Border>
                                                 </Grid>
@@ -183,7 +183,7 @@
                                                   HorizontalAlignment="Right"
                                                   VerticalAlignment="Bottom"
                                                   Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
-                                                    <TextBlock Text="New"></TextBlock>
+                                                    <TextBlock FontSize="10" Text="{Binding SaleDish , UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                                 </Button>
                                             </Grid>
 

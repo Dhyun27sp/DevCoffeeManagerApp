@@ -49,6 +49,7 @@ namespace DevCoffeeManagerApp.ViewModels
                 List<DishModel> Dishs_Search = new List<DishModel>();
                 if (types_dish_search !="")
                 {
+                    LoadDishWithType();
                     foreach (var item in Dishs)
                     {
                         bool contains = item.dish_name.Contains(types_dish_search);
@@ -70,6 +71,8 @@ namespace DevCoffeeManagerApp.ViewModels
                 {
                     LoadDishWithType();
                 }
+                LoadMenuDiscount();
+                LoadDishDistcount();
             }
         }
         private string _type = "All Dishs";
@@ -84,6 +87,8 @@ namespace DevCoffeeManagerApp.ViewModels
                 _type = value;
                 OnPropertyChanged(nameof(Type));
                 LoadDishWithType();
+                LoadMenuDiscount();
+                LoadOnlydiscountfortype();
             }
         }
         private List<DishModel> _dish;
@@ -125,6 +130,8 @@ namespace DevCoffeeManagerApp.ViewModels
             {
                 _type_special = value;
                 OnPropertyChanged(nameof(Type_Special));
+                LoadMenuDiscount();
+                LoadOnlydiscountfortype();
             }
         }
 
@@ -138,7 +145,6 @@ namespace DevCoffeeManagerApp.ViewModels
             Ordereds = new ObservableCollection<StructOfOrderedItem>();
             Specials = new List<string>();
             ObservableCollection<MenuModel> menuModels = menuDao.ReadAll_Type_dish();
-            List<DishModel> dishDiscounts = new List<DishModel>();
             List<string> temp = new List<string>();
             temp.Add("All Dishs");
             foreach (var item in menuModels)
@@ -147,24 +153,15 @@ namespace DevCoffeeManagerApp.ViewModels
                 temp.Add(item.type_of_dish);
             }
 
+            Specials.Add("Out Spectial");
             Specials.Add("New Dish");
             Specials.Add("Hot Dish");
             Specials.Add("Discounted");
 
             types_dish = temp;
             Dishs = menuDao.ReadAll_Dish();
-            dishDiscounts = discountDAO.ListDishDiscount();
-            foreach (var dish in Dishs)
-            {
-                foreach (var dishDiscount in dishDiscounts)
-                {
-                    if (dish._id == dishDiscount._id)
-                    {
-                        dish.SaleDish = "Sale";
-                        dish.Hidden = "Visible";
-                    }
-                }
-            }
+            LoadMenuDiscount();
+            LoadDishDistcount();
             PlusCommad = new Add_Munix_Delete_Command(this, "Plus");
             MinusCommad = new Add_Munix_Delete_Command(this, "Minus");
             DeleteCommand = new Add_Munix_Delete_Command(this, "Delete");
@@ -177,12 +174,79 @@ namespace DevCoffeeManagerApp.ViewModels
             if (Type == "All Dishs")
             {
                 Dishs = menuDao.ReadAll_Dish();
+                LoadDishDistcount();
             }
             else
             {
                 if (Type != null)
                 {
                     Dishs = menuDao.ReadAll(Type).dish;
+                    LoadDishDistcount();
+                }
+            }
+        }
+
+        private void LoadDishDistcount()
+        {
+            List<DishModel> dishDiscounts = new List<DishModel>();
+            dishDiscounts = discountDAO.ListDishDiscount();
+            foreach (var dish in Dishs)
+            {
+                foreach (var dishDiscount in dishDiscounts)
+                {
+                    if (dish._id == dishDiscount._id)
+                    {
+                        dish.SaleDish = "Sale";
+                        dish.Hidden = "Visible";
+                    }
+                }
+            }
+        }
+        private void LoadOnlydiscountfortype()
+        {
+            List<DishModel> OnlyDiscount = new List<DishModel>();
+            if (Type_Special == "Discounted")
+            {
+                foreach (var dish in Dishs)
+                {
+                    if (dish.SaleDish == "Sale")
+                    {
+                        OnlyDiscount.Add(dish);
+                    }
+                }
+                Dishs = OnlyDiscount;
+            }
+            else if(Type_Special ==  "Out Spectial")
+            {
+                LoadDishWithType();
+                LoadMenuDiscount();
+            }
+        }
+
+        private void LoadMenuDiscount()
+        {
+            List<MenuModel> DiscountMenu = new List<MenuModel>();
+            List<DishModel> DishInType = new List<DishModel>();
+            DiscountMenu = discountDAO.ListMenuDiscount();
+            foreach(var menu in DiscountMenu)
+            {
+                foreach(var type in types_dish)
+                {
+                    if(menu.type_of_dish == type)
+                    {
+                        foreach(var dish in Dishs)
+                        {
+                            DishInType = menuDao.ReadAll(type).dish;
+                            foreach (var dishsale in DishInType)
+                            {
+                                if(dish._id == dishsale._id)
+                                {
+                                    dish.SaleDish = "Sale";
+                                    dish.Hidden = "Visible";
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
