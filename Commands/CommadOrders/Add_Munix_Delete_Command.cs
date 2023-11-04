@@ -27,6 +27,7 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
 
         public override void Execute(object parameter)
         {
+            
             if (parameter is StructOfOrderedItem datageted)
             {
                 string inputString = datageted.Quantity;
@@ -37,16 +38,16 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                     {
                         result += 1;
                         datageted.Quantity = result.ToString();
+                        total_money();
                     }
                 }
                 else if (sign == "Minus")
                 {
-
                     if (int.TryParse(inputString, out result))
                     {
                         result -= 1;
                         datageted.Quantity = result.ToString();
-
+                        total_money();
                         if (result == 0)
                         {
                             foreach (var Item in OrderFoodViewModel.Ordereds)
@@ -54,6 +55,7 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                                 if (Item.Name_Dish == datageted.Name_Dish)
                                 {
                                     OrderFoodViewModel.Ordereds.Remove(Item);
+                                    total_money();
                                     return;
                                 }
                             }
@@ -67,6 +69,7 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                         if (Item.Name_Dish == datageted.Name_Dish)
                         {
                             OrderFoodViewModel.Ordereds.Remove(Item);
+                            total_money();
                             return;
                         }
                     }
@@ -76,7 +79,34 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
             if (sign == "DeleteAll")
             {
                 OrderFoodViewModel.Ordereds.Clear();
+                total_money();
             }
+        }
+        private void total_money()
+        {
+            int total = 0;
+            if (OrderFoodViewModel.Ordereds != null)
+            {
+                foreach (var Ordd in OrderFoodViewModel.Ordereds)
+                {
+                    foreach (var dish in OrderFoodViewModel.AllDishsVariable)
+                    {
+                        if (dish.dish_name == Ordd.Name_Dish)
+                        {
+                            if (dish.Saleprice != null)
+                            {
+                                total = total + int.Parse(dish.Saleprice) * int.Parse(Ordd.Quantity);
+                            }
+                            else
+                            {
+                                total = total + (dish.price.Value * int.Parse(Ordd.Quantity));
+                            }
+
+                        }
+                    }
+                }
+            }
+            OrderFoodViewModel.Total = total.ToString();
         }
 
     }

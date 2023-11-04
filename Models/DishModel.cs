@@ -61,5 +61,22 @@ namespace DevCoffeeManagerApp.Models
                 OnPropertyChanged(nameof(Hidden));
             }
         }
+        public string category { get; set; }
+
+        public string Saleprice { get; set; }
+
+        private string _strikethrough = "None";
+        public string Strikethrough
+        {
+            get
+            {
+                return _strikethrough;
+            }
+            set
+            {
+                _strikethrough = value;
+                OnPropertyChanged(nameof(Strikethrough));
+            }
+        }
     }
 }

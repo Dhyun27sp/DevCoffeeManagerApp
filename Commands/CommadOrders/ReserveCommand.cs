@@ -27,6 +27,7 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
         public override void Execute(object parameter)
         {
             int make = 0;
+            int total = 0;
             if (parameter is DishModel Dish)
             {
                 foreach (var item in OrderFoodViewModel.Ordereds)
@@ -62,6 +63,28 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                     }
                 }
             }
+            if (OrderFoodViewModel.Ordereds != null)
+            {
+                foreach (var Ordd in OrderFoodViewModel.Ordereds)
+                {
+                    foreach (var dish in OrderFoodViewModel.AllDishsVariable)
+                    {
+                        if (dish.dish_name == Ordd.Name_Dish)
+                        {
+                            if (dish.Saleprice != null)
+                            {
+                                total = total + int.Parse(dish.Saleprice) * int.Parse(Ordd.Quantity);
+                            }
+                            else
+                            {
+                                total = total + (dish.price.Value * int.Parse(Ordd.Quantity));
+                            }
+
+                        }
+                    }
+                }
+            }
+            OrderFoodViewModel.Total = total.ToString();
         }
     }
 }

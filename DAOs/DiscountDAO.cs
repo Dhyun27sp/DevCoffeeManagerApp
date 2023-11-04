@@ -54,5 +54,56 @@ namespace DevCoffeeManagerApp.DAOs
             }
             return ListDishDiscount;
         }
+
+        public string PriceSaleWithDish(ObjectId IdDish)
+        {
+            string pricedishdiscount = "0";
+            int outsite = 0;
+            List<DiscountModel> ListDiscounts = new List<DiscountModel>();
+            ListDiscounts = ReadDiscountAll();
+            foreach(DiscountModel Discount in ListDiscounts)
+            {
+                foreach (var Dishsale in Discount.apply.dish)
+                {
+                    if(Dishsale._id == IdDish)
+                    {
+                        pricedishdiscount = Discount.value_dis;
+                        outsite = 1;
+                        break;
+                    }
+                }
+                if(outsite == 1)
+                {
+                    break;
+                }
+            }
+            return pricedishdiscount;
+        }
+
+        public string PriceSaleWithMenu(ObjectId IdMenu)
+        {
+            string pricemenudiscount = "0";
+            int outsite = 0;
+            List<DiscountModel> ListDiscounts = new List<DiscountModel>();
+            ListDiscounts = ReadDiscountAll();
+            foreach (DiscountModel Discount in ListDiscounts)
+            {
+                foreach (var Menusale in Discount.apply.menu)
+                {
+                    if(Menusale.id == IdMenu)
+                    {
+                        pricemenudiscount = Discount.value_dis;
+                        outsite = 1;
+                        break;
+                    }
+                }
+                if (outsite == 1)
+                {
+                    break;
+                }
+            }
+
+            return pricemenudiscount;
+        }
     }
 }

@@ -27,6 +27,11 @@ namespace DevCoffeeManagerApp.ViewModels
             if (Items != null)
                 Items = null;
             Items = tableDAO.ReadAll();
+            checkItemSame();
+
+        }
+        private void checkItemSame()
+        {
             ObservableCollection<TableModel> selectedItems = new ObservableCollection<TableModel>(SessionStatic.GetTables);
             foreach (var item2 in selectedItems)
             {
