@@ -220,7 +220,6 @@
     <Compile Include="Component\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ComponentOrder\StructOfOrderedItem.cs" />
     <Compile Include="Config\BooleanNegationConverter.cs" />
     <Compile Include="Config\ConnectionMongoDB.cs" />
     <Compile Include="DAOs\DiscountDAO.cs" />

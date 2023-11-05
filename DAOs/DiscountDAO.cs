@@ -55,10 +55,9 @@ namespace DevCoffeeManagerApp.DAOs
             return ListDishDiscount;
         }
 
-        public string PriceSaleWithDish(ObjectId IdDish)
+        public List<string> MutiPriceSaleWithDish(ObjectId IdDish)
         {
-            string pricedishdiscount = "0";
-            int outsite = 0;
+            List<string> pricedishdiscounts = new List<string>();
             List<DiscountModel> ListDiscounts = new List<DiscountModel>();
             ListDiscounts = ReadDiscountAll();
             foreach(DiscountModel Discount in ListDiscounts)
@@ -67,23 +66,17 @@ namespace DevCoffeeManagerApp.DAOs
                 {
                     if(Dishsale._id == IdDish)
                     {
-                        pricedishdiscount = Discount.value_dis;
-                        outsite = 1;
+                        pricedishdiscounts.Add(Discount.value_dis);
                         break;
                     }
                 }
-                if(outsite == 1)
-                {
-                    break;
-                }
             }
-            return pricedishdiscount;
+            return pricedishdiscounts;
         }
 
-        public string PriceSaleWithMenu(ObjectId IdMenu)
+        public List<string> MutiPriceSaleWithMenu(ObjectId IdMenu)
         {
-            string pricemenudiscount = "0";
-            int outsite = 0;
+            List<string> pricemenudiscount = new List<string>();
             List<DiscountModel> ListDiscounts = new List<DiscountModel>();
             ListDiscounts = ReadDiscountAll();
             foreach (DiscountModel Discount in ListDiscounts)
@@ -92,14 +85,9 @@ namespace DevCoffeeManagerApp.DAOs
                 {
                     if(Menusale.id == IdMenu)
                     {
-                        pricemenudiscount = Discount.value_dis;
-                        outsite = 1;
+                        pricemenudiscount.Add(Discount.value_dis);
                         break;
                     }
-                }
-                if (outsite == 1)
-                {
-                    break;
                 }
             }
 

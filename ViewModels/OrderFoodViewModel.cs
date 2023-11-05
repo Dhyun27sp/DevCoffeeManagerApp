@@ -13,7 +13,6 @@ using System.Windows.Controls;
 using MongoDB.Driver;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
-using DevCoffeeManagerApp.Component.ComPonentOrder;
 using DevCoffeeManagerApp.Commands.CommadOrders;
 
 namespace DevCoffeeManagerApp.ViewModels
@@ -34,21 +33,6 @@ namespace DevCoffeeManagerApp.ViewModels
             {
                 _types_dish = value;
                 OnPropertyChanged(nameof(types_dish));
-            }
-        }
-        private string _total = "0";
-
-        public string Total
-        {
-            get
-            {
-                return _total;
-            }
-
-            set
-            {
-                _total = value;
-                OnPropertyChanged(nameof(Total));
             }
         }
         private string _types_dish_search = "";
@@ -94,8 +78,8 @@ namespace DevCoffeeManagerApp.ViewModels
             }
         }
 
-        private ObservableCollection<StructOfOrderedItem> _ordereds;
-        public ObservableCollection<StructOfOrderedItem> Ordereds
+        private ObservableCollection<DishModel> _ordereds;
+        public ObservableCollection<DishModel> Ordereds
         {
             get
             {
@@ -122,6 +106,21 @@ namespace DevCoffeeManagerApp.ViewModels
                 types_dish_search = types_dish_search;// lọc lại 
             }
         }
+        private string _total = "0";
+
+        public string Total
+        {
+            get
+            {
+                return _total;
+            }
+
+            set
+            {
+                _total = value;
+                OnPropertyChanged(nameof(Total));
+            }
+        }
 
         public ICommand MinusCommad { get; set; }
         public ICommand PlusCommad { get; set; }
@@ -130,7 +129,7 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand ReserveCommand { get; set; }
         public OrderFoodViewModel()
         {
-            Ordereds = new ObservableCollection<StructOfOrderedItem>();
+            Ordereds = new ObservableCollection<DishModel>();
             load_types_dish();
             loadSpecials();
             Dishs = LoadAllDish();
@@ -181,23 +180,43 @@ namespace DevCoffeeManagerApp.ViewModels
 
             List<MenuModel> DiscountMenu = new List<MenuModel>();
             DiscountMenu = discountDAO.ListMenuDiscount();
+            DiscountMenu = removegermsMenudiscount(DiscountMenu);
             foreach (var menu in DiscountMenu)
             {
                 foreach (var dish in DishsLocal)
                 {
                     if (dish.category == menu.type_of_dish)
                     {
+                        List<string> listpricediscountmenu = new List<string>();
                         dish.SaleDish = "Sale";
                         dish.Hidden = "Visible";
-                        dish.Saleprice = discountDAO.PriceSaleWithMenu(menu.id);
-                        double convertsaleprice = Double.Parse(dish.Saleprice);
-                        if (0 < convertsaleprice && convertsaleprice <= 1)
+                        listpricediscountmenu = discountDAO.MutiPriceSaleWithMenu(menu.id);
+                        listpricediscountmenu = Drop_MoneyToPercent(listpricediscountmenu);
+                        foreach (var lpdcm in listpricediscountmenu)
                         {
-                            dish.Saleprice = (dish.price - dish.price * convertsaleprice).ToString();
-                        }
-                        else if (convertsaleprice > 1)
-                        {
-                            dish.Saleprice = (dish.price - convertsaleprice).ToString();
+                            double convertsaleprice = Double.Parse(lpdcm);
+                            if (0 < convertsaleprice && convertsaleprice <= 1)
+                            {
+                                if (dish.Saleprice == null)
+                                {
+                                    dish.Saleprice = (dish.price - dish.price * convertsaleprice).ToString();
+                                }
+                                else
+                                {
+                                    dish.Saleprice = (int.Parse(dish.Saleprice) - int.Parse(dish.Saleprice) * convertsaleprice).ToString();
+                                }
+                            }
+                            else if (convertsaleprice > 1)
+                            {
+                                if(dish.Saleprice == null)
+                                {
+                                    dish.Saleprice = (dish.price - convertsaleprice).ToString();
+                                }
+                                else
+                                {
+                                    dish.Saleprice = (int.Parse(dish.Saleprice) - convertsaleprice).ToString();
+                                }
+                            }
                         }
                         dish.Strikethrough = "Strikethrough";
                     }
@@ -206,23 +225,43 @@ namespace DevCoffeeManagerApp.ViewModels
 
             List<DishModel> dishDiscounts = new List<DishModel>();
             dishDiscounts = discountDAO.ListDishDiscount();
+            dishDiscounts = removegermsDishdiscount(dishDiscounts);
             foreach (var dish in DishsLocal)
             {
                 foreach (var dishDiscount in dishDiscounts)
                 {
                     if (dish._id == dishDiscount._id)
                     {
+                        List<string> pricedishdiscounts = new List<string>();
                         dish.SaleDish = "Sale";
                         dish.Hidden = "Visible";
-                        dish.Saleprice = discountDAO.PriceSaleWithDish(dish._id);
-                        double convertsaleprice = Double.Parse(dish.Saleprice);
-                        if (0 < convertsaleprice && convertsaleprice <= 1 )
+                        pricedishdiscounts = discountDAO.MutiPriceSaleWithDish(dish._id);
+                        pricedishdiscounts = Drop_MoneyToPercent(pricedishdiscounts);
+                        foreach (var pdc in pricedishdiscounts)
                         {
-                            dish.Saleprice = (dish.price - dish.price*convertsaleprice).ToString();
-                        }
-                        else if(convertsaleprice > 1)
-                        {
-                            dish.Saleprice = (dish.price - convertsaleprice).ToString();
+                            double convertsaleprice = Double.Parse(pdc);
+                            if (0 < convertsaleprice && convertsaleprice <= 1)
+                            {
+                               if(dish.Saleprice == null)
+                                {
+                                    dish.Saleprice = (dish.price - dish.price * convertsaleprice).ToString();
+                                }
+                                else
+                                {
+                                    dish.Saleprice = (int.Parse(dish.Saleprice) - int.Parse(dish.Saleprice) * convertsaleprice).ToString();
+                                }
+                            }
+                            else if (convertsaleprice > 1)
+                            {
+                                if (dish.Saleprice == null)
+                                {
+                                    dish.Saleprice = (dish.price - convertsaleprice).ToString();
+                                }
+                                else
+                                {
+                                    dish.Saleprice = (int.Parse(dish.Saleprice) - convertsaleprice).ToString();
+                                }
+                            }
                         }
                         dish.Strikethrough = "Strikethrough";
                     }
@@ -348,7 +387,31 @@ namespace DevCoffeeManagerApp.ViewModels
                 }
             }
         }
-            
+        
+        private List<string> Drop_MoneyToPercent(List<string> listdiscount)
+        {
+            var sortedList = listdiscount.OrderByDescending(item => item).ToList();
+            return sortedList;
+        }
+        private List<MenuModel> removegermsMenudiscount(List<MenuModel> menudiscount)
+        {
+            List<MenuModel> uniqueItems = menudiscount
+            .GroupBy(item => item.id)
+            .Select(group => group.First())
+            .ToList();
+
+            return uniqueItems;
+        }
+
+        private List<DishModel> removegermsDishdiscount(List<DishModel> dishdiscount)
+        {
+            List<DishModel> uniqueItems = dishdiscount
+            .GroupBy(item => item._id)
+            .Select(group => group.First())
+            .ToList();
+
+            return uniqueItems;
+        }
     }
 
 }

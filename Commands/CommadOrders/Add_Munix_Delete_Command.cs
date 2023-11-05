@@ -1,4 +1,4 @@
-﻿using DevCoffeeManagerApp.Component.ComPonentOrder;
+﻿using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
         public override void Execute(object parameter)
         {
             
-            if (parameter is StructOfOrderedItem datageted)
+            if (parameter is DishModel datageted)
             {
                 string inputString = datageted.Quantity;
                 int result;
@@ -52,7 +52,7 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                         {
                             foreach (var Item in OrderFoodViewModel.Ordereds)
                             {
-                                if (Item.Name_Dish == datageted.Name_Dish)
+                                if (Item.dish_name == datageted.dish_name)
                                 {
                                     OrderFoodViewModel.Ordereds.Remove(Item);
                                     total_money();
@@ -66,7 +66,7 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                 {
                     foreach (var Item in OrderFoodViewModel.Ordereds)
                     {
-                        if (Item.Name_Dish == datageted.Name_Dish)
+                        if (Item.dish_name == datageted.dish_name)
                         {
                             OrderFoodViewModel.Ordereds.Remove(Item);
                             total_money();
@@ -91,7 +91,7 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                 {
                     foreach (var dish in OrderFoodViewModel.AllDishsVariable)
                     {
-                        if (dish.dish_name == Ordd.Name_Dish)
+                        if (dish.dish_name == Ordd.dish_name)
                         {
                             if (dish.Saleprice != null)
                             {

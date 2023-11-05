@@ -350,7 +350,7 @@
                                                            FontSize="15"
                                                            FontFamily="Nunito"
                                                            VerticalAlignment="Center"
-                                                           Text="{Binding Name_Dish , UpdateSourceTrigger=PropertyChanged}"
+                                                           Text="{Binding dish_name , UpdateSourceTrigger=PropertyChanged}"
                                                            Margin="0,0,15,0"/>
                                                 <Grid  Grid.Column="1"
                                                        HorizontalAlignment="Right">
