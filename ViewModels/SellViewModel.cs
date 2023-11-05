@@ -1,4 +1,5 @@
 ﻿using DevCoffeeManagerApp.Commands.CommandMainStaff;
+using DevCoffeeManagerApp.Commands.CommandSell;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,10 +28,12 @@ namespace DevCoffeeManagerApp.ViewModels
         }
         public ICommand CommandTable { get; set; }
         public ICommand CommandOrder { get; set; }
+        public ICommand CommandOptionOrder { get; set; }
         public SellViewModel() 
         {
             CommandTable = new TableCommand(this);
             CommandOrder = new OrderCommand(this);
+            CommandOptionOrder = new OptionOrderCommand(this);
         }
     }
 }

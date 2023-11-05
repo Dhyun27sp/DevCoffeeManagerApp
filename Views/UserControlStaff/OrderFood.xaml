@@ -311,7 +311,7 @@
                                         <TextBlock  Foreground="Wheat"
                                                     FontSize="15"
                                                     FontFamily="Nunito"
-                                                    Margin="30 0 20 0"
+                                                    Margin="25 0 25 0"
                                                     VerticalAlignment="Center"
                                                     Text="Quantity"></TextBlock>
                                         <TextBox Grid.Column="1"
@@ -398,7 +398,8 @@
                                                             Panel.ZIndex="0"
                                                             Style="{StaticResource MaterialDesignToolForegroundButton}"
                                                             Command="{Binding DataContext.DeleteCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
-                                                            CommandParameter="{Binding}">
+                                                            CommandParameter="{Binding}"
+                                                            Margin="10 0 20 0">
                                                         <materialDesign:PackIcon Foreground="White"
                                                                                  Opacity=".80"
                                                                                  Kind="DeleteForever"
