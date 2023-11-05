@@ -62,7 +62,6 @@
             <Grid Grid.Row="1">
                 <StackPanel>
                     <Button Command="{Binding FoodOrder}"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                             Style="{StaticResource MaterialDesignFlatButton}"
                             ToolTip="MaterialDesignFlatButton"
                             Height="50"

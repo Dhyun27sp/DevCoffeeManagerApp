@@ -61,5 +61,46 @@ namespace DevCoffeeManagerApp.Models
                 OnPropertyChanged(nameof(Hidden));
             }
         }
+        public string category { get; set; }
+
+        public string Saleprice { get; set; }
+
+        private string _strikethrough = "None";
+        public string Strikethrough
+        {
+            get
+            {
+                return _strikethrough;
+            }
+            set
+            {
+                _strikethrough = value;
+                OnPropertyChanged(nameof(Strikethrough));
+            }
+        }
+
+        private string _quantity;
+
+        public string Quantity
+        {
+            get
+            {
+                return _quantity;
+            }
+
+            set
+            {
+                _quantity = value;
+                OnPropertyChanged(nameof(Quantity));
+            }
+        }
+        public DishModel(ObjectId _id, string dish_name, string _quantity, string Saleprice, int? price)// này cho order nhé
+        {
+            this._id = _id;
+            this.dish_name = dish_name;
+            this._quantity = _quantity;
+            this.Saleprice = Saleprice;
+            this.price = price;
+        }
     }
 }

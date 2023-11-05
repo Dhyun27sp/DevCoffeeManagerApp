@@ -13,8 +13,10 @@ namespace DevCoffeeManagerApp.DAOs
     public class DiscountDAO
     {
         private IMongoCollection<DiscountModel> collection;
+        private MenuDAO menuDAO = new MenuDAO();
         public DiscountDAO()
         {
+            
             IMongoDatabase db = ConnectionMongoDB.getdatabase();
             collection = db.GetCollection<DiscountModel>("Discount");
         }
@@ -28,12 +30,17 @@ namespace DevCoffeeManagerApp.DAOs
         public List<MenuModel> ListMenuDiscount()
         {
             List<DiscountModel> ListDiscount = new List<DiscountModel>();
-            List<MenuModel> ListMenuDiscount = new List<MenuModel>();
+            List<MenuModel> ListMenuDiscountInDiscountModel = new List<MenuModel>();
+            List<MenuModel> ListMenuDiscountReal = new List<MenuModel>();
             ListDiscount = ReadDiscountAll();
             foreach(DiscountModel discount in ListDiscount) {
-                ListMenuDiscount.AddRange(discount.apply.menu);
+                ListMenuDiscountInDiscountModel.AddRange(discount.apply.menu);
             }
-            return ListMenuDiscount;
+            foreach(MenuModel menu in ListMenuDiscountInDiscountModel)
+            {
+                ListMenuDiscountReal.Add(menuDAO.ReadMenuOnly(menu.id));
+            }
+            return ListMenuDiscountReal;
         }
 
         public List<DishModel> ListDishDiscount()
@@ -46,6 +53,45 @@ namespace DevCoffeeManagerApp.DAOs
                 ListDishDiscount.AddRange(discount.apply.dish);
             }
             return ListDishDiscount;
+        }
+
+        public List<string> MutiPriceSaleWithDish(ObjectId IdDish)
+        {
+            List<string> pricedishdiscounts = new List<string>();
+            List<DiscountModel> ListDiscounts = new List<DiscountModel>();
+            ListDiscounts = ReadDiscountAll();
+            foreach(DiscountModel Discount in ListDiscounts)
+            {
+                foreach (var Dishsale in Discount.apply.dish)
+                {
+                    if(Dishsale._id == IdDish)
+                    {
+                        pricedishdiscounts.Add(Discount.value_dis);
+                        break;
+                    }
+                }
+            }
+            return pricedishdiscounts;
+        }
+
+        public List<string> MutiPriceSaleWithMenu(ObjectId IdMenu)
+        {
+            List<string> pricemenudiscount = new List<string>();
+            List<DiscountModel> ListDiscounts = new List<DiscountModel>();
+            ListDiscounts = ReadDiscountAll();
+            foreach (DiscountModel Discount in ListDiscounts)
+            {
+                foreach (var Menusale in Discount.apply.menu)
+                {
+                    if(Menusale.id == IdMenu)
+                    {
+                        pricemenudiscount.Add(Discount.value_dis);
+                        break;
+                    }
+                }
+            }
+
+            return pricemenudiscount;
         }
     }
 }

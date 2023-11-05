@@ -1,4 +1,4 @@
-﻿using DevCoffeeManagerApp.Component.ComPonentOrder;
+﻿using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -27,7 +27,8 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
 
         public override void Execute(object parameter)
         {
-            if (parameter is StructOfOrderedItem datageted)
+            
+            if (parameter is DishModel datageted)
             {
                 string inputString = datageted.Quantity;
                 int result;
@@ -37,23 +38,24 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                     {
                         result += 1;
                         datageted.Quantity = result.ToString();
+                        total_money();
                     }
                 }
                 else if (sign == "Minus")
                 {
-
                     if (int.TryParse(inputString, out result))
                     {
                         result -= 1;
                         datageted.Quantity = result.ToString();
-
+                        total_money();
                         if (result == 0)
                         {
                             foreach (var Item in OrderFoodViewModel.Ordereds)
                             {
-                                if (Item.Name_Dish == datageted.Name_Dish)
+                                if (Item.dish_name == datageted.dish_name)
                                 {
                                     OrderFoodViewModel.Ordereds.Remove(Item);
+                                    total_money();
                                     return;
                                 }
                             }
@@ -64,9 +66,10 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                 {
                     foreach (var Item in OrderFoodViewModel.Ordereds)
                     {
-                        if (Item.Name_Dish == datageted.Name_Dish)
+                        if (Item.dish_name == datageted.dish_name)
                         {
                             OrderFoodViewModel.Ordereds.Remove(Item);
+                            total_money();
                             return;
                         }
                     }
@@ -76,7 +79,34 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
             if (sign == "DeleteAll")
             {
                 OrderFoodViewModel.Ordereds.Clear();
+                total_money();
             }
+        }
+        private void total_money()
+        {
+            int total = 0;
+            if (OrderFoodViewModel.Ordereds != null)
+            {
+                foreach (var Ordd in OrderFoodViewModel.Ordereds)
+                {
+                    foreach (var dish in OrderFoodViewModel.AllDishsVariable)
+                    {
+                        if (dish.dish_name == Ordd.dish_name)
+                        {
+                            if (dish.Saleprice != null)
+                            {
+                                total = total + int.Parse(dish.Saleprice) * int.Parse(Ordd.Quantity);
+                            }
+                            else
+                            {
+                                total = total + (dish.price.Value * int.Parse(Ordd.Quantity));
+                            }
+
+                        }
+                    }
+                }
+            }
+            OrderFoodViewModel.Total = total.ToString();
         }
 
     }

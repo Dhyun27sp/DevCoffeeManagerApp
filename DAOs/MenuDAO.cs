@@ -42,5 +42,10 @@ namespace DevCoffeeManagerApp.DAOs
             }
             return All_Dishs;
         }
+        public MenuModel ReadMenuOnly(ObjectId _id) {
+            var Id = Builders<MenuModel>.Filter.Eq("_id", _id);
+            MenuModel Menu = collection.Find(Id).FirstOrDefault();
+            return Menu;
+        }
     }
 }

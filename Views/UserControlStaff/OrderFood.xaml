@@ -13,7 +13,6 @@
     <UserControl.DataContext>
         <vms:OrderFoodViewModel />
     </UserControl.DataContext>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"></ColumnDefinition>
@@ -161,7 +160,7 @@
                                                     >
                                                     <Border CornerRadius="10" Background="#aeea00">
                                                     <Grid HorizontalAlignment="Center">
-                                                            <TextBlock FontSize="10" Text="{Binding SaleDish , UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                            <TextBlock FontSize="10" Text="new"></TextBlock>
                                                     </Grid>
                                                     </Border>
                                                 </Grid>
@@ -183,7 +182,7 @@
                                                   HorizontalAlignment="Right"
                                                   VerticalAlignment="Bottom"
                                                   Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
-                                                    <TextBlock Text="New"></TextBlock>
+                                                    <TextBlock FontSize="10" Text="{Binding SaleDish , UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                                 </Button>
                                             </Grid>
 
@@ -193,8 +192,13 @@
                                                 <TextBlock Margin="0"
                                                            Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                                                            Text="{Binding dish_name}" />
-                                                <TextBlock Text="{Binding price}"
-                                                           Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                                                <WrapPanel>
+                                                    <TextBlock Text="{Binding price}"
+                                                               FontSize="16" VerticalAlignment="Center" TextDecorations="{Binding Strikethrough}"/>
+                                                    <TextBlock Text="{Binding Saleprice}" Margin="10 0 0 0"
+                                                        Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                                                </WrapPanel>
+                
                                                 <TextBlock VerticalAlignment="Center"
                                                            Text="Mô tả ở đây"
                                                            TextWrapping="Wrap" />
@@ -274,6 +278,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.Effect>
                         <DropShadowEffect Direction="230"
@@ -345,7 +350,7 @@
                                                            FontSize="15"
                                                            FontFamily="Nunito"
                                                            VerticalAlignment="Center"
-                                                           Text="{Binding Name_Dish , UpdateSourceTrigger=PropertyChanged}"
+                                                           Text="{Binding dish_name , UpdateSourceTrigger=PropertyChanged}"
                                                            Margin="0,0,15,0"/>
                                                 <Grid  Grid.Column="1"
                                                        HorizontalAlignment="Right">
@@ -414,6 +419,26 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
+                    <Grid Grid.Row="2">
+                        
+                        <WrapPanel>
+                            <TextBlock  Foreground="Black"
+             FontSize="15"
+             FontFamily="Nunito"
+             Margin="30 0 20 0"
+             VerticalAlignment="Center"
+                                        Text="Total"
+                                        ></TextBlock>
+                            <TextBlock  Foreground="Black"
+FontSize="15"
+FontFamily="Nunito"
+Margin="30 0 20 0"
+VerticalAlignment="Center"
+                           Text="{Binding Total}"
+                           ></TextBlock>
+                        </WrapPanel>
+
+                    </Grid>
                 </Grid>
 
                 <Grid Width="200"

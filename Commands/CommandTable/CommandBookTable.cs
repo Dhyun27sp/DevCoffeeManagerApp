@@ -11,7 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace DevCoffeeManagerApp.Commands.newe
+namespace DevCoffeeManagerApp.Commands.CommandTable
 {
     public class CommandBookTable: CommandBase
     {
@@ -28,16 +28,12 @@ namespace DevCoffeeManagerApp.Commands.newe
         {
             if (parameter is ListView listView)
             {
-                // Lấy danh sách các mục đã chọn từ SelectedItems
-                ObservableCollection<TableModel> selectedItems = new ObservableCollection<TableModel>(listView.SelectedItems.Cast<TableModel>());
 
-                // Bây giờ, `selectedItems` chứa danh sách các hàng đã chọn
-                // Bạn có thể duyệt qua danh sách này để làm bất kỳ thao tác nào bạn cần
-                Viewmodeltable.SelectedItem = selectedItems;
-                foreach (TableModel selectedItem in selectedItems)
-                {
-                    MessageBox.Show(selectedItem.No_.ToString());
-                }
+                MessageBox.Show("lol");
+                //foreach (TableModel selectedItem in selectedItems)
+                //{
+                //    MessageBox.Show(selectedItem.No_.ToString());
+                //}
             }
         }
     }

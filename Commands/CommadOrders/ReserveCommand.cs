@@ -1,5 +1,4 @@
-﻿using DevCoffeeManagerApp.Component.ComPonentOrder;
-using DevCoffeeManagerApp.Models;
+﻿using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -27,11 +26,12 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
         public override void Execute(object parameter)
         {
             int make = 0;
+            int total = 0;
             if (parameter is DishModel Dish)
             {
                 foreach (var item in OrderFoodViewModel.Ordereds)
                 {
-                    if (item.Name_Dish == Dish.dish_name)
+                    if (item.dish_name == Dish.dish_name)
                     {
                         make = 1;
                         break;
@@ -41,7 +41,7 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                 {
                     string name = Dish.dish_name;
                     string Quanlity = "1";
-                    StructOfOrderedItem ItemOrdered = new StructOfOrderedItem(name, Quanlity);
+                    DishModel ItemOrdered = new DishModel(Dish._id, name, Quanlity, Dish.Saleprice, Dish.price);
                     OrderFoodViewModel.Ordereds.Add(ItemOrdered);
                 }
                 else
@@ -49,7 +49,7 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                     int result;
                     foreach (var item in OrderFoodViewModel.Ordereds)
                     {
-                        if (item.Name_Dish == Dish.dish_name)
+                        if (item.dish_name == Dish.dish_name)
                         {
                             if (int.TryParse(item.Quantity, out result))
                             {
@@ -62,6 +62,28 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                     }
                 }
             }
+            if (OrderFoodViewModel.Ordereds != null)
+            {
+                foreach (var Ordd in OrderFoodViewModel.Ordereds)
+                {
+                    foreach (var dish in OrderFoodViewModel.AllDishsVariable)
+                    {
+                        if (dish.dish_name == Ordd.dish_name)
+                        {
+                            if (dish.Saleprice != null)
+                            {
+                                total = total + int.Parse(dish.Saleprice) * int.Parse(Ordd.Quantity);
+                            }
+                            else
+                            {
+                                total = total + (dish.price.Value * int.Parse(Ordd.Quantity));
+                            }
+
+                        }
+                    }
+                }
+            }
+            OrderFoodViewModel.Total = total.ToString();
         }
     }
 }
