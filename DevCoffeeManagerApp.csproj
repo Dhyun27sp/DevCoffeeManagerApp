@@ -207,12 +207,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\CommadOrders\Add_Munix_Delete_Command.cs" />
+    <Compile Include="Commands\CommadOrders\OrderConfirmationCommand.cs" />
     <Compile Include="Commands\CommadOrders\ReserveCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandLogin\CloseCommand.cs" />
     <Compile Include="Commands\CommandLogin\CommandSubmit.cs" />
     <Compile Include="Commands\CommandMainStaff\ExitCommand.cs" />
     <Compile Include="Commands\CommandMainStaff\OrderFoodCommand.cs" />
+    <Compile Include="Commands\CommandOptionOrder\Add_Munix_Delete_in_Option_Command.cs" />
     <Compile Include="Commands\CommandSell\OptionOrderCommand.cs" />
     <Compile Include="Commands\CommandSell\OrderCommand.cs" />
     <Compile Include="Commands\CommandSell\TableCommand.cs" />

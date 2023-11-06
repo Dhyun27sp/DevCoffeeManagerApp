@@ -11,12 +11,12 @@ namespace DevCoffeeManagerApp.Models
 {
 
     [Serializable, BsonIgnoreExtraElements]
-    public class DishModel :BaseViewModel
+    public class DishModel : BaseViewModel
     {
         [BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
         public ObjectId _id { get; set; }
 
-        [BsonElement("dish_name"), BsonRepresentation(BsonType.String),BsonIgnoreIfNull]
+        [BsonElement("dish_name"), BsonRepresentation(BsonType.String), BsonIgnoreIfNull]
         public string dish_name { get; set; }
 
         [BsonElement("ingredient"), BsonIgnoreIfNull]
@@ -92,6 +92,30 @@ namespace DevCoffeeManagerApp.Models
             {
                 _quantity = value;
                 OnPropertyChanged(nameof(Quantity));
+            }
+        }
+        private string _amount;
+        public string Amount
+        {
+            get {
+                return _amount;
+            }
+            set {
+                _amount = value;
+                OnPropertyChanged(nameof(Amount));
+            }
+        }
+
+        private int _ordinalNumber;
+        public int OrdinalNumber{
+            get
+            {
+                return _ordinalNumber;
+            }
+            set
+            {
+                _ordinalNumber = value;
+                OnPropertyChanged(nameof(OrdinalNumber));
             }
         }
         public DishModel(ObjectId _id, string dish_name, string _quantity, string Saleprice, int? price)// này cho order nhé

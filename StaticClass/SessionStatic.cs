@@ -26,5 +26,7 @@ namespace DevCoffeeManagerApp.StaticClass
         public static string SetTask { set { _task = value; } }
         public static ObservableCollection<TableModel> GetTables { get { return new ObservableCollection<TableModel>(_tables); } }
         public static List<TableModel> SetTables { set { _tables = value; } }
+
+        public static ObservableCollection<DishModel> Ordereds { get; set; }
     }
 }

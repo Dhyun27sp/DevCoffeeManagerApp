@@ -28,7 +28,8 @@
                     <RowDefinition Height="3*"></RowDefinition>
                     <RowDefinition Height="17*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
+                <Grid Grid.Row="0"
+                      Margin="5 0 0 0">
                     <Grid.Background>
                         <SolidColorBrush Color="Transparent" />
                     </Grid.Background>
@@ -73,9 +74,8 @@
                                                  materialDesign:HintAssist.Hint="Build a search bar"
                                                  materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                                  BorderThickness="0"
-                                                 Grid.RowSpan="2" 
-                                                 Text="{Binding types_dish_search , UpdateSourceTrigger=PropertyChanged}"
-                                                 />
+                                                 Grid.RowSpan="2"
+                                                 Text="{Binding types_dish_search , UpdateSourceTrigger=PropertyChanged}" />
                                     </Grid>
                                 </materialDesign:ColorZone>
                             </StackPanel>
@@ -104,23 +104,23 @@
                             </Grid>
                             <Grid Width="auto">
                                 <ComboBox ItemsSource="{Binding Specials}"
-                                  SelectedItem="{Binding Type_Special, UpdateSourceTrigger=PropertyChanged}"
-                                  Padding="12"
-                                  HorizontalAlignment="Left"
-                                  Margin="30 0 0 0"
-                                  Width="180"
-                                  materialDesign:HintAssist.Hint="Special"
-                                  Opacity="1"
-                                  FontSize="12"
-                                  BorderThickness="0"
-                                  Foreground="Black"
-                                  Background="#FFFAFAFA">
+                                          SelectedItem="{Binding Type_Special, UpdateSourceTrigger=PropertyChanged}"
+                                          Padding="12"
+                                          HorizontalAlignment="Left"
+                                          Margin="30 0 0 0"
+                                          Width="180"
+                                          materialDesign:HintAssist.Hint="Special"
+                                          Opacity="1"
+                                          FontSize="12"
+                                          BorderThickness="0"
+                                          Foreground="Black"
+                                          Background="#FFFAFAFA">
                                     <ComboBox.Effect>
                                         <DropShadowEffect  Direction="230"
-                                   ShadowDepth="3"
-                                   Color="Gray"
-                                   Opacity="0.2"
-                                   BlurRadius="2" />
+                                                           ShadowDepth="3"
+                                                           Color="Gray"
+                                                           Opacity="0.2"
+                                                           BlurRadius="2" />
                                     </ComboBox.Effect>
                                 </ComboBox>
                             </Grid>
@@ -150,39 +150,43 @@
                                             </Grid.RowDefinitions>
                                             <Grid Grid.Row="0">
                                                 <Image Height="140"
-                                                   Source="{Binding imageconvert}"
-                                                   Stretch="UniformToFill" />
+                                                       Source="{Binding imageconvert}"
+                                                       Stretch="UniformToFill" />
                                                 <Grid Visibility="{Binding Hidden, UpdateSourceTrigger=PropertyChanged}"
-                                                    Margin="5 5"
-                                                    Width="80"
-                                                    HorizontalAlignment="Left"
-                                                    VerticalAlignment="Top"
-                                                    >
-                                                    <Border CornerRadius="10" Background="#aeea00">
-                                                    <Grid HorizontalAlignment="Center">
-                                                            <TextBlock FontSize="10" Text="new"></TextBlock>
-                                                    </Grid>
+                                                      Margin="5 5"
+                                                      Width="80"
+                                                      HorizontalAlignment="Left"
+                                                      VerticalAlignment="Top">
+                                                    <Border CornerRadius="10"
+                                                            Background="#aeea00">
+                                                        <Grid HorizontalAlignment="Center">
+                                                            <TextBlock FontSize="10"
+                                                                       Text="new"></TextBlock>
+                                                        </Grid>
                                                     </Border>
                                                 </Grid>
                                                 <Grid Visibility="{Binding Hidden}"
-                                                        Margin="30 5"
-                                                        Width="50"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Top"
-                                                                                >
-                                                    <Border CornerRadius="10" Background="Red" Margin="66,0,-66,0">
+                                                      Margin="30 5"
+                                                      Width="50"
+                                                      HorizontalAlignment="Left"
+                                                      VerticalAlignment="Top">
+                                                    <Border CornerRadius="10"
+                                                            Background="Red"
+                                                            Margin="66,0,-66,0">
                                                         <Grid HorizontalAlignment="Center">
-                                                            <TextBlock FontSize="10" Text="Hot"></TextBlock>
+                                                            <TextBlock FontSize="10"
+                                                                       Text="Hot"></TextBlock>
                                                         </Grid>
                                                     </Border>
                                                 </Grid>
                                                 <Button Visibility="{Binding Hidden}"
-                                                  Grid.Row="0"
-                                                  Margin="0,0,16,-20"
-                                                  HorizontalAlignment="Right"
-                                                  VerticalAlignment="Bottom"
-                                                  Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
-                                                    <TextBlock FontSize="10" Text="{Binding SaleDish , UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                        Grid.Row="0"
+                                                        Margin="0,0,16,-20"
+                                                        HorizontalAlignment="Right"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
+                                                    <TextBlock FontSize="10"
+                                                               Text="{Binding SaleDish , UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                                 </Button>
                                             </Grid>
 
@@ -194,11 +198,14 @@
                                                            Text="{Binding dish_name}" />
                                                 <WrapPanel>
                                                     <TextBlock Text="{Binding price}"
-                                                               FontSize="16" VerticalAlignment="Center" TextDecorations="{Binding Strikethrough}"/>
-                                                    <TextBlock Text="{Binding Saleprice}" Margin="10 0 0 0"
-                                                        Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                                                               FontSize="16"
+                                                               VerticalAlignment="Center"
+                                                               TextDecorations="{Binding Strikethrough}" />
+                                                    <TextBlock Text="{Binding Saleprice}"
+                                                               Margin="10 0 0 0"
+                                                               Style="{StaticResource MaterialDesignBody1TextBlock}" />
                                                 </WrapPanel>
-                
+
                                                 <TextBlock VerticalAlignment="Center"
                                                            Text="Mô tả ở đây"
                                                            TextWrapping="Wrap" />
@@ -230,13 +237,6 @@
                 Grid.Column="1"
                 Margin="10 0 0 0">
             <Grid>
-                <Grid.Effect>
-                    <DropShadowEffect Direction="230"
-                                      ShadowDepth="3"
-                                      Color="Gray"
-                                      Opacity="0.5"
-                                      BlurRadius="2" />
-                </Grid.Effect>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*"></RowDefinition>
                     <RowDefinition Height="15*"></RowDefinition>
@@ -267,8 +267,7 @@
                                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                     Style="{StaticResource MaterialDesignFlatLightBgButton}"
                                     ToolTip="MaterialDesignFlatLightButton"
-                                    Command="{Binding Deleteall , UpdateSourceTrigger=PropertyChanged}"
-                                    />
+                                    Command="{Binding Deleteall , UpdateSourceTrigger=PropertyChanged}" />
                         </Grid>
                     </WrapPanel>
                 </Grid>
@@ -280,13 +279,6 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="auto"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Grid.Effect>
-                        <DropShadowEffect Direction="230"
-                                          ShadowDepth="3"
-                                          Color="Gray"
-                                          Opacity="0.5"
-                                          BlurRadius="2" />
-                    </Grid.Effect>
                     <materialDesign:ColorZone Padding="3"
                                               Grid.Row="0"
                                               Margin="0 2"
@@ -306,7 +298,7 @@
                                                FontFamily="Nunito"
                                                VerticalAlignment="Center"
                                                Text="Dish Name"
-                                               Margin="0,0,15,0"/>
+                                               Margin="0,0,15,0" />
                                     <Grid  Grid.Column="1"
                                            HorizontalAlignment="Right">
                                         <Grid.ColumnDefinitions>
@@ -351,7 +343,7 @@
                                                            FontFamily="Nunito"
                                                            VerticalAlignment="Center"
                                                            Text="{Binding dish_name , UpdateSourceTrigger=PropertyChanged}"
-                                                           Margin="0,0,15,0"/>
+                                                           Margin="0,0,15,0" />
                                                 <Grid  Grid.Column="1"
                                                        HorizontalAlignment="Right">
                                                     <Grid.ColumnDefinitions>
@@ -420,22 +412,19 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                     <Grid Grid.Row="2">
-                        
                         <WrapPanel>
                             <TextBlock  Foreground="Black"
-             FontSize="15"
-             FontFamily="Nunito"
-             Margin="30 0 20 0"
-             VerticalAlignment="Center"
-                                        Text="Total"
-                                        ></TextBlock>
+                                        FontSize="15"
+                                        FontFamily="Nunito"
+                                        Margin="30 0 20 0"
+                                        VerticalAlignment="Center"
+                                        Text="Total"></TextBlock>
                             <TextBlock  Foreground="Black"
-FontSize="15"
-FontFamily="Nunito"
-Margin="30 0 20 0"
-VerticalAlignment="Center"
-                           Text="{Binding Total}"
-                           ></TextBlock>
+                                        FontSize="15"
+                                        FontFamily="Nunito"
+                                        Margin="30 0 20 0"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding Total}"></TextBlock>
                         </WrapPanel>
 
                     </Grid>
@@ -449,8 +438,7 @@ VerticalAlignment="Center"
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                             ToolTip="MaterialDesignRaisedLightButton with Round Corners"
                             Margin="0 0 0 10"
-                            Command="{Binding CommandExit}"
-                            CommandParameter="{Binding ElementName=WindowStaff}">
+                            Command="{Binding OrderFoodCommand, UpdateSourceTrigger=PropertyChanged}">
                         <Button.BorderBrush>
                             <ImageBrush />
                         </Button.BorderBrush>
