@@ -29,11 +29,6 @@ namespace DevCoffeeManagerApp.Commands.CommandTable
             if (parameter is ListView listView)
             {
 
-                MessageBox.Show("lol");
-                //foreach (TableModel selectedItem in selectedItems)
-                //{
-                //    MessageBox.Show(selectedItem.No_.ToString());
-                //}
             }
         }
     }

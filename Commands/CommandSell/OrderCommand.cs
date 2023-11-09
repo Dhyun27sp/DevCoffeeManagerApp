@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DevCoffeeManagerApp.Store;
 
 namespace DevCoffeeManagerApp.Commands.CommandMainStaff
 {
     public class OrderCommand : CommandBase
     {
-        OrderFoodViewModel orderFoodViewModel = new OrderFoodViewModel();
-        private SellViewModel SellViewModel;
-        public OrderCommand(SellViewModel SellViewModel)
+        private NavigationStore _navigationStore;
+        public OrderCommand(NavigationStore navigationStore)
         {
-            this.SellViewModel = SellViewModel;
+            this._navigationStore = navigationStore;
         }
 
         public override bool CanExecute(object parameter)
@@ -22,7 +22,7 @@ namespace DevCoffeeManagerApp.Commands.CommandMainStaff
         }
         public override void Execute(object parameter)
         {
-            SellViewModel.CurrentViewModel = orderFoodViewModel;
+            _navigationStore.CurrentViewModel = new OrderFoodViewModel(_navigationStore);
         }
     }
 }

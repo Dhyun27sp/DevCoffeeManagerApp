@@ -1,4 +1,5 @@
 ﻿using DevCoffeeManagerApp.Models;
+using DevCoffeeManagerApp.Store;
 using DevCoffeeManagerApp.ViewModels;
 using System;
 using System.Collections.Generic;

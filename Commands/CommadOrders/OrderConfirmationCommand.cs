@@ -5,15 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DevCoffeeManagerApp.StaticClass;
+using DevCoffeeManagerApp.Store;
+using System.Windows;
 
 namespace DevCoffeeManagerApp.Commands.CommadOrders
 {
     public class OrderConfirmationCommand : CommandBase
     {
         private OrderFoodViewModel orderFoodViewModel;
-        
-        public OrderConfirmationCommand(OrderFoodViewModel orderFoodViewModel) { 
+        private readonly NavigationStore _navigationStore;
+        public OrderConfirmationCommand(OrderFoodViewModel orderFoodViewModel, NavigationStore navigationStore) { 
             this.orderFoodViewModel = orderFoodViewModel;
+            this._navigationStore = navigationStore;
         }
 
         public event EventHandler CanExecuteChanged;
@@ -25,7 +28,9 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
 
         public override void Execute(object parameter)
         {
+            MessageBox.Show("Đặt Món thành công");
             SessionStatic.Ordereds = orderFoodViewModel.Ordereds;
+            _navigationStore.CurrentViewModel = new OptionOrderViewModel();
         }
     }
 }

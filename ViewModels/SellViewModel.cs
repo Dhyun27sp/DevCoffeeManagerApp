@@ -1,5 +1,6 @@
 ﻿using DevCoffeeManagerApp.Commands.CommandMainStaff;
 using DevCoffeeManagerApp.Commands.CommandSell;
+using DevCoffeeManagerApp.Store;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,43 +16,25 @@ namespace DevCoffeeManagerApp.ViewModels
 {
     public class SellViewModel : BaseViewModel
     {
-        private object _currentViewModel;
-
-        public object CurrentViewModel
-        {
-            get { return _currentViewModel; }
-            set
-            {
-                if (_currentViewModel != value)
-                {
-                    _currentViewModel = value;
-                    OnPropertyChanged(nameof(CurrentViewModel));
-                }
-            }
-
-        }
-        private string _gach;
-
-        public string Gach
-        {
-            get { return _gach; }
-            set
-            {
-                 _gach = value;
-                 OnPropertyChanged(nameof(Gach));
-            }
-
-        }
-
         public ICommand CommandTable { get; set; }
         public ICommand CommandOrder { get; set; }
         public ICommand CommandOptionOrder { get; set; }
-        public SellViewModel() 
-        {
+        private readonly NavigationStore _navigationStore;
+        public BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel;
 
-            CommandTable = new TableCommand(this);
-            CommandOrder = new OrderCommand(this);
-            CommandOptionOrder = new OptionOrderCommand(this);
+        public SellViewModel(NavigationStore navigationStore)
+        {
+            _navigationStore = navigationStore;
+            _navigationStore.CurrentViewModelChaged += OnCurrentViewModelChanged;
+
+            CommandTable = new TableCommand(navigationStore);
+            CommandOrder = new OrderCommand(navigationStore);
+            CommandOptionOrder = new OptionOrderCommand(navigationStore);
+        }
+        private void OnCurrentViewModelChanged()
+        {
+            OnPropertyChanged(nameof(CurrentViewModel));
         }
     }
+        
 }

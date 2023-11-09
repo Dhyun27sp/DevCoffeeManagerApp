@@ -10,6 +10,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="450"
              d:DesignWidth="800">
+    <!--NavigationStore Có thể không hoạt động với datacontext khai báo này coi trừng nhắc mốt làm nhớ không quên-->
     <UserControl.DataContext>
         <vms:OptionOrderViewModel />
     </UserControl.DataContext>

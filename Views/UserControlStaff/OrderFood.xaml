@@ -5,14 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:DevCoffeeManagerApp.Views.UserControlStaff"
              mc:Ignorable="d"
+             xmlns:navi="clr-namespace:DevCoffeeManagerApp.Store"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="450"
              d:DesignWidth="1080">
-    <UserControl.DataContext>
-        <vms:OrderFoodViewModel />
-    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"></ColumnDefinition>
@@ -135,6 +133,7 @@
                                     <WrapPanel />
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
+                            
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <materialDesign:Card Width="220"
@@ -179,15 +178,19 @@
                                                         </Grid>
                                                     </Border>
                                                 </Grid>
-                                                <Button Visibility="{Binding Hidden}"
-                                                        Grid.Row="0"
-                                                        Margin="0,0,16,-20"
-                                                        HorizontalAlignment="Right"
-                                                        VerticalAlignment="Bottom"
-                                                        Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
-                                                    <TextBlock FontSize="10"
-                                                               Text="{Binding SaleDish , UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-                                                </Button>
+                                                <Border 
+                                                   Grid.Row="0"
+                                                    Visibility="{Binding Hidden}"
+                                                    Background="#f8452e" CornerRadius="100" Width="40" Height="40" Margin="159,115,11,-25">
+                                                    <TextBlock Text="{Binding SaleDish , UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Setter Property="Foreground" Value="White" />
+
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </Border>
                                             </Grid>
 
 

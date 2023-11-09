@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Linq;
+using DevCoffeeManagerApp.Store;
 
 namespace DevCoffeeManagerApp.ViewModels
 {
@@ -20,10 +21,10 @@ namespace DevCoffeeManagerApp.ViewModels
         public object SelectedItem { get; set; }
         public ObservableCollection<TableModel> Items { get; set; }
 
-        public TableViewModel()
+        public TableViewModel(NavigationStore navigationStore)
         {
             SelectionCommand = new CommandBookTable(this);
-            SubmitCommand= new CommandSubmitTable(this);
+            SubmitCommand= new CommandSubmitTable(this, navigationStore);
             if (Items != null)
                 Items = null;
             Items = tableDAO.ReadAll();

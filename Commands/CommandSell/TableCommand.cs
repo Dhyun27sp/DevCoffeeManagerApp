@@ -1,4 +1,5 @@
 ﻿using DevCoffeeManagerApp.DAOs;
+using DevCoffeeManagerApp.Store;
 using DevCoffeeManagerApp.ViewModels;
 using MaterialDesignThemes.Wpf;
 using System;
@@ -11,12 +12,10 @@ namespace DevCoffeeManagerApp.Commands.CommandMainStaff
 {
     public class TableCommand : CommandBase
     {
-        TableDAO tableDAO = new TableDAO();
-        TableViewModel tableViewModel = new TableViewModel();
-        private SellViewModel SellViewModel;
-        public TableCommand (SellViewModel SellViewModel)
+        private NavigationStore _navigationStore = new NavigationStore();
+        public TableCommand (NavigationStore navigationStore)
         {
-            this.SellViewModel = SellViewModel;
+            this._navigationStore = navigationStore;
         }
 
         public override bool CanExecute(object parameter)
@@ -25,7 +24,7 @@ namespace DevCoffeeManagerApp.Commands.CommandMainStaff
         }
         public override void Execute(object parameter)
         {
-            SellViewModel.CurrentViewModel = tableViewModel;
+            _navigationStore.CurrentViewModel = new TableViewModel(_navigationStore);
         }
     }
 }

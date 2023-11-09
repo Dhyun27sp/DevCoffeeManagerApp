@@ -1,4 +1,5 @@
-﻿using DevCoffeeManagerApp.ViewModels;
+﻿using DevCoffeeManagerApp.Store;
+using DevCoffeeManagerApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace DevCoffeeManagerApp.Commands.CommandMainStaff
     public class OrderFoodCommand: CommandBase
     {
         private MainStaffViewModel MainStaffViewModel;
-        private SellViewModel SellViewModel = new SellViewModel();
+        NavigationStore navigation = new NavigationStore();
         public OrderFoodCommand(MainStaffViewModel MainStaffViewModel) { 
             this.MainStaffViewModel = MainStaffViewModel;
         }
@@ -20,7 +21,7 @@ namespace DevCoffeeManagerApp.Commands.CommandMainStaff
         }
         public override void Execute(object parameter)
         {
-            MainStaffViewModel.CurrentViewModel = SellViewModel;
+            MainStaffViewModel.CurrentViewModel = new SellViewModel(navigation);
         }
     }
 }

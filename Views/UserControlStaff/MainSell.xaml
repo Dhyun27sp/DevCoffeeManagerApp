@@ -6,12 +6,20 @@
              xmlns:local="clr-namespace:DevCoffeeManagerApp.Views"
              xmlns:views="clr-namespace:DevCoffeeManagerApp.Views.UserControlStaff"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:navi="clr-namespace:DevCoffeeManagerApp.Store"
              xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="MainSellProvider" ObjectType="{x:Type vms:SellViewModel}" >
+            <ObjectDataProvider.ConstructorParameters>
+                <navi:NavigationStore></navi:NavigationStore>
+            </ObjectDataProvider.ConstructorParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
     <UserControl.DataContext>
-        <vms:SellViewModel />
+        <Binding Source="{StaticResource MainSellProvider}" />
     </UserControl.DataContext>
     <Grid>
         <Grid>
@@ -124,18 +132,19 @@
             </Grid>
             <Grid Grid.Row="1"
                   Margin="15 0">
-                <Grid.Resources>
-                    <DataTemplate DataType="{x:Type vms:TableViewModel}">
-                        <views:BookTable />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type vms:OrderFoodViewModel}">
-                        <views:OrderFood />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type vms:OptionOrderViewModel}">
-                        <views:OptionOrder />
-                    </DataTemplate>
-                </Grid.Resources>
-                <ContentControl Content="{Binding CurrentViewModel}" />
+                <ContentControl Content="{Binding CurrentViewModel}">
+                    <ContentControl.Resources>
+                        <DataTemplate DataType="{x:Type vms:TableViewModel}">
+                            <views:BookTable />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vms:OrderFoodViewModel}">
+                            <views:OrderFood />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vms:OptionOrderViewModel}">
+                            <views:OptionOrder />
+                        </DataTemplate>
+                    </ContentControl.Resources>
+                </ContentControl>
             </Grid>
         </Grid>
     </Grid>

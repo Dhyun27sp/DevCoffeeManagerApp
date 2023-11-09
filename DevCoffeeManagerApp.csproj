@@ -245,6 +245,7 @@
     <Compile Include="Models\ScheduleModel.cs" />
     <Compile Include="Models\StaffModel.cs" />
     <Compile Include="StaticClass\SessionStatic.cs" />
+    <Compile Include="Store\NavigationStore.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainStaffViewModel.cs" />

@@ -16,6 +16,7 @@ using MongoDB.Bson;
 using DevCoffeeManagerApp.Commands.CommadOrders;
 using DevCoffeeManagerApp.Commands.CommandMainStaff;
 using DevCoffeeManagerApp.StaticClass;
+using DevCoffeeManagerApp.Store;
 
 namespace DevCoffeeManagerApp.ViewModels
 {
@@ -130,7 +131,7 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand Deleteall { get; set; }
         public ICommand ReserveCommand { get; set; }
         public ICommand OrderFoodCommand { get; set; }
-        public OrderFoodViewModel()
+        public OrderFoodViewModel(NavigationStore navigationStore)
         {
             Ordereds = new ObservableCollection<DishModel>();
             load_types_dish();
@@ -143,7 +144,7 @@ namespace DevCoffeeManagerApp.ViewModels
             DeleteCommand = new Add_Munix_Delete_Command(this, "Delete");
             Deleteall = new Add_Munix_Delete_Command(this, "DeleteAll");
             ReserveCommand = new ReserveCommand(this);
-            OrderFoodCommand = new OrderConfirmationCommand(this);
+            OrderFoodCommand = new OrderConfirmationCommand(this, navigationStore);
             if (SessionStatic.Ordereds != null)
             {
                 Ordereds = SessionStatic.Ordereds;

@@ -1,4 +1,5 @@
 ﻿using DevCoffeeManagerApp.DAOs;
+using DevCoffeeManagerApp.Store;
 using DevCoffeeManagerApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,10 @@ namespace DevCoffeeManagerApp.Commands.CommandSell
 {
     public class OptionOrderCommand : CommandBase
     {
-        OptionOrderViewModel optionOrderViewModel = new OptionOrderViewModel();
-        private SellViewModel SellViewModel;
-        public OptionOrderCommand(SellViewModel SellViewModel)
+        private NavigationStore _navigationStore;
+        public OptionOrderCommand(NavigationStore navigationStore)
         {
-            this.SellViewModel = SellViewModel;
+            this._navigationStore = navigationStore;
         }
 
         public override bool CanExecute(object parameter)
@@ -23,7 +23,7 @@ namespace DevCoffeeManagerApp.Commands.CommandSell
         }
         public override void Execute(object parameter)
         {
-            SellViewModel.CurrentViewModel = optionOrderViewModel;
+            _navigationStore.CurrentViewModel = new OptionOrderViewModel();
         }
     }
 }

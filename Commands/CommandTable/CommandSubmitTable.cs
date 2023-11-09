@@ -10,16 +10,16 @@ using System.Windows.Controls;
 using System.Windows;
 using DevCoffeeManagerApp.StaticClass;
 using DevCoffeeManagerApp.Views;
+using DevCoffeeManagerApp.Store;
 
 namespace DevCoffeeManagerApp.Commands.CommandTable
 {
     public class CommandSubmitTable : CommandBase
     {
-        OrderFoodViewModel orderFoodViewModel = new OrderFoodViewModel();
-        private TableViewModel Viewmodeltable;
-        public CommandSubmitTable(TableViewModel viewmodeltable)
+        private NavigationStore _navigationStore;
+        public CommandSubmitTable(TableViewModel viewmodeltable, NavigationStore navigationStore)
         {
-            Viewmodeltable = viewmodeltable;
+            this._navigationStore = navigationStore;
         }
         public override bool CanExecute(object parameter)
         {
@@ -29,14 +29,14 @@ namespace DevCoffeeManagerApp.Commands.CommandTable
         {
             if (parameter is ListView listView)
             {
-                MessageBox.Show("Đã vô lôl");
+                MessageBox.Show("Đặt bàn thành công");
                 // Lấy danh sách các mục đã chọn từ SelectedItems
                 List<TableModel> Items = new List<TableModel>(listView.SelectedItems.Cast<TableModel>());
                 int countSelected = listView.SelectedItems.Count;
                 //// Bây giờ, `selectedItems` chứa danh sách các hàng đã chọn
                 //// Bạn có thể duyệt qua danh sách này để làm bất kỳ thao tác nào bạn cần
                 SessionStatic.SetTables = Items;
-                //MessageBox.Show(countSelected.ToString());
+                _navigationStore.CurrentViewModel = new OrderFoodViewModel(_navigationStore);
             }
         }
     }
