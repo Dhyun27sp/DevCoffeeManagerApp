@@ -21,8 +21,8 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="8*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="7*"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
             </Grid.RowDefinitions>
             <Border BorderBrush="#5f5555"
                     BorderThickness="0.5"
@@ -31,143 +31,145 @@
                     Margin="0 0 0 10"
                     Background="White">
                 <Grid>
-                    <ListView x:Name="lvUser"
-                              ItemsSource="{Binding OrderedFood}">
-                        <ListView.View>
-                            <GridView x:Name="GridView">
-                                <GridView.ColumnHeaderContainerStyle>
-                                    <Style TargetType="{x:Type GridViewColumnHeader}">
-                                        <Setter Property="FontSize"
-                                                Value="15" />
-                                        <Setter Property="FontFamily"
-                                                Value="Nunito" />
-                                        <Setter Property="Margin"
-                                                Value="0" />
-                                        <Setter Property="Padding"
-                                                Value="10" />
-                                        <Setter Property="Foreground"
-                                                Value="Black" />
-                                        <Setter Property="HorizontalContentAlignment"
-                                                Value="Left" />
-                                    </Style>
-                                </GridView.ColumnHeaderContainerStyle>
-                                <GridViewColumn Width="50">
-                                    <GridViewColumnHeader FontFamily="Nunito"
-                                                          FontWeight="DemiBold"
-                                                          Background="Transparent"
-                                                          Padding="0"
-                                                          Margin="10 0 0 0">
-                                        STT
-                                    </GridViewColumnHeader>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding OrdinalNumber}"
-                                                       FontSize="13" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Width="200">
-                                    <GridViewColumnHeader FontFamily="Nunito"
-                                                          FontWeight="DemiBold"
-                                                          Background="Transparent">
-                                        Tên Món
-                                    </GridViewColumnHeader>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding dish_name}"
-                                                       FontSize="13" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Width="130">
-                                    <GridViewColumnHeader FontFamily="Nunito"
-                                                          FontWeight="DemiBold"
-                                                          Background="Transparent">
-                                        Số Lượng
-                                    </GridViewColumnHeader>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <materialDesign:ColorZone Margin="5,0,0,0"
-                                                                      Padding="0"
-                                                                      Panel.ZIndex="1"
-                                                                      materialDesign:ElevationAssist.Elevation="Dp2"
-                                                                      CornerRadius="2"
-                                                                      Mode="Standard">
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto" />
-                                                        <ColumnDefinition Width="*" />
-                                                        <ColumnDefinition Width="Auto" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <Button Command="{Binding DataContext.MinusCommad ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
-                                                            CommandParameter="{Binding}"
-                                                            Grid.Column="0"
-                                                            Style="{StaticResource MaterialDesignToolButton}">
-                                                        <materialDesign:PackIcon Kind="MinusBox"
-                                                                                 Width="30"
-                                                                                 Height="25"
-                                                                                 Opacity=".56" />
-                                                    </Button>
-                                                    <TextBox Text="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                             IsReadOnly="True"
-                                                             Grid.Column="1"
-                                                             MinWidth="10"
-                                                             Margin="8,0,0,0"
-                                                             VerticalAlignment="Center"
-                                                             materialDesign:HintAssist.Hint="0"
-                                                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                                             BorderThickness="0" />
-                                                    <Button Grid.Column="2"
-                                                            Style="{StaticResource MaterialDesignToolButton}"
-                                                            Command="{Binding DataContext.PlusCommad ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
-                                                            CommandParameter="{Binding}">
-                                                        <materialDesign:PackIcon Kind="PlusBox"
-                                                                                 Width="30"
-                                                                                 Height="25"
-                                                                                 Opacity=".56" />
-                                                    </Button>
-                                                </Grid>
-                                            </materialDesign:ColorZone>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Width="100">
-                                    <GridViewColumnHeader FontFamily="Nunito"
-                                                          FontWeight="DemiBold"
-                                                          Background="Transparent">
-                                        Thành Tiền
-                                    </GridViewColumnHeader>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Amount}"
-                                                       FontSize="13" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Width="100">
-                                    <GridViewColumnHeader FontFamily="Nunito"
-                                                          FontWeight="DemiBold"
-                                                          Background="Transparent">
-                                        Delete
-                                    </GridViewColumnHeader>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button Panel.ZIndex="0"
-                                                    Style="{StaticResource MaterialDesignToolForegroundButton}"
-                                                    Command="{Binding DataContext.DeleteCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
-                                                    CommandParameter="{Binding}">
-                                                <materialDesign:PackIcon Foreground="#5F5555"
-                                                                         Opacity=".80"
-                                                                         Kind="DeleteForever"
-                                                                         Width="30"
-                                                                         Height="25" />
-                                            </Button>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ListView x:Name="lvUser"
+                                  ItemsSource="{Binding OrderedFood}">
+                            <ListView.View>
+                                <GridView x:Name="GridView">
+                                    <GridView.ColumnHeaderContainerStyle>
+                                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                                            <Setter Property="FontSize"
+                                                    Value="15" />
+                                            <Setter Property="FontFamily"
+                                                    Value="Nunito" />
+                                            <Setter Property="Margin"
+                                                    Value="0" />
+                                            <Setter Property="Padding"
+                                                    Value="10" />
+                                            <Setter Property="Foreground"
+                                                    Value="Black" />
+                                            <Setter Property="HorizontalContentAlignment"
+                                                    Value="Left" />
+                                        </Style>
+                                    </GridView.ColumnHeaderContainerStyle>
+                                    <GridViewColumn Width="50">
+                                        <GridViewColumnHeader FontFamily="Nunito"
+                                                              FontWeight="DemiBold"
+                                                              Background="Transparent"
+                                                              Padding="0"
+                                                              Margin="10 0 0 0">
+                                            STT
+                                        </GridViewColumnHeader>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding OrdinalNumber}"
+                                                           FontSize="13" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="200">
+                                        <GridViewColumnHeader FontFamily="Nunito"
+                                                              FontWeight="DemiBold"
+                                                              Background="Transparent">
+                                            Tên Món
+                                        </GridViewColumnHeader>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding dish_name}"
+                                                           FontSize="13" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="130">
+                                        <GridViewColumnHeader FontFamily="Nunito"
+                                                              FontWeight="DemiBold"
+                                                              Background="Transparent">
+                                            Số Lượng
+                                        </GridViewColumnHeader>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <materialDesign:ColorZone Margin="5,0,0,0"
+                                                                          Padding="0"
+                                                                          Panel.ZIndex="1"
+                                                                          materialDesign:ElevationAssist.Elevation="Dp2"
+                                                                          CornerRadius="2"
+                                                                          Mode="Standard">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Button Command="{Binding DataContext.MinusCommad ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                CommandParameter="{Binding}"
+                                                                Grid.Column="0"
+                                                                Style="{StaticResource MaterialDesignToolButton}">
+                                                            <materialDesign:PackIcon Kind="MinusBox"
+                                                                                     Width="30"
+                                                                                     Height="25"
+                                                                                     Opacity=".56" />
+                                                        </Button>
+                                                        <TextBox Text="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                 IsReadOnly="True"
+                                                                 Grid.Column="1"
+                                                                 MinWidth="10"
+                                                                 Margin="8,0,0,0"
+                                                                 VerticalAlignment="Center"
+                                                                 materialDesign:HintAssist.Hint="0"
+                                                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                                 BorderThickness="0" />
+                                                        <Button Grid.Column="2"
+                                                                Style="{StaticResource MaterialDesignToolButton}"
+                                                                Command="{Binding DataContext.PlusCommad ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                CommandParameter="{Binding}">
+                                                            <materialDesign:PackIcon Kind="PlusBox"
+                                                                                     Width="30"
+                                                                                     Height="25"
+                                                                                     Opacity=".56" />
+                                                        </Button>
+                                                    </Grid>
+                                                </materialDesign:ColorZone>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="100">
+                                        <GridViewColumnHeader FontFamily="Nunito"
+                                                              FontWeight="DemiBold"
+                                                              Background="Transparent">
+                                            Thành Tiền
+                                        </GridViewColumnHeader>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Amount}"
+                                                           FontSize="13" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="100">
+                                        <GridViewColumnHeader FontFamily="Nunito"
+                                                              FontWeight="DemiBold"
+                                                              Background="Transparent">
+                                            Delete
+                                        </GridViewColumnHeader>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Panel.ZIndex="0"
+                                                        Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                                        Command="{Binding DataContext.DeleteCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                        CommandParameter="{Binding}">
+                                                    <materialDesign:PackIcon Foreground="#5F5555"
+                                                                             Opacity=".80"
+                                                                             Kind="DeleteForever"
+                                                                             Width="30"
+                                                                             Height="25" />
+                                                </Button>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
                 </Grid>
             </Border>
             <Border BorderBrush="#5f5555"
@@ -182,41 +184,95 @@
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <TextBlock VerticalAlignment="Bottom"
-                                   FontSize="13"
-                                   FontFamily="Nunito"
-                                   Margin="15 0 0 0">
-                            Tên Khách Hàng:
-                            <TextBlock Text="..."
-                                       FontSize="13"
+                    <Grid Grid.Row="0"
+                          Margin="15 0 0 0"
+                          VerticalAlignment="Center">
+                        <WrapPanel>
+                            <TextBlock FontSize="13"
                                        FontFamily="Nunito"
-                                       Margin="10 0 0 0" />
-                        </TextBlock>
+                                       VerticalAlignment="Center">
+                            SĐT Khách Hàng:
+                            </TextBlock>
+                            <StackPanel Width="130"
+                                        Height="auto"
+                                        Margin="10 0 0 0">
+                                <TextBox Text="{Binding Phonenumber, UpdateSourceTrigger=PropertyChanged}"
+                                         AcceptsReturn="True"
+                                         materialDesign:HintAssist.Hint="Nhập sđt khách hàng"
+                                         IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                         Style="{StaticResource MaterialDesignFilledTextBox}"
+                                         TextWrapping="Wrap"
+                                         Width="auto"
+                                         Height="auto"
+                                         Background="#f0f0f0"
+                                         Padding="5 0 0 0">
+                                </TextBox>
+                            </StackPanel>
+                            <Button Height="30"
+                                    Width="60"
+                                    materialDesign:ButtonAssist.CornerRadius="5"
+                                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                    Style="{StaticResource MaterialDesignRaisedButton}"
+                                    ToolTip="MaterialDesignRaisedButton with Round Corners"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left"
+                                    Margin="10 0 0 0">
+                                <Button.BorderBrush>
+                                    <ImageBrush />
+                                </Button.BorderBrush>
+                                <TextBlock FontFamily="Nunito"
+                                           FontSize="12"
+                                           Foreground="White"
+                                           FontWeight="Normal"
+                                           Text="Tra"
+                                           VerticalAlignment="Center" />
+                                <Button.Background>
+                                    <SolidColorBrush Color="#5F5555" />
+                                </Button.Background>
+                            </Button>
+
+                        </WrapPanel>
                     </Grid>
                     <Grid Grid.Row="1">
-
-                        <TextBlock VerticalAlignment="Center"
-                                   FontSize="13"
-                                   FontFamily="Nunito"
-                                   Margin="15,0,0,0"
-                                   Grid.ColumnSpan="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock VerticalAlignment="Center"
+                                       FontSize="13"
+                                       FontFamily="Nunito"
+                                       Margin="15,0,0,0"
+                                       Grid.Column="0">
                             Điểm Tổng:
                         <TextBlock Text="..."
                                    FontSize="13"
                                    FontFamily="Nunito"
                                    Margin="10 0 0 0" />
                         </TextBlock>
+                        <TextBlock VerticalAlignment="Center"
+                                       FontSize="13"
+                                       FontFamily="Nunito"
+                                       Margin="15,0,0,0"
+                                       Grid.Column="1">
+                            Điểm Cộng:
+                                    <TextBlock Text="..."
+                                               FontSize="13"
+                                               FontFamily="Nunito"
+                                               Margin="10 0 0 0" />
+                        </TextBlock>
+                        </Grid>
                     </Grid>
                     <Grid Grid.Row="2"
-                          Margin="15 0 0 5">
+                          Margin="15 0 0 5"
+                          VerticalAlignment="Center">
                         <WrapPanel>
-                            <TextBlock VerticalAlignment="Center"
-                                       FontSize="13"
-                                       FontFamily="Nunito">
+                            <TextBlock FontSize="13"
+                                       FontFamily="Nunito"
+                                       VerticalAlignment="Center">
                             Điểm Sử Dụng:
                             </TextBlock>
-                            <Button Height="18"
+                            <Button Height="30"
                                     Width="100"
                                     materialDesign:ButtonAssist.CornerRadius="5"
                                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -238,7 +294,7 @@
                                     <SolidColorBrush Color="SlateGray" />
                                 </Button.Background>
                             </Button>
-                            <Button Height="18"
+                            <Button Height="30"
                                     Width="100"
                                     materialDesign:ButtonAssist.CornerRadius="5"
                                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -265,10 +321,11 @@
                                         Width="100"
                                         Height="auto"
                                         Margin="10 0 0 0">
-                                <TextBox Text="{Binding Phonenumber, UpdateSourceTrigger=PropertyChanged}"
+                                <TextBox Text=""
                                          AcceptsReturn="True"
                                          materialDesign:HintAssist.Hint="Điểm dùng"
                                          IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                         Style="{StaticResource MaterialDesignFilledTextBox}"
                                          TextWrapping="Wrap"
                                          Width="auto"
                                          Height="auto"
@@ -297,7 +354,7 @@
                               HorizontalAlignment="Center"
                               VerticalAlignment="Top"
                               Width="200"
-                              Margin="0 10 0 0"/>
+                              Margin="0 10 0 0" />
                 </Grid>
                 <Grid Width="200"
                       Height="50"

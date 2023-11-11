@@ -225,6 +225,7 @@
     </Compile>
     <Compile Include="Config\BooleanNegationConverter.cs" />
     <Compile Include="Config\ConnectionMongoDB.cs" />
+    <Compile Include="DAOs\CustomerDAO.cs" />
     <Compile Include="DAOs\DiscountDAO.cs" />
     <Compile Include="DAOs\MenuDAO.cs" />
     <Compile Include="DAOs\ReceiptDAO.cs" />

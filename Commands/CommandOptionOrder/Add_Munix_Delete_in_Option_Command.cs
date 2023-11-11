@@ -55,6 +55,7 @@ namespace DevCoffeeManagerApp.Commands.CommandSell
                                 if (Item.dish_name == datageted.dish_name)
                                 {
                                     OptionOrderViewModel.OrderedFood.Remove(Item);
+                                    OptionOrderViewModel.OrderedFood = OptionOrderViewModel.OrderedFood;
                                     total_money();
                                     return;
                                 }
