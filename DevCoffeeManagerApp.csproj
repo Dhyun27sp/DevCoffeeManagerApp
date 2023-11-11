@@ -244,6 +244,8 @@
     <Compile Include="Models\SalaryModel.cs" />
     <Compile Include="Models\ScheduleModel.cs" />
     <Compile Include="Models\StaffModel.cs" />
+    <Compile Include="Services\ServiceOrder\IOrderService.cs" />
+    <Compile Include="Services\ServiceOrder\OrderServiceImpl.cs" />
     <Compile Include="StaticClass\SessionStatic.cs" />
     <Compile Include="Store\NavigationStore.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
