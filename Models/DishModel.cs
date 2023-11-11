@@ -42,42 +42,15 @@ namespace DevCoffeeManagerApp.Models
             }
         }
 
-        public string newDish { get; set; }
+        public bool newDish { get; set; }// use bool
 
-        public string HotDish { get; set; }
+        public bool HotDish { get; set; }// use bool
 
-        public string SaleDish { get; set; }
+        public bool SaleDish { get; set; }//use bool
 
-        private string _hidden = "Hidden";
-        public string Hidden
-        {
-            get
-            {
-                return _hidden;
-            }
-            set
-            {
-                _hidden = value;
-                OnPropertyChanged(nameof(Hidden));
-            }
-        }
         public string category { get; set; }
 
         public string Saleprice { get; set; }
-
-        private string _strikethrough = "None";
-        public string Strikethrough
-        {
-            get
-            {
-                return _strikethrough;
-            }
-            set
-            {
-                _strikethrough = value;
-                OnPropertyChanged(nameof(Strikethrough));
-            }
-        }
 
         private string _quantity;
 
@@ -106,7 +79,7 @@ namespace DevCoffeeManagerApp.Models
             }
         }
 
-        private int _ordinalNumber;
+        private int _ordinalNumber;// Bỏ
         public int OrdinalNumber{
             get
             {
