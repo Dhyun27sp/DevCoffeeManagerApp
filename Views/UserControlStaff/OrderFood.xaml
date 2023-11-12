@@ -66,6 +66,7 @@
                                                                      Opacity=".56" />
                                         </Button>
                                         <TextBox Grid.Column="1"
+                                                 x:Name="TexboxSearch"
                                                  MinWidth="200"
                                                  Margin="8,4,0,0"
                                                  VerticalAlignment="Top"
@@ -73,14 +74,21 @@
                                                  materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                                  BorderThickness="0"
                                                  Grid.RowSpan="2"
-                                                 Text="{Binding types_dish_search , UpdateSourceTrigger=PropertyChanged}" />
+                                                 Text="{Binding types_dish_search , UpdateSourceTrigger=PropertyChanged}" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="KeyUp">
+                                                    <i:InvokeCommandAction Command="{Binding ChangeValueTexboxCommand}"
+                                                                           CommandParameter="{Binding ElementName=TexboxSearch}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </TextBox>
                                     </Grid>
                                 </materialDesign:ColorZone>
                             </StackPanel>
                             <Grid Width="auto">
                                 <ComboBox ItemsSource="{Binding types_dish}"
                                           SelectedItem="{Binding Type, UpdateSourceTrigger=PropertyChanged}"
-                                          x:Name="OutlinedComboBox"
+                                          x:Name="ComboBoxType"
                                           Padding="12"
                                           HorizontalAlignment="Left"
                                           Margin="30 0 0 0"
@@ -98,12 +106,19 @@
                                                            Opacity="0.2"
                                                            BlurRadius="2" />
                                     </ComboBox.Effect>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding SelectionchangeTypeDish}"
+                                                                   CommandParameter="{Binding ElementName=ComboBoxType}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                 </ComboBox>
                             </Grid>
                             <Grid Width="auto">
                                 <ComboBox ItemsSource="{Binding Specials}"
                                           SelectedItem="{Binding Type_Special, UpdateSourceTrigger=PropertyChanged}"
                                           Padding="12"
+                                          x:Name="CbbTypeSpecial"
                                           HorizontalAlignment="Left"
                                           Margin="30 0 0 0"
                                           Width="180"
@@ -120,6 +135,12 @@
                                                            Opacity="0.2"
                                                            BlurRadius="2" />
                                     </ComboBox.Effect>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding SelectionchangeTypeSpecial}"
+                                                                   CommandParameter="{Binding ElementName=CbbTypeSpecial}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                 </ComboBox>
                             </Grid>
                         </DockPanel>

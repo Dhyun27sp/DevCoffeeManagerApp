@@ -207,6 +207,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\CommadOrders\Add_Munix_Delete_Command.cs" />
+    <Compile Include="Commands\CommadOrders\ChangeTypeDishCommand.cs" />
+    <Compile Include="Commands\CommadOrders\ChangeTypeSpecialCommand.cs" />
+    <Compile Include="Commands\CommadOrders\ChangeValueTextBoxCommand.cs" />
     <Compile Include="Commands\CommadOrders\OrderConfirmationCommand.cs" />
     <Compile Include="Commands\CommadOrders\ReserveCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
@@ -245,8 +248,6 @@
     <Compile Include="Models\SalaryModel.cs" />
     <Compile Include="Models\ScheduleModel.cs" />
     <Compile Include="Models\StaffModel.cs" />
-    <Compile Include="Services\ServiceOrder\IOrderService.cs" />
-    <Compile Include="Services\ServiceOrder\OrderServiceImpl.cs" />
     <Compile Include="StaticClass\SessionStatic.cs" />
     <Compile Include="Store\NavigationStore.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />

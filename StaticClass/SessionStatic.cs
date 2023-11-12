@@ -28,5 +28,7 @@ namespace DevCoffeeManagerApp.StaticClass
         public static List<TableModel> SetTables { set { _tables = value; } }
 
         public static ObservableCollection<DishModel> Ordereds { get; set; }
+
+        public static List<DishModel> Dishs { get; set; }
     }
 }
