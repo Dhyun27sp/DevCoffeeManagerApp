@@ -23,7 +23,7 @@ namespace DevCoffeeManagerApp.DAOs
 
         public CustomerModel GetCustomerByPhoneNumber(string phoneNumber)
         {
-            var filter = Builders<CustomerModel>.Filter.Eq(c => c.phone_number, phoneNumber);
+            var filter = Builders<CustomerModel>.Filter.Eq("phone_number", phoneNumber);
             return collection.Find(filter).FirstOrDefault();
         }
 

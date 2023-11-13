@@ -17,6 +17,7 @@ using DevCoffeeManagerApp.Commands.CommadOrders;
 using DevCoffeeManagerApp.Commands.CommandMainStaff;
 using DevCoffeeManagerApp.StaticClass;
 using DevCoffeeManagerApp.Store;
+using DevCoffeeManagerApp.Views.UserControlStaff;
 
 namespace DevCoffeeManagerApp.ViewModels
 {
@@ -159,6 +160,17 @@ namespace DevCoffeeManagerApp.ViewModels
             if (SessionStatic.Ordereds != null)
             {
                 Ordereds = SessionStatic.Ordereds;
+                foreach (var O in Ordereds)
+                {
+                    if (O.Saleprice != null)
+                    {
+                        Total = (Int32.Parse(Total) + (int.Parse(O.Quantity) * int.Parse(O.Saleprice))).ToString();
+                    }
+                    else
+                    {
+                        Total = (Int32.Parse(Total) + (int.Parse(O.Quantity) * O.price)).ToString();
+                    }
+                }
             }
         }
 

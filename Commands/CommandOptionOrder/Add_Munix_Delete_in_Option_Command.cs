@@ -111,7 +111,5 @@ namespace DevCoffeeManagerApp.Commands.CommandSell
             }
             OptionOrderViewModel.Total = total.ToString();
         }
-
-
     }
 }

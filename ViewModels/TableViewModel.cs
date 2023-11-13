@@ -25,8 +25,6 @@ namespace DevCoffeeManagerApp.ViewModels
         {
             SelectionCommand = new CommandBookTable(this);
             SubmitCommand= new CommandSubmitTable(this, navigationStore);
-            if (Items != null)
-                Items = null;
             Items = tableDAO.ReadAll();
             checkItemSame();
 

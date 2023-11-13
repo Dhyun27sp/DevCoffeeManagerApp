@@ -11,11 +11,10 @@ namespace DevCoffeeManagerApp.StaticClass
 {
     static class SessionStatic
     {
-        static TableDAO tableDAO = new TableDAO();
         private static string _phone_number;
         private static string _task;
         private static int _password;
-        private static List<TableModel> _tables = new List<TableModel>(tableDAO.ReadAll());
+        private static List<TableModel> _tables = new List<TableModel>();
         public static string GetPhoneNumber { get { return _phone_number; } }
         public static string SetPhoneNumber { set { _phone_number = value; } }
 
@@ -30,5 +29,7 @@ namespace DevCoffeeManagerApp.StaticClass
         public static ObservableCollection<DishModel> Ordereds { get; set; }
 
         public static List<DishModel> Dishs { get; set; }
+
+        public static CustomerModel Customer { get; set; }
     }
 }

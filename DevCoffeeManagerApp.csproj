@@ -218,6 +218,7 @@
     <Compile Include="Commands\CommandMainStaff\ExitCommand.cs" />
     <Compile Include="Commands\CommandMainStaff\OrderFoodCommand.cs" />
     <Compile Include="Commands\CommandOptionOrder\Add_Munix_Delete_in_Option_Command.cs" />
+    <Compile Include="Commands\CommandOptionOrder\SearchCustomerCommand.cs" />
     <Compile Include="Commands\CommandSell\OptionOrderCommand.cs" />
     <Compile Include="Commands\CommandSell\OrderCommand.cs" />
     <Compile Include="Commands\CommandSell\TableCommand.cs" />

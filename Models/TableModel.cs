@@ -19,6 +19,8 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("Status"), BsonRepresentation(BsonType.Boolean), BsonIgnoreIfNull]
         public bool? Status { get; set; }
 
+        public int Floor {  get; set; }
+
         public TableModel(int no_, int seat, bool status)
         {
             No_ = no_;
