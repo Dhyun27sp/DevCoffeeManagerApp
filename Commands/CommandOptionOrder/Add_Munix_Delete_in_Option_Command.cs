@@ -2,6 +2,7 @@
 using DevCoffeeManagerApp.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,12 +67,17 @@ namespace DevCoffeeManagerApp.Commands.CommandSell
                 }
                 else if (sign == "Delete")
                 {
-                    foreach (var Item in OptionOrderViewModel.OrderedFood)
+                    foreach (var Item in OptionOrderViewModel.CombineList)
                     {
-                        if (Item.dish_name == datageted.dish_name)
+                        if (Item.Item1.dish_name == datageted.dish_name)
                         {
-                            OptionOrderViewModel.OrderedFood.Remove(Item);
-                            OptionOrderViewModel.OrderedFood = OptionOrderViewModel.OrderedFood;
+                            ObservableCollection<DishModel> tempOrderedFood = new ObservableCollection<DishModel>();
+                            OptionOrderViewModel.OrderedFood.Remove(Item.Item1);
+                            tempOrderedFood = OptionOrderViewModel.OrderedFood;
+                            OptionOrderViewModel.CombineList.Clear();
+                            OptionOrderViewModel.IndexList = new ObservableCollection<int>();
+                            OptionOrderViewModel.CombineList = OptionOrderViewModel.CombineList;
+                            OptionOrderViewModel.OrderedFood = tempOrderedFood;
                             total_money();
                             return;
                         }

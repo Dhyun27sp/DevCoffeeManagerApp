@@ -24,17 +24,42 @@ namespace DevCoffeeManagerApp.ViewModels
             set 
             { 
                 _orderedFood = value;
-                OnPropertyChanged(nameof(OrderedFood));
                 int index = 1;
                 foreach (var O in OrderedFood)
                 {
                     O.Amount = (int.Parse(O.Quantity) * int.Parse(O.Saleprice)).ToString();
-                    O.OrdinalNumber = index;
+                    CombineList.Add(new Tuple<DishModel, int>(O, index));
                     index++;
                 }
+                OnPropertyChanged(nameof(OrderedFood));
             }
         }
+        private ObservableCollection<int> _indexList = new ObservableCollection<int>();
+        public ObservableCollection<int> IndexList
+        {
+            get
+            {
+                return _indexList;
+            }
 
+            set
+            {
+                _indexList = value;
+                OnPropertyChanged(nameof(IndexList));
+            }
+        }
+        private ObservableCollection<Tuple<DishModel, int>> _combineList = new ObservableCollection<Tuple<DishModel, int>>();
+        public ObservableCollection<Tuple<DishModel, int>> CombineList
+        {
+            get
+            {
+                return _combineList;
+            }
+            set
+            {   
+                OnPropertyChanged(nameof(CombineList));
+            }
+        }
         private string _total = "0";
         public string Total
         {
@@ -53,16 +78,10 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand PlusCommad { get; set; }
         public ICommand DeleteCommand { get; set; }
         public OptionOrderViewModel() 
-        { 
-            if(SessionStatic.Ordereds != null)
+        {
+            if (SessionStatic.Ordereds != null)
             {
-                int index = 1;
                 OrderedFood = SessionStatic.Ordereds;
-                foreach(var O in OrderedFood) {
-                    O.Amount = (int.Parse(O.Quantity) * int.Parse(O.Saleprice)).ToString();
-                    O.OrdinalNumber = index;
-                    index++;
-                }
             }
             PlusCommad = new Add_Munix_Delete_in_Option_Command(this, "Plus");
             MinusCommad = new Add_Munix_Delete_in_Option_Command(this, "Minus");

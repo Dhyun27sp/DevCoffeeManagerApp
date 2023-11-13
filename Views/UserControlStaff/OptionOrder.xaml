@@ -33,7 +33,7 @@
                 <Grid>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <ListView x:Name="lvUser"
-                                  ItemsSource="{Binding OrderedFood}">
+                                  ItemsSource="{Binding CombineList}">
                             <ListView.View>
                                 <GridView x:Name="GridView">
                                     <GridView.ColumnHeaderContainerStyle>
@@ -62,7 +62,7 @@
                                         </GridViewColumnHeader>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding OrdinalNumber}"
+                                                <TextBlock Text="{Binding Item2}"
                                                            FontSize="13" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -75,7 +75,7 @@
                                         </GridViewColumnHeader>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding dish_name}"
+                                                <TextBlock Text="{Binding Item1.dish_name}"
                                                            FontSize="13" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -140,7 +140,7 @@
                                         </GridViewColumnHeader>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Amount}"
+                                                <TextBlock Text="{Binding Item1.Amount}"
                                                            FontSize="13" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -156,7 +156,7 @@
                                                 <Button Panel.ZIndex="0"
                                                         Style="{StaticResource MaterialDesignToolForegroundButton}"
                                                         Command="{Binding DataContext.DeleteCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
-                                                        CommandParameter="{Binding}">
+                                                        CommandParameter="{Binding Item1}">
                                                     <materialDesign:PackIcon Foreground="#5F5555"
                                                                              Opacity=".80"
                                                                              Kind="DeleteForever"
