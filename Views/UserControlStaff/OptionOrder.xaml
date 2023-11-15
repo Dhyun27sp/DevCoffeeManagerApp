@@ -329,13 +329,14 @@
                     <Grid Grid.Row="2"
                           Margin="15 0 0 5"
                           VerticalAlignment="Center">
-                        <WrapPanel>
+                        <WrapPanel DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:OptionOrder}}}">
                             <TextBlock FontSize="13"
                                        FontFamily="Nunito"
                                        VerticalAlignment="Center">
                             Điểm Sử Dụng:
                             </TextBlock>
-                            <Button Height="30"
+                            <Button x:Name="myButton1"
+                                    Height="30"
                                     Width="100"
                                     materialDesign:ButtonAssist.CornerRadius="5"
                                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -343,21 +344,20 @@
                                     ToolTip="MaterialDesignRaisedButton with Round Corners"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Left"
-                                    Margin="10 0 0 0">
+                                    Margin="10 0 0 0"
+                                    Content="10000"
+                                    Command="{Binding ButtonClickCommand}"
+                                    CommandParameter="10000"
+                                    FontSize="12">
                                 <Button.BorderBrush>
                                     <ImageBrush />
                                 </Button.BorderBrush>
-                                <TextBlock FontFamily="Nunito"
-                                           FontSize="12"
-                                           Foreground="White"
-                                           FontWeight="Normal"
-                                           Text="10000"
-                                           VerticalAlignment="Center" />
                                 <Button.Background>
                                     <SolidColorBrush Color="SlateGray" />
                                 </Button.Background>
                             </Button>
-                            <Button Height="30"
+                            <Button x:Name="myButton2"
+                                    Height="30"
                                     Width="100"
                                     materialDesign:ButtonAssist.CornerRadius="5"
                                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -365,16 +365,14 @@
                                     ToolTip="MaterialDesignRaisedButton with Round Corners"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Left"
-                                    Margin="10 0 0 0">
+                                    Margin="10 0 0 0"
+                                    Content="20000"
+                                    Command="{Binding ButtonClickCommand}"
+                                    CommandParameter="20000"
+                                    FontSize="12">
                                 <Button.BorderBrush>
                                     <ImageBrush />
                                 </Button.BorderBrush>
-                                <TextBlock FontFamily="Nunito"
-                                           FontSize="12"
-                                           Foreground="White"
-                                           FontWeight="Normal"
-                                           Text="20000"
-                                           VerticalAlignment="Center" />
                                 <Button.Background>
                                     <SolidColorBrush Color="SlateGray" />
                                 </Button.Background>
@@ -384,8 +382,7 @@
                                         Width="100"
                                         Height="auto"
                                         Margin="10 0 0 0">
-                                <TextBox Text=""
-                                         AcceptsReturn="True"
+                                <TextBox AcceptsReturn="True"
                                          materialDesign:HintAssist.Hint="Điểm dùng"
                                          IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
                                          Style="{StaticResource MaterialDesignFilledTextBox}"
@@ -393,7 +390,8 @@
                                          Width="auto"
                                          Height="auto"
                                          Background="#f0f0f0"
-                                         Padding="5 0 0 0">
+                                         Padding="5 0 0 0"
+                                         Text="{Binding SelectedButtonText}">
                                 </TextBox>
                             </StackPanel>
                         </WrapPanel>

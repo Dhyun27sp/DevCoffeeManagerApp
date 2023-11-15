@@ -79,6 +79,7 @@ namespace DevCoffeeManagerApp.Commands.CommandSell
                             OptionOrderViewModel.CombineList = OptionOrderViewModel.CombineList;
                             OptionOrderViewModel.OrderedFood = tempOrderedFood;
                             total_money();
+                            OptionOrderViewModel.PlusPoint = Int32.Parse(OptionOrderViewModel.Total) * 0.01;
                             return;
                         }
                     }
