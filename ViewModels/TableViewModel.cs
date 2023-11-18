@@ -16,18 +16,14 @@ namespace DevCoffeeManagerApp.ViewModels
     public class TableViewModel : BaseViewModel
     {
         TableDAO tableDAO = new TableDAO();
-        public ICommand SelectionCommand { get; set; }
         public ICommand SubmitCommand { get; set; }
-        public object SelectedItem { get; set; }
         public ObservableCollection<TableModel> Items { get; set; }
 
         public TableViewModel(NavigationStore navigationStore)
         {
-            SelectionCommand = new CommandBookTable(this);
             SubmitCommand= new CommandSubmitTable(this, navigationStore);
             Items = tableDAO.ReadAll();
             checkItemSame();
-
         }
         private void checkItemSame()
         {

@@ -41,8 +41,8 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                 if (make != 1)
                 {
                     string name = Dish.dish_name;
-                    string Quanlity = "1";
-                    DishModel ItemOrdered = new DishModel(Dish._id, name, Quanlity, Dish.Saleprice, Dish.price);
+                    int Quanlity = 1;
+                    DishModel ItemOrdered = new DishModel(Dish._id, name, Quanlity, (int)Dish.Saleprice, Dish.price);
                     OrderFoodViewModel.Ordereds.Add(ItemOrdered);
                 }
                 else
@@ -52,10 +52,10 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                     {
                         if (item.dish_name == Dish.dish_name)
                         {
-                            if (int.TryParse(item.Quantity, out result))
+                            if (int.TryParse((item.Quantity).ToString(), out result))
                             {
                                 result += 1;
-                                item.Quantity = result.ToString();
+                                item.Quantity = result;
                                 break;
                             }
                         }
@@ -73,18 +73,18 @@ namespace DevCoffeeManagerApp.Commands.CommadOrders
                         {
                             if (dish.Saleprice != null)
                             {
-                                total = total + int.Parse(dish.Saleprice) * int.Parse(Ordd.Quantity);
+                                total = total + (int)dish.Saleprice * Ordd.Quantity;
                             }
                             else
                             {
-                                total = total + (dish.price.Value * int.Parse(Ordd.Quantity));
+                                total = total + dish.price.Value * Ordd.Quantity;
                             }
 
                         }
                     }
                 }
             }
-            OrderFoodViewModel.Total = total.ToString();
+            OrderFoodViewModel.Total = total;
         }
     }
 }

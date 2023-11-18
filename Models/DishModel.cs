@@ -50,11 +50,11 @@ namespace DevCoffeeManagerApp.Models
 
         public string category { get; set; }
 
-        public string Saleprice { get; set; }
+        public int? Saleprice { get; set; }
 
-        private string _quantity;
+        private int _quantity;
 
-        public string Quantity
+        public int Quantity
         {
             get
             {
@@ -67,8 +67,8 @@ namespace DevCoffeeManagerApp.Models
                 OnPropertyChanged(nameof(Quantity));
             }
         }
-        private string _amount;
-        public string Amount
+        private int _amount;
+        public int Amount
         {
             get {
                 return _amount;
@@ -79,19 +79,7 @@ namespace DevCoffeeManagerApp.Models
             }
         }
 
-        private int _ordinalNumber;// Bỏ
-        public int OrdinalNumber{
-            get
-            {
-                return _ordinalNumber;
-            }
-            set
-            {
-                _ordinalNumber = value;
-                OnPropertyChanged(nameof(OrdinalNumber));
-            }
-        }
-        public DishModel(ObjectId _id, string dish_name, string _quantity, string Saleprice, int? price)// này cho order nhé
+        public DishModel(ObjectId _id, string dish_name, int _quantity, int Saleprice, int? price)// này cho order nhé
         {
             this._id = _id;
             this.dish_name = dish_name;

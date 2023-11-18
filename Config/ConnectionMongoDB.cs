@@ -13,7 +13,8 @@ namespace DevCoffeeManagerApp.Config
         private static string password = "cafe2023";
         public static IMongoDatabase getdatabase()
         {
-            var dbClient = new MongoClient("mongodb+srv://" + username + ":" + password + "@cafe-manager.jpn3aq0.mongodb.net/");
+            //var dbClient = new MongoClient("mongodb+srv://" + username + ":" + password + "@cafe-manager.jpn3aq0.mongodb.net/");
+            var dbClient = new MongoClient("mongodb://localhost:27017/store");
             var database = dbClient.GetDatabase("store");
             return database;
         }

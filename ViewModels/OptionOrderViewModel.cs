@@ -26,36 +26,24 @@ namespace DevCoffeeManagerApp.ViewModels
             { 
                 _orderedFood = value;
                 int index = 1;
+                CombineList.Clear();
                 foreach (var O in OrderedFood)
                 {
                     if(O.Saleprice != null)
                     {
-                        O.Amount = (int.Parse(O.Quantity) * int.Parse(O.Saleprice)).ToString();
+                        O.Amount = O.Quantity * (int)O.Saleprice;
                     }
                     else
                     {
-                        O.Amount = (int.Parse(O.Quantity) * O.price).ToString();
+                        O.Amount = O.Quantity * (int)O.price;
                     }
                     CombineList.Add(new Tuple<DishModel, int>(O, index));
                     index++;
                 }
                 OnPropertyChanged(nameof(OrderedFood));
+                
             }
-        }
-        private ObservableCollection<int> _indexList = new ObservableCollection<int>();
-        public ObservableCollection<int> IndexList
-        {
-            get
-            {
-                return _indexList;
-            }
-
-            set
-            {
-                _indexList = value;
-                OnPropertyChanged(nameof(IndexList));
-            }
-        }
+        }        
         private ObservableCollection<Tuple<DishModel, int>> _combineList = new ObservableCollection<Tuple<DishModel, int>>();
         public ObservableCollection<Tuple<DishModel, int>> CombineList
         {
@@ -65,11 +53,12 @@ namespace DevCoffeeManagerApp.ViewModels
             }
             set
             {   
+                _combineList = value;
                 OnPropertyChanged(nameof(CombineList));
             }
         }
-        private string _total = "0";
-        public string Total
+        private int _total = 0;
+        public int Total
         {
             get
             {
@@ -83,8 +72,8 @@ namespace DevCoffeeManagerApp.ViewModels
             }
         }
 
-        private double _plus_point;
-        public double PlusPoint
+        private int _plus_point = 0;
+        public int PlusPoint
         {
             get 
             { 
@@ -138,10 +127,27 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(BookedTable));
             }
         }
+
+
+        private int _usePointText = 0;
+        public int UsePointText
+        {
+            get
+            {
+                return _usePointText;
+            }
+            set
+            {
+                _usePointText = value;
+                OnPropertyChanged(nameof(UsePointText));
+            }
+        }
+
         public ICommand MinusCommad { get; set; }
         public ICommand PlusCommad { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand SearchCustomerCommand { get; set; }
+        public ICommand UsePointCommand { get; set; }
         public OptionOrderViewModel() 
         {
             if(SessionStatic.Customer != null)
@@ -154,57 +160,38 @@ namespace DevCoffeeManagerApp.ViewModels
                 OrderedFood = SessionStatic.Ordereds;
                 foreach (var O in OrderedFood)
                 {
-                    if (O.Saleprice != null)
-                    {
-                        Total = (Int32.Parse(Total) + (int.Parse(O.Quantity) * int.Parse(O.Saleprice))).ToString();
-                    }
-                    else
-                    {
-                        Total = (Int32.Parse(Total) + (int.Parse(O.Quantity) * O.price)).ToString();
-                    }
+                    Total = Total + O.Amount;
+                    
                 }
+                PlusPoint = (int)(Total * 0.01);
             }
             if (SessionStatic.GetTables != null)
             {
-                foreach (var table in SessionStatic.GetTables)
-                {
-                    if(table.No_ >= 1 && table.No_ <= 4)
-                    {
-                        table.Floor = 1;
-                    }
-                    else if (table.No_ >= 5 && table.No_ <= 10)
-                    {
-                        table.Floor = 2;
-                    }
-                }
-                ObservableCollection<TableModel> SortBookTable = new ObservableCollection<TableModel>();
-                SortBookTable = FloorSort(SessionStatic.GetTables);
-                BookedTable = SortBookTable;
+                BookedTable = TableSort();
             }
-            PlusCommad = new Add_Munix_Delete_in_Option_Command(this, "Plus");
-            MinusCommad = new Add_Munix_Delete_in_Option_Command(this, "Minus");
-            DeleteCommand = new Add_Munix_Delete_in_Option_Command(this, "Delete");
-            SearchCustomerCommand = new SearchCustomerCommand(this);
-            PlusPoint = Int32.Parse(Total) * 0.01;
+            
+            PlusCommad = new Operator_Command(this, "Plus");
+            MinusCommad = new Operator_Command(this, "Minus");
+            DeleteCommand = new Operator_Command(this, "Delete");
+            SearchCustomerCommand = new SearchCustomerCommand(this);      
+            UsePointCommand = new UsePointCommand(this);
         }
 
-        private ObservableCollection<TableModel> FloorSort(ObservableCollection<TableModel> BookedTableOrigin) //Sắp xếp tầng
+        private ObservableCollection<TableModel> TableSort() //Sắp xếp thứ tự đã đặt các bàn theo id bàn
         {
             ObservableCollection<TableModel> SortBookTable = new ObservableCollection<TableModel>();
-            SortBookTable = BookedTableOrigin;
-            // Điều kiện lọc
-            Func<TableModel, bool> condition = item => item.Floor==1;
-
-            // Lọc và sắp xếp
-            var filteredItems = SortBookTable.Where(condition).ToList();
-            var otherItems = SortBookTable.Except(filteredItems).ToList();
-
-            // Ghép các phần tử thỏa mãn điều kiện lên đầu
-            SortBookTable.Clear();
-            foreach (var item in filteredItems.Concat(otherItems))
+            foreach (var table in SessionStatic.GetTables)
             {
-                SortBookTable.Add(item);
+                if (table.No_ >= 1 && table.No_ <= 4)
+                {
+                    table.Floor = 1;
+                }
+                else if (table.No_ >= 5 && table.No_ <= 10)
+                {
+                    table.Floor = 2;
+                }
             }
+            SortBookTable = new ObservableCollection<TableModel>(SessionStatic.GetTables.OrderBy(table => table.No_));
             return SortBookTable;
         }
     }

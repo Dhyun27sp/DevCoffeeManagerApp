@@ -14,6 +14,7 @@ using MongoDB.Driver;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 using DevCoffeeManagerApp.Commands.CommadOrders;
+using DevCoffeeManagerApp.Commands.CommandOptionOrder;
 using DevCoffeeManagerApp.Commands.CommandMainStaff;
 using DevCoffeeManagerApp.StaticClass;
 using DevCoffeeManagerApp.Store;
@@ -107,9 +108,9 @@ namespace DevCoffeeManagerApp.ViewModels
             }
         }
         
-        private string _total = "0";
+        private int _total = 0;
 
-        public string Total
+        public int Total
         {
             get
             {
@@ -148,10 +149,10 @@ namespace DevCoffeeManagerApp.ViewModels
                 AllDishsVariable = SessionStatic.Dishs;
                 Dishs = AllDishsVariable;
             }
-            PlusCommad = new Add_Munix_Delete_Command(this, "Plus");
-            MinusCommad = new Add_Munix_Delete_Command(this, "Minus");
-            DeleteCommand = new Add_Munix_Delete_Command(this, "Delete");
-            Deleteall = new Add_Munix_Delete_Command(this, "DeleteAll");
+            PlusCommad = new Operator_Command(this, "Plus");
+            MinusCommad = new Operator_Command(this, "Minus");
+            DeleteCommand = new Operator_Command(this, "Delete");
+            Deleteall = new Operator_Command(this, "DeleteAll");
             ReserveCommand = new ReserveCommand(this);
             SelectionchangeTypeDish = new ChangeTypeDishCommand(this);
             ChangeValueTexboxCommand = new ChangeValueTextBoxCommand(this);
@@ -164,11 +165,11 @@ namespace DevCoffeeManagerApp.ViewModels
                 {
                     if (O.Saleprice != null)
                     {
-                        Total = (Int32.Parse(Total) + (int.Parse(O.Quantity) * int.Parse(O.Saleprice))).ToString();
+                        Total += O.Quantity * (int)O.Saleprice;
                     }
                     else
                     {
-                        Total = (Int32.Parse(Total) + (int.Parse(O.Quantity) * O.price)).ToString();
+                        Total += O.Quantity * (int)O.price;
                     }
                 }
             }
@@ -234,22 +235,22 @@ namespace DevCoffeeManagerApp.ViewModels
                             {
                                 if (dish.Saleprice == null)
                                 {
-                                    dish.Saleprice = (dish.price - dish.price * convertsaleprice).ToString();
+                                    dish.Saleprice = (int)(dish.price - dish.price * convertsaleprice);
                                 }
                                 else
                                 {
-                                    dish.Saleprice = (int.Parse(dish.Saleprice) - int.Parse(dish.Saleprice) * convertsaleprice).ToString();
+                                    dish.Saleprice -= (int)(dish.price * convertsaleprice);
                                 }
                             }
                             else if (convertsaleprice > 1)
                             {
                                 if (dish.Saleprice == null)
                                 {
-                                    dish.Saleprice = (dish.price - convertsaleprice).ToString();
+                                    dish.Saleprice = (int)(dish.price - convertsaleprice);
                                 }
                                 else
                                 {
-                                    dish.Saleprice = (int.Parse(dish.Saleprice) - convertsaleprice).ToString();
+                                    dish.Saleprice -= (int)convertsaleprice;
                                 }
                             }
                         }
@@ -277,22 +278,22 @@ namespace DevCoffeeManagerApp.ViewModels
                             {
                                 if (dish.Saleprice == null)
                                 {
-                                    dish.Saleprice = (dish.price - dish.price * convertsaleprice).ToString();
+                                    dish.Saleprice = (int)(dish.price - dish.price * convertsaleprice);
                                 }
                                 else
                                 {
-                                    dish.Saleprice = (int.Parse(dish.Saleprice) - int.Parse(dish.Saleprice) * convertsaleprice).ToString();
+                                    dish.Saleprice = (int)((dish.Saleprice - dish.Saleprice) * convertsaleprice);
                                 }
                             }
                             else if (convertsaleprice > 1)
                             {
                                 if (dish.Saleprice == null)
                                 {
-                                    dish.Saleprice = (dish.price - convertsaleprice).ToString();
+                                    dish.Saleprice = (int)(dish.price - convertsaleprice);
                                 }
                                 else
                                 {
-                                    dish.Saleprice = (int.Parse(dish.Saleprice) - convertsaleprice).ToString();
+                                    dish.Saleprice = (int)(dish.Saleprice - convertsaleprice);
                                 }
                             }
                         }
@@ -371,7 +372,6 @@ namespace DevCoffeeManagerApp.ViewModels
             .GroupBy(item => item._id)
             .Select(group => group.First())
             .ToList();
-
             return uniqueItems;
         }
 

@@ -28,7 +28,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOptionOrder
 
         public override void Execute(object parameter)
         {
-            if (OptionOrderViewModel.PhoneNumber == null)
+            if (OptionOrderViewModel.PhoneNumber == null || OptionOrderViewModel.PhoneNumber == "")
             {
                 MessageBox.Show("Vui lòng nhập số điện thoại khách hàng");
                 return;
