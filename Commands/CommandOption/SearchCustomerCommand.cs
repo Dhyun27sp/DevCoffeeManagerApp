@@ -14,9 +14,9 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
     public class SearchCustomerCommand : CommandBase
     {
         public event EventHandler CanExecuteChanged;
-        OptionOrderViewModel OptionOrderViewModel;
+        OptionViewModel OptionOrderViewModel;
         CustomerDAO CustomerDAO = new CustomerDAO();
-        public SearchCustomerCommand(OptionOrderViewModel optionOrderViewModel)
+        public SearchCustomerCommand(OptionViewModel optionOrderViewModel)
         {
             OptionOrderViewModel = optionOrderViewModel;
         }

@@ -23,7 +23,7 @@ namespace DevCoffeeManagerApp.Commands.CommandSell
         }
         public override void Execute(object parameter)
         {
-            _navigationStore.CurrentViewModel = new OptionOrderViewModel();
+            _navigationStore.CurrentViewModel = new OptionViewModel();
         }
     }
 }

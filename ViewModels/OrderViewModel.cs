@@ -22,7 +22,7 @@ using DevCoffeeManagerApp.Views.UserControlStaff;
 
 namespace DevCoffeeManagerApp.ViewModels
 {
-    public class OrderFoodViewModel : BaseViewModel
+    public class OrderViewModel : BaseViewModel
     {
         MenuDAO menuDao = new MenuDAO();
         DiscountDAO discountDAO = new DiscountDAO();
@@ -133,7 +133,7 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand SelectionchangeTypeDish { get; set; }
         public ICommand ChangeValueTexboxCommand { get; set; }
         public ICommand SelectionchangeTypeSpecial { get; set; }
-        public OrderFoodViewModel(NavigationStore navigationStore)
+        public OrderViewModel(NavigationStore navigationStore)
         {
             Ordereds = new ObservableCollection<DishModel>();
             types_dish = load_types_dish();

@@ -17,10 +17,10 @@ namespace DevCoffeeManagerApp.Commands.CommandStaff
 {
     public class RegisterCommand : CommandBase
     {
-        private MainStaffViewModel mainStaffViewModel;
+        private StaffViewModel mainStaffViewModel;
         CustomerDAO customerDAO = new CustomerDAO();
         NavigationStore navigation = new NavigationStore();
-        public RegisterCommand(MainStaffViewModel MainStaffViewModel)
+        public RegisterCommand(StaffViewModel MainStaffViewModel)
         {
             this.mainStaffViewModel = MainStaffViewModel;
         }

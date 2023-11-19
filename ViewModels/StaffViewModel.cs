@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace DevCoffeeManagerApp.ViewModels
 {
-    public class MainStaffViewModel : BaseViewModel
+    public class StaffViewModel : BaseViewModel
     {
 
         private object _currentViewModel;
@@ -80,10 +80,10 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand Exit { get; }
         public ICommand FoodOrder { get; }
         public ICommand RegisterCommand { get; }
-        public MainStaffViewModel()
+        public StaffViewModel()
         {
             RegisterCommand = new RegisterCommand(this);
-            FoodOrder = new ShopCommand(this);
+            FoodOrder = new SellCommand(this);
             Exit = new ExitCommand();
         }
     }

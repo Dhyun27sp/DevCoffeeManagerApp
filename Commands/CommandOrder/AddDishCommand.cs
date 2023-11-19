@@ -12,8 +12,8 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
 {
     public class AddDishCommand: CommandBase
     {
-        private OrderFoodViewModel OrderFoodViewModel;
-        public AddDishCommand(OrderFoodViewModel OrderFoodViewModel)
+        private OrderViewModel OrderFoodViewModel;
+        public AddDishCommand(OrderViewModel OrderFoodViewModel)
         {
             this.OrderFoodViewModel = OrderFoodViewModel;
         }

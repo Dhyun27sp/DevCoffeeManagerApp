@@ -14,8 +14,8 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
 {
     public class FilterByTypeCommand :CommandBase
     {
-        private OrderFoodViewModel orderFoodViewModel;
-        public FilterByTypeCommand(OrderFoodViewModel orderFoodViewModel) { 
+        private OrderViewModel orderFoodViewModel;
+        public FilterByTypeCommand(OrderViewModel orderFoodViewModel) { 
             this.orderFoodViewModel = orderFoodViewModel;
         }
 

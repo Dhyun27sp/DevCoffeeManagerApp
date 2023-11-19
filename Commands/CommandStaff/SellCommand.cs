@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DevCoffeeManagerApp.Commands.CommandStaff
 {
-    public class ShopCommand: CommandBase
+    public class SellCommand: CommandBase
     {
-        private MainStaffViewModel MainStaffViewModel;
+        private StaffViewModel MainStaffViewModel;
         NavigationStore navigation = new NavigationStore();
-        public ShopCommand(MainStaffViewModel MainStaffViewModel) { 
+        public SellCommand(StaffViewModel MainStaffViewModel) { 
             this.MainStaffViewModel = MainStaffViewModel;
         }
         public override bool CanExecute(object parameter)

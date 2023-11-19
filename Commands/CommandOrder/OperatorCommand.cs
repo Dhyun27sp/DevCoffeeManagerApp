@@ -12,15 +12,15 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
 {
     internal class OperatorCommand : CommandBase
     {
-        OptionOrderViewModel optionOrderViewModel;
-        OrderFoodViewModel orderFoodViewModel;
+        OptionViewModel optionOrderViewModel;
+        OrderViewModel orderFoodViewModel;
         private string sign;
-        public OperatorCommand(OptionOrderViewModel optionOrderViewModel, string sign)
+        public OperatorCommand(OptionViewModel optionOrderViewModel, string sign)
         {
             this.optionOrderViewModel = optionOrderViewModel;
             this.sign = sign;
         }
-        public OperatorCommand(OrderFoodViewModel orderFoodViewModel, string sign)
+        public OperatorCommand(OrderViewModel orderFoodViewModel, string sign)
         {
             this.orderFoodViewModel = orderFoodViewModel;
             this.sign = sign;

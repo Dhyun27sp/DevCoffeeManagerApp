@@ -215,7 +215,7 @@
     <Compile Include="Commands\CommandLogin\CloseCommand.cs" />
     <Compile Include="Commands\CommandLogin\LoginCommand.cs" />
     <Compile Include="Commands\CommandStaff\ExitCommand.cs" />
-    <Compile Include="Commands\CommandStaff\ShopCommand.cs" />
+    <Compile Include="Commands\CommandStaff\SellCommand.cs" />
     <Compile Include="Commands\CommandStaff\RegisterCommand.cs" />
     <Compile Include="Commands\CommandOrder\OperatorCommand.cs" />
     <Compile Include="Commands\CommandOption\SearchCustomerCommand.cs" />
@@ -253,10 +253,9 @@
     <Compile Include="Store\NavigationStore.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\MainStaffViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\OptionOrderViewModel.cs" />
-    <Compile Include="ViewModels\OrderFoodViewModel.cs" />
+    <Compile Include="ViewModels\StaffViewModel.cs" />
+    <Compile Include="ViewModels\OptionViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\SellViewModel.cs" />
     <Compile Include="ViewModels\TableViewModel.cs" />
     <Compile Include="Views\LoginPage.xaml.cs">

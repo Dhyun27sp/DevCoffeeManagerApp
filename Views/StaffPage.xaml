@@ -16,8 +16,8 @@
         Height="auto"
         Width="auto">
     <Window.DataContext>
-        <vms:MainStaffViewModel>
-        </vms:MainStaffViewModel>
+        <vms:StaffViewModel>
+        </vms:StaffViewModel>
     </Window.DataContext>
     <Grid Background="#8f8888">
         <Grid.ColumnDefinitions>

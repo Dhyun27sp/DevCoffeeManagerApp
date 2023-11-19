@@ -11,8 +11,8 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
     public class UsePointCommand : CommandBase
     {
         public event EventHandler CanExecuteChanged;
-        OptionOrderViewModel OptionOrderViewModel;
-        public UsePointCommand(OptionOrderViewModel optionOrderViewModel)
+        OptionViewModel OptionOrderViewModel;
+        public UsePointCommand(OptionViewModel optionOrderViewModel)
         {
             OptionOrderViewModel = optionOrderViewModel;
         }

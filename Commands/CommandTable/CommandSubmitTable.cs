@@ -36,7 +36,7 @@ namespace DevCoffeeManagerApp.Commands.CommandTable
                 //// Bây giờ, `selectedItems` chứa danh sách các hàng đã chọn
                 //// Bạn có thể duyệt qua danh sách này để làm bất kỳ thao tác nào bạn cần
                 SessionStatic.SetTables = Items;
-                _navigationStore.CurrentViewModel = new OrderFoodViewModel(_navigationStore);
+                _navigationStore.CurrentViewModel = new OrderViewModel(_navigationStore);
             }
         }
     }

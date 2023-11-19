@@ -12,9 +12,9 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
 {
     public class OrderConfirmCommand : CommandBase
     {
-        private OrderFoodViewModel orderFoodViewModel;
+        private OrderViewModel orderFoodViewModel;
         private readonly NavigationStore _navigationStore;
-        public OrderConfirmCommand(OrderFoodViewModel orderFoodViewModel, NavigationStore navigationStore) { 
+        public OrderConfirmCommand(OrderViewModel orderFoodViewModel, NavigationStore navigationStore) { 
             this.orderFoodViewModel = orderFoodViewModel;
             this._navigationStore = navigationStore;
         }
@@ -30,7 +30,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
         {
             MessageBox.Show("Đặt Món thành công");
             SessionStatic.Ordereds = orderFoodViewModel.Ordereds;
-            _navigationStore.CurrentViewModel = new OptionOrderViewModel();
+            _navigationStore.CurrentViewModel = new OptionViewModel();
         }
     }
 }

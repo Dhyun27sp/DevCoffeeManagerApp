@@ -12,9 +12,9 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
 {
     public class SearchDishCommand : CommandBase
     {
-        private OrderFoodViewModel orderFoodViewModel;
+        private OrderViewModel orderFoodViewModel;
         private FilterByTypeCommand _changeTypeDishCommand;
-        public SearchDishCommand(OrderFoodViewModel orderFoodViewModel) {
+        public SearchDishCommand(OrderViewModel orderFoodViewModel) {
            this.orderFoodViewModel = orderFoodViewModel;
             _changeTypeDishCommand = new FilterByTypeCommand(orderFoodViewModel);
         }

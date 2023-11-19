@@ -137,10 +137,10 @@
                         <DataTemplate DataType="{x:Type vms:TableViewModel}">
                             <views:TablePage />
                         </DataTemplate>
-                        <DataTemplate DataType="{x:Type vms:OrderFoodViewModel}">
+                        <DataTemplate DataType="{x:Type vms:OrderViewModel}">
                             <views:OrderPage />
                         </DataTemplate>
-                        <DataTemplate DataType="{x:Type vms:OptionOrderViewModel}">
+                        <DataTemplate DataType="{x:Type vms:OptionViewModel}">
                             <views:OptionPage />
                         </DataTemplate>
                     </ContentControl.Resources>

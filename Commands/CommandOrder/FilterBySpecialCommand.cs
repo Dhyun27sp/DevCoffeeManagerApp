@@ -14,8 +14,8 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
     public class FilterBySpecialCommand :CommandBase
     {
         private FilterByTypeCommand _changeTypeDishCommand;
-        private OrderFoodViewModel orderFoodViewModel;
-        public FilterBySpecialCommand(OrderFoodViewModel orderFoodViewModel) { 
+        private OrderViewModel orderFoodViewModel;
+        public FilterBySpecialCommand(OrderViewModel orderFoodViewModel) { 
             this.orderFoodViewModel = orderFoodViewModel;
             _changeTypeDishCommand = new FilterByTypeCommand(orderFoodViewModel);
 

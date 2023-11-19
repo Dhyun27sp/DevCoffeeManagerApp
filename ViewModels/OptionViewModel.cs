@@ -13,7 +13,7 @@ using DevCoffeeManagerApp.Commands.CommandOption;
 
 namespace DevCoffeeManagerApp.ViewModels
 {
-    public class OptionOrderViewModel : BaseViewModel
+    public class OptionViewModel : BaseViewModel
     {
         private ObservableCollection<DishModel> _orderedFood;
         public ObservableCollection<DishModel> OrderedFood
@@ -148,7 +148,7 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand DeleteCommand { get; set; }
         public ICommand SearchCustomerCommand { get; set; }
         public ICommand UsePointCommand { get; set; }
-        public OptionOrderViewModel() 
+        public OptionViewModel() 
         {
             if(SessionStatic.Customer != null)
             {
