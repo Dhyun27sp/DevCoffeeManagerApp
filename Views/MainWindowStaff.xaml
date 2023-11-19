@@ -7,6 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
         xmlns:views="clr-namespace:DevCoffeeManagerApp.Views.UserControlStaff"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindowStaff"
         WindowStyle="ThreeDBorderWindow"
@@ -122,14 +123,13 @@
                 
             </Grid>
             
-            <Border BorderBrush="#5f5555"
+            <Border BorderBrush="Transparent"
                     BorderThickness="0.5"
-                    CornerRadius="5"
                     Grid.Column="1"
                     Margin="5 10 5 10"
                     Background="Transparent"
                     Grid.Row="2">
-                <StackPanel>
+                <StackPanel x:Name ="RegisterForm">
                     <TextBlock Text="Customer Register"
                                FontFamily="Nunito"
                                FontSize="18"
@@ -138,39 +138,47 @@
                                Foreground="White"
                                Margin="0 10 0 10" />
 
-                    <TextBox MaxWidth="400"
+                    <TextBox Name="CusName"
+                             MaxWidth="400"
                              VerticalAlignment="Top"
                              materialDesign:HintAssist.Hint="Nhập tên"
                              AcceptsReturn="True"
+                             Text="{Binding Name}"
                              IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
                              Style="{StaticResource MaterialDesignFilledTextBox}"
                              TextWrapping="Wrap"
                              Background="White"
-                             Margin="10 0 10 20">
-                    </TextBox>
+                             Margin="10 0 10 20"/>
 
-
-                    <TextBox MaxWidth="400"
+                    <TextBox Name="CusPhone"
+                             MaxWidth="400"
                              VerticalAlignment="Top"
                              materialDesign:HintAssist.Hint="Nhập số điện thoại"
                              AcceptsReturn="True"
+                             Text="{Binding Phone}"
                              IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
                              Style="{StaticResource MaterialDesignFilledTextBox}"
                              TextWrapping="Wrap"
                              Margin="10 0 10 20"
                              Background="White" />
-                    <DatePicker MaxWidth="400"
+
+                    <DatePicker Name="CusBirth"
+                                MaxWidth="400"
                                 materialDesign:HintAssist.Hint="Nhập ngày sinh"
                                 Style="{StaticResource MaterialDesignFilledDatePicker}"
+                                SelectedDate="{Binding Birthday}"
                                 Margin="10 0 10 20"
                                 Background="White"/>
+
+
+
                     <Button materialDesign:ButtonAssist.CornerRadius="10"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                             ToolTip="MaterialDesignRaisedLightButton with Round Corners"
                             Margin="10 0 10 10"
-                            Command="{Binding Exit}"
-                            CommandParameter="{Binding ElementName=WindowStaff}"
+                            Command="{Binding RegisterCommand}"
+                            CommandParameter="{Binding ElementName=RegisterForm}"
                             Width="150">
                         <Button.BorderBrush>
                             <ImageBrush />

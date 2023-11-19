@@ -13,11 +13,14 @@ namespace DevCoffeeManagerApp.ViewModels
 {
     public class MainStaffViewModel : BaseViewModel
     {
-      
+
         private object _currentViewModel;
         public object CurrentViewModel
         {
-            get { return _currentViewModel; }
+            get
+            {
+                return _currentViewModel;
+            }
             set
             {
                 if (_currentViewModel != value)
@@ -27,10 +30,59 @@ namespace DevCoffeeManagerApp.ViewModels
                 }
             }
         }
+
+        private string _name;
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+
+
+        private string _phone;
+        public string Phone
+        {
+            get
+            {
+                return _phone;
+            }
+            set
+            {
+
+                _phone = value;
+                OnPropertyChanged(nameof(Phone));
+
+            }
+        }
+
+        private DateTime? _birthday = null;
+        public DateTime? Birthday
+        {
+            get
+            {
+                return _birthday;
+            }
+            set
+            {
+                _birthday = value;
+                OnPropertyChanged(nameof(Birthday));
+
+            }
+        }
+
         public ICommand Exit { get; }
         public ICommand FoodOrder { get; }
+        public ICommand RegisterCommand { get; }
         public MainStaffViewModel()
         {
+            RegisterCommand = new RegisterCommand(this);
             FoodOrder = new OrderFoodCommand(this);
             Exit = new ExitCommand();
         }

@@ -18,7 +18,21 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("phone_number"), BsonRepresentation(BsonType.String)]
         public string phone_number { get; set; }
 
+        [BsonElement("dob"), BsonRepresentation(BsonType.String)]
+        public string dob { get; set; }
+
         [BsonElement("point"), BsonRepresentation(BsonType.Int32)]
         public int point { get; set; }
+
+        public CustomerModel(string name, string phone_number, string dob, int point)
+        {
+            this.name = name;
+            this.phone_number = phone_number;
+            this.dob = dob;
+            this.point = point;
+        }
+        public CustomerModel()
+        {
+        }
     }
 }

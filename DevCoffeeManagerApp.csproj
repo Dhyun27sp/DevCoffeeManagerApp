@@ -216,6 +216,7 @@
     <Compile Include="Commands\CommandLogin\CommandSubmit.cs" />
     <Compile Include="Commands\CommandMainStaff\ExitCommand.cs" />
     <Compile Include="Commands\CommandMainStaff\OrderFoodCommand.cs" />
+    <Compile Include="Commands\CommandMainStaff\RegisterCommand.cs" />
     <Compile Include="Commands\CommandOptionOrder\Operator_Command.cs" />
     <Compile Include="Commands\CommandOptionOrder\SearchCustomerCommand.cs" />
     <Compile Include="Commands\CommandOptionOrder\UsePointCommand.cs" />

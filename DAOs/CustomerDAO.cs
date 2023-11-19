@@ -32,5 +32,10 @@ namespace DevCoffeeManagerApp.DAOs
             List<CustomerModel> customers = collection.Find(new BsonDocument()).ToList();
             return new ObservableCollection<CustomerModel>(customers);
         }
+
+        public void CreateCustomer(CustomerModel customer)
+        {
+            collection.InsertOne(customer);
+        }
     }
 }
