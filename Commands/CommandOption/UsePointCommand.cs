@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DevCoffeeManagerApp.Commands.CommandOption
 {
@@ -26,7 +27,18 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
         {
             if (parameter is string UsePoint)
             {
-                OptionOrderViewModel.UsePointText = Int32.Parse(UsePoint);
+                if (OptionOrderViewModel.PhoneNumber == null || OptionOrderViewModel.PhoneNumber == "")
+                {
+                    MessageBox.Show("Vui lòng nhập số điện thoại khách hàng");
+                    return;
+                }
+                int point = int.Parse(UsePoint);
+                if (OptionOrderViewModel.Point < point)
+                {
+                    MessageBox.Show("Điểm tích luỹ của khách hàng không đủ, vui lòng chọn hoặc nhập mức thấp hơn");
+                    return;
+                }
+                OptionOrderViewModel.UsePointText = point;
 
             }    
         }

@@ -282,7 +282,7 @@ namespace DevCoffeeManagerApp.ViewModels
                                 }
                                 else
                                 {
-                                    dish.Saleprice = (int)((dish.Saleprice - dish.Saleprice) * convertsaleprice);
+                                    dish.Saleprice -= (int)(dish.price * convertsaleprice);
                                 }
                             }
                             else if (convertsaleprice > 1)
@@ -293,7 +293,7 @@ namespace DevCoffeeManagerApp.ViewModels
                                 }
                                 else
                                 {
-                                    dish.Saleprice = (int)(dish.Saleprice - convertsaleprice);
+                                    dish.Saleprice -= (int)(convertsaleprice);
                                 }
                             }
                         }
