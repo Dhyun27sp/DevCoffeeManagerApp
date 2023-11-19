@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DevCoffeeManagerApp.Commands.CommadOrders
+namespace DevCoffeeManagerApp.Commands.CommandOrder
 {
-    public class ChangeTypeDishCommand :CommandBase
+    public class FilterByTypeCommand :CommandBase
     {
         private OrderFoodViewModel orderFoodViewModel;
-        public ChangeTypeDishCommand(OrderFoodViewModel orderFoodViewModel) { 
+        public FilterByTypeCommand(OrderFoodViewModel orderFoodViewModel) { 
             this.orderFoodViewModel = orderFoodViewModel;
         }
 

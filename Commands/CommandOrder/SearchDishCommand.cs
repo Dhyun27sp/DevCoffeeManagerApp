@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DevCoffeeManagerApp.Commands.CommadOrders
+namespace DevCoffeeManagerApp.Commands.CommandOrder
 {
-    public class ChangeValueTextBoxCommand : CommandBase
+    public class SearchDishCommand : CommandBase
     {
         private OrderFoodViewModel orderFoodViewModel;
-        private ChangeTypeDishCommand _changeTypeDishCommand;
-        public ChangeValueTextBoxCommand(OrderFoodViewModel orderFoodViewModel) {
+        private FilterByTypeCommand _changeTypeDishCommand;
+        public SearchDishCommand(OrderFoodViewModel orderFoodViewModel) {
            this.orderFoodViewModel = orderFoodViewModel;
-            _changeTypeDishCommand = new ChangeTypeDishCommand(orderFoodViewModel);
+            _changeTypeDishCommand = new FilterByTypeCommand(orderFoodViewModel);
         }
         public override bool CanExecute(object parameter)
         {

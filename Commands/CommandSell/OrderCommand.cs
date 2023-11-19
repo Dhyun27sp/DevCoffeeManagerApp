@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DevCoffeeManagerApp.Store;
 
-namespace DevCoffeeManagerApp.Commands.CommandMainStaff
+namespace DevCoffeeManagerApp.Commands.CommandSell
 {
     public class OrderCommand : CommandBase
     {

@@ -1,4 +1,4 @@
-﻿using DevCoffeeManagerApp.Commands.CommandMainStaff;
+﻿using DevCoffeeManagerApp.Commands.CommandStaff;
 using DevCoffeeManagerApp.Commands.CommandSell;
 using DevCoffeeManagerApp.Store;
 using System;
@@ -29,7 +29,7 @@ namespace DevCoffeeManagerApp.ViewModels
 
             CommandTable = new TableCommand(navigationStore);
             CommandOrder = new OrderCommand(navigationStore);
-            CommandOptionOrder = new OptionOrderCommand(navigationStore);
+            CommandOptionOrder = new OptionCommand(navigationStore);
         }
         private void OnCurrentViewModelChanged()
         {

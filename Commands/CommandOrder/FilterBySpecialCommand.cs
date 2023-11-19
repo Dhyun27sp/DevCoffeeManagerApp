@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
 
-namespace DevCoffeeManagerApp.Commands.CommadOrders
+namespace DevCoffeeManagerApp.Commands.CommandOrder
 {
-    public class ChangeTypeSpecialCommand :CommandBase
+    public class FilterBySpecialCommand :CommandBase
     {
-        private ChangeTypeDishCommand _changeTypeDishCommand;
+        private FilterByTypeCommand _changeTypeDishCommand;
         private OrderFoodViewModel orderFoodViewModel;
-        public ChangeTypeSpecialCommand(OrderFoodViewModel orderFoodViewModel) { 
+        public FilterBySpecialCommand(OrderFoodViewModel orderFoodViewModel) { 
             this.orderFoodViewModel = orderFoodViewModel;
-            _changeTypeDishCommand = new ChangeTypeDishCommand(orderFoodViewModel);
+            _changeTypeDishCommand = new FilterByTypeCommand(orderFoodViewModel);
 
     }
 

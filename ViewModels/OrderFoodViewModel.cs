@@ -13,9 +13,9 @@ using System.Windows.Controls;
 using MongoDB.Driver;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
-using DevCoffeeManagerApp.Commands.CommadOrders;
-using DevCoffeeManagerApp.Commands.CommandOptionOrder;
-using DevCoffeeManagerApp.Commands.CommandMainStaff;
+using DevCoffeeManagerApp.Commands.CommandOrder;
+using DevCoffeeManagerApp.Commands.CommandOption;
+using DevCoffeeManagerApp.Commands.CommandStaff;
 using DevCoffeeManagerApp.StaticClass;
 using DevCoffeeManagerApp.Store;
 using DevCoffeeManagerApp.Views.UserControlStaff;
@@ -149,15 +149,15 @@ namespace DevCoffeeManagerApp.ViewModels
                 AllDishsVariable = SessionStatic.Dishs;
                 Dishs = AllDishsVariable;
             }
-            PlusCommad = new Operator_Command(this, "Plus");
-            MinusCommad = new Operator_Command(this, "Minus");
-            DeleteCommand = new Operator_Command(this, "Delete");
-            Deleteall = new Operator_Command(this, "DeleteAll");
-            ReserveCommand = new ReserveCommand(this);
-            SelectionchangeTypeDish = new ChangeTypeDishCommand(this);
-            ChangeValueTexboxCommand = new ChangeValueTextBoxCommand(this);
-            SelectionchangeTypeSpecial = new ChangeTypeSpecialCommand(this);
-            OrderFoodCommand = new OrderConfirmationCommand(this, navigationStore);
+            PlusCommad = new OperatorCommand(this, "Plus");
+            MinusCommad = new OperatorCommand(this, "Minus");
+            DeleteCommand = new OperatorCommand(this, "Delete");
+            Deleteall = new OperatorCommand(this, "DeleteAll");
+            ReserveCommand = new AddDishCommand(this);
+            SelectionchangeTypeDish = new FilterByTypeCommand(this);
+            ChangeValueTexboxCommand = new SearchDishCommand(this);
+            SelectionchangeTypeSpecial = new FilterBySpecialCommand(this);
+            OrderFoodCommand = new OrderConfirmCommand(this, navigationStore);
             if (SessionStatic.Ordereds != null)
             {
                 Ordereds = SessionStatic.Ordereds;

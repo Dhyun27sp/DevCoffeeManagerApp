@@ -21,7 +21,7 @@ namespace DevCoffeeManagerApp.ViewModels
         public LoginViewModel()
         {
             // Khởi tạo và điền dữ liệu vào danh sách Items ở đây
-            SubmitCommand = new CommandSubmit(this);
+            SubmitCommand = new LoginCommand(this);
             CloseCommand = new CloseCommand();
 
             Items = new ObservableCollection<string>();

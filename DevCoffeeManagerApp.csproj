@@ -206,21 +206,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\CommadOrders\ChangeTypeDishCommand.cs" />
-    <Compile Include="Commands\CommadOrders\ChangeTypeSpecialCommand.cs" />
-    <Compile Include="Commands\CommadOrders\ChangeValueTextBoxCommand.cs" />
-    <Compile Include="Commands\CommadOrders\OrderConfirmationCommand.cs" />
-    <Compile Include="Commands\CommadOrders\ReserveCommand.cs" />
+    <Compile Include="Commands\CommandOrder\FilterByTypeCommand.cs" />
+    <Compile Include="Commands\CommandOrder\FilterBySpecialCommand.cs" />
+    <Compile Include="Commands\CommandOrder\SearchDishCommand.cs" />
+    <Compile Include="Commands\CommandOrder\OrderConfirmCommand.cs" />
+    <Compile Include="Commands\CommandOrder\AddDishCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandLogin\CloseCommand.cs" />
-    <Compile Include="Commands\CommandLogin\CommandSubmit.cs" />
-    <Compile Include="Commands\CommandMainStaff\ExitCommand.cs" />
-    <Compile Include="Commands\CommandMainStaff\OrderFoodCommand.cs" />
-    <Compile Include="Commands\CommandMainStaff\RegisterCommand.cs" />
-    <Compile Include="Commands\CommandOptionOrder\Operator_Command.cs" />
-    <Compile Include="Commands\CommandOptionOrder\SearchCustomerCommand.cs" />
-    <Compile Include="Commands\CommandOptionOrder\UsePointCommand.cs" />
-    <Compile Include="Commands\CommandSell\OptionOrderCommand.cs" />
+    <Compile Include="Commands\CommandLogin\LoginCommand.cs" />
+    <Compile Include="Commands\CommandStaff\ExitCommand.cs" />
+    <Compile Include="Commands\CommandStaff\ShopCommand.cs" />
+    <Compile Include="Commands\CommandStaff\RegisterCommand.cs" />
+    <Compile Include="Commands\CommandOrder\OperatorCommand.cs" />
+    <Compile Include="Commands\CommandOption\SearchCustomerCommand.cs" />
+    <Compile Include="Commands\CommandOption\UsePointCommand.cs" />
+    <Compile Include="Commands\CommandSell\OptionCommand.cs" />
     <Compile Include="Commands\CommandSell\OrderCommand.cs" />
     <Compile Include="Commands\CommandSell\TableCommand.cs" />
     <Compile Include="Commands\CommandTable\CommandSubmitTable.cs" />
@@ -259,23 +259,23 @@
     <Compile Include="ViewModels\OrderFoodViewModel.cs" />
     <Compile Include="ViewModels\SellViewModel.cs" />
     <Compile Include="ViewModels\TableViewModel.cs" />
-    <Compile Include="Views\LoginForm.xaml.cs">
-      <DependentUpon>LoginForm.xaml</DependentUpon>
+    <Compile Include="Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainWindowStaff.xaml.cs">
-      <DependentUpon>MainWindowStaff.xaml</DependentUpon>
+    <Compile Include="Views\StaffPage.xaml.cs">
+      <DependentUpon>StaffPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControlStaff\BookTable.xaml.cs">
-      <DependentUpon>BookTable.xaml</DependentUpon>
+    <Compile Include="Views\UserControlStaff\ShopPage.xaml.cs">
+      <DependentUpon>ShopPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControlStaff\MainSell.xaml.cs">
-      <DependentUpon>MainSell.xaml</DependentUpon>
+    <Compile Include="Views\UserControlStaff\TablePage.xaml.cs">
+      <DependentUpon>TablePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControlStaff\OptionOrder.xaml.cs">
-      <DependentUpon>OptionOrder.xaml</DependentUpon>
+    <Compile Include="Views\UserControlStaff\OptionPage.xaml.cs">
+      <DependentUpon>OptionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControlStaff\OrderFood.xaml.cs">
-      <DependentUpon>OrderFood.xaml</DependentUpon>
+    <Compile Include="Views\UserControlStaff\OrderPage.xaml.cs">
+      <DependentUpon>OrderPage.xaml</DependentUpon>
     </Compile>
     <Page Include="Component\BindablePasswordBox.xaml">
       <SubType>Designer</SubType>
@@ -321,27 +321,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\LoginForm.xaml">
+    <Page Include="Views\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainWindowStaff.xaml">
+    <Page Include="Views\StaffPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControlStaff\BookTable.xaml">
+    <Page Include="Views\UserControlStaff\ShopPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControlStaff\MainSell.xaml">
+    <Page Include="Views\UserControlStaff\TablePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControlStaff\OptionOrder.xaml">
+    <Page Include="Views\UserControlStaff\OptionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControlStaff\OrderFood.xaml">
+    <Page Include="Views\UserControlStaff\OrderPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

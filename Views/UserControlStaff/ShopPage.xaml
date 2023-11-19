@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="DevCoffeeManagerApp.Views.UserControlStaff.MainSell"
+﻿<UserControl x:Class="DevCoffeeManagerApp.Views.UserControlStaff.ShopPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -135,13 +135,13 @@
                 <ContentControl Content="{Binding CurrentViewModel}">
                     <ContentControl.Resources>
                         <DataTemplate DataType="{x:Type vms:TableViewModel}">
-                            <views:BookTable />
+                            <views:TablePage />
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type vms:OrderFoodViewModel}">
-                            <views:OrderFood />
+                            <views:OrderPage />
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type vms:OptionOrderViewModel}">
-                            <views:OptionOrder />
+                            <views:OptionPage />
                         </DataTemplate>
                     </ContentControl.Resources>
                 </ContentControl>

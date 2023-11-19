@@ -8,13 +8,13 @@ using DevCoffeeManagerApp.StaticClass;
 using DevCoffeeManagerApp.Store;
 using System.Windows;
 
-namespace DevCoffeeManagerApp.Commands.CommadOrders
+namespace DevCoffeeManagerApp.Commands.CommandOrder
 {
-    public class OrderConfirmationCommand : CommandBase
+    public class OrderConfirmCommand : CommandBase
     {
         private OrderFoodViewModel orderFoodViewModel;
         private readonly NavigationStore _navigationStore;
-        public OrderConfirmationCommand(OrderFoodViewModel orderFoodViewModel, NavigationStore navigationStore) { 
+        public OrderConfirmCommand(OrderFoodViewModel orderFoodViewModel, NavigationStore navigationStore) { 
             this.orderFoodViewModel = orderFoodViewModel;
             this._navigationStore = navigationStore;
         }

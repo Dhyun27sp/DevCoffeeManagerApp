@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace DevCoffeeManagerApp.Views.UserControlStaff
 {
     /// <summary>
-    /// Interaction logic for BookTable.xaml
+    /// Interaction logic for OptionPage.xaml
     /// </summary>
-    public partial class BookTable : UserControl
+    public partial class OptionPage : UserControl
     {
-        public BookTable()
+        public OptionPage()
         {
             InitializeComponent();
         }

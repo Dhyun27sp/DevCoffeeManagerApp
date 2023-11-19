@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevCoffeeManagerApp.Commands.CommandMainStaff
+namespace DevCoffeeManagerApp.Commands.CommandStaff
 {
-    public class OrderFoodCommand: CommandBase
+    public class ShopCommand: CommandBase
     {
         private MainStaffViewModel MainStaffViewModel;
         NavigationStore navigation = new NavigationStore();
-        public OrderFoodCommand(MainStaffViewModel MainStaffViewModel) { 
+        public ShopCommand(MainStaffViewModel MainStaffViewModel) { 
             this.MainStaffViewModel = MainStaffViewModel;
         }
         public override bool CanExecute(object parameter)

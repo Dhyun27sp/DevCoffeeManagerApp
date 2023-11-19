@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace DevCoffeeManagerApp.Commands.CommandSell
 {
-    public class OptionOrderCommand : CommandBase
+    public class OptionCommand : CommandBase
     {
         private NavigationStore _navigationStore;
-        public OptionOrderCommand(NavigationStore navigationStore)
+        public OptionCommand(NavigationStore navigationStore)
         {
             this._navigationStore = navigationStore;
         }

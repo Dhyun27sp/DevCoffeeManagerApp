@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevCoffeeManagerApp.Commands.CommandOptionOrder
+namespace DevCoffeeManagerApp.Commands.CommandOption
 {
     public class UsePointCommand : CommandBase
     {

@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DevCoffeeManagerApp.Commands.CommandOptionOrder
+namespace DevCoffeeManagerApp.Commands.CommandOption
 {
     public class SearchCustomerCommand : CommandBase
     {

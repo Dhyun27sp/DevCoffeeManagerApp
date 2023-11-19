@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DevCoffeeManagerApp.Commands.CommandMainStaff
+namespace DevCoffeeManagerApp.Commands.CommandStaff
 {
     public class RegisterCommand : CommandBase
     {

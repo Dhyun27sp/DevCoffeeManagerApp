@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace DevCoffeeManagerApp.Views.UserControlStaff
 {
     /// <summary>
-    /// Interaction logic for OrderFood.xaml
+    /// Interaction logic for ShopPage.xaml
     /// </summary>
-    public partial class OrderFood : UserControl
+    public partial class ShopPage : UserControl
     {
-        public OrderFood()
+        public ShopPage()
         {
             InitializeComponent();
         }

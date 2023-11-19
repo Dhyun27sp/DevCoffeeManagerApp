@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using DevCoffeeManagerApp.StaticClass;
 using System.Windows.Input;
-using DevCoffeeManagerApp.Commands.CommadOrders;
+using DevCoffeeManagerApp.Commands.CommandOrder;
 using DevCoffeeManagerApp.Commands.CommandSell;
-using DevCoffeeManagerApp.Commands.CommandOptionOrder;
+using DevCoffeeManagerApp.Commands.CommandOption;
 
 namespace DevCoffeeManagerApp.ViewModels
 {
@@ -170,9 +170,9 @@ namespace DevCoffeeManagerApp.ViewModels
                 BookedTable = TableSort();
             }
             
-            PlusCommad = new Operator_Command(this, "Plus");
-            MinusCommad = new Operator_Command(this, "Minus");
-            DeleteCommand = new Operator_Command(this, "Delete");
+            PlusCommad = new OperatorCommand(this, "Plus");
+            MinusCommad = new OperatorCommand(this, "Minus");
+            DeleteCommand = new OperatorCommand(this, "Delete");
             SearchCustomerCommand = new SearchCustomerCommand(this);      
             UsePointCommand = new UsePointCommand(this);
         }

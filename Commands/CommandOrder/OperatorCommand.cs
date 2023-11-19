@@ -8,19 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms.Internals;
 
-namespace DevCoffeeManagerApp.Commands.CommandOptionOrder
+namespace DevCoffeeManagerApp.Commands.CommandOrder
 {
-    internal class Operator_Command : CommandBase
+    internal class OperatorCommand : CommandBase
     {
         OptionOrderViewModel optionOrderViewModel;
         OrderFoodViewModel orderFoodViewModel;
         private string sign;
-        public Operator_Command(OptionOrderViewModel optionOrderViewModel, string sign)
+        public OperatorCommand(OptionOrderViewModel optionOrderViewModel, string sign)
         {
             this.optionOrderViewModel = optionOrderViewModel;
             this.sign = sign;
         }
-        public Operator_Command(OrderFoodViewModel orderFoodViewModel, string sign)
+        public OperatorCommand(OrderFoodViewModel orderFoodViewModel, string sign)
         {
             this.orderFoodViewModel = orderFoodViewModel;
             this.sign = sign;

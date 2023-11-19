@@ -16,12 +16,12 @@ using static MongoDB.Bson.Serialization.Serializers.SerializerHelper;
 
 namespace DevCoffeeManagerApp.Commands.CommandLogin
 {
-    public class CommandSubmit : CommandBase
+    public class LoginCommand : CommandBase
     {
         StaffDAO staffdao = new StaffDAO();
         ScheduleDAO scheduledao = new ScheduleDAO();
         private LoginViewModel Viewmodellogin;
-        public CommandSubmit(LoginViewModel viewmodellogin)
+        public LoginCommand(LoginViewModel viewmodellogin)
         {
             Viewmodellogin = viewmodellogin;
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using DevCoffeeManagerApp.Commands.CommandMainStaff;
+using DevCoffeeManagerApp.Commands.CommandStaff;
 using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.DAOs;
 using System.Windows;
@@ -83,7 +83,7 @@ namespace DevCoffeeManagerApp.ViewModels
         public MainStaffViewModel()
         {
             RegisterCommand = new RegisterCommand(this);
-            FoodOrder = new OrderFoodCommand(this);
+            FoodOrder = new ShopCommand(this);
             Exit = new ExitCommand();
         }
     }

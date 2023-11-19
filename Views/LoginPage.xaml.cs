@@ -10,19 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DevCoffeeManagerApp.Views.UserControlStaff
+namespace DevCoffeeManagerApp
 {
     /// <summary>
-    /// Interaction logic for OptionOrder.xaml
+    /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class OptionOrder : UserControl
+    public partial class LoginPage : Window
     {
-        public OptionOrder()
+        public LoginPage()
         {
             InitializeComponent();
+        }
+
+        private void TextBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

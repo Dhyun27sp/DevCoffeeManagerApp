@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace DevCoffeeManagerApp.Commands.CommadOrders
+namespace DevCoffeeManagerApp.Commands.CommandOrder
 {
-    public class ReserveCommand: CommandBase
+    public class AddDishCommand: CommandBase
     {
         private OrderFoodViewModel OrderFoodViewModel;
-        public ReserveCommand(OrderFoodViewModel OrderFoodViewModel)
+        public AddDishCommand(OrderFoodViewModel OrderFoodViewModel)
         {
             this.OrderFoodViewModel = OrderFoodViewModel;
         }

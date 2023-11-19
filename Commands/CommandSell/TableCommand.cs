@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevCoffeeManagerApp.Commands.CommandMainStaff
+namespace DevCoffeeManagerApp.Commands.CommandSell
 {
     public class TableCommand : CommandBase
     {

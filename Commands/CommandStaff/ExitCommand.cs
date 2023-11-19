@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DevCoffeeManagerApp.Commands.CommandMainStaff
+namespace DevCoffeeManagerApp.Commands.CommandStaff
 {
     public class ExitCommand : CommandBase 
     {
@@ -28,7 +28,7 @@ namespace DevCoffeeManagerApp.Commands.CommandMainStaff
                 {
                     window.Hide();
                 }
-                LoginWindow login = new LoginWindow();
+                LoginPage login = new LoginPage();
                 login.Show();
             }
         }
