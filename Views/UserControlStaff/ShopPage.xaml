@@ -114,7 +114,9 @@
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             ToolTip="MaterialDesignRaisedButton with Round Corners"
                             HorizontalContentAlignment="Stretch"
-                            VerticalContentAlignment="Stretch">
+                            VerticalContentAlignment="Stretch"
+                            Command="{Binding CommandPayment}"
+                            >
                         <Button.BorderBrush>
                             <ImageBrush />
                         </Button.BorderBrush>
@@ -142,6 +144,9 @@
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type vms:OptionViewModel}">
                             <views:OptionPage />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vms:PaymentViewModel}">
+                            <views:PaymentPage />
                         </DataTemplate>
                     </ContentControl.Resources>
                 </ContentControl>

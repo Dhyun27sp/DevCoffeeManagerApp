@@ -1,18 +1,18 @@
-﻿using DevCoffeeManagerApp.DAOs;
-using DevCoffeeManagerApp.Store;
+﻿using DevCoffeeManagerApp.Store;
 using DevCoffeeManagerApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DevCoffeeManagerApp.Commands.CommandSell
 {
-    public class OptionCommand : CommandBase
+    public class PaymentCommand: CommandBase
     {
         private NavigationStore _navigationStore;
-        public OptionCommand(NavigationStore navigationStore)
+        public PaymentCommand(NavigationStore navigationStore)
         {
             this._navigationStore = navigationStore;
         }
@@ -23,7 +23,7 @@ namespace DevCoffeeManagerApp.Commands.CommandSell
         }
         public override void Execute(object parameter)
         {
-            _navigationStore.CurrentViewModel = new OptionViewModel(_navigationStore);
+            _navigationStore.CurrentViewModel = new PaymentViewModel();
         }
     }
 }

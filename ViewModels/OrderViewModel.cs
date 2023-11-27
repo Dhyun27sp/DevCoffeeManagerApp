@@ -158,9 +158,9 @@ namespace DevCoffeeManagerApp.ViewModels
             ChangeValueTexboxCommand = new SearchDishCommand(this);
             SelectionchangeTypeSpecial = new FilterBySpecialCommand(this);
             OrderFoodCommand = new OrderConfirmCommand(this, navigationStore);
-            if (SessionStatic.Ordereds != null)
+            if (SessionStatic.GetOrdereds != null)
             {
-                Ordereds = SessionStatic.Ordereds;
+                Ordereds = SessionStatic.GetOrdereds;
                 foreach (var O in Ordereds)
                 {
                     if (O.Saleprice != null)

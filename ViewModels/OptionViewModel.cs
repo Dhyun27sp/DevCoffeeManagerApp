@@ -10,6 +10,8 @@ using System.Windows.Input;
 using DevCoffeeManagerApp.Commands.CommandOrder;
 using DevCoffeeManagerApp.Commands.CommandSell;
 using DevCoffeeManagerApp.Commands.CommandOption;
+using System.Windows;
+using DevCoffeeManagerApp.Store;
 
 namespace DevCoffeeManagerApp.ViewModels
 {
@@ -148,16 +150,17 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand DeleteCommand { get; set; }
         public ICommand SearchCustomerCommand { get; set; }
         public ICommand UsePointCommand { get; set; }
-        public OptionViewModel() 
+        public ICommand SubmitOptionCommand { get; set; }
+        public OptionViewModel(NavigationStore navigationStore) 
         {
             if(SessionStatic.Customer != null)
             {
                 PhoneNumber = SessionStatic.Customer.phone_number;
                 Point = SessionStatic.Customer.point;
             }
-            if (SessionStatic.Ordereds != null)
+            if (SessionStatic.GetOrdereds != null)
             {
-                OrderedFood = SessionStatic.Ordereds;
+                OrderedFood = SessionStatic.GetOrdereds;
                 foreach (var O in OrderedFood)
                 {
                     Total = Total + O.Amount;
@@ -175,6 +178,7 @@ namespace DevCoffeeManagerApp.ViewModels
             DeleteCommand = new OperatorCommand(this, "Delete");
             SearchCustomerCommand = new SearchCustomerCommand(this);      
             UsePointCommand = new UsePointCommand(this);
+            SubmitOptionCommand = new SubmitOptionCommand(this, navigationStore);
         }
 
         private ObservableCollection<TableModel> TableSort() //Sắp xếp thứ tự đã đặt các bàn theo id bàn

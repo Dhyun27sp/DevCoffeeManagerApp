@@ -19,6 +19,7 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand CommandTable { get; set; }
         public ICommand CommandOrder { get; set; }
         public ICommand CommandOptionOrder { get; set; }
+        public ICommand CommandPayment { get; set; }
         private readonly NavigationStore _navigationStore;
         public BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel;
 
@@ -30,6 +31,7 @@ namespace DevCoffeeManagerApp.ViewModels
             CommandTable = new TableCommand(navigationStore);
             CommandOrder = new OrderCommand(navigationStore);
             CommandOptionOrder = new OptionCommand(navigationStore);
+            CommandPayment = new PaymentCommand(navigationStore);
         }
         private void OnCurrentViewModelChanged()
         {

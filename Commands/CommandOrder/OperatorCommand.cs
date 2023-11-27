@@ -1,4 +1,5 @@
 ﻿using DevCoffeeManagerApp.Models;
+using DevCoffeeManagerApp.StaticClass;
 using DevCoffeeManagerApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -67,6 +68,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                                     break;
                                 }
                             }
+                            SessionStatic.SetOrdereds = optionOrderViewModel.OrderedFood;
                             return;
                     }
                 else
