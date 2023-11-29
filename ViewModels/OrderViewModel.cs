@@ -160,7 +160,7 @@ namespace DevCoffeeManagerApp.ViewModels
             OrderFoodCommand = new OrderConfirmCommand(this, navigationStore);
             if (SessionStatic.GetOrdereds != null)
             {
-                Ordereds = SessionStatic.GetOrdereds;
+                Ordereds = SessionStatic.DeepCopyObservableCollection(SessionStatic.GetOrdereds);
                 foreach (var O in Ordereds)
                 {
                     if (O.Saleprice != null)

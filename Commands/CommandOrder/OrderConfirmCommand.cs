@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using DevCoffeeManagerApp.StaticClass;
 using DevCoffeeManagerApp.Store;
 using System.Windows;
+using DevCoffeeManagerApp.Models;
+using System.Collections.ObjectModel;
 
 namespace DevCoffeeManagerApp.Commands.CommandOrder
 {

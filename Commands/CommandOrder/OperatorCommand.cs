@@ -30,13 +30,14 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
         {
             return true;
         }
-
+        
         public override void Execute(object parameter)
         {
-
             if (parameter is DishModel datageted)
             {
                 if (optionOrderViewModel != null)
+                {
+                    DishModel dish = optionOrderViewModel.OrderedFood.FirstOrDefault(item => item._id == datageted._id);
                     switch (sign)
                     {
                         case "Plus":
@@ -47,31 +48,23 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                             datageted.Quantity--;
                             if (datageted.Quantity == 0)
                             {
-                                foreach (var Item in optionOrderViewModel.OrderedFood)
-                                {
-                                    if (Item.dish_name == datageted.dish_name)
-                                    {
-                                        optionOrderViewModel.OrderedFood.Remove(Item);
-                                        break;
-                                    }
-                                }
+                                optionOrderViewModel.OrderedFood.Remove(dish);
+                                break;
                             }
                             total_money(datageted);
                             return;
                         case "Delete":
-                            foreach (var Item in optionOrderViewModel.OrderedFood)
-                            {
-                                if (Item.dish_name == datageted.dish_name)
-                                {
-                                    optionOrderViewModel.OrderedFood.Remove(Item);
-                                    total_money(datageted);
-                                    break;
-                                }
-                            }
-                            SessionStatic.SetOrdereds = optionOrderViewModel.OrderedFood;
+                            optionOrderViewModel.OrderedFood.Remove(dish);
+                            total_money(datageted);
+                            
                             return;
                     }
+                    SessionStatic.SetOrdereds = optionOrderViewModel.OrderedFood;
+                    optionOrderViewModel.OrderedFood = optionOrderViewModel.OrderedFood;
+                }   
                 else
+                {
+                    DishModel dish = orderFoodViewModel.Ordereds.FirstOrDefault(item => item._id == datageted._id);
                     switch (sign)
                     {
                         case "Plus":
@@ -82,29 +75,17 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                             datageted.Quantity--;
                             if (datageted.Quantity == 0)
                             {
-                                foreach (var Item in orderFoodViewModel.Ordereds)
-                                {
-                                    if (Item.dish_name == datageted.dish_name)
-                                    {
-                                        orderFoodViewModel.Ordereds.Remove(Item);
-                                        break;
-                                    }
-                                }
+                                orderFoodViewModel.Ordereds.Remove(dish);
+                                break;
                             }
                             total_money(datageted);
                             return;
                         case "Delete":
-                            foreach (var Item in orderFoodViewModel.Ordereds)
-                            {
-                                if (Item.dish_name == datageted.dish_name)
-                                {
-                                    orderFoodViewModel.Ordereds.Remove(Item);
-                                    total_money(datageted);
-                                    break;
-                                }
-                            }
-                            return;
+                           orderFoodViewModel.Ordereds.Remove(dish);
+                           total_money(datageted);
+                           return;
                     }
+                }    
             }
             else
             {
