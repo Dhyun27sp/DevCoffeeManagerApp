@@ -225,6 +225,7 @@
     <Compile Include="Commands\CommandSell\OptionCommand.cs" />
     <Compile Include="Commands\CommandSell\OrderCommand.cs" />
     <Compile Include="Commands\CommandSell\TableCommand.cs" />
+    <Compile Include="Commands\CommandTable\CancelallTableCommand.cs" />
     <Compile Include="Commands\CommandTable\CommandSubmitTable.cs" />
     <Compile Include="Component\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>

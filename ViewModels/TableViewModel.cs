@@ -17,13 +17,29 @@ namespace DevCoffeeManagerApp.ViewModels
     {
         TableDAO tableDAO = new TableDAO();
         public ICommand SubmitCommand { get; set; }
-        public ObservableCollection<TableModel> Items { get; set; }
-
+        public ICommand CancelallTableCommand { get; set; }
+        private ObservableCollection<TableModel> _items;
+        public ObservableCollection<TableModel> Items
+        {
+            get
+            {
+                return _items;
+            }
+            set
+            {
+                _items = value;
+                OnPropertyChanged(nameof(Items));
+            }
+        }
         public TableViewModel(NavigationStore navigationStore)
         {
-            SubmitCommand= new CommandSubmitTable(this, navigationStore);
+            SubmitCommand = new CommandSubmitTable(this, navigationStore);
+            CancelallTableCommand = new CancelallTableCommand(this);
             Items = tableDAO.ReadAll();
-            checkItemSame();
+            if(SessionStatic.GetTables != null)
+            {
+                checkItemSame();
+            }
         }
         private void checkItemSame()
         {
@@ -32,12 +48,10 @@ namespace DevCoffeeManagerApp.ViewModels
             {
                 // Tìm phần tử trong Items có cùng thuộc tính xác định (ví dụ: ID)
                 var existingItem = Items.FirstOrDefault(item => item.No_ == item2.No_);
-
                 // Nếu tìm thấy phần tử trùng lặp, thay thế nó bằng phần tử từ Items2
                 if (existingItem != null)
                 {
                     int index = Items.IndexOf(existingItem);
-                    var intttt = Items[index];
                     Items[index].Status = item2.Status;
                 }
             }

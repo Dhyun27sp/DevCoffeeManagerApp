@@ -31,10 +31,7 @@ namespace DevCoffeeManagerApp.Commands.CommandTable
             {
                 MessageBox.Show("Đặt bàn thành công");
                 // Lấy danh sách các mục đã chọn từ SelectedItems
-                List<TableModel> Items = new List<TableModel>(listView.SelectedItems.Cast<TableModel>());
-                int countSelected = listView.SelectedItems.Count;
-                //// Bây giờ, `selectedItems` chứa danh sách các hàng đã chọn
-                //// Bạn có thể duyệt qua danh sách này để làm bất kỳ thao tác nào bạn cần
+                ObservableCollection<TableModel> Items = new ObservableCollection<TableModel>(listView.SelectedItems.Cast<TableModel>());
                 SessionStatic.SetTables = Items;
                 _navigationStore.CurrentViewModel = new OrderViewModel(_navigationStore);
             }

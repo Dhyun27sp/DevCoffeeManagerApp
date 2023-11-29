@@ -292,7 +292,9 @@
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     ToolTip="MaterialDesignRaisedButton with Round Corners"
                     HorizontalContentAlignment="Stretch"
-                    VerticalContentAlignment="Stretch">
+                    VerticalContentAlignment="Stretch"
+                    Command="{Binding CancelallTableCommand}"
+                    CommandParameter="{Binding ElementName=lvUser}">
                 <Button.BorderBrush>
                     <ImageBrush />
                 </Button.BorderBrush>
