@@ -172,16 +172,59 @@
                                                 <Image Height="140"
                                                        Source="{Binding imageconvert}"
                                                        Stretch="UniformToFill" />
-                                                <Grid Visibility="Hidden"
+                                                <Grid 
                                                       Margin="5 5"
                                                       Width="80"
                                                       HorizontalAlignment="Left"
                                                       VerticalAlignment="Top">
                                                     <Border CornerRadius="10"
                                                             Background="#aeea00">
+                                                        <Border.Style>
+                                                            <Style TargetType="Border">
+                                                                <Setter Property="Visibility"
+                                                                        Value="Visible" />
+
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding newDish}"
+                                                                                 Value="false">
+                                                                        <Setter Property="Visibility"
+                                                                                Value="Hidden" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding newDish}"
+                                                                                 Value="">
+                                                                        <Setter Property="Visibility"
+                                                                                Value="Hidden" />
+                                                                    </DataTrigger>
+                                                                    <!-- Thêm các DataTrigger khác nếu cần -->
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Border.Style>
+                                                        
                                                         <Grid HorizontalAlignment="Center">
-                                                            <TextBlock FontSize="10"
-                                                                       Text="new"></TextBlock>
+                                                            <TextBlock HorizontalAlignment="Center"
+                                                                       VerticalAlignment="Center">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Setter Property="Foreground"
+                                                                                Value="White" />
+                                                                        <Setter Property="Text"
+                                                                                Value="New" />
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding newDish}"
+                                                                                         Value="false">
+                                                                                <Setter Property="Text"
+                                                                                        Value="" />
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding newDish}"
+                                                                                         Value="">
+                                                                                <Setter Property="Text"
+                                                                                        Value="" />
+                                                                            </DataTrigger>
+                                                                            <!-- Thêm các DataTrigger khác nếu cần -->
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
                                                         </Grid>
                                                     </Border>
                                                 </Grid>

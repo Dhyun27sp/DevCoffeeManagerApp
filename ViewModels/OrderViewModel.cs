@@ -206,7 +206,7 @@ namespace DevCoffeeManagerApp.ViewModels
                 List<DishModel> DishsTemp = new List<DishModel>();
                 if (type != "All Dishs")
                 {
-                    DishsTemp = menuDao.ReadAll(type).dish;
+                    DishsTemp = menuDao.ReadOnetype(type).dish;
                     foreach (var dishtemp in DishsTemp)
                     {
                         dishtemp.category = type;
@@ -297,6 +297,19 @@ namespace DevCoffeeManagerApp.ViewModels
                                 }
                             }
                         }
+                    }
+                }
+            }
+            List<DishModel> DishsNew = new List<DishModel>();
+            DishsNew = menuDao.ReadAll_NewDish();
+
+            for (int i = 0;i < DishsNew.Count();i++)
+            {
+                for (int j = i; j < DishsLocal.Count(); j++)
+                {
+                    if (DishsLocal[j]._id == DishsNew[i]._id)
+                    {
+                        DishsLocal[i].newDish = true;
                     }
                 }
             }

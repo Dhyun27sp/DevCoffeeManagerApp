@@ -28,6 +28,8 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("image"), BsonRepresentation(BsonType.String), BsonIgnoreIfNull]
         public string image { get; set; }
 
+        [BsonElement("dateadd"), BsonRepresentation(BsonType.String), BsonIgnoreIfNull]
+        public string date_add { get; set; }
         public byte[] imageconvert
         {
             get

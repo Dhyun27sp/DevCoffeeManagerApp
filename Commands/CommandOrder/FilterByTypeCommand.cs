@@ -6,16 +6,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace DevCoffeeManagerApp.Commands.CommandOrder
 {
-    public class FilterByTypeCommand :CommandBase
+    public class FilterByTypeCommand : CommandBase
     {
         private OrderViewModel orderFoodViewModel;
-        public FilterByTypeCommand(OrderViewModel orderFoodViewModel) { 
+        public FilterByTypeCommand(OrderViewModel orderFoodViewModel)
+        {
             this.orderFoodViewModel = orderFoodViewModel;
         }
 
@@ -30,19 +33,36 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
         {
             orderFoodViewModel.Dishs = filter(orderFoodViewModel.AllDishsVariable, orderFoodViewModel.types_dish_search, orderFoodViewModel.Type, orderFoodViewModel.Type_Special);
         }
-        public List<DishModel> filter(List<DishModel> AllDishsVariable, string types_dish_search, string Type, string Type_Special)
-        {
-            List<DishModel> Dishs_Search = new List<DishModel>();
-            if (types_dish_search != "")
+            public List<DishModel> filter(List<DishModel> AllDishsVariable, string types_dish_search, string Type, string Type_Special)
             {
-                foreach (var item in AllDishsVariable)
+                List<DishModel> Dishs_Search = new List<DishModel>();
+                if (types_dish_search != "")
                 {
-                    bool contains = item.dish_name.IndexOf(types_dish_search, StringComparison.OrdinalIgnoreCase) >= 0;
-                    if (contains)
+                    foreach (var item in AllDishsVariable)
                     {
-                        if (Type != "All Dishs")
+                        string itemconvertUnicode = ConvertString(item.dish_name).Replace(" ", "");
+                        string types_dish_searchconvertUnicode = ConvertString(types_dish_search).Replace(" ", "");
+                        bool contains = itemconvertUnicode.Contains(types_dish_searchconvertUnicode);
+                        if (contains)
                         {
-                            if (item.category == Type)
+                            if (Type != "All Dishs")
+                            {
+                                if (item.category == Type)
+                                {
+                                    if (Type_Special == "Discounted")
+                                    {
+                                        if (item.SaleDish == true)
+                                        {
+                                            Dishs_Search.Add(item);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Dishs_Search.Add(item);
+                                    }
+                                }
+                            }
+                            else
                             {
                                 if (Type_Special == "Discounted")
                                 {
@@ -59,75 +79,60 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                         }
                         else
                         {
-                            if (Type_Special == "Discounted")
+                            if (AllDishsVariable.IndexOf(item) == AllDishsVariable.Count)
                             {
-                                if (item.SaleDish == true)
+                                if (Dishs_Search.Count == 0)
                                 {
-                                    Dishs_Search.Add(item);
+                                    return null;
                                 }
                             }
-                            else
-                            {
-                                Dishs_Search.Add(item);
-                            }
                         }
                     }
-                    else
+                    if (Dishs_Search.Count > 0)
                     {
-                        if (AllDishsVariable.IndexOf(item) == AllDishsVariable.Count)
+                        if (Type_Special == "Discounted")
                         {
-                            if (Dishs_Search.Count == 0)
-                            {
-                                return null;
-                            }
+                            List<DishModel> combine = new List<DishModel>();
+                            List<DishModel> notdishcount = new List<DishModel>();
+                            notdishcount = DeleteduplicatesDish(Dishs_Search, orderFoodViewModel.LoadDishWithType(AllDishsVariable, Type));
+                            combine.AddRange(Dishs_Search);
+                            combine.AddRange(notdishcount);
+                            return sortdiscountcomesfirst(combine);
                         }
-                    }
-                }
-                if (Dishs_Search.Count > 0)
-                {
-                    if(Type_Special == "Discounted")
-                    {
-                        List<DishModel> combine = new List<DishModel>();
-                        List<DishModel> notdishcount = new List<DishModel>();
-                        notdishcount = DeleteduplicatesDish(Dishs_Search, orderFoodViewModel.LoadDishWithType(AllDishsVariable, Type));
-                        combine.AddRange(Dishs_Search);
-                        combine.AddRange(notdishcount);
-                        return sortdiscountcomesfirst(combine);
-                    }
-                    return Dishs_Search;
-                }
-            }
-            else
-            {
-                AllDishsVariable = orderFoodViewModel.LoadDishWithType(AllDishsVariable, Type);
-                if (Type != "All Dishs")
-                {
-                    if (Type_Special == "Discounted")
-                    {
-                        List<DishModel> combine = new List<DishModel>();
-                        List<DishModel> notdishcount = new List<DishModel>();
-                        notdishcount = DeleteduplicatesDish(Dishs_Search, orderFoodViewModel.LoadDishWithType(AllDishsVariable, Type));
-                        combine.AddRange(Dishs_Search);
-                        combine.AddRange(notdishcount);
-                        return sortdiscountcomesfirst(combine);
+                        return Dishs_Search;
                     }
                 }
                 else
                 {
-                    if (Type_Special == "Discounted")
+                    AllDishsVariable = orderFoodViewModel.LoadDishWithType(AllDishsVariable, Type);
+                    if (Type != "All Dishs")
                     {
-                        List<DishModel> combine = new List<DishModel>();
-                        List<DishModel> notdishcount = new List<DishModel>();
-                        notdishcount = DeleteduplicatesDish(Dishs_Search, orderFoodViewModel.LoadDishWithType(AllDishsVariable, Type));
-                        combine.AddRange(Dishs_Search);
-                        combine.AddRange(notdishcount);
-                        return sortdiscountcomesfirst(combine);
+                        if (Type_Special == "Discounted")
+                        {
+                            List<DishModel> combine = new List<DishModel>();
+                            List<DishModel> notdishcount = new List<DishModel>();
+                            notdishcount = DeleteduplicatesDish(Dishs_Search, orderFoodViewModel.LoadDishWithType(AllDishsVariable, Type));
+                            combine.AddRange(Dishs_Search);
+                            combine.AddRange(notdishcount);
+                            return sortdiscountcomesfirst(combine);
+                        }
                     }
+                    else
+                    {
+                        if (Type_Special == "Discounted")
+                        {
+                            List<DishModel> combine = new List<DishModel>();
+                            List<DishModel> notdishcount = new List<DishModel>();
+                            notdishcount = DeleteduplicatesDish(Dishs_Search, orderFoodViewModel.LoadDishWithType(AllDishsVariable, Type));
+                            combine.AddRange(Dishs_Search);
+                            combine.AddRange(notdishcount);
+                            return sortdiscountcomesfirst(combine);
+                        }
+                    }
+                    return orderFoodViewModel.LoadOnlydiscountfortype(AllDishsVariable, Type_Special, Type);
                 }
-                return orderFoodViewModel.LoadOnlydiscountfortype(AllDishsVariable, Type_Special, Type);
+                return Dishs_Search;
             }
-            return Dishs_Search;
-        }
         private List<DishModel> DeleteduplicatesDish(List<DishModel> ListOnlyDisCont, List<DishModel> ListonlyType)
         {
             List<DishModel> result = new List<DishModel>();
@@ -141,6 +146,17 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                 .OrderByDescending(x => x.SaleDish)
                 .ToList();
             return sortedList;
+        }
+        public string ConvertString(string stringInput)
+        {
+            stringInput = stringInput.ToLower();
+            string convert = "ĂÂÀẰẦÁẮẤẢẲẨÃẴẪẠẶẬỄẼỂẺÉÊÈỀẾẸỆÔÒỒƠỜÓỐỚỎỔỞÕỖỠỌỘỢƯÚÙỨỪỦỬŨỮỤỰÌÍỈĨỊỲÝỶỸỴĐăâàằầáắấảẳẩãẵẫạặậễẽểẻéêèềếẹệôòồơờóốớỏổởõỗỡọộợưúùứừủửũữụựìíỉĩịỳýỷỹỵđ";
+            string To = "AAAAAAAAAAAAAAAAAEEEEEEEEEEEOOOOOOOOOOOOOOOOOUUUUUUUUUUUIIIIIYYYYYDaaaaaaaaaaaaaaaaaeeeeeeeeeeeooooooooooooooooouuuuuuuuuuuiiiiiyyyyyd";
+            for (int i = 0; i < To.Length; i++)
+            {
+                stringInput = stringInput.Replace(convert[i], To[i]);
+            }
+            return stringInput;
         }
 
     }
