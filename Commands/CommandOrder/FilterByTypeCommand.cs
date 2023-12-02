@@ -4,6 +4,7 @@ using DevCoffeeManagerApp.Store;
 using DevCoffeeManagerApp.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -40,9 +41,37 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                 {
                     foreach (var item in AllDishsVariable) // lọc danh sách tất cả các món
                     {
-                        string itemconvertUnicode = ConvertString(item.dish_name).Replace(" ", "");
-                        string types_dish_searchconvertUnicode = ConvertString(types_dish_search).Replace(" ", "");
-                        bool contains = itemconvertUnicode.Contains(types_dish_searchconvertUnicode);
+                        bool contains = false;
+                        if (HasDiacriticMarksNormalization(types_dish_search) == true)
+                        {
+                            if (wordsign_notsign(types_dish_search) == true)
+                            {
+                            string itemconvertUnicode = ConvertString(item.dish_name).Replace(" ", "");
+                            string types_dish_searchconvertUnicode = ConvertString(types_dish_search).Replace(" ", "");
+                            bool contains_not_sign = itemconvertUnicode.Contains(types_dish_searchconvertUnicode);
+                            contains = contains_not_sign;
+                            }
+                            else
+                            {
+                                bool contains_sign = item.dish_name.Replace(" ", "").IndexOf(types_dish_search.Replace(" ", ""), StringComparison.OrdinalIgnoreCase) >= 0;
+                                contains = contains_sign;
+                                if(contains_sign == false)
+                                {
+                                    string itemconvertUnicode = ConvertString(item.dish_name).Replace(" ", "");
+                                    string types_dish_searchconvertUnicode = ConvertString(types_dish_search).Replace(" ", "");
+                                    bool contains_not_sign = itemconvertUnicode.Contains(types_dish_searchconvertUnicode);
+                                    contains = contains_not_sign;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            string itemconvertUnicode = ConvertString(item.dish_name).Replace(" ", "");
+                            string types_dish_searchconvertUnicode = ConvertString(types_dish_search).Replace(" ", "");
+                            bool contains_not_sign = itemconvertUnicode.Contains(types_dish_searchconvertUnicode);
+                            contains = contains_not_sign;
+                        }
+                        
                         if (contains)
                         {
                             if (Type != "All Dishs")
@@ -50,30 +79,30 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                                 if (item.category == Type) 
                                 {
                                     if (Type_Special == "Discounted")
-                                    {
-                                        if (item.SaleDish == true)
-                                        {
-                                            Dishs_Search.Add(item);
-                                        }
-                                    }
-                                    else if(Type_Special == "New Dish")
-                                    {
-                                        if (item.newDish == true)
-                                        {
-                                            Dishs_Search.Add(item);
-                                        }
-                                    }
-                                    else if (Type_Special == "Hot Dish")
-                                    {
-                                        if (item.HotDish == true)
-                                        {
-                                            Dishs_Search.Add(item);
-                                        }
-                                    }
-                                    else
+                                {
+                                    if (item.SaleDish == true)
                                     {
                                         Dishs_Search.Add(item);
                                     }
+                                }
+                                else if (Type_Special == "New Dish")
+                                {
+                                    if (item.newDish == true)
+                                    {
+                                        Dishs_Search.Add(item);
+                                    }
+                                }
+                                else if (Type_Special == "Hot Dish")
+                                {
+                                    if (item.HotDish == true)
+                                    {
+                                        Dishs_Search.Add(item);
+                                    }
+                                }
+                                else
+                                {
+                                   Dishs_Search.Add(item);
+                                }
                                 }
                             } // kiểm tra nếu nó không phải loại ko phải tất cả
                             else
@@ -214,7 +243,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
             return sortedList;
             
         }
-        public string ConvertString(string stringInput)
+        private string ConvertString(string stringInput)
         {
             stringInput = stringInput.ToLower();
             string convert = "ĂÂÀẰẦÁẮẤẢẲẨÃẴẪẠẶẬỄẼỂẺÉÊÈỀẾẸỆÔÒỒƠỜÓỐỚỎỔỞÕỖỠỌỘỢƯÚÙỨỪỦỬŨỮỤỰÌÍỈĨỊỲÝỶỸỴĐăâàằầáắấảẳẩãẵẫạặậễẽểẻéêèềếẹệôòồơờóốớỏổởõỗỡọộợưúùứừủửũữụựìíỉĩịỳýỷỹỵđ";
@@ -225,6 +254,38 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
             }
             return stringInput;
         }
+        private bool HasDiacriticMarksNormalization(string inputStr)// chữ có dấu
+        {
+            // Chuyển đổi chuỗi sang UnicodeNormalizationForm.FormD
+            string normalizedStr = inputStr.Normalize(NormalizationForm.FormD);
 
+            // Lọc ra các ký tự không phải là ký tự chữ cái hoặc số
+            return normalizedStr.Any(c => CharUnicodeInfo.GetUnicodeCategory(c) == UnicodeCategory.NonSpacingMark);
+        }
+
+        private bool wordsign_notsign(string name)
+        {
+            int index_word_have_sign = 0;
+            int index_word_not_have_sign = 0;
+            string[] words = name.Split(' ');
+
+            // In từng từ ra màn hình
+            foreach (string word in words)
+            {
+                if (HasDiacriticMarksNormalization(word))
+                {
+                    index_word_have_sign++;
+                }
+                else
+                {
+                    index_word_not_have_sign++;
+                }
+            }
+            if(index_word_have_sign != 0 && index_word_not_have_sign!=0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
