@@ -35,10 +35,10 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
         }
             public List<DishModel> filter(List<DishModel> AllDishsVariable, string types_dish_search, string Type, string Type_Special)
             {
-                List<DishModel> Dishs_Search = new List<DishModel>();
-                if (types_dish_search != "")
+                List<DishModel> Dishs_Search = new List<DishModel>();// Danh sách món nạp mấy món đủ điều kiện vào
+                if (types_dish_search != "")// nếu mà search nó khác rỗng
                 {
-                    foreach (var item in AllDishsVariable)
+                    foreach (var item in AllDishsVariable) // lọc danh sách tất cả các món
                     {
                         string itemconvertUnicode = ConvertString(item.dish_name).Replace(" ", "");
                         string types_dish_searchconvertUnicode = ConvertString(types_dish_search).Replace(" ", "");
@@ -47,11 +47,25 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                         {
                             if (Type != "All Dishs")
                             {
-                                if (item.category == Type)
+                                if (item.category == Type) 
                                 {
                                     if (Type_Special == "Discounted")
                                     {
                                         if (item.SaleDish == true)
+                                        {
+                                            Dishs_Search.Add(item);
+                                        }
+                                    }
+                                    else if(Type_Special == "New Dish")
+                                    {
+                                        if (item.newDish == true)
+                                        {
+                                            Dishs_Search.Add(item);
+                                        }
+                                    }
+                                    else if (Type_Special == "Hot Dish")
+                                    {
+                                        if (item.HotDish == true)
                                         {
                                             Dishs_Search.Add(item);
                                         }
@@ -61,7 +75,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                                         Dishs_Search.Add(item);
                                     }
                                 }
-                            }
+                            } // kiểm tra nếu nó không phải loại ko phải tất cả
                             else
                             {
                                 if (Type_Special == "Discounted")
@@ -71,38 +85,34 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                                         Dishs_Search.Add(item);
                                     }
                                 }
+                                else if (Type_Special == "New Dish")
+                                {
+                                    if (item.newDish == true)
+                                    {
+                                        Dishs_Search.Add(item);
+                                    }
+                                }
+                                else if (Type_Special == "Hot Dish")
+                                {
+                                    if (item.HotDish == true)
+                                    {
+                                        Dishs_Search.Add(item);
+                                    }
+                                }
                                 else
                                 {
-                                    Dishs_Search.Add(item);
+                                   Dishs_Search.Add(item);
                                 }
                             }
                         }
-                        else
-                        {
-                            if (AllDishsVariable.IndexOf(item) == AllDishsVariable.Count)
-                            {
-                                if (Dishs_Search.Count == 0)
-                                {
-                                    return null;
-                                }
-                            }
-                        }
+                        
                     }
-                    if (Dishs_Search.Count > 0)
+                    if (Dishs_Search.Count == 0)
                     {
-                        if (Type_Special == "Discounted")
-                        {
-                            List<DishModel> combine = new List<DishModel>();
-                            List<DishModel> notdishcount = new List<DishModel>();
-                            notdishcount = DeleteduplicatesDish(Dishs_Search, orderFoodViewModel.LoadDishWithType(AllDishsVariable, Type));
-                            combine.AddRange(Dishs_Search);
-                            combine.AddRange(notdishcount);
-                            return sortdiscountcomesfirst(combine);
-                        }
-                        return Dishs_Search;
+                        return null;
                     }
                 }
-                else
+                else // search là rỗng  
                 {
                     AllDishsVariable = orderFoodViewModel.LoadDishWithType(AllDishsVariable, Type);
                     if (Type != "All Dishs")
@@ -114,8 +124,27 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                             notdishcount = DeleteduplicatesDish(Dishs_Search, orderFoodViewModel.LoadDishWithType(AllDishsVariable, Type));
                             combine.AddRange(Dishs_Search);
                             combine.AddRange(notdishcount);
-                            return sortdiscountcomesfirst(combine);
+                            return sort_special_type_comesfirst(combine, Type_Special);
                         }
+                        else if (Type_Special == "New Dish")
+                        {
+                            List<DishModel> combine = new List<DishModel>();
+                            List<DishModel> notdishnew = new List<DishModel>();
+                            notdishnew = DeleteduplicatesDish(Dishs_Search, orderFoodViewModel.LoadDishWithType(AllDishsVariable, Type));
+                            combine.AddRange(Dishs_Search);
+                            combine.AddRange(notdishnew);
+                            return sort_special_type_comesfirst(combine, Type_Special);
+                        }
+                        else if (Type_Special == "Hot Dish")
+                        {
+                            List<DishModel> combine = new List<DishModel>();
+                            List<DishModel> notdishHot = new List<DishModel>();
+                            notdishHot = DeleteduplicatesDish(Dishs_Search, orderFoodViewModel.LoadDishWithType(AllDishsVariable, Type));
+                            combine.AddRange(Dishs_Search);
+                            combine.AddRange(notdishHot);
+                            return sort_special_type_comesfirst(combine, Type_Special);
+                        }
+                        return AllDishsVariable;
                     }
                     else
                     {
@@ -126,9 +155,29 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                             notdishcount = DeleteduplicatesDish(Dishs_Search, orderFoodViewModel.LoadDishWithType(AllDishsVariable, Type));
                             combine.AddRange(Dishs_Search);
                             combine.AddRange(notdishcount);
-                            return sortdiscountcomesfirst(combine);
+                            return sort_special_type_comesfirst(combine, Type_Special);
                         }
-                    }
+                        else if (Type_Special == "New Dish")
+                        {
+                            List<DishModel> combine = new List<DishModel>();
+                            List<DishModel> notdishnew = new List<DishModel>();
+                            notdishnew = DeleteduplicatesDish(Dishs_Search, orderFoodViewModel.LoadDishWithType(AllDishsVariable, Type));
+                            combine.AddRange(Dishs_Search);
+                            combine.AddRange(notdishnew);
+                            return sort_special_type_comesfirst(combine, Type_Special);
+                        }
+                        else if (Type_Special == "Hot Dish")
+                        {
+                            List<DishModel> combine = new List<DishModel>();
+                            List<DishModel> notdishHot = new List<DishModel>();
+                            notdishHot = DeleteduplicatesDish(Dishs_Search, orderFoodViewModel.LoadDishWithType(AllDishsVariable, Type));
+                            combine.AddRange(Dishs_Search);
+                            combine.AddRange(notdishHot);
+                            return sort_special_type_comesfirst(combine, Type_Special);
+                        }
+                        return AllDishsVariable;
+
+                }
                     return orderFoodViewModel.LoadOnlydiscountfortype(AllDishsVariable, Type_Special, Type);
                 }
                 return Dishs_Search;
@@ -140,12 +189,30 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
             result = ListonlyType.Where(item => !ListOnlyDisCont.Contains(item)).ToList();
             return result;
         }
-        private List<DishModel> sortdiscountcomesfirst(List<DishModel> discountcomesfirst)
+        private List<DishModel> sort_special_type_comesfirst(List<DishModel> special_type_comesfirst, string special_type)
         {
-            List<DishModel> sortedList = discountcomesfirst
+            List<DishModel> sortedList = new List<DishModel>();
+            if (special_type == "Discounted")
+            {
+                sortedList = special_type_comesfirst
                 .OrderByDescending(x => x.SaleDish)
                 .ToList();
+            }
+            else if (special_type == "New Dish")
+            {
+                sortedList = special_type_comesfirst
+                .OrderByDescending(x => x.newDish)
+                .ToList();
+            }
+            else if (special_type == "Hot Dish")
+            {
+                sortedList = special_type_comesfirst
+                .OrderByDescending(x => x.HotDish)
+                .ToList();
+            }
+            
             return sortedList;
+            
         }
         public string ConvertString(string stringInput)
         {

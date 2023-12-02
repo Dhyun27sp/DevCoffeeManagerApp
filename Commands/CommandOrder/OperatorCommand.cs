@@ -49,6 +49,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                             if (datageted.Quantity == 0)
                             {
                                 optionOrderViewModel.OrderedFood.Remove(dish);
+                                total_money(datageted);
                                 break;
                             }
                             total_money(datageted);
@@ -76,6 +77,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                             if (datageted.Quantity == 0)
                             {
                                 orderFoodViewModel.Ordereds.Remove(dish);
+                                total_money(datageted);
                                 break;
                             }
                             total_money(datageted);
