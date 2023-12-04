@@ -215,6 +215,7 @@
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandLogin\CloseCommand.cs" />
     <Compile Include="Commands\CommandLogin\LoginCommand.cs" />
+    <Compile Include="Commands\CommandPayment\SelectionchangeInputMoney.cs" />
     <Compile Include="Commands\CommandSell\PaymentCommand.cs" />
     <Compile Include="Commands\CommandStaff\ExitCommand.cs" />
     <Compile Include="Commands\CommandStaff\SellCommand.cs" />

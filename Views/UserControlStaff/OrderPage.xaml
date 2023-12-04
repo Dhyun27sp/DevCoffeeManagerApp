@@ -178,7 +178,7 @@
                                                       HorizontalAlignment="Left"
                                                       VerticalAlignment="Top">
                                                     <Border CornerRadius="10"
-                                                            Background="#aeea00">
+                                                            Background="#8bbb00">
                                                         <Border.Style>
                                                             <Style TargetType="Border">
                                                                 <Setter Property="Visibility"

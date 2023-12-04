@@ -21,8 +21,6 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
             this._navigationStore = navigationStore;
         }
 
-        public event EventHandler CanExecuteChanged;
-
         public override bool CanExecute(object parameter)
         {
             return true;

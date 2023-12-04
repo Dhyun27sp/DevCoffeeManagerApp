@@ -17,7 +17,6 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
         {
             this.OrderFoodViewModel = OrderFoodViewModel;
         }
-        public event EventHandler CanExecuteChanged;
 
         public override bool CanExecute(object parameter)
         {

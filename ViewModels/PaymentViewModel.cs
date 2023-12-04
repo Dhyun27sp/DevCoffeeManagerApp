@@ -1,4 +1,5 @@
-﻿using DevCoffeeManagerApp.Models;
+﻿using DevCoffeeManagerApp.Commands.CommandPayment;
+using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.StaticClass;
 using System;
 using System.Collections.Generic;
@@ -84,8 +85,8 @@ namespace DevCoffeeManagerApp.ViewModels
             }
         }
 
-        private int _inputMoney;
-        public int InputMoney
+        private string _inputMoney = "0";
+        public string InputMoney
         {
             get { return _inputMoney; }
             set
@@ -98,72 +99,72 @@ namespace DevCoffeeManagerApp.ViewModels
             }
         }
 
-        private int _keepTheChange;
-        public int KeepTheChange
+        private int _change = 0;
+        public int Change // tiền thối
         {
-            get { return _keepTheChange; }
+            get { return _change; }
             set
             {
-                if (_keepTheChange != value)
+                if (_change != value)
                 {
-                    _keepTheChange = value;
-                    OnPropertyChanged(nameof(KeepTheChange));
+                    _change = value;
+                    OnPropertyChanged(nameof(Change));
                 }
             }
         }
 
-        private string _phonecustomer;
-        public string Phonecustomer
+        private string _customerPhonenumber;
+        public string CustomerPhoneNumber
         {
-            get { return _phonecustomer; }
+            get { return _customerPhonenumber; }
             set
             {
-                if (_phonecustomer != value)
+                if (_customerPhonenumber != value)
                 {
-                    _phonecustomer = value;
-                    OnPropertyChanged(nameof(Phonecustomer));
+                    _customerPhonenumber = value;
+                    OnPropertyChanged(nameof(CustomerPhoneNumber));
                 }
             }
         }
 
-        private string _customername;
-        public string Customername
+        private string _customerName;
+        public string CustomerName
         {
-            get { return _customername; }
+            get { return _customerName; }
             set
             {
-                if (_customername != value)
+                if (_customerName != value)
                 {
-                    _customername = value;
-                    OnPropertyChanged(nameof(Customername));
+                    _customerName = value;
+                    OnPropertyChanged(nameof(CustomerName));
                 }
             }
         }
 
-        private int _pointplus;
-        public int Pointplus
+        private int _plusPoint;
+        public int PlusPoint
         {
-            get { return _pointplus; }
+            get { return _plusPoint; }
             set
             {
-                if (_pointplus != value)
+                if (_plusPoint != value)
                 {
-                    _pointplus = value;
-                    OnPropertyChanged(nameof(Pointplus));
+                    _plusPoint = value;
+                    OnPropertyChanged(nameof(PlusPoint));
                 }
             }
         }
         
-        private int _pointminus;
-        public int Pointminus
+        private string _usedPoint = "0";
+        public string UsedPoint
         {
-            get { return _pointminus; }
+            get { return _usedPoint; }
             set
             {
-                if (_pointminus != value)
+                if (_usedPoint != value)
                 {
-                    _pointminus = value;
-                    OnPropertyChanged(nameof(Pointminus));
+                    _usedPoint = value;
+                    OnPropertyChanged(nameof(UsedPoint));
                 }
             }
         }
@@ -195,13 +196,43 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(Total));
             }
         }
+
+        private int _totalAmount = 0;
+        public int TotalAmount
+        {
+            get
+            {
+                return _totalAmount;
+            }
+
+            set
+            {
+                _totalAmount = value;
+                OnPropertyChanged(nameof(TotalAmount));
+            }
+        }
+        public ICommand SelectionchangeInputMoney { get; set; }
         public ICommand SubmitPayCommand { get; set; }
         public PaymentViewModel() {
+            SelectionchangeInputMoney = new SelectionchangeInputMoney(this);
             /*SubmitPayCommand = new tự tạo class Command*/
+            if (SessionStatic.Customer != null)
+            {
+                CustomerName = SessionStatic.Customer.name;
+                CustomerPhoneNumber = SessionStatic.Customer.phone_number;
+                PlusPoint = SessionStatic.Customer.pluspoint;
+                UsedPoint = SessionStatic.Customer.usedpoint;
+            }
+            
             if (SessionStatic.GetOrdereds != null)
             {
                 OrderedFood = SessionStatic.GetOrdereds;
+                foreach(var order in OrderedFood)
+                {
+                    Total = Total + order.Amount;
+                }    
             }
+            TotalAmount = Total - Int32.Parse(UsedPoint);
         }
     }
 }

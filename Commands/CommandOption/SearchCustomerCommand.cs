@@ -13,7 +13,6 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
 {
     public class SearchCustomerCommand : CommandBase
     {
-        public event EventHandler CanExecuteChanged;
         OptionViewModel OptionOrderViewModel;
         CustomerDAO CustomerDAO = new CustomerDAO();
         public SearchCustomerCommand(OptionViewModel optionOrderViewModel)
@@ -41,6 +40,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
                 return;
             }
             OptionOrderViewModel.Point = customer.point;
+            OptionOrderViewModel.Name = customer.name;
             SessionStatic.Customer = customer;
         }
     }

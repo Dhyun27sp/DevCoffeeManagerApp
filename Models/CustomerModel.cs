@@ -23,6 +23,8 @@ namespace DevCoffeeManagerApp.Models
 
         [BsonElement("point"), BsonRepresentation(BsonType.Int32)]
         public int point { get; set; }
+        public int pluspoint { get; set; }
+        public string usedpoint { get; set; }
 
         public CustomerModel(string name, string phone_number, string dob, int point)
         {

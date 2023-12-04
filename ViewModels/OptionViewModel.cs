@@ -88,6 +88,20 @@ namespace DevCoffeeManagerApp.ViewModels
             }
         }
 
+        private string _name;
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+
         private int _point;
         public int Point
         {
@@ -131,17 +145,20 @@ namespace DevCoffeeManagerApp.ViewModels
         }
 
 
-        private int _usePointText = 0;
-        public int UsePointText
+        private string _usePoint = "0";
+        public string UsePoint
         {
             get
             {
-                return _usePointText;
+                return _usePoint;
             }
             set
             {
-                _usePointText = value;
-                OnPropertyChanged(nameof(UsePointText));
+                _usePoint = value;
+                OnPropertyChanged(nameof(UsePoint));
+                if(UsePoint.Replace(" ", "") == "") {
+                    UsePoint = "0";
+                }
             }
         }
 
@@ -155,8 +172,10 @@ namespace DevCoffeeManagerApp.ViewModels
         {
             if(SessionStatic.Customer != null)
             {
+                Name = SessionStatic.Customer.name;
                 PhoneNumber = SessionStatic.Customer.phone_number;
                 Point = SessionStatic.Customer.point;
+                UsePoint = SessionStatic.Customer.usedpoint;
             }
             if (SessionStatic.GetOrdereds != null)
             {

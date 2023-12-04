@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:DevCoffeeManagerApp.Views.UserControlStaff"
              mc:Ignorable="d"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -24,120 +25,124 @@
                     Background="White"
                     Grid.Column="0">
                 <ScrollViewer>
-                <Grid>
-                    
-                        <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="2*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <StackPanel>
-                            <Grid Margin="10 5 10 0">
-                                <TextBlock FontSize="20"
-                                           Foreground="#FF38220F"
-                                           FontWeight="Bold">Thông tin khách hàng</TextBlock>
-                            </Grid>
-                            <Grid Margin="10">
-                                <TextBox VerticalAlignment="Top"
-                                         IsEnabled="False"
-                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                         Text="{Binding Phonecustomer}"
-                                         FontSize="15">
-                                    <materialDesign:HintAssist.Hint>
-                                        <StackPanel Margin="-2,0,0,0"
-                                                    Orientation="Horizontal">
-                                            <materialDesign:PackIcon VerticalAlignment="Center" Width="25px"
-                                                                     Height="20px"
-                                                                     Kind="CardAccountPhoneOutline" />
-                                            <TextBlock FontSize="16px"
-                                                       Text="Số điện thoại" />
-                                        </StackPanel>
-                                    </materialDesign:HintAssist.Hint>
-                                </TextBox>
-                            </Grid>
-                            <Grid Margin="10">
-                                <TextBox VerticalAlignment="Top"
-                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                         Text="{Binding Customername}"
-                                             IsEnabled="False"
-                                             FontSize="15">
-                                    <materialDesign:HintAssist.Hint>
-                                        <StackPanel Margin="-2,0,0,0"
-                                                    Orientation="Horizontal">
-                                            <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                     Width="25px"
-                                                                     Height="20px"
-                                                                     Kind="FolderInformationOutline" />
-                                            <TextBlock FontSize="16px"
-                                                       Text="Họ và tên" />
-                                        </StackPanel>
-                                    </materialDesign:HintAssist.Hint>
-                                </TextBox>
-                            </Grid>
-                            <Grid Margin="10">
-                                <TextBox VerticalAlignment="Top"
-                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                             Text="{Binding Pointplus}"
-                                             IsEnabled="False"
-                                             FontSize="15">
-                                    <materialDesign:HintAssist.Hint>
-                                        <StackPanel Margin="-2,0,0,0"
-                                                    Orientation="Horizontal">
-                                            <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                     Width="25px"
-                                                                     Height="20px"
-                                                                     Kind="CardPlusOutline" />
-                                            <TextBlock FontSize="16px"
-                                                       Text="Điểm cộng" />
-                                        </StackPanel>
-                                    </materialDesign:HintAssist.Hint>
-                                </TextBox>
-                            </Grid>
-                            <Grid Margin="10">
-                                <TextBox VerticalAlignment="Top"
-                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                             Text="{Binding Pointminus}"
-                                             IsEnabled="False"
-                                             FontSize="15">
-                                    <materialDesign:HintAssist.Hint>
-                                        <StackPanel Margin="-2,0,0,0"
-                                                    Orientation="Horizontal">
-                                            <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                     Width="25px"
-                                                                     Height="20px"
-                                                                     Kind="CardMinusOutline" />
-                                            <TextBlock FontSize="16px"
-                                                       Text="Điểm trừ" />
-                                        </StackPanel>
-                                    </materialDesign:HintAssist.Hint>
-                                </TextBox>
-                            </Grid>
-                        </StackPanel>
-                    </Grid>
-                    <Grid Grid.Row="1">
-                        <StackPanel>
+                    <Grid>
 
-                            <Grid Margin="10 5 10 0">
-                                <StackPanel>
-                                    <TextBlock FontSize="20" Foreground="#FF38220F" FontWeight="Bold">Thông tin bổ xung</TextBlock>
-                                    <TextBlock FontSize="15"
-                                               FontStyle="Oblique" FontWeight="DemiBold">Ghi chú đơn hàng (tùy chọn)</TextBlock>
-                                </StackPanel>
-                            </Grid>
-                            <StackPanel Margin="10 5 10 5">
-                                <TextBox Height="100"
-                                         VerticalAlignment="Top"
-                                         AcceptsReturn="True"
-                                             Text="{Binding Additionalinfor,UpdateSourceTrigger=PropertyChanged}"
-                                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                         TextWrapping="Wrap"
-                                         VerticalScrollBarVisibility="Auto" />
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="2*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <StackPanel>
+                                <Grid Margin="10 5 10 0">
+                                    <TextBlock FontSize="20"
+                                               Foreground="#FF38220F"
+                                               FontWeight="Bold">Thông tin khách hàng</TextBlock>
+                                </Grid>
+                                <Grid Margin="10">
+                                    <TextBox VerticalAlignment="Top"
+                                             IsEnabled="False"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             Text="{Binding CustomerPhoneNumber}"
+                                             FontSize="15">
+                                        <materialDesign:HintAssist.Hint>
+                                            <StackPanel Margin="-2,0,0,0"
+                                                        Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                         Width="25px"
+                                                                         Height="20px"
+                                                                         Kind="CardAccountPhoneOutline" />
+                                                <TextBlock FontSize="16px"
+                                                           Text="Số điện thoại" />
+                                            </StackPanel>
+                                        </materialDesign:HintAssist.Hint>
+                                    </TextBox>
+                                </Grid>
+                                <Grid Margin="10">
+                                    <TextBox VerticalAlignment="Top"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             Text="{Binding CustomerName}"
+                                             IsEnabled="False"
+                                             FontSize="15">
+                                        <materialDesign:HintAssist.Hint>
+                                            <StackPanel Margin="-2,0,0,0"
+                                                        Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                         Width="25px"
+                                                                         Height="20px"
+                                                                         Kind="FolderInformationOutline" />
+                                                <TextBlock FontSize="16px"
+                                                           Text="Họ và tên" />
+                                            </StackPanel>
+                                        </materialDesign:HintAssist.Hint>
+                                    </TextBox>
+                                </Grid>
+                                <Grid Margin="10">
+                                    <TextBox VerticalAlignment="Top"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             Text="{Binding PlusPoint}"
+                                             IsEnabled="False"
+                                             FontSize="15">
+                                        <materialDesign:HintAssist.Hint>
+                                            <StackPanel Margin="-2,0,0,0"
+                                                        Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                         Width="25px"
+                                                                         Height="20px"
+                                                                         Kind="CardPlusOutline" />
+                                                <TextBlock FontSize="16px"
+                                                           Text="Điểm cộng" />
+                                            </StackPanel>
+                                        </materialDesign:HintAssist.Hint>
+                                    </TextBox>
+                                </Grid>
+                                <Grid Margin="10">
+                                    <TextBox VerticalAlignment="Top"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             Text="{Binding UsedPoint}"
+                                             IsEnabled="False"
+                                             FontSize="15">
+                                        <materialDesign:HintAssist.Hint>
+                                            <StackPanel Margin="-2,0,0,0"
+                                                        Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                         Width="25px"
+                                                                         Height="20px"
+                                                                         Kind="CardMinusOutline" />
+                                                <TextBlock FontSize="16px"
+                                                           Text="Điểm dùng" />
+                                            </StackPanel>
+                                        </materialDesign:HintAssist.Hint>
+                                    </TextBox>
+                                </Grid>
                             </StackPanel>
-                        </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <StackPanel>
+
+                                <Grid Margin="10 5 10 0">
+                                    <StackPanel>
+                                        <TextBlock FontSize="20"
+                                                   Foreground="#FF38220F"
+                                                   FontWeight="Bold">Thông tin bổ sung</TextBlock>
+                                        <TextBlock FontSize="15"
+                                                   FontStyle="Oblique"
+                                                   FontWeight="DemiBold">Ghi chú đơn hàng (tùy chọn)</TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                                <StackPanel Margin="10 5 10 5">
+                                    <TextBox Height="100"
+                                             VerticalAlignment="Top"
+                                             AcceptsReturn="True"
+                                             Text="{Binding Additionalinfor,UpdateSourceTrigger=PropertyChanged}"
+                                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                             TextWrapping="Wrap"
+                                             VerticalScrollBarVisibility="Auto" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+
                     </Grid>
-                    
-                </Grid>
-                    </ScrollViewer>
+                </ScrollViewer>
             </Border>
             <Border BorderBrush="#5f5555"
                     BorderThickness="0.5"
@@ -147,7 +152,7 @@
                     Margin="10 0 0 0">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="4*"></RowDefinition>
                         <RowDefinition Height="5*"></RowDefinition>
                         <RowDefinition Height="auto"></RowDefinition>
                     </Grid.RowDefinitions>
@@ -161,128 +166,149 @@
                                                FontWeight="Bold">Đơn hàng của bạn</TextBlock>
                                 </Grid>
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <ListView ItemsSource="{Binding CombineList}">
-                                <ListView.View>
-                                    <GridView>
-                                        <GridView.ColumnHeaderContainerStyle>
-                                            <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                <Setter Property="FontSize"
-                                                        Value="15" />
-                                                <Setter Property="FontFamily"
-                                                        Value="Nunito" />
-                                                <Setter Property="Margin"
-                                                        Value="0" />
-                                                <Setter Property="Padding"
-                                                        Value="10" />
-                                                <Setter Property="Foreground"
-                                                        Value="Black" />
-                                                <Setter Property="HorizontalContentAlignment"
-                                                        Value="Left" />
-                                            </Style>
-                                        </GridView.ColumnHeaderContainerStyle>
-                                        <GridViewColumn Width="50">
-                                            <GridViewColumnHeader FontFamily="Nunito"
-                                                                  FontWeight="DemiBold"
-                                                                  Background="Transparent"
-                                                                  Padding="0"
-                                                                  Margin="10 0 0 0">
-                                                STT
-                                            </GridViewColumnHeader>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Item2}"
-                                                               FontSize="13" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                        <GridViewColumn Width="200">
-                                            <GridViewColumnHeader FontFamily="Nunito"
-                                                                  FontWeight="DemiBold"
-                                                                  Background="Transparent">
-                                                Tên Món
-                                            </GridViewColumnHeader>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Item1.dish_name}"
-                                                               FontSize="13" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                        <GridViewColumn Width="130">
-                                            <GridViewColumnHeader FontFamily="Nunito"
-                                                                  FontWeight="DemiBold"
-                                                                  Background="Transparent">
-                                                Số Lương
-                                            </GridViewColumnHeader>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Item1.Quantity}"
-                                                               FontSize="13" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                        <GridViewColumn Width="120">
-                                            <GridViewColumnHeader FontFamily="Nunito"
-                                                                  FontWeight="DemiBold"
-                                                                  Background="Transparent">
-                                                Thành Tiền
-                                            </GridViewColumnHeader>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Item1.Amount, UpdateSourceTrigger=PropertyChanged}"
-                                                               FontSize="13" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                        
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
-                        </ScrollViewer>
-                            <Grid Margin="0 10 0 0">
-                                <TextBlock  Foreground="Black"
-                                            FontSize="15"
-                                            FontWeight="Black"
-                                            FontFamily="Nunito"
-                                            Margin="10 0 0 0"
-                                            HorizontalAlignment="Left"
-                                            Text="Tổng tiền"></TextBlock>
-                                <TextBlock  Foreground="Black"
-                                            FontSize="15"
-                                            FontWeight="Black"
-                                            FontFamily="Nunito"
-                                            Margin="30 0 20 0"
+                                    <ListView ItemsSource="{Binding CombineList}">
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridView.ColumnHeaderContainerStyle>
+                                                    <Style TargetType="{x:Type GridViewColumnHeader}">
+                                                        <Setter Property="FontSize"
+                                                                Value="15" />
+                                                        <Setter Property="FontFamily"
+                                                                Value="Nunito" />
+                                                        <Setter Property="Margin"
+                                                                Value="0" />
+                                                        <Setter Property="Padding"
+                                                                Value="10" />
+                                                        <Setter Property="Foreground"
+                                                                Value="Black" />
+                                                        <Setter Property="HorizontalContentAlignment"
+                                                                Value="Left" />
+                                                    </Style>
+                                                </GridView.ColumnHeaderContainerStyle>
+                                                <GridViewColumn Width="70">
+                                                    <GridViewColumnHeader FontFamily="Nunito"
+                                                                          FontWeight="DemiBold"
+                                                                          Background="Transparent"
+                                                                          Padding="0"
+                                                                          Margin="10 0 0 0">
+                                                        STT
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding Item2}"
+                                                                       FontSize="13" />
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Width="300">
+                                                    <GridViewColumnHeader FontFamily="Nunito"
+                                                                          FontWeight="DemiBold"
+                                                                          Background="Transparent">
+                                                        Tên Món
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding Item1.dish_name}"
+                                                                       FontSize="13" />
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Width="180">
+                                                    <GridViewColumnHeader FontFamily="Nunito"
+                                                                          FontWeight="DemiBold"
+                                                                          Background="Transparent">
+                                                        Số Lượng
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding Item1.Quantity}"
+                                                                       FontSize="13" />
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Width="165">
+                                                    <GridViewColumnHeader FontFamily="Nunito"
+                                                                          FontWeight="DemiBold"
+                                                                          Background="Transparent">
+                                                        Thành Tiền
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding Item1.Amount, UpdateSourceTrigger=PropertyChanged}"
+                                                                       FontSize="13" />
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                </ScrollViewer>
+                                <Grid Margin="0 10 0 0">
+                                    <TextBlock  Foreground="Black"
+                                                FontSize="15"
+                                                FontWeight="Bold"
+                                                FontFamily="Nunito"
+                                                Margin="10 0 0 0"
+                                                HorizontalAlignment="Left"
+                                                Text="Tổng tiền"></TextBlock>
+                                    <TextBlock  Foreground="Black"
+                                                FontSize="15"
+                                                FontWeight="Bold"
+                                                FontFamily="Nunito"
+                                                Margin="30 0 20 0"
                                                 HorizontalAlignment="Right"
                                                 Text="{Binding Total}"></TextBlock>
-                            </Grid>
-                        </StackPanel>
-                       </ScrollViewer>
+                                </Grid>
+                                <Grid Margin="0 10 0 0">
+                                    <TextBlock  Foreground="Black"
+                                                FontSize="15"
+                                                FontWeight="Black"
+                                                FontFamily="Nunito"
+                                                Margin="10 0 0 0"
+                                                HorizontalAlignment="Left"
+                                                Text="Thành tiền"></TextBlock>
+                                    <TextBlock  Foreground="Black"
+                                                FontSize="15"
+                                                FontWeight="Black"
+                                                FontFamily="Nunito"
+                                                Margin="30 0 20 0"
+                                                HorizontalAlignment="Right"
+                                                Text="{Binding TotalAmount}"></TextBlock>
+                                </Grid>
+                            </StackPanel>
+                        </ScrollViewer>
                     </Grid>
                     <Grid Grid.Row="1">
                         <ScrollViewer>
                             <StackPanel>
                                 <Grid Margin="10">
-                                <TextBox VerticalAlignment="Top"
-                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                         Text="{Binding InputMoney, UpdateSourceTrigger=PropertyChanged}"
-                                         FontSize="15">
-                                    <materialDesign:HintAssist.Hint>
-                                        <StackPanel Margin="-2,0,0,0"
-                                                    Orientation="Horizontal">
-                                            <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                     Width="25px"
-                                                                     Height="20px"
+                                    <TextBox VerticalAlignment="Top"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             Text="{Binding InputMoney, UpdateSourceTrigger=PropertyChanged}"
+                                             FontSize="15">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding SelectionchangeInputMoney}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <materialDesign:HintAssist.Hint>
+                                            <StackPanel Margin="-2,0,0,0"
+                                                        Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                         Width="25px"
+                                                                         Height="20px"
                                                                          Kind="CurrencyUsdOff" />
-                                            <TextBlock FontSize="16px"
-                                                       Text="Tiền nhập" />
-                                        </StackPanel>
-                                    </materialDesign:HintAssist.Hint>
-                                </TextBox>
-                            </Grid>
+                                                <TextBlock FontSize="16px"
+                                                           Text="Tiền khách đưa" />
+                                            </StackPanel>
+                                        </materialDesign:HintAssist.Hint>
+                                    </TextBox>
+                                </Grid>
                                 <Grid Margin="10">
                                     <TextBox VerticalAlignment="Top"
                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                             Text="{Binding KeepTheChange, UpdateSourceTrigger=PropertyChanged}"
+                                             Text="{Binding Change, UpdateSourceTrigger=PropertyChanged}"
                                              FontSize="15">
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Margin="-2,0,0,0"
@@ -292,7 +318,7 @@
                                                                          Height="20px"
                                                                          Kind="CurrencyUsd" />
                                                 <TextBlock FontSize="16px"
-                                                           Text="Tiền còn lại" />
+                                                           Text="Tiền thối" />
                                             </StackPanel>
                                         </materialDesign:HintAssist.Hint>
                                     </TextBox>
@@ -318,8 +344,10 @@
                                                        Text="{Binding Datecurrent}" />
                                         </Grid>
                                         <Grid>
-                                            <TextBlock HorizontalAlignment="Left" Text="Số điện thoại nhân viên" />
-                                            <TextBlock HorizontalAlignment="Right" Text="{Binding Phonestaff}" />
+                                            <TextBlock HorizontalAlignment="Left"
+                                                       Text="Số điện thoại nhân viên" />
+                                            <TextBlock HorizontalAlignment="Right"
+                                                       Text="{Binding Phonestaff}" />
                                         </Grid>
                                     </StackPanel>
                                 </Grid>

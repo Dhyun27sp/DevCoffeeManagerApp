@@ -10,13 +10,9 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="450"
              d:DesignWidth="800">
-    
+
     <Grid Margin="0 10 0 0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="7*"></ColumnDefinition>
-            <ColumnDefinition Width="3*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="7*"></RowDefinition>
                 <RowDefinition Height="3*"></RowDefinition>
@@ -73,7 +69,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="200">
+                                            <GridViewColumn Width="350">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
@@ -138,7 +134,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="120">
+                                            <GridViewColumn Width="150">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
@@ -196,7 +192,7 @@
                                        FontWeight="DemiBold"
                                        VerticalAlignment="Center"
                                        Margin="15,0,0,0"
-                                       Grid.Column="1"/>
+                                       Grid.Column="1" />
                         </Grid>
                     </Grid>
                 </Border>
@@ -227,7 +223,7 @@
                                                         Value="Left" />
                                             </Style>
                                         </GridView.ColumnHeaderContainerStyle>
-                                        <GridViewColumn Width="70">
+                                        <GridViewColumn Width="100">
                                             <GridViewColumnHeader FontFamily="Nunito"
                                                                   FontWeight="DemiBold"
                                                                   Background="Transparent"
@@ -247,7 +243,7 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="80">
+                                        <GridViewColumn Width="110">
                                             <GridViewColumnHeader FontFamily="Nunito"
                                                                   FontWeight="DemiBold"
                                                                   Background="Transparent">
@@ -260,7 +256,7 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="85">
+                                        <GridViewColumn Width="115">
                                             <GridViewColumnHeader FontFamily="Nunito"
                                                                   FontWeight="DemiBold"
                                                                   Background="Transparent"
@@ -279,7 +275,6 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-
                                     </GridView>
                                 </ListView.View>
                             </ListView>
@@ -295,165 +290,207 @@
                     Margin="0 0 0 10"
                     Background="White">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0"
-                          Margin="15 0 0 0"
-                          VerticalAlignment="Center">
-                        <WrapPanel>
-                            <TextBlock FontSize="13"
-                                       FontFamily="Nunito"
-                                       VerticalAlignment="Center">
-                            SĐT Khách Hàng:
-                            </TextBlock>
-                            <StackPanel Width="130"
-                                        Height="auto"
-                                        Margin="10 0 0 0">
-                                <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
-                                         AcceptsReturn="True"
-                                         materialDesign:HintAssist.Hint="Nhập sđt khách hàng"
-                                         IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
-                                         Style="{StaticResource MaterialDesignFilledTextBox}"
-                                         TextWrapping="Wrap"
-                                         Width="auto"
-                                         Height="auto"
-                                         Background="#f0f0f0"
-                                         Padding="5 0 0 0">
-                                </TextBox>
-                            </StackPanel>
-                            <Button Height="30"
-                                    Width="60"
-                                    materialDesign:ButtonAssist.CornerRadius="5"
-                                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                    Style="{StaticResource MaterialDesignRaisedButton}"
-                                    ToolTip="MaterialDesignRaisedButton with Round Corners"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Left"
-                                    Margin="10 0 0 0"
-                                    Command="{Binding SearchCustomerCommand}">
-                                <Button.BorderBrush>
-                                    <ImageBrush />
-                                </Button.BorderBrush>
-                                <TextBlock FontFamily="Nunito"
-                                           FontSize="12"
-                                           Foreground="White"
-                                           FontWeight="Normal"
-                                           Text="Tra"
-                                           VerticalAlignment="Center" />
-                                <Button.Background>
-                                    <SolidColorBrush Color="#5F5555" />
-                                </Button.Background>
-                            </Button>
-
-                        </WrapPanel>
-                    </Grid>
-                    <Grid Grid.Row="1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock VerticalAlignment="Center"
-                                       FontSize="13"
-                                       FontFamily="Nunito"
-                                       Margin="15,0,0,0"
-                                       Grid.Column="0">
-                                Điểm Tổng:
-                                <TextBlock Text="{Binding Point, UpdateSourceTrigger=PropertyChanged}"
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0"
+                              Margin="15 0 0 0"
+                              VerticalAlignment="Center">
+                            <WrapPanel>
+                                <TextBlock FontSize="13"
+                                           FontFamily="Nunito"
+                                           VerticalAlignment="Center">
+                                    SĐT khách hàng
+                                </TextBlock>
+                                <StackPanel Width="130"
+                                            Height="auto"
+                                            Margin="10 0 0 0">
+                                    <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
+                                             AcceptsReturn="True"
+                                             materialDesign:HintAssist.Hint="Nhập sđt khách hàng"
+                                             IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                                             TextWrapping="Wrap"
+                                             Width="auto"
+                                             Height="auto"
+                                             Background="#f0f0f0"
+                                             Padding="5 0 0 0">
+                                    </TextBox>
+                                </StackPanel>
+                                <Button Height="30"
+                                        Width="60"
+                                        materialDesign:ButtonAssist.CornerRadius="5"
+                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        ToolTip="MaterialDesignRaisedButton with Round Corners"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Left"
+                                        Margin="10 0 0 0"
+                                        Command="{Binding SearchCustomerCommand}">
+                                    <Button.BorderBrush>
+                                        <ImageBrush />
+                                    </Button.BorderBrush>
+                                    <TextBlock FontFamily="Nunito"
+                                               FontSize="12"
+                                               Foreground="White"
+                                               FontWeight="Normal"
+                                               Text="Tra"
+                                               VerticalAlignment="Center" />
+                                    <Button.Background>
+                                        <SolidColorBrush Color="#5F5555" />
+                                    </Button.Background>
+                                </Button>
+                            </WrapPanel>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock VerticalAlignment="Center"
                                            FontSize="13"
                                            FontFamily="Nunito"
-                                           Margin="10 0 0 0" />
-                            </TextBlock>
-                            <TextBlock VerticalAlignment="Center"
-                                       FontSize="13"
-                                       FontFamily="Nunito"
-                                       Margin="15,0,0,0"
-                                       Grid.Column="1">
-                                Điểm Cộng:
-                                <TextBlock Text="{Binding PlusPoint}"
-                                            FontSize="13"
-                                            FontFamily="Nunito"
-                                            Margin="10 0 0 0" />
-                            </TextBlock>
+                                           Margin="15,0,0,0"
+                                           Grid.Column="0">
+                                    Tên khách hàng:
+                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                                               FontSize="13"
+                                               FontFamily="Nunito"
+                                               Margin="10 0 0 0" />
+                                </TextBlock>
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="13"
+                                           FontFamily="Nunito"
+                                           Margin="15,0,0,0"
+                                           Grid.Column="1">
+                                    Điểm tổng:
+                                    <TextBlock Text="{Binding Point, UpdateSourceTrigger=PropertyChanged}"
+                                               FontSize="13"
+                                               FontFamily="Nunito"
+                                               Margin="10 0 0 0" />
+                                </TextBlock>
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="13"
+                                           FontFamily="Nunito"
+                                           Margin="15,0,0,0"
+                                           Grid.Column="2">
+                                    Điểm cộng:
+                                    <TextBlock Text="{Binding PlusPoint}"
+                                               FontSize="13"
+                                               FontFamily="Nunito"
+                                               Margin="10 0 0 0" />
+                                </TextBlock>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="2"
+                              Margin="15 0 0 5"
+                              VerticalAlignment="Center">
+                            <WrapPanel DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:OptionPage}}}">
+                                <TextBlock FontSize="13"
+                                           FontFamily="Nunito"
+                                           VerticalAlignment="Center">
+                                    Điểm sử dụng:
+                                </TextBlock>
+                                <Button x:Name="myButton1"
+                                        Height="30"
+                                        Width="100"
+                                        materialDesign:ButtonAssist.CornerRadius="5"
+                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        ToolTip="MaterialDesignRaisedButton with Round Corners"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Left"
+                                        Margin="10 0 0 0"
+                                        Content="10000"
+                                        Command="{Binding DataContext.UsePointCommand}"
+                                        CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"
+                                        FontSize="12">
+                                    <Button.BorderBrush>
+                                        <ImageBrush />
+                                    </Button.BorderBrush>
+                                    <Button.Background>
+                                        <SolidColorBrush Color="SlateGray" />
+                                    </Button.Background>
+                                </Button>
+                                <Button x:Name="myButton2"
+                                        Height="30"
+                                        Width="100"
+                                        materialDesign:ButtonAssist.CornerRadius="5"
+                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        ToolTip="MaterialDesignRaisedButton with Round Corners"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Left"
+                                        Margin="10 0 0 0"
+                                        Content="20000"
+                                        Command="{Binding DataContext.UsePointCommand}"
+                                        CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"
+                                        FontSize="12">
+                                    <Button.BorderBrush>
+                                        <ImageBrush />
+                                    </Button.BorderBrush>
+                                    <Button.Background>
+                                        <SolidColorBrush Color="SlateGray" />
+                                    </Button.Background>
+                                </Button>
+                                <StackPanel HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Width="100"
+                                            Height="auto"
+                                            Margin="10 0 0 0">
+                                    <TextBox AcceptsReturn="True"
+                                             materialDesign:HintAssist.Hint="Điểm dùng"
+                                             IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                                             TextWrapping="Wrap"
+                                             Width="auto"
+                                             Height="auto"
+                                             Background="#f0f0f0"
+                                             Padding="5 0 0 0"
+                                             Text="{Binding DataContext.UsePoint}">
+                                    </TextBox>
+                                </StackPanel>
+                            </WrapPanel>
                         </Grid>
                     </Grid>
-                    <Grid Grid.Row="2"
-                          Margin="15 0 0 5"
-                          VerticalAlignment="Center">
-                        <WrapPanel DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:OptionPage}}}">
-                            <TextBlock FontSize="13"
-                                       FontFamily="Nunito"
-                                       VerticalAlignment="Center">
-                            Điểm Sử Dụng:
-                            </TextBlock>
-                            <Button x:Name="myButton1"
-                                    Height="30"
-                                    Width="100"
-                                    materialDesign:ButtonAssist.CornerRadius="5"
-                                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                    Style="{StaticResource MaterialDesignRaisedButton}"
-                                    ToolTip="MaterialDesignRaisedButton with Round Corners"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Left"
-                                    Margin="10 0 0 0"
-                                    Content="10000"
-                                    Command="{Binding DataContext.UsePointCommand}"
-                                    CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"
-                                    FontSize="12">
-                                <Button.BorderBrush>
-                                    <ImageBrush />
-                                </Button.BorderBrush>
-                                <Button.Background>
-                                    <SolidColorBrush Color="SlateGray" />
-                                </Button.Background>
-                            </Button>
-                            <Button x:Name="myButton2"
-                                    Height="30"
-                                    Width="100"
-                                    materialDesign:ButtonAssist.CornerRadius="5"
-                                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                    Style="{StaticResource MaterialDesignRaisedButton}"
-                                    ToolTip="MaterialDesignRaisedButton with Round Corners"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Left"
-                                    Margin="10 0 0 0"
-                                    Content="20000"
-                                    Command="{Binding DataContext.UsePointCommand}"
-                                    CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"
-                                    FontSize="12">
-                                <Button.BorderBrush>
-                                    <ImageBrush />
-                                </Button.BorderBrush>
-                                <Button.Background>
-                                    <SolidColorBrush Color="SlateGray" />
-                                </Button.Background>
-                            </Button>
-                            <StackPanel HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Width="100"
-                                        Height="auto"
-                                        Margin="10 0 0 0">
-                                <TextBox AcceptsReturn="True"
-                                         materialDesign:HintAssist.Hint="Điểm dùng"
-                                         IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
-                                         Style="{StaticResource MaterialDesignFilledTextBox}"
-                                         TextWrapping="Wrap"
-                                         Width="auto"
-                                         Height="auto"
-                                         Background="#f0f0f0"
-                                         Padding="5 0 0 0"
-                                         Text="{Binding DataContext.UsePointText}">
-                                </TextBox>
-                            </StackPanel>
-                        </WrapPanel>
+                    <Grid Grid.Column="1">
+                        <Border Background="#5f5555"
+                                Width="0.5"
+                                Margin="5 10 0 10"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Left"/>
+
+                        <Button materialDesign:ButtonAssist.CornerRadius="10"
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                Margin="15 0 10 0"
+                                Command="{Binding SubmitOptionCommand, UpdateSourceTrigger=PropertyChanged}">
+                            <Button.BorderBrush>
+                                <ImageBrush />
+                            </Button.BorderBrush>
+                            <Button.Background>
+                                <SolidColorBrush Color="#FF38220F" />
+                            </Button.Background>
+                            <TextBlock FontFamily="Nunito"
+                                       Text="Xác nhận"
+                                       Foreground="White" />
+                        </Button>
                     </Grid>
                 </Grid>
             </Border>
         </Grid>
-        <Border BorderBrush="#5f5555"
+        <!--<Border BorderBrush="#5f5555"
                 BorderThickness="0.5"
                 CornerRadius="10"
                 Grid.Column="1"
@@ -492,6 +529,6 @@
                     </Button>
                 </Grid>
             </Grid>
-        </Border>
+        </Border>-->
     </Grid>
 </UserControl>

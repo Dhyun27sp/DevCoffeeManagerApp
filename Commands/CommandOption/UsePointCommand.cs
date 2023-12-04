@@ -11,7 +11,6 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
 {
     public class UsePointCommand : CommandBase
     {
-        public event EventHandler CanExecuteChanged;
         OptionViewModel OptionOrderViewModel;
         public UsePointCommand(OptionViewModel optionOrderViewModel)
         {
@@ -38,7 +37,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
                     MessageBox.Show("Điểm tích luỹ của khách hàng không đủ, vui lòng chọn hoặc nhập mức thấp hơn");
                     return;
                 }
-                OptionOrderViewModel.UsePointText = point;
+                OptionOrderViewModel.UsePoint = point.ToString();
 
             }    
         }
