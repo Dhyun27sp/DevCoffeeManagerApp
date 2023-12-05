@@ -143,7 +143,7 @@
                              VerticalAlignment="Top"
                              materialDesign:HintAssist.Hint="Nhập tên"
                              AcceptsReturn="True"
-                             Text="{Binding Name}"
+                             Text="{Binding CustomerName}"
                              IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
                              Style="{StaticResource MaterialDesignFilledTextBox}"
                              TextWrapping="Wrap"
@@ -155,7 +155,7 @@
                              VerticalAlignment="Top"
                              materialDesign:HintAssist.Hint="Nhập số điện thoại"
                              AcceptsReturn="True"
-                             Text="{Binding Phone}"
+                             Text="{Binding CustomerPhoneNumber}"
                              IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
                              Style="{StaticResource MaterialDesignFilledTextBox}"
                              TextWrapping="Wrap"
@@ -166,7 +166,7 @@
                                 MaxWidth="400"
                                 materialDesign:HintAssist.Hint="Nhập ngày sinh"
                                 Style="{StaticResource MaterialDesignFilledDatePicker}"
-                                SelectedDate="{Binding Birthday}"
+                                SelectedDate="{Binding CustomerBirthday}"
                                 Margin="10 0 10 20"
                                 Background="White"/>
 
@@ -248,8 +248,24 @@
                                          Opacity="0" />
                     </materialDesign:ColorZone.Background>
                     <DockPanel>
-                        <ToggleButton VerticalAlignment="Center"
-                                      DockPanel.Dock="Right" />
+                        <Grid DockPanel.Dock="Right">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image Source="/Img/user.png"
+                                       Width="35"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <TextBlock Text="{Binding StaffName}"
+                                           FontFamily="Nunito"
+                                           FontSize="18"
+                                           Margin="10 0 10 0"
+                                           Foreground="White"
+                                           VerticalAlignment="Center"/>
+                            </Grid>
+                        </Grid>
                         <StackPanel materialDesign:RippleAssist.IsCentered="True"
                                     Orientation="Horizontal">
                             <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" />

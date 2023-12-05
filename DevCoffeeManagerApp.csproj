@@ -207,25 +207,21 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\CommandOption\SubmitOptionCommand.cs" />
-    <Compile Include="Commands\CommandOrder\FilterByTypeCommand.cs" />
-    <Compile Include="Commands\CommandOrder\FilterBySpecialCommand.cs" />
-    <Compile Include="Commands\CommandOrder\SearchDishCommand.cs" />
+    <Compile Include="Commands\CommandOrder\SearchCommand.cs" />
     <Compile Include="Commands\CommandOrder\OrderConfirmCommand.cs" />
     <Compile Include="Commands\CommandOrder\AddDishCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandLogin\CloseCommand.cs" />
     <Compile Include="Commands\CommandLogin\LoginCommand.cs" />
-    <Compile Include="Commands\CommandPayment\SelectionchangeInputMoney.cs" />
-    <Compile Include="Commands\CommandSell\PaymentCommand.cs" />
+    <Compile Include="Commands\CommandPayment\MoneyReceivedCommand.cs" />
+    <Compile Include="Commands\CommandPayment\SubmitPaymentCommand.cs" />
+    <Compile Include="Commands\CommandSell\NavigationCommand.cs" />
     <Compile Include="Commands\CommandStaff\ExitCommand.cs" />
     <Compile Include="Commands\CommandStaff\SellCommand.cs" />
     <Compile Include="Commands\CommandStaff\RegisterCommand.cs" />
     <Compile Include="Commands\CommandOrder\OperatorCommand.cs" />
     <Compile Include="Commands\CommandOption\SearchCustomerCommand.cs" />
     <Compile Include="Commands\CommandOption\UsePointCommand.cs" />
-    <Compile Include="Commands\CommandSell\OptionCommand.cs" />
-    <Compile Include="Commands\CommandSell\OrderCommand.cs" />
-    <Compile Include="Commands\CommandSell\TableCommand.cs" />
     <Compile Include="Commands\CommandTable\CancelallTableCommand.cs" />
     <Compile Include="Commands\CommandTable\CommandSubmitTable.cs" />
     <Compile Include="Component\BindablePasswordBox.xaml.cs">
@@ -397,6 +393,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\seat.png" />
+    <Resource Include="Img\user.png" />
     <Content Include="mongocrypt.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

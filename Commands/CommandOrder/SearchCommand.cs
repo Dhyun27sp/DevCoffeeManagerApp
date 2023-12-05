@@ -17,10 +17,10 @@ using System.Xml.Linq;
 
 namespace DevCoffeeManagerApp.Commands.CommandOrder
 {
-    public class FilterByTypeCommand : CommandBase
+    public class SearchCommand : CommandBase
     {
         private OrderViewModel orderFoodViewModel;
-        public FilterByTypeCommand(OrderViewModel orderFoodViewModel)
+        public SearchCommand(OrderViewModel orderFoodViewModel)
         {
             this.orderFoodViewModel = orderFoodViewModel;
         }
@@ -178,15 +178,15 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
 
         private void AddToResultList(ref List<DishModel> Dishs_Search, DishModel item, string Type_Special)
         {
-            if (Type_Special == "Discounted" && item.SaleDish)
+            if (Type_Special == "Discounted" && item.SaleDish.Value)
             {
                 Dishs_Search.Add(item);
             }
-            else if (Type_Special == "New Dish" && item.newDish)
+            else if (Type_Special == "New Dish" && item.newDish.Value)
             {
                 Dishs_Search.Add(item);
             }
-            else if (Type_Special == "Hot Dish" && item.HotDish)
+            else if (Type_Special == "Hot Dish" && item.HotDish.Value)
             {
                 Dishs_Search.Add(item);
             }

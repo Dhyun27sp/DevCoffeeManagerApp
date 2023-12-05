@@ -154,9 +154,9 @@ namespace DevCoffeeManagerApp.ViewModels
             DeleteCommand = new OperatorCommand(this, "Delete");
             Deleteall = new OperatorCommand(this, "DeleteAll");
             ReserveCommand = new AddDishCommand(this);
-            SelectionchangeTypeDish = new FilterByTypeCommand(this);
-            ChangeValueTexboxCommand = new SearchDishCommand(this);
-            SelectionchangeTypeSpecial = new FilterBySpecialCommand(this);
+            SelectionchangeTypeDish = new SearchCommand(this);
+            ChangeValueTexboxCommand = new SearchCommand(this);
+            SelectionchangeTypeSpecial = new SearchCommand(this);
             OrderFoodCommand = new OrderConfirmCommand(this, navigationStore);
             if (SessionStatic.GetOrdereds != null)
             {

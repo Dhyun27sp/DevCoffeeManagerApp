@@ -8,10 +8,10 @@ using System.Windows;
 
 namespace DevCoffeeManagerApp.Commands.CommandPayment
 {
-    public class SelectionchangeInputMoney : CommandBase
+    public class MoneyReceivedCommand : CommandBase
     {
         private PaymentViewModel PaymentOrderViewModel;
-        public SelectionchangeInputMoney(PaymentViewModel PaymentOrderViewModel) {
+        public MoneyReceivedCommand(PaymentViewModel PaymentOrderViewModel) {
             this.PaymentOrderViewModel = PaymentOrderViewModel;
         }
         public override bool CanExecute(object parameter)

@@ -30,26 +30,31 @@ namespace DevCoffeeManagerApp.Models
 
         [BsonElement("dateadd"), BsonRepresentation(BsonType.String), BsonIgnoreIfNull]
         public string date_add { get; set; }
+
+        [BsonIgnore]
         public byte[] imageconvert
         {
             get
             {
-                string resuildimg = image;
-                byte[] imageBytes = Convert.FromBase64String(resuildimg);
-                return imageBytes;
+                if(image != null) {
+                    string resuildimg = image;
+                    byte[] imageBytes = Convert.FromBase64String(resuildimg);
+                    return imageBytes;
+                }
+                return null;
             }
             set
             {
 
             }
         }
-
-        public bool newDish { get; set; }// use bool
-
-        public bool HotDish { get; set; }// use bool
-
-        public bool SaleDish { get; set; }//use bool
-
+        [BsonIgnore]
+        public bool? newDish { get; set; }// use bool
+        [BsonIgnore]
+        public bool? HotDish { get; set; }// use bool
+        [BsonIgnore]
+        public bool? SaleDish { get; set; }//use bool
+        [BsonIgnore]
         public string category { get; set; }
 
         public int? Saleprice { get; set; }
@@ -88,6 +93,21 @@ namespace DevCoffeeManagerApp.Models
             this._quantity = _quantity;
             this.Saleprice = Saleprice;
             this.price = price;
+        }
+
+        public DishModel(ObjectId _id,string dishName,List<IngredientModel> ingredients,int? dishPrice,string dishImage,
+        string dateAdd,string dishCategory,int? salePrice,int quantity,int amount)
+        {
+            this._id = _id;
+            this.dish_name = dishName;
+            this.ingredient = ingredients;
+            this.price = dishPrice;
+            this.image = dishImage;
+            this.date_add = dateAdd;
+            this.category = dishCategory;
+            this.Saleprice = salePrice;
+            this.Quantity = quantity;
+            this.Amount = amount;
         }
     }
 }

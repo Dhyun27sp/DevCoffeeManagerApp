@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using Xamarin.Forms;
+using DevCoffeeManagerApp.Views.UserControlStaff;
 
 namespace DevCoffeeManagerApp.ViewModels
 {
@@ -28,10 +29,10 @@ namespace DevCoffeeManagerApp.ViewModels
             _navigationStore = navigationStore;
             _navigationStore.CurrentViewModelChaged += OnCurrentViewModelChanged;
 
-            CommandTable = new TableCommand(navigationStore);
-            CommandOrder = new OrderCommand(navigationStore);
-            CommandOptionOrder = new OptionCommand(navigationStore);
-            CommandPayment = new PaymentCommand(navigationStore);
+            CommandTable = new NavigationCommand(navigationStore,"tablePage"); 
+            CommandOrder = new NavigationCommand(navigationStore, "orderPage");
+            CommandOptionOrder = new NavigationCommand(navigationStore, "optionPage");
+            CommandPayment = new NavigationCommand(navigationStore, "paymentPage");
         }
         private void OnCurrentViewModelChanged()
         {

@@ -211,11 +211,39 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(TotalAmount));
             }
         }
+        private string _currentDate;
+        public string CurrentDate
+        {
+            get
+            {
+                return _currentDate;
+            }
+
+            set
+            {
+                _currentDate = value;
+                OnPropertyChanged(nameof(CurrentDate));
+            }
+        }
+        private string _staffPhoneNumber;
+        public string StaffPhoneNumber
+        {
+            get
+            {
+                return _staffPhoneNumber;
+            }
+
+            set
+            {
+                _staffPhoneNumber = value;
+                OnPropertyChanged(nameof(StaffPhoneNumber));
+            }
+        }
         public ICommand SelectionchangeInputMoney { get; set; }
-        public ICommand SubmitPayCommand { get; set; }
+        public ICommand SubmitPaymentCommand { get; set; }
         public PaymentViewModel() {
-            SelectionchangeInputMoney = new SelectionchangeInputMoney(this);
-            /*SubmitPayCommand = new tự tạo class Command*/
+            SelectionchangeInputMoney = new MoneyReceivedCommand(this);
+            SubmitPaymentCommand = new SubmitPaymentCommand(this);
             if (SessionStatic.Customer != null)
             {
                 CustomerName = SessionStatic.Customer.name;
@@ -233,6 +261,8 @@ namespace DevCoffeeManagerApp.ViewModels
                 }    
             }
             TotalAmount = Total - Int32.Parse(UsedPoint);
+            CurrentDate = DateTime.Now.ToString();
+            StaffPhoneNumber = SessionStatic.GetPhoneNumber;
         }
     }
 }

@@ -32,9 +32,9 @@ namespace DevCoffeeManagerApp.Commands.CommandStaff
         {
             if (parameter is StackPanel form)
             {
-                string name = mainStaffViewModel.Name;
-                string phone = mainStaffViewModel.Phone;
-                string date = mainStaffViewModel.Birthday.GetValueOrDefault().ToString("dd/MM/yyyy");
+                string name = mainStaffViewModel.CustomerName;
+                string phone = mainStaffViewModel.CustomerPhoneNumber;
+                string date = mainStaffViewModel.CustomerBirthday.GetValueOrDefault().ToString("dd/MM/yyyy");
                 if (checkInput(name, phone, date) == false)
                 {
                     return;
@@ -42,9 +42,9 @@ namespace DevCoffeeManagerApp.Commands.CommandStaff
                 CustomerModel newCustomer = new CustomerModel(name, phone, date, 0);
                 customerDAO.CreateCustomer(newCustomer);
                 MessageBox.Show(name + phone + date);
-                mainStaffViewModel.Name = null;
-                mainStaffViewModel.Phone = null;
-                mainStaffViewModel.Birthday = null;
+                mainStaffViewModel.CustomerName = null;
+                mainStaffViewModel.CustomerPhoneNumber = null;
+                mainStaffViewModel.CustomerBirthday = null;
             }
         }
 

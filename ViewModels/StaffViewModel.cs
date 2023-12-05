@@ -8,6 +8,7 @@ using DevCoffeeManagerApp.Commands.CommandStaff;
 using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.DAOs;
 using System.Windows;
+using DevCoffeeManagerApp.StaticClass;
 
 namespace DevCoffeeManagerApp.ViewModels
 {
@@ -31,48 +32,64 @@ namespace DevCoffeeManagerApp.ViewModels
             }
         }
 
-        private string _name;
-        public string Name
+        private string _staffName;
+        public string StaffName
         {
             get
             {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-                OnPropertyChanged(nameof(Name));
-            }
-        }
-
-
-        private string _phone;
-        public string Phone
-        {
-            get
-            {
-                return _phone;
+                return _staffName;
             }
             set
             {
 
-                _phone = value;
-                OnPropertyChanged(nameof(Phone));
+                _staffName = value;
+                OnPropertyChanged(nameof(StaffName));
 
             }
         }
 
-        private DateTime? _birthday = null;
-        public DateTime? Birthday
+        private string _customerName;
+        public string CustomerName
         {
             get
             {
-                return _birthday;
+                return _customerName;
             }
             set
             {
-                _birthday = value;
-                OnPropertyChanged(nameof(Birthday));
+                _customerName = value;
+                OnPropertyChanged(nameof(CustomerName));
+            }
+        }
+
+
+        private string _customerPhoneNumber;
+        public string CustomerPhoneNumber
+        {
+            get
+            {
+                return _customerPhoneNumber;
+            }
+            set
+            {
+
+                _customerPhoneNumber = value;
+                OnPropertyChanged(nameof(CustomerPhoneNumber));
+
+            }
+        }
+
+        private DateTime? _customerBirthday = null;
+        public DateTime? CustomerBirthday
+        {
+            get
+            {
+                return _customerBirthday;
+            }
+            set
+            {
+                _customerBirthday = value;
+                OnPropertyChanged(nameof(CustomerBirthday));
 
             }
         }
@@ -85,6 +102,10 @@ namespace DevCoffeeManagerApp.ViewModels
             RegisterCommand = new RegisterCommand(this);
             FoodOrder = new SellCommand(this);
             Exit = new ExitCommand();
+            if(SessionStatic.GetStaffName != null)
+            {
+                StaffName = SessionStatic.GetStaffName;
+            }
         }
     }
 }

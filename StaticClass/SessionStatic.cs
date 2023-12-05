@@ -13,13 +13,15 @@ namespace DevCoffeeManagerApp.StaticClass
     static class SessionStatic
     {
         private static string _phone_number;
+        private static string _staff_name;
         private static string _task;
         private static int _password;
         private static ObservableCollection<TableModel> _tables;
         private static ObservableCollection<DishModel> _ordered;
         public static string GetPhoneNumber { get { return _phone_number; } }
         public static string SetPhoneNumber { set { _phone_number = value; } }
-
+        public static string GetStaffName { get { return _staff_name; } }
+        public static string SetStaffName { set { _staff_name = value; } }
         public static int GetPassWord { get { return _password; } }
         public static int SetPassWord { set { _password = value; } }
 

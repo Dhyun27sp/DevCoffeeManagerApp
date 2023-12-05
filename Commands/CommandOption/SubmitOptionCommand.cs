@@ -29,6 +29,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
 
         public override void Execute(object parameter)
         {
+            int total = optionViewModel.Total;
             int point = optionViewModel.Point;
             int plusPoint = optionViewModel.PlusPoint;
             string usePoint = optionViewModel.UsePoint.Replace(" ","");
@@ -37,21 +38,28 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
                 SessionStatic.Customer.pluspoint = plusPoint;
                 SessionStatic.Customer.usedpoint = usePoint;
             }
-            if (CheckValidPoint(usePoint, point))
+            if (CheckValidPoint(usePoint, point, total))
             {
                 MessageBox.Show("Xác nhận Order thành công");
                 _navigationStore.CurrentViewModel = new PaymentViewModel();
             }
         }
 
-        private bool CheckValidPoint(string used_point, int point)
+        private bool CheckValidPoint(string used_point, int point, int total)
         {
             if (int.TryParse(used_point, out _))
             {
                 // Chuỗi là số
                 if (int.Parse(used_point) <= point)
                 {
-                    return true;
+                    if(int.Parse(used_point) <= total)
+                    {
+                        return true;
+                    }
+                    else {
+                        MessageBox.Show("Điểm dùng lớn hơn Tổng tiền");
+                        return false; 
+                    }
                 }
                 else
                 {

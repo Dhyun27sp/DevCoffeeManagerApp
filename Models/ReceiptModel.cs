@@ -12,9 +12,6 @@ namespace DevCoffeeManagerApp.Models
     [Serializable, BsonIgnoreExtraElements]
     public class ReceiptModel
     {
-        public ReceiptModel()
-        {
-        }
 
         [BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
         public ObjectId _id { get; set; }
@@ -28,8 +25,8 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("tables")]
         public List<TableModel> tables { get; set; }
 
-        [BsonElement("staff_id"), BsonRepresentation(BsonType.ObjectId)]
-        public ObjectId staff_id { get; set; }
+        [BsonElement("staff_phonenumber"), BsonRepresentation(BsonType.String)]
+        public string staff_phone { get; set; }
 
         [BsonElement("Dishes")]
         public List<DishModel> Dishes { get; set; }
@@ -40,6 +37,15 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("payments"), BsonRepresentation(BsonType.String)]
         public string payments { get; set; }
 
-
+        public ReceiptModel(string time, CustomerModel customer, List<TableModel> tables, string staff_phone, List<DishModel> dishes, List<DiscountModel> discounts, string payments)
+        {
+            this.time = time;
+            this.phone_number = customer;
+            this.tables = tables;
+            this.staff_phone = staff_phone;
+            this.Dishes = dishes;
+            this.discounts = discounts;
+            this.payments = payments;
+        }
     }
 }

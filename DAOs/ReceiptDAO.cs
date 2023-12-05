@@ -47,5 +47,10 @@ namespace DevCoffeeManagerApp.DAOs
         //    var update = Builders<ReceiptModel>.Update.Push("tables", table); 
         //    collection.UpdateOne(shiftFilter, update);
         //}
+
+        public void AddReceipt(ReceiptModel receipt)
+        {
+            collection.InsertOne(receipt);
+        }
     }
 }
