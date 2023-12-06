@@ -29,20 +29,24 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
 
         public override void Execute(object parameter)
         {
-            int total = optionViewModel.Total;
-            int point = optionViewModel.Point;
-            int plusPoint = optionViewModel.PlusPoint;
-            string usePoint = optionViewModel.UsePoint.Replace(" ","");
-            if (SessionStatic.Customer != null)
+            if (SessionStatic.GetOrdereds != null)
             {
-                SessionStatic.Customer.pluspoint = plusPoint;
-                SessionStatic.Customer.usedpoint = usePoint;
+                int total = optionViewModel.Total;
+                int point = optionViewModel.Point;
+                int plusPoint = optionViewModel.PlusPoint;
+                string usePoint = optionViewModel.UsePoint.Replace(" ", "");
+                if (SessionStatic.Customer != null)
+                {
+                    SessionStatic.Customer.pluspoint = plusPoint;
+                    SessionStatic.Customer.usedpoint = usePoint;
+                }
+                if (CheckValidPoint(usePoint, point, total))
+                {
+                    MessageBox.Show("Xác nhận Order thành công");
+                    _navigationStore.CurrentViewModel = new PaymentViewModel();
+                }
             }
-            if (CheckValidPoint(usePoint, point, total))
-            {
-                MessageBox.Show("Xác nhận Order thành công");
-                _navigationStore.CurrentViewModel = new PaymentViewModel();
-            }
+            else MessageBox.Show("Chưa đặt món");
         }
 
         private bool CheckValidPoint(string used_point, int point, int total)
@@ -52,13 +56,14 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
                 // Chuỗi là số
                 if (int.Parse(used_point) <= point)
                 {
-                    if(int.Parse(used_point) <= total)
+                    if (int.Parse(used_point) <= total)
                     {
                         return true;
                     }
-                    else {
+                    else
+                    {
                         MessageBox.Show("Điểm dùng lớn hơn Tổng tiền");
-                        return false; 
+                        return false;
                     }
                 }
                 else
@@ -74,6 +79,5 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
                 return false;
             }
         }
-
     }
 }

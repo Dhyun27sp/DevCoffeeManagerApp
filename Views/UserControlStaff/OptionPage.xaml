@@ -311,7 +311,6 @@
                                             Height="auto"
                                             Margin="10 0 0 0">
                                     <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
-                                             AcceptsReturn="True"
                                              materialDesign:HintAssist.Hint="Nhập sđt khách hàng"
                                              IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
                                              Style="{StaticResource MaterialDesignFilledTextBox}"
@@ -446,8 +445,7 @@
                                             Width="100"
                                             Height="auto"
                                             Margin="10 0 0 0">
-                                    <TextBox AcceptsReturn="True"
-                                             materialDesign:HintAssist.Hint="Điểm dùng"
+                                    <TextBox materialDesign:HintAssist.Hint="Điểm dùng"
                                              IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
                                              Style="{StaticResource MaterialDesignFilledTextBox}"
                                              TextWrapping="Wrap"

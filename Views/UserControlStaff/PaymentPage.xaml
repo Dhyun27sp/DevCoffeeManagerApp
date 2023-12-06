@@ -316,7 +316,8 @@
                                     <TextBox VerticalAlignment="Top"
                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                              Text="{Binding Change, UpdateSourceTrigger=PropertyChanged}"
-                                             FontSize="15">
+                                             FontSize="15"
+                                             IsReadOnly="True">
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Margin="-2,0,0,0"
                                                         Orientation="Horizontal">
@@ -335,7 +336,8 @@
                                         <RadioButton GroupName="PaymentMethod"
                                                      Margin="0 5"
                                                      Content="Thanh toán MoMo"
-                                                     IsChecked="{Binding IsMoMoChecked}" />
+                                                     IsChecked="{Binding IsMoMoChecked}"
+                                                     IsEnabled="False" />
                                         <RadioButton GroupName="PaymentMethod"
                                                      Content="Thanh toán trực tiếp"
                                                      IsChecked="{Binding IsDirectPaymentChecked}" />

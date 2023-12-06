@@ -142,7 +142,6 @@
                 <TextBox MaxWidth="400"
                          Text="{Binding Phonenumber, UpdateSourceTrigger=PropertyChanged}"
                          materialDesign:HintAssist.Hint="Phone Number"
-                         AcceptsReturn="True"
                          IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
                          Style="{StaticResource MaterialDesignFilledTextBox}"
                          TextWrapping="Wrap"
