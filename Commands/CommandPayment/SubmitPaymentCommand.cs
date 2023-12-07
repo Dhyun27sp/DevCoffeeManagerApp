@@ -109,25 +109,33 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
             }
             else
             {
-                if (guestMonney == "0")
+                if(int.TryParse(guestMonney, out _))
                 {
-                    MessageBox.Show("Tiền khách đưa không đủ");
-                    return false;
-                }
-                else if (guestMonney == "")
-                {
-                    MessageBox.Show("Tiền khách đưa không hợp lệ");
-                    return false;
-                }
-                else if (int.Parse(guestMonney) >= totalAmount)
-                {
-                    return true;
+                    if (guestMonney == "0")
+                    {
+                        MessageBox.Show("Tiền khách đưa không đủ");
+                        return false;
+                    }
+                    else if (guestMonney == "")
+                    {
+                        MessageBox.Show("Tiền khách đưa không hợp lệ");
+                        return false;
+                    }
+                    else if (int.Parse(guestMonney) >= totalAmount)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tiền khách đưa không đủ");
+                        return false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Tiền khách đưa không đủ");
+                    MessageBox.Show("Tiền khách đưa không hợp lệ");
                     return false;
-                }
+                } 
             }
         }
     }
