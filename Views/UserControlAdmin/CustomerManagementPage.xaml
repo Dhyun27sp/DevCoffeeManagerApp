@@ -1,0 +1,381 @@
+﻿<UserControl x:Class="DevCoffeeManagerApp.Views.UserControlAdmin.CustomerManagementPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Medium"
+             TextElement.FontSize="14"
+             FontFamily="{materialDesign:MaterialDesignFont}"
+             xmlns:local="clr-namespace:DevCoffeeManagerApp.Views.UserControlAdmin"
+             xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vms:AdminCustomerViewModel />
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition Height="16*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.Background>
+                <SolidColorBrush Color="Transparent" />
+            </Grid.Background>
+            <materialDesign:ColorZone Padding="auto"
+                                      VerticalAlignment="Center"
+                                      Mode="PrimaryMid">
+                <materialDesign:ColorZone.Background>
+                    <SolidColorBrush Color="White"
+                                     Opacity="0" />
+                </materialDesign:ColorZone.Background>
+                <DockPanel>
+                    <TextBlock Text="Quản lý khách hàng"
+                               FontSize="18"
+                               Foreground="Black"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="25 0 0 0" />
+                    <TextBlock Text="25 Dec 2023, Monday"
+                               Foreground="SlateGray"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Right"
+                               DockPanel.Dock="Right"
+                               Margin="0 0 25 0" />
+                </DockPanel>
+            </materialDesign:ColorZone>
+        </Grid>
+        <Grid Margin="25 0 25 10"
+              Grid.Row="1">
+            <Border BorderBrush="#5f5555"
+                    BorderThickness="0.5"
+                    CornerRadius="10"
+                    Margin="0,10,0,0"
+                    Background="White"
+                    Grid.Column="0">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="5*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <DockPanel Margin="25 10 0 10">
+                                <TextBlock Text="Danh sách khách hàng:"
+                                           VerticalAlignment="Center" />
+                                <Grid Width="auto"
+                                      DockPanel.Dock="Right">
+                                    <ComboBox ItemsSource="{Binding abc}"
+                                              SelectedItem="{Binding abc, UpdateSourceTrigger=PropertyChanged}"
+                                              Padding="12"
+                                              Margin="0 0 20 0"
+                                              HorizontalAlignment="Right"
+                                              Width="210"
+                                              materialDesign:HintAssist.Hint="Lọc khách hàng ..."
+                                              Opacity="1"
+                                              FontSize="12"
+                                              BorderThickness="0"
+                                              Foreground="Black"
+                                              Background="#FFFAFAFA">
+                                        <ComboBox.Effect>
+                                            <DropShadowEffect  Direction="230"
+                                                               ShadowDepth="3"
+                                                               Color="Gray"
+                                                               Opacity="0.2"
+                                                               BlurRadius="2" />
+                                        </ComboBox.Effect>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding abc}"
+                                                                       CommandParameter="{Binding ElementName=ComboBoxType}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ComboBox>
+                                </Grid>
+                                <Grid Width="auto"
+                                      DockPanel.Dock="Right">
+                                    <ComboBox ItemsSource="{Binding abc}"
+                                              SelectedItem="{Binding abc, UpdateSourceTrigger=PropertyChanged}"
+                                              Padding="12"
+                                              Margin="0 0 20 0"
+                                              HorizontalAlignment="Right"
+                                              Width="190"
+                                              materialDesign:HintAssist.Hint="Lọc khách hàng ..."
+                                              Opacity="1"
+                                              FontSize="12"
+                                              BorderThickness="0"
+                                              Foreground="Black"
+                                              Background="#FFFAFAFA">
+                                        <ComboBox.Effect>
+                                            <DropShadowEffect  Direction="230"
+                                                               ShadowDepth="3"
+                                                               Color="Gray"
+                                                               Opacity="0.2"
+                                                               BlurRadius="2" />
+                                        </ComboBox.Effect>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding abc}"
+                                                                       CommandParameter="{Binding ElementName=ComboBoxType}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ComboBox>
+                                </Grid>
+                            </DockPanel>
+                        </Grid>
+                        <Border BorderBrush="#5f5555"
+                                BorderThickness="0.5"
+                                CornerRadius="10"
+                                Grid.Row="1"
+                                Margin="25 0 20 10"
+                                Height="490">
+                            <Grid>
+                                <ListView ItemsSource="{Binding CombineList}">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridView.ColumnHeaderContainerStyle>
+                                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                                    <Setter Property="FontSize"
+                                                            Value="15" />
+                                                    <Setter Property="FontFamily"
+                                                            Value="Nunito" />
+                                                    <Setter Property="Margin"
+                                                            Value="0" />
+                                                    <Setter Property="Padding"
+                                                            Value="10" />
+                                                    <Setter Property="Foreground"
+                                                            Value="Black" />
+                                                    <Setter Property="HorizontalContentAlignment"
+                                                            Value="Left" />
+                                                </Style>
+                                            </GridView.ColumnHeaderContainerStyle>
+                                            <GridViewColumn Width="70">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent"
+                                                                      Padding="0"
+                                                                      Margin="10 0 0 0">
+                                                    STT
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Item2}"
+                                                                   FontSize="13" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Width="220">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent">
+                                                    Tên khách hàng
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Item1.dish_name}"
+                                                                   FontSize="13" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Width="170">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent">
+                                                    Số điện thoại
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Item1.dish_name}"
+                                                                   FontSize="13" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Width="170">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent">
+                                                    Ngày sinh
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Item1.Quantity}"
+                                                                   FontSize="13" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Width="170">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent">
+                                                    Điểm
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Item1.Amount, UpdateSourceTrigger=PropertyChanged}"
+                                                                   FontSize="13" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Width="100">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent">
+                                                    Delete
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Button Panel.ZIndex="0"
+                                                                Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                                                Command="{Binding DataContext.DeleteCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                CommandParameter="{Binding Item1}">
+                                                            <materialDesign:PackIcon Foreground="#5F5555"
+                                                                                     Opacity=".80"
+                                                                                     Kind="DeleteForever"
+                                                                                     Width="30"
+                                                                                     Height="25" />
+                                                        </Button>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Grid>
+                        </Border>
+                        <Grid Grid.Row="3"
+                              Margin="25 10 25 20">
+                            <WrapPanel>
+                                <Grid Width="280"
+                                      HorizontalAlignment="Left"
+                                      Margin="0 0 25 0">
+                                    <TextBox VerticalAlignment="Center"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             Text="SP02A"
+                                             FontSize="15">
+                                        <materialDesign:HintAssist.Hint>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                         Width="25px"
+                                                                         Height="20px"
+                                                                         Kind="CardPlusOutline" />
+                                                <TextBlock FontSize="16px"
+                                                           Text="Tên khách hàng" />
+                                            </StackPanel>
+                                        </materialDesign:HintAssist.Hint>
+                                    </TextBox>
+                                </Grid>
+                                <Grid Width="160"
+                                      HorizontalAlignment="Left"
+                                      Margin="0 0 25 0">
+                                    <TextBox VerticalAlignment="Center"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             Text="0964822215"
+                                             FontSize="15">
+                                        <materialDesign:HintAssist.Hint>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                         Width="25px"
+                                                                         Height="20px"
+                                                                         Kind="CardPlusOutline" />
+                                                <TextBlock FontSize="16px"
+                                                           Text="Số điện thoại" />
+                                            </StackPanel>
+                                        </materialDesign:HintAssist.Hint>
+                                    </TextBox>
+                                </Grid>
+                                <Grid Width="170"
+                                      HorizontalAlignment="Left"
+                                      Margin="0 0 25 0">
+                                    <DatePicker Name="NSX"
+                                                VerticalAlignment="Center"
+                                                FontSize="15"
+                                                SelectedDate="{Binding date}"
+                                                materialDesign:TextFieldAssist.HasClearButton="True"
+                                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                                        <materialDesign:HintAssist.Hint>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                         Width="25px"
+                                                                         Height="20px"
+                                                                         Kind="CardPlusOutline" />
+                                                <TextBlock FontSize="16px"
+                                                           Text="Ngày sinh" />
+                                            </StackPanel>
+                                        </materialDesign:HintAssist.Hint>
+                                    </DatePicker>
+                                </Grid>
+                                <Grid Width="140"
+                                      HorizontalAlignment="Left"
+                                      Margin="0 0 25 0">
+                                    <TextBox VerticalAlignment="Center"
+                                             FontSize="15"
+                                             Text="0"
+                                             materialDesign:TextFieldAssist.HasClearButton="True"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                        <materialDesign:HintAssist.Hint>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                         Width="25px"
+                                                                         Height="20px"
+                                                                         Kind="CardPlusOutline" />
+                                                <TextBlock FontSize="16px"
+                                                           Text="Điểm" />
+                                            </StackPanel>
+                                        </materialDesign:HintAssist.Hint>
+                                    </TextBox>
+                                </Grid>
+                                <StackPanel>
+                                    
+                                </StackPanel>
+                                <Grid>
+                                    <Button materialDesign:ButtonAssist.CornerRadius="10"
+                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                            Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                            ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                            Margin="15 0 10 0"
+                                            Command="{Binding abcCommand, UpdateSourceTrigger=PropertyChanged}">
+                                        <Button.BorderBrush>
+                                            <ImageBrush />
+                                        </Button.BorderBrush>
+                                        <Button.Background>
+                                            <SolidColorBrush Color="#e87f14" />
+                                        </Button.Background>
+                                        <TextBlock FontFamily="Nunito"
+                                                   Text="Thêm KH"
+                                                   Foreground="White" />
+                                    </Button>
+                                </Grid>
+                                <Grid>
+                                    <Button materialDesign:ButtonAssist.CornerRadius="10"
+                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                            Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                            ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                            Margin="15 0 10 0"
+                                            Command="{Binding abcCommand, UpdateSourceTrigger=PropertyChanged}">
+                                        <Button.BorderBrush>
+                                            <ImageBrush />
+                                        </Button.BorderBrush>
+                                        <Button.Background>
+                                            <SolidColorBrush Color="#c87780" />
+                                        </Button.Background>
+                                        <TextBlock FontFamily="Nunito"
+                                                   Text="Cập nhật KH"
+                                                   Foreground="White" />
+                                    </Button>
+                                </Grid>
+                            </WrapPanel>
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

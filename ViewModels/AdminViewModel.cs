@@ -32,12 +32,14 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand DashboardComand { get; }
         public ICommand ProductCommand { get; }
         public ICommand SupplyCommand { get; }
+        public ICommand CustomerCommand { get; }
 
 
         public AdminViewModel() {
             DashboardComand = new NavigateComand(this,"dashboard");
             ProductCommand = new NavigateComand(this, "product");
             SupplyCommand = new NavigateComand(this, "supply");
+            CustomerCommand = new NavigateComand(this, "customer");
             Exit = new ExitCommand();
         }
     }

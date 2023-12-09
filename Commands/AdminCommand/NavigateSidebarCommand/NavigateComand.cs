@@ -35,6 +35,9 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.NavigateSidebarCommand
                 case "supply":
                     _adminViewModel.CurrentViewModel = new AdminSupplyViewModel();
                     return;
+                case "customer":
+                    _adminViewModel.CurrentViewModel = new AdminCustomerViewModel();
+                    return;
             }
         }
     }

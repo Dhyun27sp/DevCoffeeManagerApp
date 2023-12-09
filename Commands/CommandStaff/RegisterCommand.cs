@@ -41,7 +41,7 @@ namespace DevCoffeeManagerApp.Commands.CommandStaff
                 }
                 CustomerModel newCustomer = new CustomerModel(name, phone, date, 0);
                 customerDAO.CreateCustomer(newCustomer);
-                MessageBox.Show(name + phone + date);
+                MessageBox.Show("Đăng ký khách hàng thành công");
                 mainStaffViewModel.CustomerName = null;
                 mainStaffViewModel.CustomerPhoneNumber = null;
                 mainStaffViewModel.CustomerBirthday = null;
