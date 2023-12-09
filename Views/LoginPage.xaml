@@ -214,7 +214,7 @@
                 </TextBlock>
             </Button>
 
-            <TextBlock Width="314"
+            <!--<TextBlock Width="314"
                        Height="14"
                        LineHeight="13.798828"
                        TextWrapping="Wrap"
@@ -244,7 +244,7 @@
                     <TranslateTransform X="673"
                                         Y="1010" />
                 </TextBlock.RenderTransform>
-            </TextBlock>
+            </TextBlock>-->
             <Image Height="25"
                    Canvas.Left="1000"
                    Canvas.Top="25"

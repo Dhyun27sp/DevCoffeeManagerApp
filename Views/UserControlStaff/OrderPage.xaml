@@ -74,7 +74,7 @@
                                                  materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                                  BorderThickness="0"
                                                  Grid.RowSpan="2"
-                                                 Text="{Binding types_dish_search , UpdateSourceTrigger=PropertyChanged}" >
+                                                 Text="{Binding types_dish_search , UpdateSourceTrigger=PropertyChanged}">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="KeyUp">
                                                     <i:InvokeCommandAction Command="{Binding ChangeValueTexboxCommand}"
@@ -154,7 +154,7 @@
                                     <WrapPanel />
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
-                            
+
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <materialDesign:Card Width="220"
@@ -172,8 +172,7 @@
                                                 <Image Height="140"
                                                        Source="{Binding imageconvert}"
                                                        Stretch="UniformToFill" />
-                                                <Grid 
-                                                      Margin="5 5"
+                                                <Grid Margin="5 5"
                                                       Width="80"
                                                       HorizontalAlignment="Left"
                                                       VerticalAlignment="Top">
@@ -199,7 +198,7 @@
                                                                 </Style.Triggers>
                                                             </Style>
                                                         </Border.Style>
-                                                        
+
                                                         <Grid HorizontalAlignment="Center">
                                                             <TextBlock HorizontalAlignment="Center"
                                                                        VerticalAlignment="Center">
@@ -242,41 +241,50 @@
                                                         </Grid>
                                                     </Border>
                                                 </Grid>
-                                                <Border 
-                                                    Grid.Row="0"
-                                                    Background="#f8452e" 
-                                                    CornerRadius="100" 
-                                                    Width="40" 
-                                                    Height="40" 
-                                                    Margin="159,115,11,-25">
+                                                <Border Grid.Row="0"
+                                                        Background="#f8452e"
+                                                        CornerRadius="100"
+                                                        Width="40"
+                                                        Height="40"
+                                                        Margin="159,115,11,-25">
                                                     <Border.Style>
                                                         <Style TargetType="Border">
-                                                            <Setter Property="Visibility" Value="Visible" />
+                                                            <Setter Property="Visibility"
+                                                                    Value="Visible" />
 
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding SaleDish}" Value="false">
-                                                                    <Setter Property="Visibility" Value="Hidden" />
+                                                                <DataTrigger Binding="{Binding SaleDish}"
+                                                                             Value="false">
+                                                                    <Setter Property="Visibility"
+                                                                            Value="Hidden" />
                                                                 </DataTrigger>
-                                                                <DataTrigger Binding="{Binding SaleDish}" Value="">
-                                                                    <Setter Property="Visibility" Value="Hidden" />
+                                                                <DataTrigger Binding="{Binding SaleDish}"
+                                                                             Value="">
+                                                                    <Setter Property="Visibility"
+                                                                            Value="Hidden" />
                                                                 </DataTrigger>
                                                                 <!-- Thêm các DataTrigger khác nếu cần -->
                                                             </Style.Triggers>
                                                         </Style>
                                                     </Border.Style>
-                                                    <TextBlock  
-                                                        HorizontalAlignment="Center" 
-                                                        VerticalAlignment="Center">
+                                                    <TextBlock HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center">
                                                         <TextBlock.Style>
                                                             <Style TargetType="TextBlock">
-                                                                <Setter Property="Foreground" Value="White" />
-                                                                <Setter Property="Text" Value="Sale" />
+                                                                <Setter Property="Foreground"
+                                                                        Value="White" />
+                                                                <Setter Property="Text"
+                                                                        Value="Sale" />
                                                                 <Style.Triggers>
-                                                                    <DataTrigger Binding="{Binding SaleDish}" Value="false">
-                                                                        <Setter Property="Text" Value="" />
+                                                                    <DataTrigger Binding="{Binding SaleDish}"
+                                                                                 Value="false">
+                                                                        <Setter Property="Text"
+                                                                                Value="" />
                                                                     </DataTrigger>
-                                                                    <DataTrigger Binding="{Binding SaleDish}" Value="">
-                                                                        <Setter Property="Text" Value="" />
+                                                                    <DataTrigger Binding="{Binding SaleDish}"
+                                                                                 Value="">
+                                                                        <Setter Property="Text"
+                                                                                Value="" />
                                                                     </DataTrigger>
                                                                     <!-- Thêm các DataTrigger khác nếu cần -->
                                                                 </Style.Triggers>
@@ -295,23 +303,27 @@
                                                 <WrapPanel>
                                                     <TextBlock Text="{Binding price}"
                                                                FontSize="16"
-                                                               VerticalAlignment="Center"
-                                                               >
+                                                               VerticalAlignment="Center">
                                                         <TextBlock.Style>
                                                             <Style TargetType="TextBlock">
-                                                                <Setter Property="TextDecorations" Value="Strikethrough" />
+                                                                <Setter Property="TextDecorations"
+                                                                        Value="Strikethrough" />
                                                                 <Style.Triggers>
-                                                                    <DataTrigger Binding="{Binding Saleprice}" Value="{x:Null}">
-                                                                        <Setter Property="TextDecorations" Value="None" />
+                                                                    <DataTrigger Binding="{Binding Saleprice}"
+                                                                                 Value="{x:Null}">
+                                                                        <Setter Property="TextDecorations"
+                                                                                Value="None" />
                                                                     </DataTrigger>
-                                                                    <DataTrigger Binding="{Binding Saleprice}" Value="">
-                                                                        <Setter Property="TextDecorations" Value="None" />
+                                                                    <DataTrigger Binding="{Binding Saleprice}"
+                                                                                 Value="">
+                                                                        <Setter Property="TextDecorations"
+                                                                                Value="None" />
                                                                     </DataTrigger>
                                                                     <!-- Thêm các DataTrigger khác nếu cần -->
                                                                 </Style.Triggers>
                                                             </Style>
                                                         </TextBlock.Style>
-                                                        
+
                                                     </TextBlock>
                                                     <TextBlock Text="{Binding Saleprice}"
                                                                Margin="10 0 0 0"
