@@ -95,8 +95,12 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
                     case "admin":
                         if (pass == Viewmodellogin.Password)
                         {
-                            AdminPage mainWindowAdmin = new AdminPage();
-                            mainWindowAdmin.Show();
+                            if (parameter is Window window)
+                            {
+                                window.Hide();
+                                AdminPage mainWindowAdmin = new AdminPage();
+                                mainWindowAdmin.Show();
+                            }
                         }
                         break;
                     case "staff":

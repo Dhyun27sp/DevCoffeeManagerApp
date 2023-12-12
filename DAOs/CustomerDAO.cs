@@ -41,8 +41,12 @@ namespace DevCoffeeManagerApp.DAOs
         public void UpdateCustomer(CustomerModel customer)
         {
             var phone_number = Builders<CustomerModel>.Filter.Eq("phone_number", customer.phone_number);
-                
             collection.ReplaceOne(phone_number, customer);
+        }
+        public void DeleteCustomerByPhoneNumber(string phoneNumber)
+        {
+            var filter = Builders<CustomerModel>.Filter.Eq("phone_number", phoneNumber);
+            collection.DeleteOne(filter);
         }
     }
 }
