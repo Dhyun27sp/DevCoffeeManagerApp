@@ -50,6 +50,8 @@ namespace DevCoffeeManagerApp.Commands.CommandStaff
 
         public bool checkInput(string name, string phone, string date)
         {
+            CustomerModel customer = new CustomerModel();
+            customer = customerDAO.GetCustomerByPhoneNumber(phone);
             DateTime result;
             if (name == "" || name == null)
             {
@@ -59,6 +61,10 @@ namespace DevCoffeeManagerApp.Commands.CommandStaff
             else if (phone == null || phone == "")
             {
                 MessageBox.Show("Xin vui lòng nhập số điện thoại");
+                return false;
+            }
+            else if (customer != null) {
+                MessageBox.Show("Khách hàng đã đăng ký tài khoản");
                 return false;
             }
             else if (!Regex.Match(phone, @"^(0[3|5|7|8|9][0-9]{8})$").Success)
