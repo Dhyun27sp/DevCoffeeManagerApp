@@ -72,13 +72,13 @@
                                            VerticalAlignment="Center" />
                                 <Grid Width="auto"
                                       DockPanel.Dock="Right">
-                                    <ComboBox ItemsSource="{Binding abc}"
-                                              SelectedItem="{Binding abc, UpdateSourceTrigger=PropertyChanged}"
+                                    <ComboBox ItemsSource="{Binding CustomersAction}"
+                                              SelectedItem="{Binding itemcbb, UpdateSourceTrigger=PropertyChanged}"
                                               Padding="12"
                                               Margin="0 0 20 0"
+                                              Name="CustommerCBB"
                                               HorizontalAlignment="Right"
                                               Width="210"
-                                              materialDesign:HintAssist.Hint="Lọc khách hàng ..."
                                               Opacity="1"
                                               FontSize="12"
                                               BorderThickness="0"
@@ -93,40 +93,57 @@
                                         </ComboBox.Effect>
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="SelectionChanged">
-                                                <i:InvokeCommandAction Command="{Binding abc}"
-                                                                       CommandParameter="{Binding ElementName=ComboBoxType}" />
+                                                <i:InvokeCommandAction Command="{Binding CustommerCbbCommand}"
+                                                                       CommandParameter="{Binding ElementName=CustommerCBB}" />
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                     </ComboBox>
                                 </Grid>
                                 <Grid Width="auto"
                                       DockPanel.Dock="Right">
-                                    <ComboBox ItemsSource="{Binding abc}"
-                                              SelectedItem="{Binding abc, UpdateSourceTrigger=PropertyChanged}"
-                                              Padding="12"
-                                              Margin="0 0 20 0"
-                                              HorizontalAlignment="Right"
-                                              Width="190"
-                                              materialDesign:HintAssist.Hint="Lọc khách hàng ..."
-                                              Opacity="1"
-                                              FontSize="12"
-                                              BorderThickness="0"
-                                              Foreground="Black"
-                                              Background="#FFFAFAFA">
-                                        <ComboBox.Effect>
-                                            <DropShadowEffect  Direction="230"
-                                                               ShadowDepth="3"
-                                                               Color="Gray"
-                                                               Opacity="0.2"
-                                                               BlurRadius="2" />
-                                        </ComboBox.Effect>
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="SelectionChanged">
-                                                <i:InvokeCommandAction Command="{Binding abc}"
-                                                                       CommandParameter="{Binding ElementName=ComboBoxType}" />
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                    </ComboBox>
+                                    <materialDesign:ColorZone Margin="0,0,20,0"
+                                                              Width="300"
+                                                              VerticalAlignment="Center"
+                                                              HorizontalAlignment="Right"
+                                                              Padding="8,4,8,4"
+                                                              Panel.ZIndex="1"
+                                                              materialDesign:ElevationAssist.Elevation="Dp2"
+                                                              CornerRadius="2"
+                                                              Mode="Standard">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="23*" />
+                                                <RowDefinition Height="9*" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Button Style="{StaticResource MaterialDesignToolButton}"
+                                                    Grid.RowSpan="2">
+                                                <materialDesign:PackIcon Kind="Search"
+                                                                         Opacity=".56" />
+                                            </Button>
+                                            <TextBox Grid.Column="1"
+                                                     x:Name="TexboxSearch"
+                                                     MinWidth="200"
+                                                     Margin="8,4,0,0"
+                                                     VerticalAlignment="Top"
+                                                     materialDesign:HintAssist.Hint="Build a search bar"
+                                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                     BorderThickness="0"
+                                                     Grid.RowSpan="2"
+                                                     Text="{Binding Customersearch , UpdateSourceTrigger=PropertyChanged}">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="KeyUp">
+                                                        <i:InvokeCommandAction Command="{Binding ChangeValueTexboxCommand}"
+                                                                               CommandParameter="{Binding ElementName=TexboxSearch}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </TextBox>
+                                        </Grid>
+                                    </materialDesign:ColorZone>
                                 </Grid>
                             </DockPanel>
                         </Grid>

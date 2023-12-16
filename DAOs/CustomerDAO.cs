@@ -48,5 +48,6 @@ namespace DevCoffeeManagerApp.DAOs
             var filter = Builders<CustomerModel>.Filter.Eq("phone_number", phoneNumber);
             collection.DeleteOne(filter);
         }
+
     }
 }

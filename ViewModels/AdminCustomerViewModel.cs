@@ -80,18 +80,45 @@ namespace DevCoffeeManagerApp.ViewModels
             set { _statusAdd = value; OnPropertyChanged(nameof(StatusAdd)); }
 
         }
+
+        private string _itemcbb = "10 Customer";
+        public string itemcbb
+        {
+            get { return _itemcbb; }
+            set { _itemcbb = value; OnPropertyChanged(nameof(itemcbb)); }
+        }
+        private string _customersearch;
+        public string Customersearch
+        {
+            get { return _customersearch; }
+            set { _customersearch = value; OnPropertyChanged(nameof(Customersearch)); }
+        }
+        public ObservableCollection<CustomerModel> CustommersReadonly;
+        public List<string> CustomersAction { get; set; }
         public ICommand ChoosedcusCommand { get; }
         public ICommand AddCusCommand { get; }
         public ICommand DeletefieldCusCommand { get; }
         public ICommand UpdateCusCommand { get; }
         public ICommand DeleteCusCommand { get; }
+        public ICommand CustommerCbbCommand { get; }
+        public ICommand ChangeValueTexboxCommand { get; }
         public AdminCustomerViewModel() {
             Custommers = customerDAO.GetAllCustomers();
+            CustommersReadonly = Custommers;
             ChoosedcusCommand = new CustomerComand(this, "choose");
             AddCusCommand = new CustomerComand(this, "add");
             DeletefieldCusCommand = new CustomerComand(this, "deletef");
             UpdateCusCommand = new CustomerComand(this, "update");
             DeleteCusCommand = new CustomerComand(this, "deletec");
+
+            CustommerCbbCommand = new FilterCustomerCommand(this, "cbb");
+            ChangeValueTexboxCommand = new FilterCustomerCommand(this, "search");
+
+            CustomersAction = new List<string>();
+            CustomersAction.Add("10 Customer");
+            CustomersAction.Add("100 Customer");
+            CustomersAction.Add("All");
+            CustomersAction.Add("Customer in Not action in year");
         }
     }
 }
