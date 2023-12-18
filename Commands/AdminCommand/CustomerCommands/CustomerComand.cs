@@ -21,6 +21,8 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.CustomerCommands
         private AdminCustomerViewModel viewModel;
         private string action;
         CustomerDAO customerdao = new CustomerDAO();
+
+        ReceiptDAO receiptDAO = new ReceiptDAO();
         public CustomerComand(AdminCustomerViewModel viewModel,string action) { 
             this.viewModel = viewModel;
             this.action = action;
@@ -128,7 +130,7 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.CustomerCommands
         {
             if (parameter is ListView listcustomer)
             {
-                if (listcustomer.SelectedItem != null) 
+                if (listcustomer.SelectedItem != null)
                 {
                     viewModel.StatusAdd = true;
                     Tuple<CustomerModel, int> selectedItem = (Tuple<CustomerModel, int>)listcustomer.SelectedItem;

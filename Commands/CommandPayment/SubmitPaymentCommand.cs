@@ -37,7 +37,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
             int total = PaymentOrderViewModel.Total;
             int plus_point = PaymentOrderViewModel.PlusPoint;
             string used_point = PaymentOrderViewModel.UsedPoint;
-            string current_date = PaymentOrderViewModel.CurrentDate;
+            DateTime current_date = PaymentOrderViewModel.CurrentDate;
             string guest_monney = PaymentOrderViewModel.InputMoney.Replace(" ", "");
             int change = PaymentOrderViewModel.Change;
             string staff_phonenumber = PaymentOrderViewModel.StaffPhoneNumber;

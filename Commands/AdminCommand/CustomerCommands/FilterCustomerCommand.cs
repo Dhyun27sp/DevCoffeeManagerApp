@@ -2,6 +2,7 @@
 using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.ViewModels;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -16,7 +17,9 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.CustomerCommands
     {
         private AdminCustomerViewModel viewModel;
         private string action;
+        private ReceiptDAO receipt = new ReceiptDAO();
         CustomerDAO customerdao = new CustomerDAO();
+        ReceiptDAO receiptdao = new ReceiptDAO();
         public FilterCustomerCommand(AdminCustomerViewModel viewModel,string action) {
             this.action = action;
             this.viewModel = viewModel;
@@ -72,13 +75,21 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.CustomerCommands
             }
             else if (viewModel.itemcbb == "Customer in Not action in year")
             {
+                
                 if (!string.IsNullOrWhiteSpace(viewModel.Customersearch))
                 {
-
+                    foreach (CustomerModel cus in CustomerNotActionInOneYear())
+                    {
+                        if (cus.phone_number.Contains(viewModel.Customersearch) || cus.name.Contains(viewModel.Customersearch))
+                        {
+                            CustommersFilter.Add(cus);
+                        }
+                    }
+                    viewModel.Custommers = CustommersFilter;
                 }
                 else
                 {
-
+                    viewModel.Custommers = CustomerNotActionInOneYear();
                 }
             }
             else
@@ -143,6 +154,29 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.CustomerCommands
                     }
                 }
             }
+        }
+        private List<ReceiptModel> ListReceiptActionInYear()
+        {
+            List<ReceiptModel> listReceiptInOneYear = receiptdao.FindReceiptInYear();
+            List<ReceiptModel> filteredList = listReceiptInOneYear.Where(receipt => receipt.customer != null).ToList();
+            List<ReceiptModel> uniqueItems = filteredList
+            .GroupBy(item => item.customer.phone_number)
+            .Select(group => group.First())
+            .ToList();
+            return uniqueItems;
+        }
+        private ObservableCollection<CustomerModel> CustomerNotActionInOneYear()
+        {
+            ObservableCollection<CustomerModel> customerModelsAction = new ObservableCollection<CustomerModel>();
+            ObservableCollection<CustomerModel> customerModels = new ObservableCollection<CustomerModel>();
+            customerModels = customerdao.GetAllCustomers();
+            foreach (ReceiptModel receipt in ListReceiptActionInYear())
+            {
+                customerModelsAction.Add(receipt.customer);
+            }
+            var result = customerModels.Where(cm => !customerModelsAction.Any(cma => cma.phone_number == cm.phone_number)).ToList();
+            ObservableCollection<CustomerModel> resultCollection = new ObservableCollection<CustomerModel>(result);
+            return resultCollection;
         }
     }
 }

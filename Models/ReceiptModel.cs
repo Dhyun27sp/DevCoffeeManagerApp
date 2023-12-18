@@ -16,11 +16,11 @@ namespace DevCoffeeManagerApp.Models
         [BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
         public ObjectId _id { get; set; }
 
-        [BsonElement("time"), BsonRepresentation(BsonType.String)]
-        public string time { get; set; }
+        [BsonElement("time"), BsonRepresentation(BsonType.DateTime)]
+        public DateTime time { get; set; }
 
         [BsonElement("customer")]
-        public CustomerModel phone_number { get; set; }
+        public CustomerModel customer { get; set; }
 
         [BsonElement("tables")]
         public List<TableModel> tables { get; set; }
@@ -46,10 +46,10 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("change"), BsonRepresentation(BsonType.Int32)]
         public int change { get; set; }
 
-        public ReceiptModel(string time, CustomerModel customer, List<TableModel> tables, string staff_phone, List<DishModel> dishes, List<DiscountModel> discounts, string payments, int total_amount, int guest_monney, int change)
+        public ReceiptModel(DateTime time, CustomerModel customer, List<TableModel> tables, string staff_phone, List<DishModel> dishes, List<DiscountModel> discounts, string payments, int total_amount, int guest_monney, int change)
         {
             this.time = time;
-            this.phone_number = customer;
+            this.customer = customer;
             this.tables = tables;
             this.staff_phone = staff_phone;
             this.Dishes = dishes;
