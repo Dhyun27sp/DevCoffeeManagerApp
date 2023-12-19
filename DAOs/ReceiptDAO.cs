@@ -27,30 +27,21 @@ namespace DevCoffeeManagerApp.DAOs
             return listReceipt;
         }
 
-        /*public void test_update_time()
-        {
-            var hexString = "6505c2319e966625332da9f3";
-            var objectId = new ObjectId(hexString);
-
-            var Filter = Builders<ReceiptModel>.Filter.Eq("_id", objectId); // Tạo một bộ lọc dựa trên shift
-            var update = Builders<ReceiptModel>.Update.Set("time", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-            collection.UpdateOne(Filter, update);
-        }*/
-
-        //public void test_add_table()
-        //{
-        //    TableModel table = new TableModel(1);
-        //    var hexString = "6505c2319e966625332da9f3";
-
-        //    var objectId = new ObjectId(hexString);
-        //    var shiftFilter = Builders<ReceiptModel>.Filter.Eq("_id", objectId); // Tạo một bộ lọc dựa trên shift
-        //    var update = Builders<ReceiptModel>.Update.Push("tables", table); 
-        //    collection.UpdateOne(shiftFilter, update);
-        //}
-
         public void AddReceipt(ReceiptModel receipt)
         {
             collection.InsertOne(receipt);
+        }
+
+        public List<ReceiptModel> FindReceiptInYear()
+        {
+            DateTime endDate = DateTime.UtcNow;  // Current date
+            DateTime startDate = endDate.AddYears(-1);  // One year ago
+
+            var filter = Builders<ReceiptModel>.Filter.Gte("time", startDate) &
+                         Builders<ReceiptModel>.Filter.Lt("time", endDate);
+
+            List<ReceiptModel> receiptsLastYear = collection.Find(filter).ToList();
+            return receiptsLastYear;
         }
     }
 }

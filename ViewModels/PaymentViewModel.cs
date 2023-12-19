@@ -211,8 +211,8 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(TotalAmount));
             }
         }
-        private string _currentDate;
-        public string CurrentDate
+        private DateTime _currentDate;
+        public DateTime CurrentDate
         {
             get
             {
@@ -261,7 +261,7 @@ namespace DevCoffeeManagerApp.ViewModels
                 }    
             }
             TotalAmount = Total - Int32.Parse(UsedPoint);
-            CurrentDate = DateTime.Now.ToString();
+            CurrentDate = DateTime.UtcNow;
             StaffPhoneNumber = SessionStatic.GetPhoneNumber;
         }
     }
