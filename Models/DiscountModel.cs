@@ -14,6 +14,9 @@ namespace DevCoffeeManagerApp.Models
         [BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
         public ObjectId _id { get; set; }
 
+        [BsonElement("discountid"), BsonRepresentation(BsonType.String)]
+        public string discountid { get; set; }
+
         [BsonElement("name"), BsonRepresentation(BsonType.String)]
         public string name { get; set; }
 
@@ -23,15 +26,23 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("apply")]
         public ApplyModel apply { get; set; }
 
-        [BsonElement("daystart"), BsonRepresentation(BsonType.String)]
-        public string daystart { get; set; }
+        [BsonElement("daystart"), BsonRepresentation(BsonType.DateTime)]
+        public DateTime daystart { get; set; }
 
-        [BsonElement("dayend"), BsonRepresentation(BsonType.String)]
-        public string dayend { get; set; }
+        [BsonElement("dayend"), BsonRepresentation(BsonType.DateTime)]
+        public DateTime dayend { get; set; }
 
         [BsonElement("value_dis"), BsonRepresentation(BsonType.String)]
         public string value_dis { get; set; }
 
-
+        public DiscountModel(string discountid,string name,string detail,ApplyModel apply,DateTime daystart,DateTime dayend,string value_dis) {
+            this.discountid = discountid;
+            this.name = name;
+            this.detail = detail;
+            this.apply = apply;
+            this.daystart = daystart;
+            this.dayend = dayend;
+            this.value_dis = value_dis;
+        }
     }
 }

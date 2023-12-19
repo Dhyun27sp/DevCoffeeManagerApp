@@ -16,15 +16,38 @@ namespace DevCoffeeManagerApp.DAOs
         private MenuDAO menuDAO = new MenuDAO();
         public DiscountDAO()
         {
-            
             IMongoDatabase db = ConnectionMongoDB.getdatabase();
             collection = db.GetCollection<DiscountModel>("Discount");
+        }
+        public void createdistcount(DiscountModel distcount)
+        {
+            collection.InsertOne(distcount);
+        }
+        public void UpdateDiscount(DiscountModel distcount)
+        {
+            distcount._id = findisbyId(distcount.discountid)._id;
+            var discountid = Builders<DiscountModel>.Filter.Eq("discountid", distcount.discountid);
+            collection.ReplaceOne(discountid, distcount);
+        }
+        public void DeleteDiscountBydiscountid(string distcountid)
+        {
+            var filter = Builders<DiscountModel>.Filter.Eq("discountid", distcountid);
+            collection.DeleteOne(filter);
         }
 
         public List<DiscountModel> ReadDiscountAll()
         {
             List<DiscountModel> ListDiscount = collection.Find(new BsonDocument()).ToList();
             return ListDiscount;
+        }
+
+
+
+        public DiscountModel findisbyId(string disId)
+        {
+            var Filter = Builders<DiscountModel>.Filter.Eq("discountid", disId);
+            DiscountModel discount = collection.Find(Filter).FirstOrDefault();
+            return discount;
         }
 
         public List<MenuModel> ListMenuDiscount()

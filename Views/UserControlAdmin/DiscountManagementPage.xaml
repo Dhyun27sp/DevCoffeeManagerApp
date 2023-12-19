@@ -94,14 +94,13 @@
                                 </Grid>
                                 <Grid Width="auto"
                                       DockPanel.Dock="Right">
-                                    <ComboBox ItemsSource="{Binding types_dish}"
-                                              SelectedItem="{Binding Type, UpdateSourceTrigger=PropertyChanged}"
+                                    <ComboBox ItemsSource="{Binding ExpiryDate}"
+                                              SelectedItem="{Binding ExpiryDateitem, UpdateSourceTrigger=PropertyChanged}"
                                               x:Name="ComboBoxType"
                                               Padding="12"
                                               Margin="0 0 20 0"
                                               HorizontalAlignment="Right"
                                               Width="180"
-                                              materialDesign:HintAssist.Hint="Lọc theo thời gian"
                                               Opacity="1"
                                               FontSize="12"
                                               BorderThickness="0"
@@ -116,7 +115,7 @@
                                         </ComboBox.Effect>
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="SelectionChanged">
-                                                <i:InvokeCommandAction Command="{Binding abc}"
+                                                <i:InvokeCommandAction Command="{Binding DiscountCbbCommand}"
                                                                        CommandParameter="{Binding ElementName=ComboBoxType}" />
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
@@ -124,33 +123,7 @@
                                 </Grid>
                                 <Grid Width="auto"
                                       DockPanel.Dock="Right">
-                                    <ComboBox ItemsSource="{Binding types_dish}"
-                                              SelectedItem="{Binding Type, UpdateSourceTrigger=PropertyChanged}"
-                                              x:Name="FilterDiscounts"
-                                              Padding="12"
-                                              Margin="0 0 20 0"
-                                              HorizontalAlignment="Right"
-                                              Width="180"
-                                              materialDesign:HintAssist.Hint="Lọc khuyến mãi"
-                                              Opacity="1"
-                                              FontSize="12"
-                                              BorderThickness="0"
-                                              Foreground="Black"
-                                              Background="#FFFAFAFA">
-                                        <ComboBox.Effect>
-                                            <DropShadowEffect  Direction="230"
-                                                               ShadowDepth="3"
-                                                               Color="Gray"
-                                                               Opacity="0.2"
-                                                               BlurRadius="2" />
-                                        </ComboBox.Effect>
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="SelectionChanged">
-                                                <i:InvokeCommandAction Command="{Binding abc}"
-                                                                       CommandParameter="{Binding ElementName=ComboBoxType}" />
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                    </ComboBox>
+                                   
                                 </Grid>
 
                             </DockPanel>
@@ -162,12 +135,12 @@
                                 Margin="25 0 20 10"
                                 Height="490">
                             <Grid>
-                                <ListView Name="lvcustomers"
+                                <ListView Name="lvDiscount"
                                           ItemsSource="{Binding CombineList}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="SelectionChanged">
-                                            <i:InvokeCommandAction Command="{Binding ChoosedcusCommand}"
-                                                                   CommandParameter="{Binding ElementName=lvcustomers}" />
+                                            <i:InvokeCommandAction Command="{Binding ChoosedDisCommand}"
+                                                                   CommandParameter="{Binding ElementName=lvDiscount}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                     <ListView.View>
@@ -211,7 +184,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.name}"
+                                                        <TextBlock Text="{Binding Item1.discountid}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -224,7 +197,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.phone_number}"
+                                                        <TextBlock Text="{Binding Item1.name}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -237,7 +210,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.dob}"
+                                                        <TextBlock Text="{Binding Item1.detail}"
                                                                    FontSize="13">
                                                         </TextBlock>
                                                     </DataTemplate>
@@ -251,7 +224,10 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.point, UpdateSourceTrigger=PropertyChanged}"
+                                                        <DatePicker Foreground="Black"
+                                                                    FontWeight="Bold"
+                                                                    IsEnabled="False"
+                                                                    SelectedDate="{Binding Item1.daystart , UpdateSourceTrigger=PropertyChanged}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -264,7 +240,11 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.point, UpdateSourceTrigger=PropertyChanged}"
+                                                        <DatePicker IsEnabled="False"
+                                                                    Foreground="Black"
+                                                                    FontWeight="Bold"
+                                                                    Opacity="1"
+                                                                    SelectedDate="{Binding Item1.dayend, UpdateSourceTrigger=PropertyChanged}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -277,7 +257,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.point, UpdateSourceTrigger=PropertyChanged}"
+                                                        <TextBlock Text="{Binding Item1.value_dis, UpdateSourceTrigger=PropertyChanged}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -292,7 +272,7 @@
                                                     <DataTemplate>
                                                         <Button Panel.ZIndex="0"
                                                                 Style="{StaticResource MaterialDesignToolForegroundButton}"
-                                                                Command="{Binding DataContext.DeleteCusCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                Command="{Binding DataContext.DeleteDisCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
                                                                 CommandParameter="{Binding Item1}">
                                                             <materialDesign:PackIcon Foreground="#5F5555"
                                                                                      Opacity=".80"
@@ -315,8 +295,9 @@
                                       HorizontalAlignment="Left"
                                       Margin="0 0 25 0">
                                     <TextBox VerticalAlignment="Center"
+          
                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                             Text="SP02A"
+                                             Text="{Binding DiscountID , UpdateSourceTrigger=PropertyChanged}"
                                              FontSize="15">
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Orientation="Horizontal">
@@ -329,13 +310,31 @@
                                             </StackPanel>
                                         </materialDesign:HintAssist.Hint>
                                     </TextBox>
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
+                                            <Setter Property="IsEnabled"
+                                                    Value="True" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding NotallowedAdd}"
+                                                             Value="True">
+                                                    <Setter Property="IsEnabled"
+                                                            Value="False" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding NotallowedAdd}"
+                                                             Value="False">
+                                                    <Setter Property="IsEnabled"
+                                                            Value="True" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
                                 </Grid>
                                 <Grid Width="140"
                                       HorizontalAlignment="Left"
                                       Margin="0 0 25 0">
                                     <TextBox VerticalAlignment="Center"
                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                             Text="30000"
+                                             Text="{Binding Discountname , UpdateSourceTrigger=PropertyChanged}"
                                              FontSize="15">
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Orientation="Horizontal">
@@ -354,7 +353,7 @@
                                       Margin="0 0 25 0">
                                     <TextBox VerticalAlignment="Center"
                                              FontSize="15"
-                                             Text="30"
+                                             Text="{Binding Description , UpdateSourceTrigger=PropertyChanged}"
                                              materialDesign:TextFieldAssist.HasClearButton="True"
                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                                         <materialDesign:HintAssist.Hint>
@@ -375,7 +374,7 @@
                                     <DatePicker Name="NSX"
                                                 VerticalAlignment="Center"
                                                 FontSize="15"
-                                                SelectedDate="{Binding date}"
+                                                SelectedDate="{Binding Daystart , UpdateSourceTrigger=PropertyChanged}"
                                                 materialDesign:TextFieldAssist.HasClearButton="True"
                                                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
                                         <materialDesign:HintAssist.Hint>
@@ -395,7 +394,7 @@
                                       Margin="0 0 25 0">
                                     <DatePicker Name="HSD"
                                                 FontSize="15"
-                                                SelectedDate="{Binding date}"
+                                                SelectedDate="{Binding Dayend , UpdateSourceTrigger=PropertyChanged}"
                                                 materialDesign:TextFieldAssist.HasClearButton="True"
                                                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
                                         <materialDesign:HintAssist.Hint>
@@ -415,7 +414,7 @@
                                       Margin="0 0 25 0">
                                     <TextBox VerticalAlignment="Center"
                                              FontSize="15"
-                                             Text="30"
+                                             Text="{Binding Value , UpdateSourceTrigger=PropertyChanged}"
                                              materialDesign:TextFieldAssist.HasClearButton="True"
                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                                         <materialDesign:HintAssist.Hint>
@@ -425,7 +424,7 @@
                                                                          Height="20px"
                                                                          Kind="CardPlusOutline" />
                                                 <TextBlock FontSize="16px"
-                                                           Text="Giá trị KM" />
+                                                           Text="Giá giảm" />
                                             </StackPanel>
                                         </materialDesign:HintAssist.Hint>
                                     </TextBox>
@@ -436,7 +435,7 @@
                                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                                             ToolTip="MaterialDesignRaisedLightButton with Round Corners"
                                             Margin="15 0 10 0"
-                                            Command="{Binding AddCusCommand, UpdateSourceTrigger=PropertyChanged}">
+                                            Command="{Binding AddDisCommand, UpdateSourceTrigger=PropertyChanged}">
                                         <Button.BorderBrush>
                                             <ImageBrush />
                                         </Button.BorderBrush>
@@ -452,7 +451,7 @@
                                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                                             ToolTip="MaterialDesignRaisedLightButton with Round Corners"
                                             Margin="14,56,10,-46"
-                                            Command="{Binding DeletefieldCusCommand, UpdateSourceTrigger=PropertyChanged}"
+                                            Command="{Binding DeletefieldDisCommand, UpdateSourceTrigger=PropertyChanged}"
                                             Background="#e87f14">
                                         <Button.BorderBrush>
                                             <ImageBrush />
@@ -468,7 +467,7 @@
                                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                                             ToolTip="MaterialDesignRaisedLightButton with Round Corners"
                                             Margin="10,5,15,5"
-                                            Command="{Binding UpdateCusCommand, UpdateSourceTrigger=PropertyChanged}">
+                                            Command="{Binding UpdateDisCommand, UpdateSourceTrigger=PropertyChanged}">
                                         <Button.BorderBrush>
                                             <ImageBrush />
                                         </Button.BorderBrush>
