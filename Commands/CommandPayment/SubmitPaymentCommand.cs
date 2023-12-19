@@ -12,6 +12,8 @@ using System.Collections.ObjectModel;
 using static MongoDB.Driver.WriteConcern;
 using System.Diagnostics;
 using System.Security.Cryptography;
+using System.IO;
+using DevCoffeeManagerApp.Views;
 
 namespace DevCoffeeManagerApp.Commands.CommandPayment
 {
@@ -30,7 +32,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
         }
         public override void Execute(object parameter)
         {
-            List<TableModel> tables = new List<TableModel>();
+            ObservableCollection<TableModel> tables = SessionStatic.GetTables;
             List<DiscountModel> discounts = new List<DiscountModel>();
             List<DishModel> dishesdb = new List<DishModel>();
 
@@ -64,12 +66,16 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                         ReceiptModel receiptModel = new ReceiptModel(current_date, SessionStatic.Customer, tables, staff_phonenumber,
                             dishesdb, discounts, "Thanh toán bằng tiền mặt", total_amount, int.Parse(guest_monney), change);
                         receiptDAO.AddReceipt(receiptModel);
+                        SessionStatic.SetReceipt = receiptModel;
                         SessionStatic.Customer.point = (SessionStatic.Customer.point + plus_point) - int.Parse(used_point);
                         customerDAO.UpdateCustomer(SessionStatic.Customer);
                         MessageBox.Show("Thanh toán thành công");
+                        Receipt receipt = new Receipt();
+                        receipt.Show();
                         SessionStatic.SetTables = null;
                         SessionStatic.SetOrdereds = null;
                         SessionStatic.Customer = null;
+                        SessionStatic.SetReceipt = null;
                     }
                     else MessageBox.Show("Đơn đặt món chưa có đầy đủ thông tin");
                 }
@@ -83,10 +89,14 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                         ReceiptModel receiptModel = new ReceiptModel(current_date, null, tables, staff_phonenumber,
                             dishesdb, discounts, "Thanh toán bằng tiền mặt", total_amount, int.Parse(guest_monney), change);
                         receiptDAO.AddReceipt(receiptModel);
+                        SessionStatic.SetReceipt = receiptModel;
                         MessageBox.Show("Thanh toán thành công");
+                        Receipt receipt = new Receipt();
+                        receipt.Show();
                         SessionStatic.SetTables = null;
                         SessionStatic.SetOrdereds = null;
                         SessionStatic.Customer = null;
+                        SessionStatic.SetReceipt = null;
                     }
                     else MessageBox.Show("Đơn đặt món chưa có đầy đủ thông tin");
                 }

@@ -218,6 +218,8 @@
     <Compile Include="Commands\CommandLogin\LoginCommand.cs" />
     <Compile Include="Commands\CommandPayment\MoneyReceivedCommand.cs" />
     <Compile Include="Commands\CommandPayment\SubmitPaymentCommand.cs" />
+    <Compile Include="Commands\CommandReceipt\CloseCommand.cs" />
+    <Compile Include="Commands\CommandReceipt\PrintReceiptCommand.cs" />
     <Compile Include="Commands\CommandSell\NavigationCommand.cs" />
     <Compile Include="Commands\CommandStaff\ExitCommand.cs" />
     <Compile Include="Commands\CommandStaff\SellCommand.cs" />
@@ -263,6 +265,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PaymentViewModel.cs" />
+    <Compile Include="ViewModels\ReceiptViewModel.cs" />
     <Compile Include="ViewModels\StaffViewModel.cs" />
     <Compile Include="ViewModels\OptionViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />

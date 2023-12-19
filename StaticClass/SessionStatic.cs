@@ -1,5 +1,6 @@
 ﻿using DevCoffeeManagerApp.DAOs;
 using DevCoffeeManagerApp.Models;
+using DevCoffeeManagerApp.Views;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace DevCoffeeManagerApp.StaticClass
         private static int _password;
         private static ObservableCollection<TableModel> _tables;
         private static ObservableCollection<DishModel> _ordered;
+        private static ReceiptModel _receipt;
+
         public static string GetPhoneNumber { get { return _phone_number; } }
         public static string SetPhoneNumber { set { _phone_number = value; } }
         public static string GetStaffName { get { return _staff_name; } }
@@ -32,6 +35,10 @@ namespace DevCoffeeManagerApp.StaticClass
 
         public static ObservableCollection<DishModel> GetOrdereds { get { return _ordered; } }
         public static ObservableCollection<DishModel> SetOrdereds { set { _ordered = value; } }
+
+        public static ReceiptModel GetReceipt { get { return _receipt; } }
+        public static ReceiptModel SetReceipt { set { _receipt = value; } }
+
         public static ObservableCollection<DishModel> DeepCopyObservableCollection(ObservableCollection<DishModel> source)
         {
             return new ObservableCollection<DishModel>(

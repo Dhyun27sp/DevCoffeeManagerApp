@@ -23,7 +23,7 @@ namespace DevCoffeeManagerApp.Models
         public CustomerModel customer { get; set; }
 
         [BsonElement("tables")]
-        public List<TableModel> tables { get; set; }
+        public ObservableCollection<TableModel> tables { get; set; }
 
         [BsonElement("staff_phonenumber"), BsonRepresentation(BsonType.String)]
         public string staff_phone { get; set; }
@@ -46,7 +46,7 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("change"), BsonRepresentation(BsonType.Int32)]
         public int change { get; set; }
 
-        public ReceiptModel(DateTime time, CustomerModel customer, List<TableModel> tables, string staff_phone, List<DishModel> dishes, List<DiscountModel> discounts, string payments, int total_amount, int guest_monney, int change)
+        public ReceiptModel(DateTime time, CustomerModel customer, ObservableCollection<TableModel> tables, string staff_phone, List<DishModel> dishes, List<DiscountModel> discounts, string payments, int total_amount, int guest_monney, int change)
         {
             this.time = time;
             this.customer = customer;
