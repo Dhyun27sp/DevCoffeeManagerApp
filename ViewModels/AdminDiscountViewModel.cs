@@ -14,6 +14,8 @@ namespace DevCoffeeManagerApp.ViewModels
     public class AdminDiscountViewModel : BaseViewModel
     {
         DiscountDAO discountDAO = new DiscountDAO();
+
+        //Khối Property và ICommand Hộ Trợ DistcountList : End
         private ObservableCollection<DiscountModel> _discount;
         public ObservableCollection<DiscountModel> Discounts
         {
@@ -110,21 +112,55 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand DeletefieldDisCommand { get; }
         public ICommand DeleteDisCommand { get; }
         public ICommand DiscountCbbCommand { get; }
+
+        //Khối Property và Command Hộ Trợ DistcountList : End
+        /// <summary>
+        /// /////////
+        /// </summary>
+        //Khối Property và Command Hộ Trợ DishList : Start
+        private List<string> _typeDishs;
+        public List<string> TypeDishs
+        {
+            get { return _typeDishs; }
+            set { _typeDishs = value; OnPropertyChanged(nameof(TypeDishs)); }
+
+        }
+        private string _typeDishitem = "All";
+        public string TypeDishitem
+        {
+            get { return _typeDishitem; }
+            set { _typeDishitem = value; OnPropertyChanged(nameof(TypeDishitem)); }
+        }
+        //Khối Property và Command Hộ Trợ DishList : End
+        /// <summary>
+        /// /////////
+        /// </summary>
+        //Khối Property và Command Hộ Trợ MenuList : Start
+
+        //Khối Property và Command Hộ Trợ MenuList : End
         public AdminDiscountViewModel()
         {
+            //Khối Config Hộ Trợ DistcountList :Start
             ChoosedDisCommand = new ClickButtonCommand(this, "choose");
             AddDisCommand = new ClickButtonCommand(this, "add");
             UpdateDisCommand = new ClickButtonCommand(this, "update");
             DeletefieldDisCommand = new ClickButtonCommand(this, "deletef");
             DeleteDisCommand = new ClickButtonCommand(this, "deleted");
             DiscountCbbCommand = new FilterDiscountCommand(this, "cbb");
-
-
             Discounts = new ObservableCollection<DiscountModel>(discountDAO.ReadDiscountAll());
             ExpiryDate = new List<string>();
             ExpiryDate.Add("All");
             ExpiryDate.Add("Expired");
             ExpiryDate.Add("valid");
+            //Khối Config Hộ Trợ DistcountList : End
+            ////////////////////////////
+            //Khối Config Hộ Trợ DishList :Start
+            TypeDishs = new List<string>();
+            //Khối Config Hộ Trợ DishList :end
+            ////////////////////////////
+            //Khối Config Hộ Trợ MenuList :Start
+
+            //Khối Config Hộ Trợ MenuList :end
         }
     }
 }

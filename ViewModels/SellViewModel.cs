@@ -33,10 +33,17 @@ namespace DevCoffeeManagerApp.ViewModels
             CommandOrder = new NavigationCommand(navigationStore, "orderPage");
             CommandOptionOrder = new NavigationCommand(navigationStore, "optionPage");
             CommandPayment = new NavigationCommand(navigationStore, "paymentPage");
+
+            EventAggregator.Instance.MessagePublished += OnMessagePublished;
         }
         private void OnCurrentViewModelChanged()
         {
             OnPropertyChanged(nameof(CurrentViewModel));
+        }
+
+        private void OnMessagePublished(object sender, MessageEventArgs e)
+        {
+            _navigationStore.CurrentViewModel = new TableViewModel(_navigationStore);
         }
     }
         

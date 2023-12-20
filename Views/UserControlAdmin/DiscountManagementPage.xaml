@@ -12,7 +12,7 @@
              xmlns:local="clr-namespace:DevCoffeeManagerApp.Views.UserControlAdmin"
              xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="900"
+             d:DesignHeight="2900"
              d:DesignWidth="1000">
     <UserControl.DataContext>
         <vms:AdminDiscountViewModel />
@@ -60,428 +60,1225 @@
                     Background="White"
                     Grid.Column="0">
                 <ScrollViewer>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*"></RowDefinition>
-                            <RowDefinition Height="5*"></RowDefinition>
-                            <RowDefinition Height="1*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
-                            <DockPanel Margin="25 10 0 10">
-                                <TextBlock Text="Danh sách khuyến mãi:"
-                                           VerticalAlignment="Center" />
-                                <Grid Width="200"
-                                      HorizontalAlignment="Right"
-                                      Margin="0 0 20 0"
-                                      DockPanel.Dock="Right">
-                                    <DatePicker Name="ngay_le"
-                                                VerticalAlignment="Center"
-                                                FontSize="15"
-                                                SelectedDate="{Binding Dobcustom,UpdateSourceTrigger=PropertyChanged}"
-                                                materialDesign:TextFieldAssist.HasClearButton="True"
-                                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
-                                        <materialDesign:HintAssist.Hint>
-                                            <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                         Width="25px"
-                                                                         Height="20px"
-                                                                         Kind="CardPlusOutline" />
-                                                <TextBlock FontSize="16px"
-                                                           Text="Lịch ..." />
-                                            </StackPanel>
-                                        </materialDesign:HintAssist.Hint>
-                                    </DatePicker>
-                                </Grid>
-                                <Grid Width="auto"
-                                      DockPanel.Dock="Right">
-                                    <ComboBox ItemsSource="{Binding ExpiryDate}"
-                                              SelectedItem="{Binding ExpiryDateitem, UpdateSourceTrigger=PropertyChanged}"
-                                              x:Name="ComboBoxType"
-                                              Padding="12"
-                                              Margin="0 0 20 0"
-                                              HorizontalAlignment="Right"
-                                              Width="180"
-                                              Opacity="1"
-                                              FontSize="12"
-                                              BorderThickness="0"
-                                              Foreground="Black"
-                                              Background="#FFFAFAFA">
-                                        <ComboBox.Effect>
-                                            <DropShadowEffect  Direction="230"
-                                                               ShadowDepth="3"
-                                                               Color="Gray"
-                                                               Opacity="0.2"
-                                                               BlurRadius="2" />
-                                        </ComboBox.Effect>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="5*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <DockPanel Margin="25 10 0 10">
+                                    <TextBlock Text="Danh sách khuyến mãi:"
+                                               VerticalAlignment="Center" />
+                                    <Grid Width="200"
+                                          HorizontalAlignment="Right"
+                                          Margin="0 0 20 0"
+                                          DockPanel.Dock="Right">
+                                        <DatePicker Name="ngay_le"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="15"
+                                                    SelectedDate="{Binding Dobcustom,UpdateSourceTrigger=PropertyChanged}"
+                                                    materialDesign:TextFieldAssist.HasClearButton="True"
+                                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                                            <materialDesign:HintAssist.Hint>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                             Width="25px"
+                                                                             Height="20px"
+                                                                             Kind="CardPlusOutline" />
+                                                    <TextBlock FontSize="16px"
+                                                               Text="Lịch ..." />
+                                                </StackPanel>
+                                            </materialDesign:HintAssist.Hint>
+                                        </DatePicker>
+                                    </Grid>
+                                    <Grid Width="auto"
+                                          DockPanel.Dock="Right">
+                                        <ComboBox ItemsSource="{Binding ExpiryDate}"
+                                                  SelectedItem="{Binding ExpiryDateitem, UpdateSourceTrigger=PropertyChanged}"
+                                                  x:Name="ComboBoxType"
+                                                  Padding="12"
+                                                  Margin="0 0 20 0"
+                                                  HorizontalAlignment="Right"
+                                                  Width="180"
+                                                  Opacity="1"
+                                                  FontSize="12"
+                                                  BorderThickness="0"
+                                                  Foreground="Black"
+                                                  Background="#FFFAFAFA">
+                                            <ComboBox.Effect>
+                                                <DropShadowEffect  Direction="230"
+                                                                   ShadowDepth="3"
+                                                                   Color="Gray"
+                                                                   Opacity="0.2"
+                                                                   BlurRadius="2" />
+                                            </ComboBox.Effect>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="SelectionChanged">
+                                                    <i:InvokeCommandAction Command="{Binding DiscountCbbCommand}"
+                                                                           CommandParameter="{Binding ElementName=ComboBoxType}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ComboBox>
+                                    </Grid>
+                                    <Grid Width="auto"
+                                          DockPanel.Dock="Right">
+
+                                    </Grid>
+
+                                </DockPanel>
+                            </Grid>
+                            <Border BorderBrush="#5f5555"
+                                    BorderThickness="0.5"
+                                    CornerRadius="10"
+                                    Grid.Row="1"
+                                    Margin="25 0 20 10"
+                                    Height="490">
+                                <Grid>
+                                    <ListView Name="lvDiscount"
+                                              ItemsSource="{Binding CombineList}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="SelectionChanged">
-                                                <i:InvokeCommandAction Command="{Binding DiscountCbbCommand}"
-                                                                       CommandParameter="{Binding ElementName=ComboBoxType}" />
+                                                <i:InvokeCommandAction Command="{Binding ChoosedDisCommand}"
+                                                                       CommandParameter="{Binding ElementName=lvDiscount}" />
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
-                                    </ComboBox>
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridView.ColumnHeaderContainerStyle>
+                                                    <Style TargetType="{x:Type GridViewColumnHeader}">
+                                                        <Setter Property="FontSize"
+                                                                Value="15" />
+                                                        <Setter Property="FontFamily"
+                                                                Value="Nunito" />
+                                                        <Setter Property="Margin"
+                                                                Value="0" />
+                                                        <Setter Property="Padding"
+                                                                Value="10" />
+                                                        <Setter Property="Foreground"
+                                                                Value="Black" />
+                                                        <Setter Property="HorizontalContentAlignment"
+                                                                Value="Left" />
+                                                    </Style>
+                                                </GridView.ColumnHeaderContainerStyle>
+                                                <GridViewColumn Width="70">
+                                                    <GridViewColumnHeader FontFamily="Nunito"
+                                                                          FontWeight="DemiBold"
+                                                                          Background="Transparent"
+                                                                          Padding="0"
+                                                                          Margin="10 0 0 0">
+                                                        STT
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding Item2}"
+                                                                       FontSize="13" />
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Width="140">
+                                                    <GridViewColumnHeader FontFamily="Nunito"
+                                                                          FontWeight="DemiBold"
+                                                                          Background="Transparent">
+                                                        Mã chương trình
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding Item1.discountid}"
+                                                                       FontSize="13" />
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Width="200">
+                                                    <GridViewColumnHeader FontFamily="Nunito"
+                                                                          FontWeight="DemiBold"
+                                                                          Background="Transparent">
+                                                        Tên chương trình
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding Item1.name}"
+                                                                       FontSize="13" />
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Width="200">
+                                                    <GridViewColumnHeader FontFamily="Nunito"
+                                                                          FontWeight="DemiBold"
+                                                                          Background="Transparent">
+                                                        Mô tả
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding Item1.detail}"
+                                                                       FontSize="13">
+                                                            </TextBlock>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Width="150">
+                                                    <GridViewColumnHeader FontFamily="Nunito"
+                                                                          FontWeight="DemiBold"
+                                                                          Background="Transparent">
+                                                        Ngày bắt đầu
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <DatePicker Foreground="Black"
+                                                                        FontWeight="Bold"
+                                                                        IsEnabled="False"
+                                                                        SelectedDate="{Binding Item1.daystart , UpdateSourceTrigger=PropertyChanged}"
+                                                                        FontSize="13" />
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Width="150">
+                                                    <GridViewColumnHeader FontFamily="Nunito"
+                                                                          FontWeight="DemiBold"
+                                                                          Background="Transparent">
+                                                        Ngày kết thúc
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <DatePicker IsEnabled="False"
+                                                                        Foreground="Black"
+                                                                        FontWeight="Bold"
+                                                                        Opacity="1"
+                                                                        SelectedDate="{Binding Item1.dayend, UpdateSourceTrigger=PropertyChanged}"
+                                                                        FontSize="13" />
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Width="100">
+                                                    <GridViewColumnHeader FontFamily="Nunito"
+                                                                          FontWeight="DemiBold"
+                                                                          Background="Transparent">
+                                                        Giá trị KM
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding Item1.value_dis, UpdateSourceTrigger=PropertyChanged}"
+                                                                       FontSize="13" />
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Width="100">
+                                                    <GridViewColumnHeader FontFamily="Nunito"
+                                                                          FontWeight="DemiBold"
+                                                                          Background="Transparent">
+                                                        Delete
+                                                    </GridViewColumnHeader>
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Button Panel.ZIndex="0"
+                                                                    Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                                                    Command="{Binding DataContext.DeleteDisCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                    CommandParameter="{Binding Item1}">
+                                                                <materialDesign:PackIcon Foreground="#5F5555"
+                                                                                         Opacity=".80"
+                                                                                         Kind="DeleteForever"
+                                                                                         Width="30"
+                                                                                         Height="25" />
+                                                            </Button>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
                                 </Grid>
-                                <Grid Width="auto"
-                                      DockPanel.Dock="Right">
-                                   
-                                </Grid>
-
-                            </DockPanel>
-                        </Grid>
-                        <Border BorderBrush="#5f5555"
-                                BorderThickness="0.5"
-                                CornerRadius="10"
-                                Grid.Row="1"
-                                Margin="25 0 20 10"
-                                Height="490">
-                            <Grid>
-                                <ListView Name="lvDiscount"
-                                          ItemsSource="{Binding CombineList}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="SelectionChanged">
-                                            <i:InvokeCommandAction Command="{Binding ChoosedDisCommand}"
-                                                                   CommandParameter="{Binding ElementName=lvDiscount}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridView.ColumnHeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="FontSize"
-                                                            Value="15" />
-                                                    <Setter Property="FontFamily"
-                                                            Value="Nunito" />
-                                                    <Setter Property="Margin"
-                                                            Value="0" />
-                                                    <Setter Property="Padding"
-                                                            Value="10" />
-                                                    <Setter Property="Foreground"
-                                                            Value="Black" />
-                                                    <Setter Property="HorizontalContentAlignment"
-                                                            Value="Left" />
-                                                </Style>
-                                            </GridView.ColumnHeaderContainerStyle>
-                                            <GridViewColumn Width="70">
-                                                <GridViewColumnHeader FontFamily="Nunito"
-                                                                      FontWeight="DemiBold"
-                                                                      Background="Transparent"
-                                                                      Padding="0"
-                                                                      Margin="10 0 0 0">
-                                                    STT
-                                                </GridViewColumnHeader>
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding Item2}"
-                                                                   FontSize="13" />
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                            <GridViewColumn Width="140">
-                                                <GridViewColumnHeader FontFamily="Nunito"
-                                                                      FontWeight="DemiBold"
-                                                                      Background="Transparent">
-                                                    Mã chương trình
-                                                </GridViewColumnHeader>
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.discountid}"
-                                                                   FontSize="13" />
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                            <GridViewColumn Width="200">
-                                                <GridViewColumnHeader FontFamily="Nunito"
-                                                                      FontWeight="DemiBold"
-                                                                      Background="Transparent">
-                                                    Tên chương trình
-                                                </GridViewColumnHeader>
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.name}"
-                                                                   FontSize="13" />
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                            <GridViewColumn Width="200">
-                                                <GridViewColumnHeader FontFamily="Nunito"
-                                                                      FontWeight="DemiBold"
-                                                                      Background="Transparent">
-                                                    Mô tả
-                                                </GridViewColumnHeader>
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.detail}"
-                                                                   FontSize="13">
-                                                        </TextBlock>
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                            <GridViewColumn Width="150">
-                                                <GridViewColumnHeader FontFamily="Nunito"
-                                                                      FontWeight="DemiBold"
-                                                                      Background="Transparent">
-                                                    Ngày bắt đầu
-                                                </GridViewColumnHeader>
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <DatePicker Foreground="Black"
-                                                                    FontWeight="Bold"
-                                                                    IsEnabled="False"
-                                                                    SelectedDate="{Binding Item1.daystart , UpdateSourceTrigger=PropertyChanged}"
-                                                                   FontSize="13" />
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                            <GridViewColumn Width="150">
-                                                <GridViewColumnHeader FontFamily="Nunito"
-                                                                      FontWeight="DemiBold"
-                                                                      Background="Transparent">
-                                                    Ngày kết thúc
-                                                </GridViewColumnHeader>
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <DatePicker IsEnabled="False"
-                                                                    Foreground="Black"
-                                                                    FontWeight="Bold"
-                                                                    Opacity="1"
-                                                                    SelectedDate="{Binding Item1.dayend, UpdateSourceTrigger=PropertyChanged}"
-                                                                   FontSize="13" />
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                            <GridViewColumn Width="100">
-                                                <GridViewColumnHeader FontFamily="Nunito"
-                                                                      FontWeight="DemiBold"
-                                                                      Background="Transparent">
-                                                    Giá trị KM
-                                                </GridViewColumnHeader>
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.value_dis, UpdateSourceTrigger=PropertyChanged}"
-                                                                   FontSize="13" />
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                            <GridViewColumn Width="100">
-                                                <GridViewColumnHeader FontFamily="Nunito"
-                                                                      FontWeight="DemiBold"
-                                                                      Background="Transparent">
-                                                    Delete
-                                                </GridViewColumnHeader>
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <Button Panel.ZIndex="0"
-                                                                Style="{StaticResource MaterialDesignToolForegroundButton}"
-                                                                Command="{Binding DataContext.DeleteDisCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
-                                                                CommandParameter="{Binding Item1}">
-                                                            <materialDesign:PackIcon Foreground="#5F5555"
-                                                                                     Opacity=".80"
-                                                                                     Kind="DeleteForever"
-                                                                                     Width="30"
-                                                                                     Height="25" />
-                                                        </Button>
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
+                            </Border>
+                            <Grid Grid.Row="3"
+                                  Margin="25 10 25 20">
+                                <WrapPanel Height="200px">
+                                    <Grid Width="140"
+                                          HorizontalAlignment="Left"
+                                          Margin="0 0 25 0">
+                                        <TextBox VerticalAlignment="Center"
+                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                 Text="{Binding DiscountID , UpdateSourceTrigger=PropertyChanged}"
+                                                 FontSize="15">
+                                            <materialDesign:HintAssist.Hint>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                             Width="25px"
+                                                                             Height="20px"
+                                                                             Kind="CardPlusOutline" />
+                                                    <TextBlock FontSize="16px"
+                                                               Text="Mã chương trình" />
+                                                </StackPanel>
+                                            </materialDesign:HintAssist.Hint>
+                                        </TextBox>
+                                        <Grid.Style>
+                                            <Style TargetType="Grid">
+                                                <Setter Property="IsEnabled"
+                                                        Value="True" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding NotallowedAdd}"
+                                                                 Value="True">
+                                                        <Setter Property="IsEnabled"
+                                                                Value="False" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding NotallowedAdd}"
+                                                                 Value="False">
+                                                        <Setter Property="IsEnabled"
+                                                                Value="True" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Grid.Style>
+                                    </Grid>
+                                    <Grid Width="140"
+                                          HorizontalAlignment="Left"
+                                          Margin="0 0 25 0">
+                                        <TextBox VerticalAlignment="Center"
+                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                 Text="{Binding Discountname , UpdateSourceTrigger=PropertyChanged}"
+                                                 FontSize="15">
+                                            <materialDesign:HintAssist.Hint>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                             Width="25px"
+                                                                             Height="20px"
+                                                                             Kind="CardPlusOutline" />
+                                                    <TextBlock FontSize="16px"
+                                                               Text="Tên chương trình" />
+                                                </StackPanel>
+                                            </materialDesign:HintAssist.Hint>
+                                        </TextBox>
+                                    </Grid>
+                                    <Grid Width="180"
+                                          HorizontalAlignment="Left"
+                                          Margin="0 0 25 0">
+                                        <TextBox VerticalAlignment="Center"
+                                                 FontSize="15"
+                                                 Text="{Binding Description , UpdateSourceTrigger=PropertyChanged}"
+                                                 materialDesign:TextFieldAssist.HasClearButton="True"
+                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                            <materialDesign:HintAssist.Hint>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                             Width="25px"
+                                                                             Height="20px"
+                                                                             Kind="CardPlusOutline" />
+                                                    <TextBlock FontSize="16px"
+                                                               Text="Mô tả" />
+                                                </StackPanel>
+                                            </materialDesign:HintAssist.Hint>
+                                        </TextBox>
+                                    </Grid>
+                                    <Grid Width="170"
+                                          HorizontalAlignment="Left"
+                                          Margin="0 0 25 0">
+                                        <DatePicker Name="NSX"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="15"
+                                                    SelectedDate="{Binding Daystart , UpdateSourceTrigger=PropertyChanged}"
+                                                    materialDesign:TextFieldAssist.HasClearButton="True"
+                                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                                            <materialDesign:HintAssist.Hint>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                             Width="25px"
+                                                                             Height="20px"
+                                                                             Kind="CardPlusOutline" />
+                                                    <TextBlock FontSize="16px"
+                                                               Text="Ngày bắt đầu" />
+                                                </StackPanel>
+                                            </materialDesign:HintAssist.Hint>
+                                        </DatePicker>
+                                    </Grid>
+                                    <Grid Width="170"
+                                          HorizontalAlignment="Left"
+                                          Margin="0 0 25 0">
+                                        <DatePicker Name="HSD"
+                                                    FontSize="15"
+                                                    SelectedDate="{Binding Dayend , UpdateSourceTrigger=PropertyChanged}"
+                                                    materialDesign:TextFieldAssist.HasClearButton="True"
+                                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                                            <materialDesign:HintAssist.Hint>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                             Width="25px"
+                                                                             Height="20px"
+                                                                             Kind="CardPlusOutline" />
+                                                    <TextBlock FontSize="16px"
+                                                               Text="Ngày kết thúc" />
+                                                </StackPanel>
+                                            </materialDesign:HintAssist.Hint>
+                                        </DatePicker>
+                                    </Grid>
+                                    <Grid Width="110"
+                                          HorizontalAlignment="Left"
+                                          Margin="0 0 25 0">
+                                        <TextBox VerticalAlignment="Center"
+                                                 FontSize="15"
+                                                 Text="{Binding Value , UpdateSourceTrigger=PropertyChanged}"
+                                                 materialDesign:TextFieldAssist.HasClearButton="True"
+                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                            <materialDesign:HintAssist.Hint>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                             Width="25px"
+                                                                             Height="20px"
+                                                                             Kind="CardPlusOutline" />
+                                                    <TextBlock FontSize="16px"
+                                                               Text="Giá giảm" />
+                                                </StackPanel>
+                                            </materialDesign:HintAssist.Hint>
+                                        </TextBox>
+                                    </Grid>
+                                    <Grid>
+                                        <Button materialDesign:ButtonAssist.CornerRadius="10"
+                                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                                ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                                Margin="15 0 10 0"
+                                                Command="{Binding AddDisCommand, UpdateSourceTrigger=PropertyChanged}">
+                                            <Button.BorderBrush>
+                                                <ImageBrush />
+                                            </Button.BorderBrush>
+                                            <Button.Background>
+                                                <SolidColorBrush Color="#e87f14" />
+                                            </Button.Background>
+                                            <TextBlock FontFamily="Nunito"
+                                                       Text="Thêm KM"
+                                                       Foreground="White" />
+                                        </Button>
+                                        <Button materialDesign:ButtonAssist.CornerRadius="10"
+                                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+                                                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                                ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                                Margin="14,56,10,-46"
+                                                Command="{Binding DeletefieldDisCommand, UpdateSourceTrigger=PropertyChanged}"
+                                                Background="#e87f14">
+                                            <Button.BorderBrush>
+                                                <ImageBrush />
+                                            </Button.BorderBrush>
+                                            <TextBlock FontFamily="Nunito"
+                                                       Text="Xóa Trường"
+                                                       Foreground="White" />
+                                        </Button>
+                                    </Grid>
+                                    <Grid>
+                                        <Button materialDesign:ButtonAssist.CornerRadius="10"
+                                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                                ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                                Margin="10,5,15,5"
+                                                Command="{Binding UpdateDisCommand, UpdateSourceTrigger=PropertyChanged}">
+                                            <Button.BorderBrush>
+                                                <ImageBrush />
+                                            </Button.BorderBrush>
+                                            <Button.Background>
+                                                <SolidColorBrush Color="#c87780" />
+                                            </Button.Background>
+                                            <TextBlock FontFamily="Nunito"
+                                                       Text="Cập nhật KM"
+                                                       Foreground="White" />
+                                        </Button>
+                                    </Grid>
+                                </WrapPanel>
                             </Grid>
-                        </Border>
-                        <Grid Grid.Row="3"
-                              Margin="25 10 25 20">
-                            <WrapPanel Height="200px">
-                                <Grid Width="140"
-                                      HorizontalAlignment="Left"
-                                      Margin="0 0 25 0">
-                                    <TextBox VerticalAlignment="Center"
-          
-                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                             Text="{Binding DiscountID , UpdateSourceTrigger=PropertyChanged}"
-                                             FontSize="15">
-                                        <materialDesign:HintAssist.Hint>
-                                            <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                         Width="25px"
-                                                                         Height="20px"
-                                                                         Kind="CardPlusOutline" />
-                                                <TextBlock FontSize="16px"
-                                                           Text="Mã chương trình" />
-                                            </StackPanel>
-                                        </materialDesign:HintAssist.Hint>
-                                    </TextBox>
-                                    <Grid.Style>
-                                        <Style TargetType="Grid">
-                                            <Setter Property="IsEnabled"
-                                                    Value="True" />
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding NotallowedAdd}"
-                                                             Value="True">
-                                                    <Setter Property="IsEnabled"
-                                                            Value="False" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding NotallowedAdd}"
-                                                             Value="False">
-                                                    <Setter Property="IsEnabled"
-                                                            Value="True" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Grid.Style>
-                                </Grid>
-                                <Grid Width="140"
-                                      HorizontalAlignment="Left"
-                                      Margin="0 0 25 0">
-                                    <TextBox VerticalAlignment="Center"
-                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                             Text="{Binding Discountname , UpdateSourceTrigger=PropertyChanged}"
-                                             FontSize="15">
-                                        <materialDesign:HintAssist.Hint>
-                                            <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                         Width="25px"
-                                                                         Height="20px"
-                                                                         Kind="CardPlusOutline" />
-                                                <TextBlock FontSize="16px"
-                                                           Text="Tên chương trình" />
-                                            </StackPanel>
-                                        </materialDesign:HintAssist.Hint>
-                                    </TextBox>
-                                </Grid>
-                                <Grid Width="180"
-                                      HorizontalAlignment="Left"
-                                      Margin="0 0 25 0">
-                                    <TextBox VerticalAlignment="Center"
-                                             FontSize="15"
-                                             Text="{Binding Description , UpdateSourceTrigger=PropertyChanged}"
-                                             materialDesign:TextFieldAssist.HasClearButton="True"
-                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                                        <materialDesign:HintAssist.Hint>
-                                            <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                         Width="25px"
-                                                                         Height="20px"
-                                                                         Kind="CardPlusOutline" />
-                                                <TextBlock FontSize="16px"
-                                                           Text="Mô tả" />
-                                            </StackPanel>
-                                        </materialDesign:HintAssist.Hint>
-                                    </TextBox>
-                                </Grid>
-                                <Grid Width="170"
-                                      HorizontalAlignment="Left"
-                                      Margin="0 0 25 0">
-                                    <DatePicker Name="NSX"
-                                                VerticalAlignment="Center"
-                                                FontSize="15"
-                                                SelectedDate="{Binding Daystart , UpdateSourceTrigger=PropertyChanged}"
-                                                materialDesign:TextFieldAssist.HasClearButton="True"
-                                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
-                                        <materialDesign:HintAssist.Hint>
-                                            <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                         Width="25px"
-                                                                         Height="20px"
-                                                                         Kind="CardPlusOutline" />
-                                                <TextBlock FontSize="16px"
-                                                           Text="Ngày bắt đầu" />
-                                            </StackPanel>
-                                        </materialDesign:HintAssist.Hint>
-                                    </DatePicker>
-                                </Grid>
-                                <Grid Width="170"
-                                      HorizontalAlignment="Left"
-                                      Margin="0 0 25 0">
-                                    <DatePicker Name="HSD"
-                                                FontSize="15"
-                                                SelectedDate="{Binding Dayend , UpdateSourceTrigger=PropertyChanged}"
-                                                materialDesign:TextFieldAssist.HasClearButton="True"
-                                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
-                                        <materialDesign:HintAssist.Hint>
-                                            <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                         Width="25px"
-                                                                         Height="20px"
-                                                                         Kind="CardPlusOutline" />
-                                                <TextBlock FontSize="16px"
-                                                           Text="Ngày kết thúc" />
-                                            </StackPanel>
-                                        </materialDesign:HintAssist.Hint>
-                                    </DatePicker>
-                                </Grid>
-                                <Grid Width="110"
-                                      HorizontalAlignment="Left"
-                                      Margin="0 0 25 0">
-                                    <TextBox VerticalAlignment="Center"
-                                             FontSize="15"
-                                             Text="{Binding Value , UpdateSourceTrigger=PropertyChanged}"
-                                             materialDesign:TextFieldAssist.HasClearButton="True"
-                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                                        <materialDesign:HintAssist.Hint>
-                                            <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                         Width="25px"
-                                                                         Height="20px"
-                                                                         Kind="CardPlusOutline" />
-                                                <TextBlock FontSize="16px"
-                                                           Text="Giá giảm" />
-                                            </StackPanel>
-                                        </materialDesign:HintAssist.Hint>
-                                    </TextBox>
-                                </Grid>
-                                <Grid>
-                                    <Button materialDesign:ButtonAssist.CornerRadius="10"
-                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                            Style="{StaticResource MaterialDesignRaisedLightButton}"
-                                            ToolTip="MaterialDesignRaisedLightButton with Round Corners"
-                                            Margin="15 0 10 0"
-                                            Command="{Binding AddDisCommand, UpdateSourceTrigger=PropertyChanged}">
-                                        <Button.BorderBrush>
-                                            <ImageBrush />
-                                        </Button.BorderBrush>
-                                        <Button.Background>
-                                            <SolidColorBrush Color="#e87f14" />
-                                        </Button.Background>
-                                        <TextBlock FontFamily="Nunito"
-                                                   Text="Thêm KM"
-                                                   Foreground="White" />
-                                    </Button>
-                                    <Button materialDesign:ButtonAssist.CornerRadius="10"
-                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
-                                            Style="{StaticResource MaterialDesignRaisedLightButton}"
-                                            ToolTip="MaterialDesignRaisedLightButton with Round Corners"
-                                            Margin="14,56,10,-46"
-                                            Command="{Binding DeletefieldDisCommand, UpdateSourceTrigger=PropertyChanged}"
-                                            Background="#e87f14">
-                                        <Button.BorderBrush>
-                                            <ImageBrush />
-                                        </Button.BorderBrush>
-                                        <TextBlock FontFamily="Nunito"
-                                                   Text="Xóa Trường"
-                                                   Foreground="White" />
-                                    </Button>
-                                </Grid>
-                                <Grid>
-                                    <Button materialDesign:ButtonAssist.CornerRadius="10"
-                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                            Style="{StaticResource MaterialDesignRaisedLightButton}"
-                                            ToolTip="MaterialDesignRaisedLightButton with Round Corners"
-                                            Margin="10,5,15,5"
-                                            Command="{Binding UpdateDisCommand, UpdateSourceTrigger=PropertyChanged}">
-                                        <Button.BorderBrush>
-                                            <ImageBrush />
-                                        </Button.BorderBrush>
-                                        <Button.Background>
-                                            <SolidColorBrush Color="#c87780" />
-                                        </Button.Background>
-                                        <TextBlock FontFamily="Nunito"
-                                                   Text="Cập nhật KM"
-                                                   Foreground="White" />
-                                    </Button>
-                                </Grid>
-                            </WrapPanel>
                         </Grid>
-                    </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="5*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <DockPanel Margin="25 10 0 10">
+                                    <TextBlock Text="Danh sách Món ăn khuyến mãi:"
+                                               VerticalAlignment="Center" />
+                                    <Grid 
+                                          HorizontalAlignment="Right"
+                                          Margin="0 0 20 0"
+                                          DockPanel.Dock="Right">
+                                        <materialDesign:ColorZone 
+                                                                  VerticalAlignment="Center"
+                                                                  HorizontalAlignment="Right"
+                                                                  Padding="8,4,8,4"
+                                                                  Panel.ZIndex="1"
+                                                                  materialDesign:ElevationAssist.Elevation="Dp2"
+                                                                  CornerRadius="2"
+                                                                  Mode="Standard">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="23*" />
+                                                    <RowDefinition Height="9*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Button Style="{StaticResource MaterialDesignToolButton}"
+                                                        Grid.RowSpan="2">
+                                                    <materialDesign:PackIcon Kind="Search"
+                                                                             Opacity=".56" />
+                                                </Button>
+                                                <TextBox Grid.Column="1"
+                                                         x:Name="TexboxSearch"
+                                                         MinWidth="200"
+                                                         Margin="8,4,0,0"
+                                                         VerticalAlignment="Top"
+                                                         materialDesign:HintAssist.Hint="Build a search bar"
+                                                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                         BorderThickness="0"
+                                                         Grid.RowSpan="2"
+                                                         Text="{Binding Customersearch , UpdateSourceTrigger=PropertyChanged}">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="KeyUp">
+                                                            <i:InvokeCommandAction Command="{Binding ChangeValueTexboxCommand}"
+                                                                                   CommandParameter="{Binding ElementName=TexboxSearch}" />
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </TextBox>
+                                            </Grid>
+                                        </materialDesign:ColorZone>
+                                    </Grid>
+                                    <Grid Width="auto"
+                                          DockPanel.Dock="Right">
+                                        <ComboBox ItemsSource="{Binding TypeDishs}"
+                                                  SelectedItem="{Binding TypeDishitem, UpdateSourceTrigger=PropertyChanged}"
+                                                  x:Name="ComboboxTypeDish"
+                                                  Padding="12"
+                                                  Margin="0 0 20 0"
+                                                  HorizontalAlignment="Right"
+                                                  Width="180"
+                                                  Opacity="1"
+                                                  FontSize="12"
+                                                  BorderThickness="0"
+                                                  Foreground="Black"
+                                                  Background="#FFFAFAFA">
+                                            <ComboBox.Effect>
+                                                <DropShadowEffect  Direction="230"
+                                                                   ShadowDepth="3"
+                                                                   Color="Gray"
+                                                                   Opacity="0.2"
+                                                                   BlurRadius="2" />
+                                            </ComboBox.Effect>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="SelectionChanged">
+                                                    <i:InvokeCommandAction Command="{Binding TypedishCbbCommand}"
+                                                                           CommandParameter="{Binding ElementName=ComboboxTypeDish}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ComboBox>
+                                    </Grid>
+                                    <Grid Width="auto"
+                                          DockPanel.Dock="Right">
+
+                                    </Grid>
+
+                                </DockPanel>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <StackPanel Margin="25 0 20 10">
+                                    <Border BorderBrush="#5f5555"
+                                            BorderThickness="0.5"
+                                            CornerRadius="10"
+                                            Height="320">
+                                        <Grid>
+                                            <ListView ItemsSource="{Binding CombineList}">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="SelectionChanged">
+                                                        <i:InvokeCommandAction Command="{Binding ChoosedDisCommand}"
+                                                                               CommandParameter="{Binding ElementName=lvDiscount}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <ListView.View>
+                                                    <GridView>
+                                                        <GridView.ColumnHeaderContainerStyle>
+                                                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                                                <Setter Property="FontSize"
+                                                                        Value="15" />
+                                                                <Setter Property="FontFamily"
+                                                                        Value="Nunito" />
+                                                                <Setter Property="Margin"
+                                                                        Value="0" />
+                                                                <Setter Property="Padding"
+                                                                        Value="10" />
+                                                                <Setter Property="Foreground"
+                                                                        Value="Black" />
+                                                                <Setter Property="HorizontalContentAlignment"
+                                                                        Value="Left" />
+                                                            </Style>
+                                                        </GridView.ColumnHeaderContainerStyle>
+                                                        <GridViewColumn Width="70">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent"
+                                                                                  Padding="0"
+                                                                                  Margin="10 0 0 0">
+                                                                STT
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item2}"
+                                                                               FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="140">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Mã chương trình
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item1.discountid}"
+                                                                               FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="200">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Tên chương trình
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item1.name}"
+                                                                               FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="200">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Mô tả
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item1.detail}"
+                                                                               FontSize="13">
+                                                                    </TextBlock>
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="150">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Ngày bắt đầu
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <DatePicker Foreground="Black"
+                                                                                FontWeight="Bold"
+                                                                                IsEnabled="False"
+                                                                                SelectedDate="{Binding Item1.daystart , UpdateSourceTrigger=PropertyChanged}"
+                                                                                FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="150">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Ngày kết thúc
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <DatePicker IsEnabled="False"
+                                                                                Foreground="Black"
+                                                                                FontWeight="Bold"
+                                                                                Opacity="1"
+                                                                                SelectedDate="{Binding Item1.dayend, UpdateSourceTrigger=PropertyChanged}"
+                                                                                FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="100">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Giá trị KM
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item1.value_dis, UpdateSourceTrigger=PropertyChanged}"
+                                                                               FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="100">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Delete
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <Button Panel.ZIndex="0"
+                                                                            Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                                                            Command="{Binding DataContext.DeleteDisCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                            CommandParameter="{Binding Item1}">
+                                                                        <materialDesign:PackIcon Foreground="#5F5555"
+                                                                                                 Opacity=".80"
+                                                                                                 Kind="DeleteForever"
+                                                                                                 Width="30"
+                                                                                                 Height="25" />
+                                                                    </Button>
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                    </GridView>
+                                                </ListView.View>
+                                            </ListView>
+                                        </Grid>
+                                    </Border>
+                                    <TextBlock Margin="0 10"
+                                               Text="Danh sách món không trong khuyến mãi"
+                                               VerticalAlignment="Center" />
+                                    <Border BorderBrush="#5f5555"
+                                            BorderThickness="0.5"
+                                            CornerRadius="10"
+                                            Height="320">
+                                        <Grid>
+                                            <ListView ItemsSource="{Binding CombineList}">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="SelectionChanged">
+                                                        <i:InvokeCommandAction Command="{Binding ChoosedDisCommand}"
+                                                                               CommandParameter="{Binding ElementName=lvDiscount}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <ListView.View>
+                                                    <GridView>
+                                                        <GridView.ColumnHeaderContainerStyle>
+                                                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                                                <Setter Property="FontSize"
+                                                                        Value="15" />
+                                                                <Setter Property="FontFamily"
+                                                                        Value="Nunito" />
+                                                                <Setter Property="Margin"
+                                                                        Value="0" />
+                                                                <Setter Property="Padding"
+                                                                        Value="10" />
+                                                                <Setter Property="Foreground"
+                                                                        Value="Black" />
+                                                                <Setter Property="HorizontalContentAlignment"
+                                                                        Value="Left" />
+                                                            </Style>
+                                                        </GridView.ColumnHeaderContainerStyle>
+                                                        <GridViewColumn Width="70">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent"
+                                                                                  Padding="0"
+                                                                                  Margin="10 0 0 0">
+                                                                STT
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item2}"
+                                                                               FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="140">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Mã chương trình
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item1.discountid}"
+                                                                               FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="200">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Tên chương trình
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item1.name}"
+                                                                               FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="200">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Mô tả
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item1.detail}"
+                                                                               FontSize="13">
+                                                                    </TextBlock>
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="150">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Ngày bắt đầu
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <DatePicker Foreground="Black"
+                                                                                FontWeight="Bold"
+                                                                                IsEnabled="False"
+                                                                                SelectedDate="{Binding Item1.daystart , UpdateSourceTrigger=PropertyChanged}"
+                                                                                FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="150">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Ngày kết thúc
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <DatePicker IsEnabled="False"
+                                                                                Foreground="Black"
+                                                                                FontWeight="Bold"
+                                                                                Opacity="1"
+                                                                                SelectedDate="{Binding Item1.dayend, UpdateSourceTrigger=PropertyChanged}"
+                                                                                FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="100">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Giá trị KM
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item1.value_dis, UpdateSourceTrigger=PropertyChanged}"
+                                                                               FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="100">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Delete
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <Button Panel.ZIndex="0"
+                                                                            Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                                                            Command="{Binding DataContext.DeleteDisCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                            CommandParameter="{Binding Item1}">
+                                                                        <materialDesign:PackIcon Foreground="#5F5555"
+                                                                                                 Opacity=".80"
+                                                                                                 Kind="DeleteForever"
+                                                                                                 Width="30"
+                                                                                                 Height="25" />
+                                                                    </Button>
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                    </GridView>
+                                                </ListView.View>
+                                            </ListView>
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
+
+                            </Grid>
+                        </Grid>
+                        <Grid Margin="0 40 0 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="5*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <DockPanel Margin="25 10 0 10">
+                                    <TextBlock Text="Danh sách Loại Món khuyến mãi:"
+                                               VerticalAlignment="Center" />
+                                    <Grid HorizontalAlignment="Right"
+                                          Margin="0 0 20 0"
+                                          DockPanel.Dock="Right">
+                                        <materialDesign:ColorZone VerticalAlignment="Center"
+                                                                  HorizontalAlignment="Right"
+                                                                  Padding="8,4,8,4"
+                                                                  Panel.ZIndex="1"
+                                                                  materialDesign:ElevationAssist.Elevation="Dp2"
+                                                                  CornerRadius="2"
+                                                                  Mode="Standard">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="23*" />
+                                                    <RowDefinition Height="9*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Button Style="{StaticResource MaterialDesignToolButton}"
+                                                        Grid.RowSpan="2">
+                                                    <materialDesign:PackIcon Kind="Search"
+                                                                             Opacity=".56" />
+                                                </Button>
+                                                <TextBox Grid.Column="1"
+                                                         MinWidth="200"
+                                                         Margin="8,4,0,0"
+                                                         VerticalAlignment="Top"
+                                                         materialDesign:HintAssist.Hint="Build a search bar"
+                                                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                         BorderThickness="0"
+                                                         Grid.RowSpan="2"
+                                                         Text="{Binding Customersearch , UpdateSourceTrigger=PropertyChanged}">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="KeyUp">
+                                                            <i:InvokeCommandAction Command="{Binding ChangeValueTexboxCommand}"
+                                                                                   CommandParameter="{Binding ElementName=TexboxSearch}" />
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </TextBox>
+                                            </Grid>
+                                        </materialDesign:ColorZone>
+                                    </Grid>
+                                </DockPanel>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <StackPanel Margin="25 0 20 10">
+                                    <Border BorderBrush="#5f5555"
+                                            BorderThickness="0.5"
+                                            CornerRadius="10"
+                                            Height="320">
+                                        <Grid>
+                                            <ListView ItemsSource="{Binding CombineList}">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="SelectionChanged">
+                                                        <i:InvokeCommandAction Command="{Binding ChoosedDisCommand}"
+                                                                               CommandParameter="{Binding ElementName=lvDiscount}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <ListView.View>
+                                                    <GridView>
+                                                        <GridView.ColumnHeaderContainerStyle>
+                                                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                                                <Setter Property="FontSize"
+                                                                        Value="15" />
+                                                                <Setter Property="FontFamily"
+                                                                        Value="Nunito" />
+                                                                <Setter Property="Margin"
+                                                                        Value="0" />
+                                                                <Setter Property="Padding"
+                                                                        Value="10" />
+                                                                <Setter Property="Foreground"
+                                                                        Value="Black" />
+                                                                <Setter Property="HorizontalContentAlignment"
+                                                                        Value="Left" />
+                                                            </Style>
+                                                        </GridView.ColumnHeaderContainerStyle>
+                                                        <GridViewColumn Width="70">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent"
+                                                                                  Padding="0"
+                                                                                  Margin="10 0 0 0">
+                                                                STT
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item2}"
+                                                                               FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="140">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Mã chương trình
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item1.discountid}"
+                                                                               FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="200">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Tên chương trình
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item1.name}"
+                                                                               FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="200">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Mô tả
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item1.detail}"
+                                                                               FontSize="13">
+                                                                    </TextBlock>
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="150">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Ngày bắt đầu
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <DatePicker Foreground="Black"
+                                                                                FontWeight="Bold"
+                                                                                IsEnabled="False"
+                                                                                SelectedDate="{Binding Item1.daystart , UpdateSourceTrigger=PropertyChanged}"
+                                                                                FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="150">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Ngày kết thúc
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <DatePicker IsEnabled="False"
+                                                                                Foreground="Black"
+                                                                                FontWeight="Bold"
+                                                                                Opacity="1"
+                                                                                SelectedDate="{Binding Item1.dayend, UpdateSourceTrigger=PropertyChanged}"
+                                                                                FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="100">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Giá trị KM
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item1.value_dis, UpdateSourceTrigger=PropertyChanged}"
+                                                                               FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="100">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Delete
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <Button Panel.ZIndex="0"
+                                                                            Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                                                            Command="{Binding DataContext.DeleteDisCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                            CommandParameter="{Binding Item1}">
+                                                                        <materialDesign:PackIcon Foreground="#5F5555"
+                                                                                                 Opacity=".80"
+                                                                                                 Kind="DeleteForever"
+                                                                                                 Width="30"
+                                                                                                 Height="25" />
+                                                                    </Button>
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                    </GridView>
+                                                </ListView.View>
+                                            </ListView>
+                                        </Grid>
+                                    </Border>
+                                    <TextBlock Margin="0 10"
+                                               Text="Danh sách Loại Món không trong khuyến mãi"
+                                               VerticalAlignment="Center" />
+                                    <Border BorderBrush="#5f5555"
+                                            BorderThickness="0.5"
+                                            CornerRadius="10"
+                                            Height="320">
+                                        <Grid>
+                                            <ListView ItemsSource="{Binding CombineList}">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="SelectionChanged">
+                                                        <i:InvokeCommandAction Command="{Binding ChoosedDisCommand}"
+                                                                               CommandParameter="{Binding ElementName=lvDiscount}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <ListView.View>
+                                                    <GridView>
+                                                        <GridView.ColumnHeaderContainerStyle>
+                                                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                                                <Setter Property="FontSize"
+                                                                        Value="15" />
+                                                                <Setter Property="FontFamily"
+                                                                        Value="Nunito" />
+                                                                <Setter Property="Margin"
+                                                                        Value="0" />
+                                                                <Setter Property="Padding"
+                                                                        Value="10" />
+                                                                <Setter Property="Foreground"
+                                                                        Value="Black" />
+                                                                <Setter Property="HorizontalContentAlignment"
+                                                                        Value="Left" />
+                                                            </Style>
+                                                        </GridView.ColumnHeaderContainerStyle>
+                                                        <GridViewColumn Width="70">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent"
+                                                                                  Padding="0"
+                                                                                  Margin="10 0 0 0">
+                                                                STT
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item2}"
+                                                                               FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="140">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Mã chương trình
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item1.discountid}"
+                                                                               FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="200">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Tên chương trình
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item1.name}"
+                                                                               FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="200">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Mô tả
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item1.detail}"
+                                                                               FontSize="13">
+                                                                    </TextBlock>
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="150">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Ngày bắt đầu
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <DatePicker Foreground="Black"
+                                                                                FontWeight="Bold"
+                                                                                IsEnabled="False"
+                                                                                SelectedDate="{Binding Item1.daystart , UpdateSourceTrigger=PropertyChanged}"
+                                                                                FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="150">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Ngày kết thúc
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <DatePicker IsEnabled="False"
+                                                                                Foreground="Black"
+                                                                                FontWeight="Bold"
+                                                                                Opacity="1"
+                                                                                SelectedDate="{Binding Item1.dayend, UpdateSourceTrigger=PropertyChanged}"
+                                                                                FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="100">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Giá trị KM
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Item1.value_dis, UpdateSourceTrigger=PropertyChanged}"
+                                                                               FontSize="13" />
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Width="100">
+                                                            <GridViewColumnHeader FontFamily="Nunito"
+                                                                                  FontWeight="DemiBold"
+                                                                                  Background="Transparent">
+                                                                Delete
+                                                            </GridViewColumnHeader>
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <Button Panel.ZIndex="0"
+                                                                            Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                                                            Command="{Binding DataContext.DeleteDisCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                            CommandParameter="{Binding Item1}">
+                                                                        <materialDesign:PackIcon Foreground="#5F5555"
+                                                                                                 Opacity=".80"
+                                                                                                 Kind="DeleteForever"
+                                                                                                 Width="30"
+                                                                                                 Height="25" />
+                                                                    </Button>
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                    </GridView>
+                                                </ListView.View>
+                                            </ListView>
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
+
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+                    
                 </ScrollViewer>
             </Border>
         </Grid>
