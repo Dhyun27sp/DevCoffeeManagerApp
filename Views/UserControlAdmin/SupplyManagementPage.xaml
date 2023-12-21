@@ -12,7 +12,7 @@
              xmlns:local="clr-namespace:DevCoffeeManagerApp.Views.UserControlAdmin"
              xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="450"
+             d:DesignHeight="2000"
              d:DesignWidth="800">
     <UserControl.DataContext>
         <vms:AdminSupplyViewModel />
@@ -73,6 +73,26 @@
                                            VerticalAlignment="Center" />
                                 <Grid Width="auto"
                                       DockPanel.Dock="Right">
+                                    <Button materialDesign:ButtonAssist.CornerRadius="10"
+                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                            Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                            ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                            Margin="0 0 20 0"
+                                            Command="{Binding abcCommand, UpdateSourceTrigger=PropertyChanged}">
+                                        <Button.BorderBrush>
+                                            <ImageBrush />
+                                        </Button.BorderBrush>
+                                        <Button.Background>
+                                            <SolidColorBrush Color="#e87f14" />
+                                        </Button.Background>
+                                        <TextBlock FontFamily="Nunito"
+                                                   Text="Cập nhật"
+                                                   FontSize="16"
+                                                   Foreground="White" />
+                                    </Button>
+                                </Grid>
+                                <Grid Width="auto"
+                                      DockPanel.Dock="Right">
                                     <ComboBox ItemsSource="{Binding abc}"
                                               SelectedItem="{Binding abc, UpdateSourceTrigger=PropertyChanged}"
                                               Padding="12"
@@ -129,48 +149,6 @@
                                         </i:Interaction.Triggers>
                                     </ComboBox>
                                 </Grid>
-                                <StackPanel materialDesign:RippleAssist.IsCentered="True"
-                                            Width="200"
-                                            Margin="0 5 20 0"
-                                            HorizontalAlignment="Right"
-                                            DockPanel.Dock="Right">
-
-                                    <materialDesign:ColorZone VerticalAlignment="Center"
-                                                              Padding="8,4,8,4"
-                                                              Panel.ZIndex="1"
-                                                              materialDesign:ElevationAssist.Elevation="Dp2"
-                                                              CornerRadius="1"
-                                                              Mode="Standard">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <Button Style="{StaticResource MaterialDesignToolButton}"
-                                                    Grid.RowSpan="2"
-                                                    Grid.Column="0">
-                                                <materialDesign:PackIcon Kind="Search"
-                                                                         Opacity=".56" />
-                                            </Button>
-                                            <TextBox Grid.Column="1"
-                                                     x:Name="ProductIdSearch"
-                                                     Margin="8,4,0,0"
-                                                     VerticalAlignment="Top"
-                                                     materialDesign:HintAssist.Hint="Tìm kiếm theo mã sp"
-                                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                                     BorderThickness="0"
-                                                     Grid.RowSpan="2"
-                                                     Text="{Binding types_dish_search , UpdateSourceTrigger=PropertyChanged}">
-                                                <i:Interaction.Triggers>
-                                                    <i:EventTrigger EventName="KeyUp">
-                                                        <i:InvokeCommandAction Command="{Binding ChangeValueTexboxCommand}"
-                                                                               CommandParameter="{Binding ElementName=TexboxSearch}" />
-                                                    </i:EventTrigger>
-                                                </i:Interaction.Triggers>
-                                            </TextBox>
-                                        </Grid>
-                                    </materialDesign:ColorZone>
-                                </StackPanel>
                                 <StackPanel materialDesign:RippleAssist.IsCentered="True"
                                             Width="200"
                                             Margin="0 5 20 0"
@@ -258,7 +236,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="190">
+                                            <GridViewColumn Width="160">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
@@ -271,7 +249,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="140">
+                                            <GridViewColumn Width="110">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
@@ -284,7 +262,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="140">
+                                            <GridViewColumn Width="110">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
@@ -297,7 +275,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="170">
+                                            <GridViewColumn Width="120">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
@@ -310,11 +288,11 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="170">
+                                            <GridViewColumn Width="80">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
-                                                    Số lượng nhập
+                                                    Đơn vị
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
@@ -373,7 +351,7 @@
                         <Grid Grid.Row="3"
                               Margin="25 10 25 20">
                             <WrapPanel>
-                                <Grid Width="240"
+                                <Grid Width="160"
                                       HorizontalAlignment="Left"
                                       Margin="0 0 25 0">
                                     <TextBox VerticalAlignment="Center"
@@ -431,6 +409,29 @@
                                         </materialDesign:HintAssist.Hint>
                                     </TextBox>
                                 </Grid>
+                                <Grid Width="140"
+                                      HorizontalAlignment="Left"
+                                      Margin="0 0 25 0">
+                                    <ComboBox 
+                                              Padding="0 5.5 0 0"
+                                              Style="{StaticResource MaterialDesignFilledComboBox}"
+                                              Background="Transparent">
+                                        <ComboBoxItem Content="Box" />
+                                        <ComboBoxItem Content="Kg" />
+                                        <ComboBoxItem Content="Lit" />
+                                        <materialDesign:HintAssist.Hint>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                         Width="25px"
+                                                                         Height="20px"
+                                                                         Kind="CardPlusOutline" />
+                                                <TextBlock FontSize="16px"
+                                                           Text="Giá nhập" />
+                                            </StackPanel>
+                                        </materialDesign:HintAssist.Hint>
+                                    </ComboBox>
+
+                                </Grid>
                                 <Grid Width="170"
                                       HorizontalAlignment="Left"
                                       Margin="0 0 25 0">
@@ -487,6 +488,7 @@
                                         </Button.Background>
                                         <TextBlock FontFamily="Nunito"
                                                    Text="Nhập hàng"
+                                                   FontSize="16"
                                                    Foreground="White" />
                                     </Button>
                                 </Grid>
