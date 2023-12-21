@@ -266,7 +266,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.dish_name}"
+                                                        <TextBlock Text="{Binding Item1.Product_id}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -279,7 +279,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.dish_name}"
+                                                        <TextBlock Text="{Binding Item1.Date, ConverterCulture='fr-FR', StringFormat=d}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -289,6 +289,19 @@
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
                                                     Giá nhập
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Item1.Price}"
+                                                                   FontSize="13" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Width="170">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent">
+                                                    Số lượng nhập
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
@@ -305,7 +318,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.Amount, UpdateSourceTrigger=PropertyChanged}"
+                                                        <TextBlock Text="{Binding Item1.Unit}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -318,7 +331,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.dish_name}"
+                                                        <TextBlock Text="{Binding Item1.MFG_date, ConverterCulture='fr-FR', StringFormat=d}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -331,7 +344,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.dish_name}"
+                                                        <TextBlock Text="{Binding Item1.EXP_date, ConverterCulture='fr-FR', StringFormat=d}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -345,8 +358,8 @@
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <ComboBox Width="100"
-                                                                  ItemsSource="{Binding abc}"
-                                                                  SelectedItem="{Binding abc, UpdateSourceTrigger=PropertyChanged}">
+                                                                  ItemsSource="{Binding DataContext.SupplyStatus, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                  SelectedItem="{Binding Item1.Status, UpdateSourceTrigger=PropertyChanged}">
                                                         </ComboBox>
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>

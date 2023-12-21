@@ -240,11 +240,13 @@
     <Compile Include="DAOs\DiscountDAO.cs" />
     <Compile Include="DAOs\MenuDAO.cs" />
     <Compile Include="DAOs\ReceiptDAO.cs" />
+    <Compile Include="DAOs\SupplyDao.cs" />
     <Compile Include="DAOs\TableDAO.cs" />
     <Compile Include="DAOs\ScheduleDAO.cs" />
     <Compile Include="DAOs\StaffDAO.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\ApplyModel.cs" />
+    <Compile Include="Models\SupplyModel.cs" />
     <Compile Include="Models\DiscountModel.cs" />
     <Compile Include="Models\DishModel.cs" />
     <Compile Include="Models\IngredientModel.cs" />
