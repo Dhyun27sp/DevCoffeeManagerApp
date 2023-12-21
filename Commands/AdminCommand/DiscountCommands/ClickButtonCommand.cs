@@ -4,6 +4,7 @@ using DevCoffeeManagerApp.ViewModels;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
         private AdminDiscountViewModel viewModel;
         private string action;
         DiscountDAO discountDAO = new DiscountDAO();
+        MenuDAO menuDao = new MenuDAO();
         public ClickButtonCommand(AdminDiscountViewModel viewModel, string action) { 
             this.action = action;
             this.viewModel = viewModel;
@@ -61,6 +63,8 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                     viewModel.Daystart = selectedItem.Item1.daystart;
                     viewModel.Dayend = selectedItem.Item1.dayend;
                     viewModel.Value = selectedItem.Item1.value_dis;
+                    applydish(selectedItem.Item1.discountid);
+                    applymenu(selectedItem.Item1.discountid);
                 }
             }
 
@@ -105,7 +109,7 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                 DiscountModel newdiscount = new DiscountModel(viewModel.DiscountID, viewModel.Discountname, viewModel.Description, applyModel, viewModel.Daystart.Value, viewModel.Dayend.Value, viewModel.Value);
                 discountDAO.UpdateDiscount(newdiscount);
                 MessageBox.Show("Cập nhật thành công");
-                viewModel.Discounts = new System.Collections.ObjectModel.ObservableCollection<DiscountModel>(discountDAO.ReadDiscountAll());
+                viewModel.Discounts = new ObservableCollection<DiscountModel>(discountDAO.ReadDiscountAll());
             }
             else
             {
@@ -125,6 +129,46 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                     viewModel.Discounts = viewModel.Discounts;
                 }
             }
+        }
+        private void applydish(string discountid)
+        {
+            DiscountModel discountchoosed = discountDAO.findisbyId(discountid);
+            ObservableCollection<DishModel> listdish  = new ObservableCollection<DishModel>(menuDao.ReadAll_Dish());
+            viewModel.ListDishs = new ObservableCollection<DishModel>();
+            foreach (DishModel dishdc in discountchoosed.apply.dish) {
+                foreach (DishModel dish in listdish)
+                {
+                    if (dishdc._id == dish._id)
+                    {
+                        viewModel.ListDishs.Add(dish);
+                        break;
+                    }
+                }  
+            }
+            viewModel.ListDishs = viewModel.ListDishs;
+            var result = listdish.Where(cm => !viewModel.ListDishs.Any(cma => cma._id == cm._id)).ToList();
+            viewModel.ListDishsNotDC = new ObservableCollection<DishModel>(result);
+        }
+
+        private void applymenu(string discountid)
+        {
+            DiscountModel discountchoosed = discountDAO.findisbyId(discountid);
+            ObservableCollection<MenuModel> listmenu = new ObservableCollection<MenuModel>(menuDao.ReadAll_Type_dish());
+            viewModel.ListMenu = new ObservableCollection<MenuModel>();
+            foreach (MenuModel menudc in discountchoosed.apply.menu)
+            {
+                foreach (MenuModel menu in listmenu)
+                {
+                    if (menudc.id == menu.id)
+                    {
+                        viewModel.ListMenu.Add(menu);
+                        break;
+                    }
+                }
+            }
+            viewModel.ListMenu = viewModel.ListMenu;
+            var result = listmenu.Where(cm => !viewModel.ListMenu.Any(cma => cma.id == cm.id)).ToList();
+            viewModel.ListMenuNotDC = new ObservableCollection<MenuModel>(result);
         }
     }
 }

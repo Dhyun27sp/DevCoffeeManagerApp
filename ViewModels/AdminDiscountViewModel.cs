@@ -14,6 +14,7 @@ namespace DevCoffeeManagerApp.ViewModels
     public class AdminDiscountViewModel : BaseViewModel
     {
         DiscountDAO discountDAO = new DiscountDAO();
+        MenuDAO menuDao = new MenuDAO();
 
         //Khối Property và ICommand Hộ Trợ DistcountList : End
         private ObservableCollection<DiscountModel> _discount;
@@ -125,28 +126,165 @@ namespace DevCoffeeManagerApp.ViewModels
             set { _typeDishs = value; OnPropertyChanged(nameof(TypeDishs)); }
 
         }
-        private string _typeDishitem = "All";
+        private string _typeDishitem = "All Dishs";
         public string TypeDishitem
         {
             get { return _typeDishitem; }
             set { _typeDishitem = value; OnPropertyChanged(nameof(TypeDishitem)); }
+        }
+        private ObservableCollection<DishModel> _listdishs;
+        public ObservableCollection<DishModel> ListDishs
+        {
+            get
+            {
+                return _listdishs;
+            }
+            set
+            {
+                _listdishs = value;
+                int index = 1;
+                CombineListDish.Clear();
+                foreach (var O in ListDishs)
+                {
+                    CombineListDish.Add(new Tuple<DishModel, int>(O, index));
+                    index++;
+                }
+                OnPropertyChanged(nameof(ListDishs));
+
+            }
+        }
+        private ObservableCollection<Tuple<DishModel, int>> _combineListDish = new ObservableCollection<Tuple<DishModel, int>>();
+        public ObservableCollection<Tuple<DishModel, int>> CombineListDish
+        {
+            get
+            {
+                return _combineListDish;
+            }
+            set
+            {
+                _combineListDish = value;
+                OnPropertyChanged(nameof(CombineListDish));
+            }
+        }
+
+        private ObservableCollection<DishModel> _listdishsnotdc;
+        public ObservableCollection<DishModel> ListDishsNotDC
+        {
+            get
+            {
+                return _listdishsnotdc;
+            }
+            set
+            {
+                _listdishsnotdc = value;
+                int index = 1;
+                CombineListDishNotDC.Clear();
+                foreach (var O in ListDishsNotDC)
+                {
+                    CombineListDishNotDC.Add(new Tuple<DishModel, int>(O, index));
+                    index++;
+                }
+                OnPropertyChanged(nameof(ListDishsNotDC));
+
+            }
+        }
+        private ObservableCollection<Tuple<DishModel, int>> _combineListDishnotdc = new ObservableCollection<Tuple<DishModel, int>>();
+        public ObservableCollection<Tuple<DishModel, int>> CombineListDishNotDC
+        {
+            get
+            {
+                return _combineListDishnotdc;
+            }
+            set
+            {
+                _combineListDishnotdc = value;
+                OnPropertyChanged(nameof(CombineListDishNotDC));
+            }
         }
         //Khối Property và Command Hộ Trợ DishList : End
         /// <summary>
         /// /////////
         /// </summary>
         //Khối Property và Command Hộ Trợ MenuList : Start
+        private ObservableCollection<MenuModel> _listmenu;
+        public ObservableCollection<MenuModel> ListMenu
+        {
+            get
+            {
+                return _listmenu;
+            }
+            set
+            {
+                _listmenu = value;
+                int index = 1;
+                CombineListMenu.Clear();
+                foreach (var O in ListMenu)
+                {
+                    CombineListMenu.Add(new Tuple<MenuModel, int>(O, index));
+                    index++;
+                }
+                OnPropertyChanged(nameof(ListMenu));
 
+            }
+        }
+        private ObservableCollection<Tuple<MenuModel, int>> _combineListmenu = new ObservableCollection<Tuple<MenuModel, int>>();
+        public ObservableCollection<Tuple<MenuModel, int>> CombineListMenu
+        {
+            get
+            {
+                return _combineListmenu;
+            }
+            set
+            {
+                _combineListmenu = value;
+                OnPropertyChanged(nameof(CombineListMenu));
+            }
+        }
+
+        private ObservableCollection<MenuModel> _listmenunotdc;
+        public ObservableCollection<MenuModel> ListMenuNotDC
+        {
+            get
+            {
+                return _listmenunotdc;
+            }
+            set
+            {
+                _listmenunotdc = value;
+                int index = 1;
+                CombineListMenuNotDC.Clear();
+                foreach (var O in ListMenuNotDC)
+                {
+                    CombineListMenuNotDC.Add(new Tuple<MenuModel, int>(O, index));
+                    index++;
+                }
+                OnPropertyChanged(nameof(ListMenuNotDC));
+
+            }
+        }
+        private ObservableCollection<Tuple<MenuModel, int>> _combineListmenunotdc = new ObservableCollection<Tuple<MenuModel, int>>();
+        public ObservableCollection<Tuple<MenuModel, int>> CombineListMenuNotDC
+        {
+            get
+            {
+                return _combineListmenunotdc;
+            }
+            set
+            {
+                _combineListmenunotdc = value;
+                OnPropertyChanged(nameof(CombineListMenuNotDC));
+            }
+        }
         //Khối Property và Command Hộ Trợ MenuList : End
         public AdminDiscountViewModel()
         {
             //Khối Config Hộ Trợ DistcountList :Start
-            ChoosedDisCommand = new ClickButtonCommand(this, "choose");
-            AddDisCommand = new ClickButtonCommand(this, "add");
-            UpdateDisCommand = new ClickButtonCommand(this, "update");
             DeletefieldDisCommand = new ClickButtonCommand(this, "deletef");
-            DeleteDisCommand = new ClickButtonCommand(this, "deleted");
             DiscountCbbCommand = new FilterDiscountCommand(this, "cbb");
+            ChoosedDisCommand = new ClickButtonCommand(this, "choose");
+            DeleteDisCommand = new ClickButtonCommand(this, "deleted");
+            UpdateDisCommand = new ClickButtonCommand(this, "update");
+            AddDisCommand = new ClickButtonCommand(this, "add");
             Discounts = new ObservableCollection<DiscountModel>(discountDAO.ReadDiscountAll());
             ExpiryDate = new List<string>();
             ExpiryDate.Add("All");
@@ -155,12 +293,14 @@ namespace DevCoffeeManagerApp.ViewModels
             //Khối Config Hộ Trợ DistcountList : End
             ////////////////////////////
             //Khối Config Hộ Trợ DishList :Start
+            ObservableCollection<MenuModel> menuModels = menuDao.ReadAll_Type_dish();
             TypeDishs = new List<string>();
-            //Khối Config Hộ Trợ DishList :end
-            ////////////////////////////
-            //Khối Config Hộ Trợ MenuList :Start
-
-            //Khối Config Hộ Trợ MenuList :end
+            TypeDishs.Add("All Dishs");
+            foreach (var item in menuModels)
+            {
+                TypeDishs.Add(item.type_of_dish);
+            }
         }
+
     }
 }

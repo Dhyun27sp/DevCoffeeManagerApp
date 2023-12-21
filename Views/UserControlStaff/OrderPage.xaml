@@ -181,18 +181,13 @@
                                                         <Border.Style>
                                                             <Style TargetType="Border">
                                                                 <Setter Property="Visibility"
-                                                                        Value="Visible" />
+                                                                        Value="Hidden" />
 
                                                                 <Style.Triggers>
                                                                     <DataTrigger Binding="{Binding newDish}"
-                                                                                 Value="false">
+                                                                                 Value="True">
                                                                         <Setter Property="Visibility"
-                                                                                Value="Hidden" />
-                                                                    </DataTrigger>
-                                                                    <DataTrigger Binding="{Binding newDish}"
-                                                                                 Value="">
-                                                                        <Setter Property="Visibility"
-                                                                                Value="Hidden" />
+                                                                                Value="Visible" />
                                                                     </DataTrigger>
                                                                     <!-- Thêm các DataTrigger khác nếu cần -->
                                                                 </Style.Triggers>
@@ -250,18 +245,13 @@
                                                     <Border.Style>
                                                         <Style TargetType="Border">
                                                             <Setter Property="Visibility"
-                                                                    Value="Visible" />
+                                                                    Value="Hidden" />
 
                                                             <Style.Triggers>
                                                                 <DataTrigger Binding="{Binding SaleDish}"
-                                                                             Value="false">
+                                                                             Value="True">
                                                                     <Setter Property="Visibility"
-                                                                            Value="Hidden" />
-                                                                </DataTrigger>
-                                                                <DataTrigger Binding="{Binding SaleDish}"
-                                                                             Value="">
-                                                                    <Setter Property="Visibility"
-                                                                            Value="Hidden" />
+                                                                            Value="Visible" />
                                                                 </DataTrigger>
                                                                 <!-- Thêm các DataTrigger khác nếu cần -->
                                                             </Style.Triggers>

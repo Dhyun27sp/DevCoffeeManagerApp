@@ -217,40 +217,43 @@ namespace DevCoffeeManagerApp.ViewModels
 
             List<MenuModel> DiscountMenu = new List<MenuModel>();
             DiscountMenu = discountDAO.ListMenuDiscount();
-            DiscountMenu = DeleteduplicatesMenu(DiscountMenu);
-            foreach (var menu in DiscountMenu)
+            if(DiscountMenu != null)
             {
-                foreach (var dish in DishsLocal)
+                DiscountMenu = DeleteduplicatesMenu(DiscountMenu);
+                foreach (var menu in DiscountMenu)
                 {
-                    if (dish.category == menu.type_of_dish)
+                    foreach (var dish in DishsLocal)
                     {
-                        List<string> listpricediscountmenu = new List<string>();
-                        dish.SaleDish = true;
-                        listpricediscountmenu = discountDAO.MutiPriceSaleWithMenu(menu.id);
-                        listpricediscountmenu = Drop_MoneyToPercent(listpricediscountmenu);
-                        foreach (var lpdcm in listpricediscountmenu)
+                        if (dish.category == menu.type_of_dish)
                         {
-                            double convertsaleprice = Double.Parse(lpdcm);
-                            if (0 < convertsaleprice && convertsaleprice <= 1)
+                            List<string> listpricediscountmenu = new List<string>();
+                            dish.SaleDish = true;
+                            listpricediscountmenu = discountDAO.MutiPriceSaleWithMenu(menu.id);
+                            listpricediscountmenu = Drop_MoneyToPercent(listpricediscountmenu);
+                            foreach (var lpdcm in listpricediscountmenu)
                             {
-                                if (dish.Saleprice == null)
+                                double convertsaleprice = Double.Parse(lpdcm);
+                                if (0 < convertsaleprice && convertsaleprice <= 1)
                                 {
-                                    dish.Saleprice = (int)(dish.price - dish.price * convertsaleprice);
+                                    if (dish.Saleprice == null)
+                                    {
+                                        dish.Saleprice = (int)(dish.price - dish.price * convertsaleprice);
+                                    }
+                                    else
+                                    {
+                                        dish.Saleprice -= (int)(dish.price * convertsaleprice);
+                                    }
                                 }
-                                else
+                                else if (convertsaleprice > 1)
                                 {
-                                    dish.Saleprice -= (int)(dish.price * convertsaleprice);
-                                }
-                            }
-                            else if (convertsaleprice > 1)
-                            {
-                                if (dish.Saleprice == null)
-                                {
-                                    dish.Saleprice = (int)(dish.price - convertsaleprice);
-                                }
-                                else
-                                {
-                                    dish.Saleprice -= (int)convertsaleprice;
+                                    if (dish.Saleprice == null)
+                                    {
+                                        dish.Saleprice = (int)(dish.price - convertsaleprice);
+                                    }
+                                    else
+                                    {
+                                        dish.Saleprice -= (int)convertsaleprice;
+                                    }
                                 }
                             }
                         }
@@ -260,46 +263,51 @@ namespace DevCoffeeManagerApp.ViewModels
 
             List<DishModel> dishDiscounts = new List<DishModel>();
             dishDiscounts = discountDAO.ListDishDiscount();
-            dishDiscounts = DeleteduplicatesDish(dishDiscounts);
-            foreach (var dish in DishsLocal)
+            if(dishDiscounts != null)
             {
-                foreach (var dishDiscount in dishDiscounts)
+                dishDiscounts = DeleteduplicatesDish(dishDiscounts);
+                foreach (var dish in DishsLocal)
                 {
-                    if (dish._id == dishDiscount._id)
+                    foreach (var dishDiscount in dishDiscounts)
                     {
-                        List<string> pricedishdiscounts = new List<string>();
-                        dish.SaleDish = true;
-                        pricedishdiscounts = discountDAO.MutiPriceSaleWithDish(dish._id);
-                        pricedishdiscounts = Drop_MoneyToPercent(pricedishdiscounts);
-                        foreach (var pdc in pricedishdiscounts)
+                        if (dish._id == dishDiscount._id)
                         {
-                            double convertsaleprice = Double.Parse(pdc);
-                            if (0 < convertsaleprice && convertsaleprice <= 1)
+                            List<string> pricedishdiscounts = new List<string>();
+                            dish.SaleDish = true;
+                            pricedishdiscounts = discountDAO.MutiPriceSaleWithDish(dish._id);
+                            pricedishdiscounts = Drop_MoneyToPercent(pricedishdiscounts);
+                            foreach (var pdc in pricedishdiscounts)
                             {
-                                if (dish.Saleprice == null)
+                                double convertsaleprice = Double.Parse(pdc);
+                                if (0 < convertsaleprice && convertsaleprice <= 1)
                                 {
-                                    dish.Saleprice = (int)(dish.price - dish.price * convertsaleprice);
+                                    if (dish.Saleprice == null)
+                                    {
+                                        dish.Saleprice = (int)(dish.price - dish.price * convertsaleprice);
+                                    }
+                                    else
+                                    {
+                                        dish.Saleprice -= (int)(dish.price * convertsaleprice);
+                                    }
                                 }
-                                else
+                                else if (convertsaleprice > 1)
                                 {
-                                    dish.Saleprice -= (int)(dish.price * convertsaleprice);
-                                }
-                            }
-                            else if (convertsaleprice > 1)
-                            {
-                                if (dish.Saleprice == null)
-                                {
-                                    dish.Saleprice = (int)(dish.price - convertsaleprice);
-                                }
-                                else
-                                {
-                                    dish.Saleprice -= (int)(convertsaleprice);
+                                    if (dish.Saleprice == null)
+                                    {
+                                        dish.Saleprice = (int)(dish.price - convertsaleprice);
+                                    }
+                                    else
+                                    {
+                                        dish.Saleprice -= (int)(convertsaleprice);
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
+            
+
             List<DishModel> DishsNew = new List<DishModel>();
             DishsNew = menuDao.ReadAll_NewDish();
 
