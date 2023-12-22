@@ -280,121 +280,60 @@
                                 <Grid Width="280"
                                       HorizontalAlignment="Left"
                                       Margin="0 0 25 0">
-                                    <StackPanel>
-                                        <WrapPanel>
-                                            <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                     Width="25px"
-                                                                     Height="20px"
-                                                                     Kind="CardPlusOutline" />
-                                            <TextBlock>Tên Khách hàng</TextBlock>
-                                        </WrapPanel>
-                                        
-                                        <TextBox Height="30"
-                                                 VerticalAlignment="Center"
-                                                 materialDesign:TextFieldAssist.HasClearButton="True"
-                                                 Text="{Binding NameCustom, UpdateSourceTrigger=PropertyChanged}"
-                                                 FontSize="15">
-                                            <TextBox.Style>
-                                                <Style TargetType="TextBox">
-
-                                                    <Setter Property="Template">
-                                                        <Setter.Value>
-                                                            <ControlTemplate TargetType="TextBox">
-                                                                <Border Background="{TemplateBinding Background}"
-                                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                                        CornerRadius="10">
-                                                                    <!-- Adjust the CornerRadius as needed -->
-                                                                    <Grid>
-                                                                        <ScrollViewer x:Name="PART_ContentHost"
-                                                                                      VerticalAlignment="Center" />
-                                                                        <!-- Adjust this line -->
-                                                                    </Grid>
-                                                                </Border>
-                                                            </ControlTemplate>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </Style>
-                                            </TextBox.Style>
-                                            <materialDesign:HintAssist.Hint>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                             Width="25px"
-                                                                             Height="20px"
-                                                                             Kind="CardPlusOutline" />
-                                                    <TextBlock FontSize="16px"
-                                                               Text="Tên khách hàng" />
-                                                </StackPanel>
-                                            </materialDesign:HintAssist.Hint>
-                                        </TextBox>
-                                    </StackPanel>
+                                    <TextBox VerticalAlignment="Center"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             Text="{Binding NameCustom, UpdateSourceTrigger=PropertyChanged}"
+                                             FontSize="15">
+                                        <materialDesign:HintAssist.Hint>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                         Width="25px"
+                                                                         Height="20px"
+                                                                         Kind="CardPlusOutline" />
+                                                <TextBlock FontSize="16px"
+                                                           Text="Tên khách hàng" />
+                                            </StackPanel>
+                                        </materialDesign:HintAssist.Hint>
+                                    </TextBox>
+                                   
                                     
                                 </Grid>
                                 <Grid Width="160"
                                       HorizontalAlignment="Left"
                                       Margin="0 0 25 0">
-                                    <StackPanel>
-
-                                        <WrapPanel>
-                                            <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                     Width="25px"
-                                                                     Height="20px"
-                                                                     Kind="CardPlusOutline" />
-                                            <TextBlock>Số điện thoại</TextBlock>
-                                        </WrapPanel>
-                                        <TextBox Height="30"
-                                                 VerticalAlignment="Center"
-                                                 Text="{Binding PhoneCustom , UpdateSourceTrigger=PropertyChanged}"
-                                                 FontSize="15">
-                                            <TextBox.Style>
-                                                <Style TargetType="TextBox">
-                                                    <Setter Property="IsReadOnly"
+                                    <TextBox VerticalAlignment="Center"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             Text="{Binding PhoneCustom , UpdateSourceTrigger=PropertyChanged}"
+                                             FontSize="15">
+                                        <materialDesign:HintAssist.Hint>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                         Width="25px"
+                                                                         Height="20px"
+                                                                         Kind="CardPlusOutline" />
+                                                <TextBlock FontSize="16px"
+                                                           Text="Số điện thoại" />
+                                            </StackPanel>
+                                        </materialDesign:HintAssist.Hint>
+                                    </TextBox>
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
+                                            <Setter Property="IsEnabled"
+                                                    Value="True" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding StatusAdd}"
+                                                             Value="True">
+                                                    <Setter Property="IsEnabled"
                                                             Value="False" />
-                                                    <Setter Property="Template">
-                                                        <Setter.Value>
-                                                            <ControlTemplate TargetType="TextBox">
-                                                                <Border Background="{TemplateBinding Background}"
-                                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                                        CornerRadius="10">
-                                                                    <!-- Adjust the CornerRadius as needed -->
-                                                                    <Grid>
-                                                                        <ScrollViewer x:Name="PART_ContentHost"
-                                                                                      VerticalAlignment="Center" />
-                                                                        <!-- Adjust this line -->
-                                                                    </Grid>
-                                                                </Border>
-                                                            </ControlTemplate>
-                                                        </Setter.Value>
-                                                    </Setter>
-
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding StatusAdd}"
-                                                                     Value="True">
-                                                            <Setter Property="IsReadOnly"
-                                                                    Value="True" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding StatusAdd}"
-                                                                     Value="False">
-                                                            <Setter Property="IsReadOnly"
-                                                                    Value="False" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBox.Style>
-                                            <materialDesign:HintAssist.Hint>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                             Width="25px"
-                                                                             Height="20px"
-                                                                             Kind="CardPlusOutline" />
-                                                    <TextBlock FontSize="16px"
-                                                               Text="Tên khách hàng" />
-                                                </StackPanel>
-                                            </materialDesign:HintAssist.Hint>
-                                        </TextBox>
-
-                                    </StackPanel>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding StatusAdd}"
+                                                             Value="False">
+                                                    <Setter Property="IsEnabled"
+                                                            Value="True" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
                                 </Grid>
                                 <Grid Width="170"
                                       HorizontalAlignment="Left"
@@ -420,53 +359,22 @@
                                 <Grid Width="140"
                                       HorizontalAlignment="Left"
                                       Margin="0 0 25 0">
-                                    <StackPanel>
-                                        <WrapPanel>
-                                            <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                     Width="25px"
-                                                                     Height="20px"
-                                                                     Kind="CardPlusOutline" />
-                                            <TextBlock>Điểm khách hàng</TextBlock>
-                                        </WrapPanel>
-
-                                        <TextBox Height="30"
-                                                 VerticalAlignment="Center"
-                                                 materialDesign:TextFieldAssist.HasClearButton="True"
-                                                 Text="{Binding Point, UpdateSourceTrigger=PropertyChanged}"
-                                                 FontSize="15">
-                                            <TextBox.Style>
-                                                <Style TargetType="TextBox">
-
-                                                    <Setter Property="Template">
-                                                        <Setter.Value>
-                                                            <ControlTemplate TargetType="TextBox">
-                                                                <Border Background="{TemplateBinding Background}"
-                                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                                        CornerRadius="10">
-                                                                    <Grid>
-                                                                        <ScrollViewer x:Name="PART_ContentHost"
-                                                                                      VerticalAlignment="Center" />
-                                                                        <!-- Adjust this line -->
-                                                                    </Grid>
-                                                                </Border>
-                                                            </ControlTemplate>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </Style>
-                                            </TextBox.Style>
-                                            <materialDesign:HintAssist.Hint>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                             Width="25px"
-                                                                             Height="20px"
-                                                                             Kind="CardPlusOutline" />
-                                                    <TextBlock FontSize="16px"
-                                                               Text="Tên khách hàng" />
-                                                </StackPanel>
-                                            </materialDesign:HintAssist.Hint>
-                                        </TextBox>
-                                    </StackPanel>
+                                    <TextBox VerticalAlignment="Center"
+                                             FontSize="15"
+                                             Text="{Binding Point, UpdateSourceTrigger=PropertyChanged}"
+                                             materialDesign:TextFieldAssist.HasClearButton="True"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                        <materialDesign:HintAssist.Hint>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                         Width="25px"
+                                                                         Height="20px"
+                                                                         Kind="CardPlusOutline" />
+                                                <TextBlock FontSize="16px"
+                                                           Text="Điểm" />
+                                            </StackPanel>
+                                        </materialDesign:HintAssist.Hint>
+                                    </TextBox>
                                 </Grid>
                                 <StackPanel>
 

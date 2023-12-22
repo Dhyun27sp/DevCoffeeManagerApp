@@ -72,7 +72,7 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
             {
                 shift = daymonth + "C";
             }
-            else if (dt.Hour >= 17 && dt.Hour <= 21)// chỉnh lại 10 h
+            else if (dt.Hour >= 17 && dt.Hour <= 23)// chỉnh lại 10 h
             {
                 shift = daymonth + "T";
             }

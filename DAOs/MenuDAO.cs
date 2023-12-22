@@ -5,8 +5,11 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DevCoffeeManagerApp.DAOs
@@ -45,6 +48,12 @@ namespace DevCoffeeManagerApp.DAOs
         public MenuModel ReadMenuOnly(ObjectId _id) {
             var Id = Builders<MenuModel>.Filter.Eq("_id", _id);
             MenuModel Menu = collection.Find(Id).FirstOrDefault();
+            return Menu;
+        }
+        public MenuModel findMenubyname(string name_menu)
+        {
+            var Filter_name = Builders<MenuModel>.Filter.Eq("type_of_dish", name_menu);
+            MenuModel Menu = collection.Find(Filter_name).FirstOrDefault();
             return Menu;
         }
         public List<DishModel> ReadAll_NewDish()

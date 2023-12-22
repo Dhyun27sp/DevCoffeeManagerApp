@@ -262,7 +262,7 @@
                         ToolTip="MaterialDesignRaisedLightButton with Round Corners"
 
                         Command="{Binding Exit}"
-                        CommandParameter="{Binding ElementName=WindowStaff}">
+                        CommandParameter="{Binding ElementName=MainWindowAdmin}">
                     <Button.BorderBrush>
                         <ImageBrush />
                     </Button.BorderBrush>

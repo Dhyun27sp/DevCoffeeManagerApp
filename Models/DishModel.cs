@@ -109,5 +109,6 @@ namespace DevCoffeeManagerApp.Models
             this.Quantity = quantity;
             this.Amount = amount;
         }
+        public DishModel() { }
     }
 }
