@@ -28,9 +28,16 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
 
         public override void Execute(object parameter)
         {
-            MessageBox.Show("Đặt Món thành công");
-            SessionStatic.SetOrdereds = orderFoodViewModel.Ordereds;
-            _navigationStore.CurrentViewModel = new OptionViewModel(_navigationStore);
+            if(orderFoodViewModel.Ordereds.Count == 0)
+            {
+                MessageBox.Show("Bạn chưa đặt món nào xin vui lòng đặt món");
+            }
+            else
+            {
+                MessageBox.Show("Đặt Món thành công");
+                SessionStatic.SetOrdereds = orderFoodViewModel.Ordereds;
+                _navigationStore.CurrentViewModel = new OptionViewModel(_navigationStore);
+            }
         }
     }
 }

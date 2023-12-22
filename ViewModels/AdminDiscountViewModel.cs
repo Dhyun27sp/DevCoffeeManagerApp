@@ -113,7 +113,6 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand DeletefieldDisCommand { get; }
         public ICommand DeleteDisCommand { get; }
         public ICommand DiscountCbbCommand { get; }
-
         //Khối Property và Command Hộ Trợ DistcountList : End
         /// <summary>
         /// /////////
@@ -201,6 +200,10 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(CombineListDishNotDC));
             }
         }
+
+        public ICommand TypedishCbbCommand { get; }
+        public ICommand ChoosedDishCommand { get; }
+        public ICommand ChoosedDisCommandFromNotDC { get; }
         //Khối Property và Command Hộ Trợ DishList : End
         /// <summary>
         /// /////////
@@ -275,6 +278,9 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(CombineListMenuNotDC));
             }
         }
+        
+        public ICommand ChoosedMenuCommand { get; }
+        public ICommand ChoosedMenuNotDCCommand { get; }
         //Khối Property và Command Hộ Trợ MenuList : End
         public AdminDiscountViewModel()
         {
@@ -285,6 +291,12 @@ namespace DevCoffeeManagerApp.ViewModels
             DeleteDisCommand = new ClickButtonCommand(this, "deleted");
             UpdateDisCommand = new ClickButtonCommand(this, "update");
             AddDisCommand = new ClickButtonCommand(this, "add");
+            TypedishCbbCommand = new FilterDiscountCommand(this, "tyledishchange");
+            ChoosedDishCommand = new ClickButtonCommand(this, "choosedishremove");
+            ChoosedDisCommandFromNotDC = new ClickButtonCommand(this, "choosedishtoadd");
+
+            ChoosedMenuCommand = new ClickButtonCommand(this, "choosemenutoremove");
+            ChoosedMenuNotDCCommand = new ClickButtonCommand(this, "choosemenutoadd");
             Discounts = new ObservableCollection<DiscountModel>(discountDAO.ReadDiscountAll());
             ExpiryDate = new List<string>();
             ExpiryDate.Add("All");

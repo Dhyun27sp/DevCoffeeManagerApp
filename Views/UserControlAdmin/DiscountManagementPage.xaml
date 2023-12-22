@@ -694,11 +694,12 @@
                                             CornerRadius="10"
                                             Height="400">
                                         <Grid>
-                                            <ListView ItemsSource="{Binding CombineListDishNotDC}">
+                                            <ListView x:Name="lvDiscountDishNotDC"
+                                                ItemsSource="{Binding CombineListDishNotDC}">
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="SelectionChanged">
-                                                        <i:InvokeCommandAction Command="{Binding ChoosedDisCommand}"
-                                                                               CommandParameter="{Binding ElementName=lvDiscount}" />
+                                                        <i:InvokeCommandAction Command="{Binding ChoosedDisCommandFromNotDC}"
+                                                                               CommandParameter="{Binding ElementName=lvDiscountDishNotDC}" />
                                                     </i:EventTrigger>
                                                 </i:Interaction.Triggers>
                                                 <ListView.View>
@@ -817,11 +818,12 @@
                                                 CornerRadius="10"
                                                 Height="320">
                                             <Grid>
-                                                <ListView ItemsSource="{Binding CombineListMenu}">
+                                                <ListView x:Name="lvMenu"
+                                                    ItemsSource="{Binding CombineListMenu}">
                                                     <i:Interaction.Triggers>
                                                         <i:EventTrigger EventName="SelectionChanged">
-                                                            <i:InvokeCommandAction Command="{Binding ChoosedDisCommand}"
-                                                                                   CommandParameter="{Binding ElementName=lvDiscount}" />
+                                                            <i:InvokeCommandAction Command="{Binding ChoosedMenuCommand}"
+                                                                                   CommandParameter="{Binding ElementName=lvMenu}" />
                                                         </i:EventTrigger>
                                                     </i:Interaction.Triggers>
                                                     <ListView.View>
@@ -899,11 +901,12 @@
                                                 CornerRadius="10"
                                                 Height="320">
                                             <Grid>
-                                                <ListView ItemsSource="{Binding CombineListMenuNotDC}">
+                                                <ListView x:Name="lvMenuNotDC"
+                                                    ItemsSource="{Binding CombineListMenuNotDC}">
                                                     <i:Interaction.Triggers>
                                                         <i:EventTrigger EventName="SelectionChanged">
-                                                            <i:InvokeCommandAction Command="{Binding ChoosedDisCommand}"
-                                                                                   CommandParameter="{Binding ElementName=lvDiscount}" />
+                                                            <i:InvokeCommandAction Command="{Binding ChoosedMenuNotDCCommand}"
+                                                                                   CommandParameter="{Binding ElementName=lvMenuNotDC}" />
                                                         </i:EventTrigger>
                                                     </i:Interaction.Triggers>
                                                     <ListView.View>

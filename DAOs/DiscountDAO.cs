@@ -56,7 +56,15 @@ namespace DevCoffeeManagerApp.DAOs
             List<MenuModel> ListMenuDiscountInDiscountModel = new List<MenuModel>();
             List<MenuModel> ListMenuDiscountReal = new List<MenuModel>();
             ListDiscount = ReadDiscountAll();
-            foreach(DiscountModel discount in ListDiscount) {
+            List<DiscountModel> ListDiscountsvalid = new List<DiscountModel>();
+            foreach (DiscountModel Discount in ListDiscount)
+            {
+                if (Discount.dayend >= DateTime.UtcNow)
+                {
+                    ListDiscountsvalid.Add(Discount);
+                }
+            }
+            foreach (DiscountModel discount in ListDiscountsvalid) {
                 ListMenuDiscountInDiscountModel.AddRange(discount.apply.menu);
             }
             foreach(MenuModel menu in ListMenuDiscountInDiscountModel)
@@ -71,7 +79,15 @@ namespace DevCoffeeManagerApp.DAOs
             List<DiscountModel> ListDiscount = new List<DiscountModel>();
             List<DishModel> ListDishDiscount = new List<DishModel>();
             ListDiscount = ReadDiscountAll();
-            foreach (DiscountModel discount in ListDiscount)
+            List<DiscountModel> ListDiscountsvalid = new List<DiscountModel>();
+            foreach (DiscountModel Discount in ListDiscount)
+            {
+                if (Discount.dayend >= DateTime.UtcNow)
+                {
+                    ListDiscountsvalid.Add(Discount);
+                }
+            }
+            foreach (DiscountModel discount in ListDiscountsvalid)
             {
                 ListDishDiscount.AddRange(discount.apply.dish);
             }
@@ -83,7 +99,15 @@ namespace DevCoffeeManagerApp.DAOs
             List<string> pricedishdiscounts = new List<string>();
             List<DiscountModel> ListDiscounts = new List<DiscountModel>();
             ListDiscounts = ReadDiscountAll();
-            foreach(DiscountModel Discount in ListDiscounts)
+            List<DiscountModel> ListDiscountsvalid = new List<DiscountModel>();
+            foreach (DiscountModel Discount in ListDiscounts)
+            {
+                if (Discount.dayend >= DateTime.UtcNow)
+                {
+                    ListDiscountsvalid.Add(Discount);
+                }
+            }
+            foreach (DiscountModel Discount in ListDiscountsvalid)
             {
                 foreach (var Dishsale in Discount.apply.dish)
                 {
@@ -102,7 +126,15 @@ namespace DevCoffeeManagerApp.DAOs
             List<string> pricemenudiscount = new List<string>();
             List<DiscountModel> ListDiscounts = new List<DiscountModel>();
             ListDiscounts = ReadDiscountAll();
+            List<DiscountModel> ListDiscountsvalid = new List<DiscountModel>();
             foreach (DiscountModel Discount in ListDiscounts)
+            {
+                if (Discount.dayend >= DateTime.UtcNow)
+                {
+                    ListDiscountsvalid.Add(Discount);
+                }
+            }
+            foreach (DiscountModel Discount in ListDiscountsvalid)
             {
                 foreach (var Menusale in Discount.apply.menu)
                 {
@@ -115,6 +147,56 @@ namespace DevCoffeeManagerApp.DAOs
             }
 
             return pricemenudiscount;
+        }
+
+        public void AddDishToDiscount(string discountId, DishModel newDish)
+        {
+            // Tạo filter để xác định đối tượng DiscountModel cần cập nhật
+            var filter = Builders<DiscountModel>.Filter.Eq("discountid", discountId);
+            newDish.dish_name = null;
+            newDish.ingredient = null;
+            newDish.price = null;
+            newDish.image = null;
+            newDish.date_add = null;
+            newDish.Saleprice = null;
+            // Tạo update để thêm newDish vào danh sách dish của apply
+            var update = Builders<DiscountModel>.Update.Push("apply.dish", newDish);
+
+            // Thực hiện cập nhật
+            collection.UpdateOne(filter, update);
+        }
+        public void RemoveDishFromDiscount(string discountId, DishModel dishRemove)
+        {
+            var filter = Builders<DiscountModel>.Filter.Eq("discountid", discountId);
+
+            // Xác định điều kiện để loại bỏ dish từ mảng
+            var update = Builders<DiscountModel>.Update.PullFilter("apply.dish", Builders<DishModel>.Filter.Eq("_id", dishRemove._id));
+
+            // Cập nhật đối tượng DiscountModel trong cơ sở dữ liệu
+            collection.UpdateOne(filter, update);
+        }
+        public void RemoveMenuFromDiscount(string discountId, MenuModel nemu)
+        {
+            var filter = Builders<DiscountModel>.Filter.Eq("discountid", discountId);
+
+            // Xác định điều kiện để loại bỏ dish từ mảng
+            var update = Builders<DiscountModel>.Update.PullFilter("apply.menu", Builders<MenuModel>.Filter.Eq("_id", nemu.id));
+
+            // Cập nhật đối tượng DiscountModel trong cơ sở dữ liệu
+            collection.UpdateOne(filter, update);
+        }
+        public void AddMenuToDiscount(string discountId, MenuModel newMenu)
+        {
+            // Tạo filter để xác định đối tượng DiscountModel cần cập nhật
+            var filter = Builders<DiscountModel>.Filter.Eq("discountid", discountId);
+            newMenu.dish = new List<DishModel>();
+            newMenu.type_of_dish = null;
+            newMenu.detail = null;
+            // Tạo update để thêm newDish vào danh sách dish của apply
+            var update = Builders<DiscountModel>.Update.Push("apply.menu", newMenu);
+
+            // Thực hiện cập nhật
+            collection.UpdateOne(filter, update);
         }
     }
 }

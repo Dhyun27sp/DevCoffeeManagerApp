@@ -47,6 +47,18 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                 case "deleted":
                     DeleteDiscount(parameter);
                     return;
+                case "choosedishremove":
+                    choosedishapplytoremove(parameter);
+                    return;
+                case "choosedishtoadd":
+                    choosedishapplytoadd(parameter);
+                    return;
+                case "choosemenutoremove":
+                    choosemenuapplytoremove(parameter);
+                    return;
+                case "choosemenutoadd":
+                    choosemenuapplytoadd(parameter);
+                    return;
             }
         }
 
@@ -106,6 +118,11 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
             if (discountModel != null)
             {
                 ApplyModel applyModel = new ApplyModel();
+                List<DishModel> listdish = new List<DishModel>(viewModel.ListDishs);
+                List<MenuModel> listmenu = new List<MenuModel>(viewModel.ListMenu);
+
+                applyModel.dish = DeepCloneListDish(listdish);
+                applyModel.menu = DeepCloneListMenu(listmenu);
                 DiscountModel newdiscount = new DiscountModel(viewModel.DiscountID, viewModel.Discountname, viewModel.Description, applyModel, viewModel.Daystart.Value, viewModel.Dayend.Value, viewModel.Value);
                 discountDAO.UpdateDiscount(newdiscount);
                 MessageBox.Show("Cập nhật thành công");
@@ -133,7 +150,12 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
         private void applydish(string discountid)
         {
             DiscountModel discountchoosed = discountDAO.findisbyId(discountid);
-            ObservableCollection<DishModel> listdish  = new ObservableCollection<DishModel>(menuDao.ReadAll_Dish());
+            ObservableCollection<DishModel> listdish = new ObservableCollection<DishModel>();
+            viewModel.TypeDishitem = "All Dishs";
+            
+                listdish = new ObservableCollection<DishModel>(menuDao.ReadAll_Dish());
+            
+            
             viewModel.ListDishs = new ObservableCollection<DishModel>();
             foreach (DishModel dishdc in discountchoosed.apply.dish) {
                 foreach (DishModel dish in listdish)
@@ -143,9 +165,11 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                         viewModel.ListDishs.Add(dish);
                         break;
                     }
-                }  
+                }
             }
-            viewModel.ListDishs = viewModel.ListDishs;
+           
+                viewModel.ListDishs = viewModel.ListDishs;
+            
             var result = listdish.Where(cm => !viewModel.ListDishs.Any(cma => cma._id == cm._id)).ToList();
             viewModel.ListDishsNotDC = new ObservableCollection<DishModel>(result);
         }
@@ -169,6 +193,140 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
             viewModel.ListMenu = viewModel.ListMenu;
             var result = listmenu.Where(cm => !viewModel.ListMenu.Any(cma => cma.id == cm.id)).ToList();
             viewModel.ListMenuNotDC = new ObservableCollection<MenuModel>(result);
+        }
+        private void choosedishapplytoremove(object parameter)
+        {
+            if (parameter is ListView listdish)
+            {
+                if (listdish.SelectedItem != null)
+                {
+                    Tuple<DishModel, int> selectedItem = (Tuple<DishModel, int>)listdish.SelectedItem;
+                    string DiscountID = viewModel.DiscountID;
+                    DishModel dish = new DishModel();
+                    dish = selectedItem.Item1;
+                    discountDAO.RemoveDishFromDiscount(DiscountID ,dish);
+                    MessageBox.Show("Xóa Món Trong danh sách thành công");
+                    viewModel.ListDishs.Remove(selectedItem.Item1);
+                    viewModel.ListDishsNotDC.Add(selectedItem.Item1);
+                    viewModel.ListDishs = viewModel.ListDishs;
+                    viewModel.ListDishsNotDC = viewModel.ListDishsNotDC;
+                }
+            }
+        }
+        private void choosedishapplytoadd(object parameter)
+        {
+            if (parameter is ListView listdish)
+            {
+                if (listdish.SelectedItem != null)
+                {
+                    Tuple<DishModel, int> selectedItem = (Tuple<DishModel, int>)listdish.SelectedItem;
+                    DishModel copydish = DeepClone(selectedItem.Item1);
+                    discountDAO.AddDishToDiscount(viewModel.DiscountID, copydish);
+                    MessageBox.Show("Thêm Món vào Giảm giá thành công");
+                    viewModel.ListDishs.Add(selectedItem.Item1);
+                    viewModel.ListDishsNotDC.Remove(selectedItem.Item1);
+                    viewModel.ListDishs = viewModel.ListDishs;
+                    viewModel.ListDishsNotDC = viewModel.ListDishsNotDC;
+                }
+            }
+        }
+        public static DishModel DeepClone(DishModel source)
+        {
+            if (source == null)
+                return null;
+
+            DishModel target = new DishModel
+            {
+                _id = source._id,
+                dish_name = source.dish_name,
+                ingredient = new List<IngredientModel>(source.ingredient),
+                price = source.price,
+                image = source.image,
+                date_add = source.date_add,
+                Saleprice = source.price
+            };
+
+            return target;
+        }
+        private void choosemenuapplytoremove(object parameter)
+        {
+            if (parameter is ListView listmenu)
+            {
+                if (listmenu.SelectedItem != null)
+                {
+                    Tuple<MenuModel, int> selectedItem = (Tuple<MenuModel, int>)listmenu.SelectedItem;
+                    discountDAO.RemoveMenuFromDiscount(viewModel.DiscountID, selectedItem.Item1);
+                    MessageBox.Show("Xóa Loại món thành công");
+                    viewModel.ListMenu.Remove(selectedItem.Item1);
+                    viewModel.ListMenuNotDC.Add(selectedItem.Item1);
+                    viewModel.ListMenu = viewModel.ListMenu;
+                    viewModel.ListMenuNotDC = viewModel.ListMenuNotDC;
+                }
+            }
+        }
+        private void choosemenuapplytoadd(object parameter)
+        {
+            if (parameter is ListView listmenu)
+            {
+                if (listmenu.SelectedItem != null)
+                {
+                    Tuple<MenuModel, int> selectedItem = (Tuple<MenuModel, int>)listmenu.SelectedItem;
+                    MenuModel copymenu = DeepCloneMenu(selectedItem.Item1);
+                    discountDAO.AddMenuToDiscount(viewModel.DiscountID, copymenu);
+                    MessageBox.Show("Thêm Loại món thành công");
+                    viewModel.ListMenu.Add(selectedItem.Item1);
+                    viewModel.ListMenuNotDC.Remove(selectedItem.Item1);
+                    viewModel.ListMenu = viewModel.ListMenu;
+                    viewModel.ListMenuNotDC = viewModel.ListMenuNotDC;
+                }
+            }
+        }
+        public static MenuModel DeepCloneMenu(MenuModel source)
+        {
+            if (source == null)
+                return null;
+
+            MenuModel target = new MenuModel
+            {
+                id = source.id,
+                type_of_dish = source.type_of_dish,
+                detail = source.detail,
+                dish = new List<DishModel>(source.dish),
+
+            };
+
+            return target;
+        }
+        private static List<MenuModel> DeepCloneListMenu(List<MenuModel> listmenu)
+        {
+            List<MenuModel> listmenucopy = new List<MenuModel>();
+            foreach (MenuModel menu in listmenu)
+            {
+                MenuModel copymenu = new MenuModel();
+                copymenu = DeepCloneMenu(menu);
+                copymenu.dish = new List<DishModel>();
+                copymenu.type_of_dish = null;
+                copymenu.detail = null;
+                listmenucopy.Add(copymenu);
+            }
+            return listmenucopy;
+        }
+        private static List<DishModel> DeepCloneListDish(List<DishModel> listdish)
+        {
+            List<DishModel> listdishcopy = new List<DishModel>();
+            foreach (DishModel dish in listdish)
+            {
+                DishModel copydish = new DishModel();
+                copydish = DeepClone(dish);
+                copydish.dish_name = null;
+                copydish.ingredient = null;
+                copydish.price = null;
+                copydish.image = null;
+                copydish.date_add = null;
+                copydish.Saleprice = null;
+                listdishcopy.Add(copydish);
+            }
+            return listdishcopy;
         }
     }
 }
