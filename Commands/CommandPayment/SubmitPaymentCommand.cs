@@ -38,7 +38,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
 
             int total = PaymentOrderViewModel.Total;
             int plus_point = PaymentOrderViewModel.PlusPoint;
-            string used_point = PaymentOrderViewModel.UsedPoint;
+            int used_point = int.Parse(PaymentOrderViewModel.UsedPoint);
             DateTime current_date = PaymentOrderViewModel.CurrentDate;
             string guest_monney = PaymentOrderViewModel.InputMoney.Replace(" ", "");
             int change = PaymentOrderViewModel.Change;
@@ -64,10 +64,10 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                     if (is_direct_payment == true && total != 0)
                     {
                         ReceiptModel receiptModel = new ReceiptModel(current_date, SessionStatic.Customer, tables, staff_phonenumber,
-                            dishesdb, discounts, "Thanh toán bằng tiền mặt", total_amount, int.Parse(guest_monney), change);
+                            dishesdb, discounts, "Thanh toán bằng tiền mặt", used_point, total_amount, int.Parse(guest_monney), change);
                         receiptDAO.AddReceipt(receiptModel);
                         SessionStatic.SetReceipt = receiptModel;
-                        SessionStatic.Customer.point = (SessionStatic.Customer.point + plus_point) - int.Parse(used_point);
+                        SessionStatic.Customer.point = (SessionStatic.Customer.point + plus_point) - used_point;
                         customerDAO.UpdateCustomer(SessionStatic.Customer);
                         MessageBox.Show("Thanh toán thành công");
                         Receipt receipt = new Receipt();
@@ -87,7 +87,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                     if (is_direct_payment == true && total != 0)
                     {
                         ReceiptModel receiptModel = new ReceiptModel(current_date, null, tables, staff_phonenumber,
-                            dishesdb, discounts, "Thanh toán bằng tiền mặt", total_amount, int.Parse(guest_monney), change);
+                            dishesdb, discounts, "Thanh toán bằng tiền mặt", used_point, total_amount, int.Parse(guest_monney), change);
                         receiptDAO.AddReceipt(receiptModel);
                         SessionStatic.SetReceipt = receiptModel;
                         MessageBox.Show("Thanh toán thành công");

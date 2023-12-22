@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DevCoffeeManagerApp
+namespace DevCoffeeManagerApp.Views.UserControlAdmin
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for ReceiptManagementPage.xaml
     /// </summary>
-    public partial class LoginPage : Window
+    public partial class ReceiptManagementPage : UserControl
     {
-        public LoginPage()
+        public ReceiptManagementPage()
         {
             InitializeComponent();
         }

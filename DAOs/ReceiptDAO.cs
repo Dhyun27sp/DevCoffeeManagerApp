@@ -43,5 +43,10 @@ namespace DevCoffeeManagerApp.DAOs
             List<ReceiptModel> receiptsLastYear = collection.Find(filter).ToList();
             return receiptsLastYear;
         }
+        public void DeleteReceiptByID(ObjectId id)
+        {
+            var filter = Builders<ReceiptModel>.Filter.Eq("_id", id);
+            collection.DeleteOne(filter);
+        }
     }
 }

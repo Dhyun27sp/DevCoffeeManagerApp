@@ -228,7 +228,7 @@
                         </WrapPanel>
                     </Button>
 
-                    <Button Command="{Binding CustomerCommand}"
+                    <Button Command="{Binding ReceiptCommand}"
                             Style="{StaticResource MaterialDesignFlatButton}"
                             ToolTip="MaterialDesignFlatButton"
                             Height="70">
@@ -341,6 +341,9 @@
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type vms:AdminDiscountViewModel}">
                         <views:DiscountManagementPage />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vms:AdminReceiptViewModel}">
+                        <views:ReceiptManagementPage />
                     </DataTemplate>
                 </Grid.Resources>
                 <ContentControl Content="{Binding CurrentViewModel}" />

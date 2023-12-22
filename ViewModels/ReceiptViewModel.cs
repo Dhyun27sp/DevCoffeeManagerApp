@@ -123,10 +123,10 @@ namespace DevCoffeeManagerApp.ViewModels
             PrintReceiptCommand = new PrintReceiptCommand();
             if (SessionStatic.Customer != null)
             {
-                UsedPoint = SessionStatic.Customer.usedpoint;
                 CustomerName = SessionStatic.GetReceipt.customer.name;
             }
             if (SessionStatic.GetReceipt != null) {
+                UsedPoint = SessionStatic.GetReceipt.used_point.ToString();
                 CurrentDate = SessionStatic.GetReceipt.time;
                 StaffPhoneNumber = SessionStatic.GetReceipt.staff_phone;
                 TotalAmount = SessionStatic.GetReceipt.total_amount;
