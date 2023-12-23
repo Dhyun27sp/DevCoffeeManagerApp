@@ -18,6 +18,7 @@ namespace DevCoffeeManagerApp.Config
             MongoClient dbClient;
             try
             {
+                //push
                 dbClient = new MongoClient("mongodb+srv://" + username + ":" + password + "@cafe-manager.jpn3aq0.mongodb.net/");
             }
             catch
