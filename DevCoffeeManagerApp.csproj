@@ -249,6 +249,8 @@
     <Compile Include="DAOs\StaffDAO.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\ApplyModel.cs" />
+    <Compile Include="DAOs\ProductDAO.cs" />
+    <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\SupplyModel.cs" />
     <Compile Include="Models\DiscountModel.cs" />
     <Compile Include="Models\DishModel.cs" />

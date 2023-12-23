@@ -368,8 +368,8 @@
                                     <ComboBox Padding="0 5.5 0 0"
                                               Style="{StaticResource MaterialDesignFilledComboBox}"
                                               Background="Transparent"
-                                              ItemsSource="{Binding UnitList}"
-                                              SelectedItem="{Binding newsupply.Unit}">
+                                              ItemsSource="{Binding IdList}"
+                                              SelectedItem="{Binding newsupply.Product_id}">
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Orientation="Horizontal">
                                                 <materialDesign:PackIcon VerticalAlignment="Center"
