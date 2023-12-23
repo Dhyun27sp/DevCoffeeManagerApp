@@ -70,14 +70,14 @@
                             <DockPanel Margin="25 10 0 10">
                                 <TextBlock Text="Danh sách hóa đơn:"
                                            VerticalAlignment="Center" />
-                                <Grid Width="200"
+                                <Grid Width="230"
                                       HorizontalAlignment="Right"
                                       Margin="0 0 20 0"
                                       DockPanel.Dock="Right">
-                                    <DatePicker Name="ngay_le"
+                                    <DatePicker Name="hoa_don_ngay"
                                                 VerticalAlignment="Center"
                                                 FontSize="15"
-                                                SelectedDate="{Binding Dobcustom,UpdateSourceTrigger=PropertyChanged}"
+                                                SelectedDate="{Binding ReceiptDate,UpdateSourceTrigger=PropertyChanged}"
                                                 materialDesign:TextFieldAssist.HasClearButton="True"
                                                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
                                         <materialDesign:HintAssist.Hint>
@@ -87,7 +87,7 @@
                                                                          Height="20px"
                                                                          Kind="CardPlusOutline" />
                                                 <TextBlock FontSize="16px"
-                                                           Text="Lịch ..." />
+                                                           Text="Lọc hóa đơn theo ngày" />
                                             </StackPanel>
                                         </materialDesign:HintAssist.Hint>
                                     </DatePicker>

@@ -161,6 +161,30 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(TotalAmount));
             }
         }
+        
+
+        private DateTime? _receiptDate = null;
+        public DateTime? ReceiptDate
+        {
+            get
+            {
+                return _receiptDate;
+            }
+
+            set
+            {
+                _receiptDate = value;
+                OnPropertyChanged(nameof(ReceiptDate));
+                if(_receiptDate != null)
+                {
+                    Receipts = new ObservableCollection<ReceiptModel>(receiptDAO.FindReceiptOnDate(ReceiptDate.Value));
+                }
+                else
+                {
+                    Receipts = new ObservableCollection<ReceiptModel>(receiptDAO.ReadAll());
+                }    
+            }
+        }
 
         private ObservableCollection<CustomerModel> _customer;
         public ObservableCollection<CustomerModel> Customer

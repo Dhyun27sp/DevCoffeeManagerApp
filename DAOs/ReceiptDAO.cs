@@ -8,6 +8,7 @@ using DevCoffeeManagerApp.Config;
 using DevCoffeeManagerApp.Models;
 using MongoDB.Bson;
 using System.Security.Cryptography;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace DevCoffeeManagerApp.DAOs
 {
@@ -47,6 +48,15 @@ namespace DevCoffeeManagerApp.DAOs
         {
             var filter = Builders<ReceiptModel>.Filter.Eq("_id", id);
             collection.DeleteOne(filter);
+        }
+        public List<ReceiptModel> FindReceiptOnDate(DateTime date)
+        {
+            DateTime startDate = date;
+            DateTime endDate = startDate.AddHours(23).AddMinutes(59).AddSeconds(59);
+            var filter = Builders<ReceiptModel>.Filter.Gte("time", startDate) &
+                         Builders<ReceiptModel>.Filter.Lt("time", endDate);
+            List<ReceiptModel> receiptsOnDate = collection.Find(filter).ToList();
+            return receiptsOnDate;
         }
     }
 }
