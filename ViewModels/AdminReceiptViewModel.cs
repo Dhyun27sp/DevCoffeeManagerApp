@@ -213,9 +213,11 @@ namespace DevCoffeeManagerApp.ViewModels
 
         public ICommand DeleteReceiptCommand { get; }
         public ICommand ChoosedReceiptCommand { get; }
+        public DateTime Date { get; set; }
 
         public AdminReceiptViewModel()
         {
+            Date = DateTime.Now;
             Receipts = new ObservableCollection<ReceiptModel>(receiptDAO.ReadAll());
             DeleteReceiptCommand = new ReceiptClickCommand(this, "deleted");
             ChoosedReceiptCommand = new ReceiptClickCommand(this, "choose");

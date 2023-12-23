@@ -282,8 +282,11 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand ChoosedMenuCommand { get; }
         public ICommand ChoosedMenuNotDCCommand { get; }
         //Khối Property và Command Hộ Trợ MenuList : End
+        public DateTime Date { get; set; }
+
         public AdminDiscountViewModel()
         {
+            Date = DateTime.Now;
             //Khối Config Hộ Trợ DistcountList :Start
             DeletefieldDisCommand = new ClickButtonCommand(this, "deletef");
             DiscountCbbCommand = new FilterDiscountCommand(this, "cbb");

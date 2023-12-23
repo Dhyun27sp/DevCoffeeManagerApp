@@ -41,7 +41,7 @@
                                VerticalAlignment="Center"
                                HorizontalAlignment="Left"
                                Margin="25 0 0 0" />
-                    <TextBlock Text="25 Dec 2023, Monday"
+                    <TextBlock Text="{Binding Date, StringFormat='dd MMM yyyy, dddd'}"
                                Foreground="SlateGray"
                                FontSize="14"
                                FontWeight="Bold"

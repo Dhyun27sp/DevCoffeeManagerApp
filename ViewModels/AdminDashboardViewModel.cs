@@ -8,6 +8,11 @@ namespace DevCoffeeManagerApp.ViewModels
 {
     public class AdminDashboardViewModel:BaseViewModel
     {
-        public AdminDashboardViewModel() { }
+        public DateTime Date { get; set; }
+
+        public AdminDashboardViewModel() 
+        {
+            Date = DateTime.Now;
+        }
     }
 }

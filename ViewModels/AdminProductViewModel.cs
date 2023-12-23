@@ -8,6 +8,11 @@ namespace DevCoffeeManagerApp.ViewModels
 {
     public class AdminProductViewModel : BaseViewModel
     {
-        public AdminProductViewModel() { }    
+        public DateTime Date { get; set; }
+
+        public AdminProductViewModel() 
+        {
+            Date = DateTime.Now;
+        }    
     }
 }

@@ -12,7 +12,7 @@
              xmlns:local="clr-namespace:DevCoffeeManagerApp.Views.UserControlAdmin"
              xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="2000" 
+             d:DesignHeight="450" 
              d:DesignWidth="800">
     <UserControl.DataContext>
         <vms:AdminProductViewModel />
@@ -41,7 +41,7 @@
                                VerticalAlignment="Center"
                                HorizontalAlignment="Left"
                                Margin="25 0 0 0" />
-                    <TextBlock Text="25 Dec 2023, Monday"
+                    <TextBlock Text="{Binding Date, StringFormat='dd MMM yyyy, dddd'}"
                                Foreground="SlateGray"
                                FontSize="14"
                                FontWeight="Bold"
@@ -104,6 +104,48 @@
                                         </i:Interaction.Triggers>
                                     </ComboBox>
                                 </Grid>
+                                <StackPanel materialDesign:RippleAssist.IsCentered="True"
+                                            Width="200"
+                                            Margin="0 5 20 0"
+                                            HorizontalAlignment="Right"
+                                            DockPanel.Dock="Right">
+
+                                    <materialDesign:ColorZone VerticalAlignment="Center"
+                                                              Padding="8,4,8,4"
+                                                              Panel.ZIndex="1"
+                                                              materialDesign:ElevationAssist.Elevation="Dp2"
+                                                              CornerRadius="1"
+                                                              Mode="Standard">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Button Style="{StaticResource MaterialDesignToolButton}"
+                                                    Grid.RowSpan="2"
+                                                    Grid.Column="0">
+                                                <materialDesign:PackIcon Kind="Search"
+                                                                         Opacity=".56" />
+                                            </Button>
+                                            <TextBox Grid.Column="1"
+                                                     x:Name="ProductNameSearch"
+                                                     Margin="8,4,0,0"
+                                                     VerticalAlignment="Top"
+                                                     materialDesign:HintAssist.Hint="Tìm kiếm theo tên sp"
+                                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                     BorderThickness="0"
+                                                     Grid.RowSpan="2"
+                                                     Text="{Binding types_dish_search , UpdateSourceTrigger=PropertyChanged}">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="KeyUp">
+                                                        <i:InvokeCommandAction Command="{Binding ChangeValueTexboxCommand}"
+                                                                               CommandParameter="{Binding ElementName=TexboxSearch}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </TextBox>
+                                        </Grid>
+                                    </materialDesign:ColorZone>
+                                </StackPanel>
                             </DockPanel>
 
                         </Grid>

@@ -102,7 +102,10 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand DeleteCusCommand { get; }
         public ICommand CustommerCbbCommand { get; }
         public ICommand ChangeValueTexboxCommand { get; }
+        public DateTime Date { get; set; }
+
         public AdminCustomerViewModel() {
+            Date = DateTime.Now;
             Custommers = customerDAO.GetAllCustomers();
             CustommersReadonly = Custommers;
             ChoosedcusCommand = new CustomerComand(this, "choose");
