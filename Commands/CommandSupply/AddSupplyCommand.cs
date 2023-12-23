@@ -26,13 +26,14 @@ namespace DevCoffeeManagerApp.Commands.CommandSupply
         public override void Execute(object parameter)
         {
             DateTime date = DateTime.Now;
-            SupplyModel model = adminSupplyViewModel.newsupply;
+            SupplyModel model = new SupplyModel(adminSupplyViewModel.newsupply);
             model.Date = date;
             model.Status = "Unused";
             supplyDAO.createSupply(model);
             adminSupplyViewModel.Supplies.Add(model);
             adminSupplyViewModel.Supplies = adminSupplyViewModel.Supplies;
-            MessageBox.Show("Đã thêm hàng hoá");
+            MessageBox.Show("Đã thêm hàng hoá");            
+            return;
         }
     }
 }

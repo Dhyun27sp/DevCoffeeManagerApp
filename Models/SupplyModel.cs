@@ -33,5 +33,20 @@ namespace DevCoffeeManagerApp.Models
         public DateTime? MFG_date { get; set; }
         [BsonElement("EXP"), BsonRepresentation(BsonType.DateTime)]
         public DateTime? EXP_date { get; set; }
+
+        public SupplyModel(SupplyModel model)
+        {
+            this.Product_name = model.Product_name;
+            this.Status = model.Status;
+            this.Date = model.Date;
+            this.Price = model.Price;
+            this.Quantity = model.Quantity;
+            this.Unit = model.Unit;
+            this.MFG_date = model.MFG_date;
+            this.EXP_date = model.EXP_date;
+        }
+        public SupplyModel()
+        {
+        }
     }
 }
