@@ -12,7 +12,7 @@
              xmlns:local="clr-namespace:DevCoffeeManagerApp.Views.UserControlAdmin"
              xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" 
+             d:DesignHeight="2000" 
              d:DesignWidth="800">
     <UserControl.DataContext>
         <vms:AdminProductViewModel />
@@ -187,7 +187,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="170">
+                                            <GridViewColumn Width="100">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
@@ -200,7 +200,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="140">
+                                            <GridViewColumn Width="120">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
@@ -223,6 +223,27 @@
                                                     <DataTemplate>
                                                         <TextBlock Text="{Binding Item1.dish_name}"
                                                                    FontSize="13" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Width="100">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent">
+                                                    Cập nhật
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Button Panel.ZIndex="0"
+                                                                Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                                                Command="{Binding DataContext.UpdateProductCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                CommandParameter="{Binding Item1}">
+                                                            <materialDesign:PackIcon Foreground="#5F5555"
+                                                                                     Opacity=".80"
+                                                                                     Kind="Update"
+                                                                                     Width="30"
+                                                                                     Height="25" />
+                                                        </Button>
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
@@ -293,14 +314,14 @@
                                         </materialDesign:HintAssist.Hint>
                                     </TextBox>
                                 </Grid>
-                                <Grid Width="130"
+                                <Grid Width="140"
                                       HorizontalAlignment="Left"
                                       Margin="0 0 25 0">
-                                    <TextBox VerticalAlignment="Center"
-                                             FontSize="15"
-                                             Text="Loại A"
-                                             materialDesign:TextFieldAssist.HasClearButton="True"
-                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                    <ComboBox Padding="0 5.5 0 0"
+                                              Style="{StaticResource MaterialDesignFilledComboBox}"
+                                              Background="Transparent"
+                                              ItemsSource="{Binding UnitList}"
+                                              SelectedItem="{Binding newsupply.Unit}">
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Orientation="Horizontal">
                                                 <materialDesign:PackIcon VerticalAlignment="Center"
@@ -308,31 +329,12 @@
                                                                          Height="20px"
                                                                          Kind="CardPlusOutline" />
                                                 <TextBlock FontSize="16px"
-                                                           Text="Loại SP" />
+                                                           Text="Đơn vị" />
                                             </StackPanel>
                                         </materialDesign:HintAssist.Hint>
-                                    </TextBox>
+                                    </ComboBox>
                                 </Grid>
-                                <Grid Width="170"
-                                      HorizontalAlignment="Left"
-                                      Margin="0 0 25 0">
-                                    <DatePicker Name="HSD"
-                                                FontSize="15"
-                                                SelectedDate="{Binding date}"
-                                                materialDesign:TextFieldAssist.HasClearButton="True"
-                                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
-                                        <materialDesign:HintAssist.Hint>
-                                            <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                         Width="25px"
-                                                                         Height="20px"
-                                                                         Kind="CardPlusOutline" />
-                                                <TextBlock FontSize="16px"
-                                                           Text="Hạn sử dụng" />
-                                            </StackPanel>
-                                        </materialDesign:HintAssist.Hint>
-                                    </DatePicker>
-                                </Grid>
+
                                 <Grid Width="180"
                                       HorizontalAlignment="Left"
                                       Margin="0 0 25 0">

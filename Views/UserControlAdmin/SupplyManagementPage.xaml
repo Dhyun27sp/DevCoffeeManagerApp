@@ -351,10 +351,11 @@
                                 <Grid Width="160"
                                       HorizontalAlignment="Left"
                                       Margin="0 0 25 0">
-                                    <TextBox VerticalAlignment="Center"
-                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                             Text="{Binding newsupply.Product_name}"
-                                             FontSize="15">
+                                    <ComboBox Padding="0 5.5 0 0"
+                                              Style="{StaticResource MaterialDesignFilledComboBox}"
+                                              Background="Transparent"
+                                              ItemsSource="{Binding UnitList}"
+                                              SelectedItem="{Binding newsupply.Unit}">
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Orientation="Horizontal">
                                                 <materialDesign:PackIcon VerticalAlignment="Center"
@@ -365,7 +366,7 @@
                                                            Text="Tên sản phẩm" />
                                             </StackPanel>
                                         </materialDesign:HintAssist.Hint>
-                                    </TextBox>
+                                    </ComboBox>
                                 </Grid>
                                 <Grid Width="110"
                                       HorizontalAlignment="Left"
@@ -425,7 +426,6 @@
                                             </StackPanel>
                                         </materialDesign:HintAssist.Hint>
                                     </ComboBox>
-
                                 </Grid>
                                 <Grid Width="170"
                                       HorizontalAlignment="Left"
