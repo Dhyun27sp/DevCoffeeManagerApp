@@ -66,6 +66,7 @@
                             <RowDefinition Height="1*"></RowDefinition>
                             <RowDefinition Height="5*"></RowDefinition>
                             <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
                             <DockPanel Margin="25 10 0 10">
@@ -218,7 +219,7 @@
                                                             Value="Left" />
                                                 </Style>
                                             </GridView.ColumnHeaderContainerStyle>
-                                            <GridViewColumn Width="70">
+                                            <GridViewColumn Width="60">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent"
@@ -237,7 +238,7 @@
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
-                                                    Mã sản phẩm
+                                                    Tên sản phẩm
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
@@ -246,7 +247,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="110">
+                                            <GridViewColumn Width="95">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
@@ -259,7 +260,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="110">
+                                            <GridViewColumn Width="80">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
@@ -285,7 +286,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="80">
+                                            <GridViewColumn Width="70">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
@@ -298,7 +299,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="140">
+                                            <GridViewColumn Width="120">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
@@ -311,7 +312,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="140">
+                                            <GridViewColumn Width="110">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
@@ -320,6 +321,19 @@
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <TextBlock Text="{Binding Item1.EXP_date, ConverterCulture='fr-FR', StringFormat=d}"
+                                                                   FontSize="13" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Width="200">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent">
+                                                    Nhà sản xuất
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding abc}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -345,7 +359,7 @@
                             </Grid>
                         </Border>
 
-                        <Grid Grid.Row="3"
+                        <Grid Grid.Row="2"
                               Margin="25 10 25 20">
                             <WrapPanel>
                                 <Grid Width="160"
@@ -407,7 +421,7 @@
                                         </materialDesign:HintAssist.Hint>
                                     </TextBox>
                                 </Grid>
-                                <Grid Width="140"
+                                <Grid Width="100"
                                       HorizontalAlignment="Left"
                                       Margin="0 0 25 0">
                                     <ComboBox Padding="0 5.5 0 0"
@@ -427,7 +441,7 @@
                                         </materialDesign:HintAssist.Hint>
                                     </ComboBox>
                                 </Grid>
-                                <Grid Width="170"
+                                <Grid Width="165"
                                       HorizontalAlignment="Left"
                                       Margin="0 0 25 0">
                                     <DatePicker Name="NSX"
@@ -448,7 +462,7 @@
                                         </materialDesign:HintAssist.Hint>
                                     </DatePicker>
                                 </Grid>
-                                <Grid Width="170"
+                                <Grid Width="155"
                                       HorizontalAlignment="Left"
                                       Margin="0 0 25 0">
                                     <DatePicker Name="HSD"
@@ -468,25 +482,47 @@
                                         </materialDesign:HintAssist.Hint>
                                     </DatePicker>
                                 </Grid>
-                                <Grid>
-                                    <Button materialDesign:ButtonAssist.CornerRadius="10"
-                                            Style="{StaticResource MaterialDesignRaisedLightButton}"
-                                            ToolTip="MaterialDesignRaisedLightButton with Round Corners"
-                                            Margin="15 0 10 0"
-                                            Command="{Binding AddCommand}">
-                                        <Button.BorderBrush>
-                                            <ImageBrush />
-                                        </Button.BorderBrush>
-                                        <Button.Background>
-                                            <SolidColorBrush Color="#e87f14" />
-                                        </Button.Background>
-                                        <TextBlock FontFamily="Nunito"
-                                                   Text="Nhập hàng"
-                                                   FontSize="16"
-                                                   Foreground="White" />
-                                    </Button>
+                                <Grid Width="180"
+                                      HorizontalAlignment="Left"
+                                      Margin="0 0 25 0">
+                                    <TextBox VerticalAlignment="Center"
+                                             FontSize="15"
+                                             Text="nsx A"
+                                             materialDesign:TextFieldAssist.HasClearButton="True"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                        <materialDesign:HintAssist.Hint>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                         Width="25px"
+                                                                         Height="20px"
+                                                                         Kind="CardPlusOutline" />
+                                                <TextBlock FontSize="16px"
+                                                           Text="Nhà sản xuất" />
+                                            </StackPanel>
+                                        </materialDesign:HintAssist.Hint>
+                                    </TextBox>
                                 </Grid>
+
                             </WrapPanel>
+                        </Grid>
+                        <Grid Grid.Row="3">
+                            <Button materialDesign:ButtonAssist.CornerRadius="10"
+                                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                    ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                    Width="200"
+                                    Margin="0 0 0 20"
+                                    Command="{Binding AddCommand}">
+                                <Button.BorderBrush>
+                                    <ImageBrush />
+                                </Button.BorderBrush>
+                                <Button.Background>
+                                    <SolidColorBrush Color="#e87f14" />
+                                </Button.Background>
+                                <TextBlock FontFamily="Nunito"
+                                           Text="Nhập hàng"
+                                           FontSize="16"
+                                           Foreground="White" />
+                            </Button>
                         </Grid>
                     </Grid>
                 </ScrollViewer>
