@@ -230,6 +230,8 @@
     <Compile Include="Commands\CommandOrder\OperatorCommand.cs" />
     <Compile Include="Commands\CommandOption\SearchCustomerCommand.cs" />
     <Compile Include="Commands\CommandOption\UsePointCommand.cs" />
+    <Compile Include="Commands\CommandSupply\AddSupplyCommand.cs" />
+    <Compile Include="Commands\CommandSupply\UpdateStatusCommand.cs" />
     <Compile Include="Commands\CommandTable\CancelallTableCommand.cs" />
     <Compile Include="Commands\CommandTable\CommandSubmitTable.cs" />
     <Compile Include="Component\BindablePasswordBox.xaml.cs">

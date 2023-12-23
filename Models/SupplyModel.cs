@@ -11,8 +11,8 @@ namespace DevCoffeeManagerApp.Models
     [Serializable, BsonIgnoreExtraElements]
     public class SupplyModel
     {
-        [BsonElement("product_id"), BsonRepresentation(BsonType.String)]
-        public String Product_id { get; set; }
+        [BsonElement("product_name"), BsonRepresentation(BsonType.String)]
+        public String Product_name { get; set; }
 
         [BsonElement("status"), BsonRepresentation(BsonType.String)]
         public String Status { get; set; }
@@ -30,8 +30,8 @@ namespace DevCoffeeManagerApp.Models
         public String Unit { get; set; }
 
         [BsonElement("MFG"), BsonRepresentation(BsonType.DateTime)]
-        public DateTime MFG_date { get; set; }
+        public DateTime? MFG_date { get; set; }
         [BsonElement("EXP"), BsonRepresentation(BsonType.DateTime)]
-        public DateTime EXP_date { get; set; }
+        public DateTime? EXP_date { get; set; }
     }
 }
