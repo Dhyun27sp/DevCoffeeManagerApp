@@ -198,7 +198,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.dish_name}"
+                                                        <TextBlock Text="{Binding Item1.Product_name}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -211,7 +211,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.dish_name}"
+                                                        <TextBlock Text="{Binding Item1.Product_id}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -224,7 +224,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.Quantity}"
+                                                        <TextBlock Text="{Binding Item1.Stock}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -233,11 +233,11 @@
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
-                                                    Loại SP
+                                                    Đơn vị
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.Amount, UpdateSourceTrigger=PropertyChanged}"
+                                                        <TextBlock Text="{Binding Item1.Unit, UpdateSourceTrigger=PropertyChanged}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -250,7 +250,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.dish_name}"
+                                                        <TextBlock Text="{Binding Item1.EXP_date}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -263,7 +263,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.dish_name}"
+                                                        <TextBlock Text="{Binding Item1.Manufacturer}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -278,7 +278,7 @@
                                                     <DataTemplate>
                                                         <Button Panel.ZIndex="0"
                                                                 Style="{StaticResource MaterialDesignToolForegroundButton}"
-                                                                Command="{Binding DataContext.UpdateProductCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                Command="{Binding DataContext.UpdateProductCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
                                                                 CommandParameter="{Binding Item1}">
                                                             <materialDesign:PackIcon Foreground="#5F5555"
                                                                                      Opacity=".80"
@@ -303,7 +303,7 @@
                                       Margin="0 0 25 0">
                                     <TextBox VerticalAlignment="Center"
                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                             Text="san pham 1"
+                                             Text="{Binding newproduct.Product_name}"
                                              FontSize="15">
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Orientation="Horizontal">
@@ -322,7 +322,7 @@
                                       Margin="0 0 25 0">
                                     <TextBox VerticalAlignment="Center"
                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                             Text="SP01A"
+                                             Text="{Binding newproduct.Product_id}"
                                              FontSize="15">
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Orientation="Horizontal">
@@ -335,27 +335,7 @@
                                             </StackPanel>
                                         </materialDesign:HintAssist.Hint>
                                     </TextBox>
-                                </Grid>
-                                <Grid Width="100"
-                                      HorizontalAlignment="Left"
-                                      Margin="0 0 25 0">
-                                    <TextBox VerticalAlignment="Center"
-                                             FontSize="15"
-                                             Text="30"
-                                             materialDesign:TextFieldAssist.HasClearButton="True"
-                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                                        <materialDesign:HintAssist.Hint>
-                                            <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                         Width="25px"
-                                                                         Height="20px"
-                                                                         Kind="CardPlusOutline"/>
-                                                <TextBlock FontSize="16px"
-                                                           Text="Tồn kho" />
-                                            </StackPanel>
-                                        </materialDesign:HintAssist.Hint>
-                                    </TextBox>
-                                </Grid>
+                                </Grid>                                
                                 <Grid Width="140"
                                       HorizontalAlignment="Left"
                                       Margin="0 0 25 0">
