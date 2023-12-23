@@ -82,7 +82,7 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.CustomerCommands
                         }
                         else
                         {
-                            customer.dob = viewModel.Dobcustom.Value.ToString("dd-MM-yyyy");
+                            customer.dob = viewModel.Dobcustom.Value.ToString("dd/MM/yyyy");
                         }
                         customerdao.CreateCustomer(customer);
                         viewModel.Dobcustom = null;
@@ -120,7 +120,7 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.CustomerCommands
             }
             else
             {
-                customer.dob = viewModel.Dobcustom.Value.ToString("dd-MM-yyyy");
+                customer.dob = viewModel.Dobcustom.Value.ToString("dd/MM/yyyy");
             }
             customerdao.UpdateCustomer(customer);
             MessageBox.Show("cập nhật thành công");
@@ -139,7 +139,7 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.CustomerCommands
                     viewModel.PhoneCustom = selectedItem.Item1.phone_number;
                     try
                     {
-                        DateTime parsedDate = DateTime.ParseExact(selectedItem.Item1.dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                        DateTime parsedDate = DateTime.ParseExact(selectedItem.Item1.dob, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                         viewModel.Dobcustom = parsedDate;
                     }
                     catch (FormatException ex)
