@@ -1,4 +1,5 @@
-﻿using DevCoffeeManagerApp.DAOs;
+﻿using DevCoffeeManagerApp.Commands.CommandProduct;
+using DevCoffeeManagerApp.DAOs;
 using DevCoffeeManagerApp.Models;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace DevCoffeeManagerApp.ViewModels
 {
@@ -50,13 +52,16 @@ namespace DevCoffeeManagerApp.ViewModels
         public ProductModel newproduct { get; set; }
         public DateTime Date { get; set; }
         public List<string> UnitList { get; set; }
-
+        public ICommand AddCommand {  get; set; }
+        public ICommand ImportCommand { get; set; }
         public AdminProductViewModel() 
         {
             Products = productDAO.GetAllProducts();
             newproduct = new ProductModel();
             UnitList = AddUnit();
             Date = DateTime.Now;
+            AddCommand = new AddProductCommand(this);
+            ImportCommand = new ImportProductCommand(this);
         }
         static List<String> AddUnit()
         {

@@ -203,19 +203,6 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="140">
-                                                <GridViewColumnHeader FontFamily="Nunito"
-                                                                      FontWeight="DemiBold"
-                                                                      Background="Transparent">
-                                                    Mã SP
-                                                </GridViewColumnHeader>
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.Product_id}"
-                                                                   FontSize="13" />
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
                                             <GridViewColumn Width="110">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
@@ -250,7 +237,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.EXP_date}"
+                                                        <TextBlock Text="{Binding Item1.EXP_date, ConverterCulture='fr-FR', StringFormat=d}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -266,7 +253,7 @@
                                                     <DataTemplate>
                                                         <Button Panel.ZIndex="0"
                                                                 Style="{StaticResource MaterialDesignToolForegroundButton}"
-                                                                Command="{Binding DataContext.UpdateProductCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                Command="{Binding DataContext.ImportCommand, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
                                                                 CommandParameter="{Binding Item1}">
                                                             <materialDesign:PackIcon Foreground="#5F5555"
                                                                                      Opacity=".80"
@@ -372,7 +359,7 @@
                                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                                             ToolTip="MaterialDesignRaisedLightButton with Round Corners"
                                             Margin="15 0 10 0"
-                                            Command="{Binding abcCommand, UpdateSourceTrigger=PropertyChanged}">
+                                            Command="{Binding AddCommand}">
                                         <Button.BorderBrush>
                                             <ImageBrush />
                                         </Button.BorderBrush>

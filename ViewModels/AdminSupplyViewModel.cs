@@ -16,6 +16,8 @@ namespace DevCoffeeManagerApp.ViewModels
 
         SupplyDAO supplyDAO = new SupplyDAO();
 
+        ProductDAO productDAO = new ProductDAO();
+
         private ObservableCollection<SupplyModel> _supplies;
         public ObservableCollection<SupplyModel> Supplies
         {
@@ -53,6 +55,7 @@ namespace DevCoffeeManagerApp.ViewModels
         public ObservableCollection<SupplyModel> AllSupplies { get; set; }
         public List<string> SupplyStatus { get; set; }
         public List<string> UnitList { get; set; }
+        public List<string> ProductList { get; set; }
         public List<string> MonthFilter { get; set; }
         public SupplyModel newsupply { get; set; }
         public ICommand UpDateCommand { get; set; }
@@ -65,6 +68,7 @@ namespace DevCoffeeManagerApp.ViewModels
             newsupply = new SupplyModel();
             SupplyStatus = AddStatus();
             UnitList = AddUnit();
+            ProductList = AddProductName();
             MonthFilter = GenerateMonthList();
             Date = DateTime.Now;
             UpDateCommand = new UpdateStatusCommand(this);
@@ -102,6 +106,13 @@ namespace DevCoffeeManagerApp.ViewModels
             unitlist.Add("Kg");
             unitlist.Add("L");
             return unitlist;
+        }
+
+        private List<String> AddProductName()
+        {
+            List<String> products = new List<string>();
+            products = productDAO.GetAllProductName();
+            return products;
         }
 
 

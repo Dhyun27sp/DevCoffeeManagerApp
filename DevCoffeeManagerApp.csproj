@@ -221,6 +221,8 @@
     <Compile Include="Commands\CommandLogin\LoginCommand.cs" />
     <Compile Include="Commands\CommandPayment\MoneyReceivedCommand.cs" />
     <Compile Include="Commands\CommandPayment\SubmitPaymentCommand.cs" />
+    <Compile Include="Commands\CommandProduct\AddProductCommand.cs" />
+    <Compile Include="Commands\CommandProduct\ImportProductCommand.cs" />
     <Compile Include="Commands\CommandReceipt\CloseCommand.cs" />
     <Compile Include="Commands\CommandReceipt\PrintReceiptCommand.cs" />
     <Compile Include="Commands\CommandSell\NavigationCommand.cs" />
@@ -243,7 +245,7 @@
     <Compile Include="DAOs\DiscountDAO.cs" />
     <Compile Include="DAOs\MenuDAO.cs" />
     <Compile Include="DAOs\ReceiptDAO.cs" />
-    <Compile Include="DAOs\SupplyDao.cs" />
+    <Compile Include="DAOs\SupplyDAO.cs" />
     <Compile Include="DAOs\TableDAO.cs" />
     <Compile Include="DAOs\ScheduleDAO.cs" />
     <Compile Include="DAOs\StaffDAO.cs" />

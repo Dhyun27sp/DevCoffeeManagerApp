@@ -333,7 +333,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding abc}"
+                                                        <TextBlock Text="{Binding Item1.Company}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -368,8 +368,8 @@
                                     <ComboBox Padding="0 5.5 0 0"
                                               Style="{StaticResource MaterialDesignFilledComboBox}"
                                               Background="Transparent"
-                                              ItemsSource="{Binding IdList}"
-                                              SelectedItem="{Binding newsupply.Product_id}">
+                                              ItemsSource="{Binding ProductList}"
+                                              SelectedItem="{Binding newsupply.Product_name}">
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Orientation="Horizontal">
                                                 <materialDesign:PackIcon VerticalAlignment="Center"
@@ -487,7 +487,7 @@
                                       Margin="0 0 25 0">
                                     <TextBox VerticalAlignment="Center"
                                              FontSize="15"
-                                             Text="nsx A"
+                                             Text="{Binding newsupply.Company}"
                                              materialDesign:TextFieldAssist.HasClearButton="True"
                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                                         <materialDesign:HintAssist.Hint>

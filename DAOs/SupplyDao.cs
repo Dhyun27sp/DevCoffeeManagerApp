@@ -28,6 +28,13 @@ namespace DevCoffeeManagerApp.DAOs
             List<SupplyModel> supplies = collection.Find(new BsonDocument()).ToList();
             return new ObservableCollection<SupplyModel>(supplies);
         }
+
+        public SupplyModel GetSupplyByName(String name)
+        {
+            var filter = Builders<SupplyModel>.Filter.Eq("product_name", name) & Builders<SupplyModel>.Filter.Ne("status", "unused");
+            SupplyModel firstRecord = collection.Find(filter).FirstOrDefault();
+            return new  SupplyModel(firstRecord);
+        }
         public void SetStatus(String name, String status)
         {
             var nameFilter = Builders<SupplyModel>.Filter.Eq("product_name", name);
