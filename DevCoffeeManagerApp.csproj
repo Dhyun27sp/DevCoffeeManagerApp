@@ -270,6 +270,7 @@
     <Compile Include="ViewModels\AdminCustomerViewModel.cs" />
     <Compile Include="ViewModels\AdminDashboardViewModel.cs" />
     <Compile Include="ViewModels\AdminDiscountViewModel.cs" />
+    <Compile Include="ViewModels\AdminMenuViewModel.cs" />
     <Compile Include="ViewModels\AdminProductViewModel.cs" />
     <Compile Include="ViewModels\AdminReceiptViewModel.cs" />
     <Compile Include="ViewModels\AdminSupplyViewModel.cs" />
@@ -304,6 +305,9 @@
     </Compile>
     <Compile Include="Views\UserControlAdmin\DiscountManagementPage.xaml.cs">
       <DependentUpon>DiscountManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControlAdmin\MenuManagementPage.xaml.cs">
+      <DependentUpon>MenuManagementPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControlAdmin\ProductManagementPage.xaml.cs">
       <DependentUpon>ProductManagementPage.xaml</DependentUpon>
@@ -390,6 +394,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControlAdmin\DiscountManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControlAdmin\MenuManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
