@@ -94,33 +94,48 @@
                                 </Grid>
                                 <Grid Width="auto"
                                       DockPanel.Dock="Right">
-                                    <ComboBox ItemsSource="{Binding CustomersAction}"
-                                              SelectedItem="{Binding itemcbb, UpdateSourceTrigger=PropertyChanged}"
-                                              materialDesign:HintAssist.Hint="Lọc hóa đơn"
-                                              Padding="12"
-                                              Margin="0 0 20 0"
-                                              Name="CustommerCBB"
-                                              HorizontalAlignment="Right"
-                                              Width="210"
-                                              Opacity="1"
-                                              FontSize="12"
-                                              BorderThickness="0"
-                                              Foreground="Black"
-                                              Background="#FFFAFAFA">
-                                        <ComboBox.Effect>
-                                            <DropShadowEffect  Direction="230"
-                                                               ShadowDepth="3"
-                                                               Color="Gray"
-                                                               Opacity="0.2"
-                                                               BlurRadius="2" />
-                                        </ComboBox.Effect>
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="SelectionChanged">
-                                                <i:InvokeCommandAction Command="{Binding CustommerCbbCommand}"
-                                                                       CommandParameter="{Binding ElementName=CustommerCBB}" />
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                    </ComboBox>
+                                    <materialDesign:ColorZone Margin="0,0,20,0"
+                                                              VerticalAlignment="Center"
+                                                              HorizontalAlignment="Right"
+                                                              Padding="8,4,8,4"
+                                                              Panel.ZIndex="1"
+                                                              materialDesign:ElevationAssist.Elevation="Dp2"
+                                                              CornerRadius="2"
+                                                              Mode="Standard">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="23*" />
+                                                <RowDefinition Height="9*" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Button Style="{StaticResource MaterialDesignToolButton}"
+                                                    Grid.RowSpan="2">
+                                                <materialDesign:PackIcon Kind="Search"
+                                                                         Opacity=".56" />
+                                            </Button>
+                                            <TextBox Grid.Column="1"
+                                                     x:Name="TexboxSearch"
+                                                     MinWidth="200"
+                                                     Margin="8,4,0,0"
+                                                     VerticalAlignment="Top"
+                                                     materialDesign:HintAssist.Hint="Tìm kiếm hóa đơn"
+                                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                     BorderThickness="0"
+                                                     Grid.RowSpan="2"
+                                                     Text="{Binding ReceiptSearch , UpdateSourceTrigger=PropertyChanged}">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="KeyUp">
+                                                        <i:InvokeCommandAction Command="{Binding ChangeValueTexboxCommand}"
+                                                                               CommandParameter="{Binding ElementName=TexboxSearch}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </TextBox>
+                                        </Grid>
+                                    </materialDesign:ColorZone>
                                 </Grid>
 
                             </DockPanel>
@@ -158,7 +173,7 @@
                                                             Value="Left" />
                                                 </Style>
                                             </GridView.ColumnHeaderContainerStyle>
-                                            <GridViewColumn Width="70">
+                                            <GridViewColumn Width="50">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent"
@@ -173,7 +188,20 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="200">
+                                            <GridViewColumn Width="150">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent">
+                                                    Mã hóa đơn
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Item1.receipt_code}"
+                                                                   FontSize="13" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Width="180">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
@@ -186,7 +214,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="120">
+                                            <GridViewColumn Width="100">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
@@ -199,7 +227,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="160">
+                                            <GridViewColumn Width="110">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">

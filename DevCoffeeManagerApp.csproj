@@ -206,6 +206,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\CommandAdminReceipt\FilterReceiptCommand.cs" />
     <Compile Include="Commands\CommandCustomer\CustomerComand.cs" />
     <Compile Include="Commands\CommandCustomer\FilterCustomerCommand.cs" />
     <Compile Include="Commands\CommandDiscount\ClickButtonCommand.cs" />
