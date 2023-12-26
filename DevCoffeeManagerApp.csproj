@@ -343,31 +343,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dictionaries\ButtonStyles.xaml">
+    <Page Include="Component\Dictionaries\ButtonStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Dictionaries\Colors.xaml">
+    <Page Include="Component\Dictionaries\Colors.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Dictionaries\ComboBoxStyles.xaml">
+    <Page Include="Component\Dictionaries\ComboBoxStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Dictionaries\LabelStyles.xaml">
+    <Page Include="Component\Dictionaries\LabelStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Dictionaries\ScrollViewerStyles.xaml">
+    <Page Include="Component\Dictionaries\ScrollViewerStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Dictionaries\TextBlockStyles.xaml">
+    <Page Include="Component\Dictionaries\TextBlockStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Dictionaries\TextBoxStyles.xaml">
+    <Page Include="Component\Dictionaries\TextBoxStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
