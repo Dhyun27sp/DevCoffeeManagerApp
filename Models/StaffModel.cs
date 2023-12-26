@@ -24,9 +24,9 @@ namespace DevCoffeeManagerApp.Models
         public AccountModel account { get; set; }
 
         [BsonElement("salary")]
-        public SalaryModel salary { get; set; }
+        public List<SalaryModel> salary { get; set; }
 
-        public StaffModel(ObjectId staffid, string staffname, string phone_staff, AccountModel account, SalaryModel salary)
+        public StaffModel(ObjectId staffid, string staffname, string phone_staff, AccountModel account, List<SalaryModel> salary)
         {
             this.staffid = staffid;
             this.staffname = staffname;

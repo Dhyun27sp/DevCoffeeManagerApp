@@ -206,6 +206,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\CommandAdminStaff\CommandClickStaffAd.cs" />
     <Compile Include="Commands\CommandCustomer\CustomerComand.cs" />
     <Compile Include="Commands\CommandCustomer\FilterCustomerCommand.cs" />
     <Compile Include="Commands\CommandDiscount\ClickButtonCommand.cs" />
@@ -270,6 +271,7 @@
     <Compile Include="ViewModels\AdminDiscountViewModel.cs" />
     <Compile Include="ViewModels\AdminProductViewModel.cs" />
     <Compile Include="ViewModels\AdminReceiptViewModel.cs" />
+    <Compile Include="ViewModels\AdminStaffViewModel.cs" />
     <Compile Include="ViewModels\AdminSupplyViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -308,6 +310,9 @@
     </Compile>
     <Compile Include="Views\UserControlAdmin\ReceiptManagementPage.xaml.cs">
       <DependentUpon>ReceiptManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControlAdmin\StaffManagementPage.xaml.cs">
+      <DependentUpon>StaffManagementPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControlAdmin\SupplyManagementPage.xaml.cs">
       <DependentUpon>SupplyManagementPage.xaml</DependentUpon>
@@ -396,6 +401,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControlAdmin\ReceiptManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControlAdmin\StaffManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

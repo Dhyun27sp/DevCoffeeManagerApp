@@ -8,6 +8,7 @@ using DevCoffeeManagerApp.Config;
 using DevCoffeeManagerApp.Models;
 using MongoDB.Bson;
 using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace DevCoffeeManagerApp.DAOs
 {
@@ -24,7 +25,11 @@ namespace DevCoffeeManagerApp.DAOs
         {
             collection.InsertOne(scheduleModel);
         }
-
+        public List<ScheduleModel> GetAllSchedule()
+        {
+            List<ScheduleModel> schedules = collection.Find(new BsonDocument()).ToList();
+            return schedules;
+        }
         public ScheduleModel GetSchedule(string Shift)
         {
             var ShiftFilter = Builders<ScheduleModel>.Filter.Eq("shift", Shift); // Tạo một bộ lọc dựa trên mã shift
