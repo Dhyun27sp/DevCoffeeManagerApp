@@ -206,6 +206,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\CommandAdminReceipt\FilterReceiptCommand.cs" />
     <Compile Include="Commands\CommandAdminStaff\CommandClickStaffAd.cs" />
     <Compile Include="Commands\CommandCustomer\CustomerComand.cs" />
     <Compile Include="Commands\CommandCustomer\FilterCustomerCommand.cs" />
@@ -222,6 +223,8 @@
     <Compile Include="Commands\CommandLogin\LoginCommand.cs" />
     <Compile Include="Commands\CommandPayment\MoneyReceivedCommand.cs" />
     <Compile Include="Commands\CommandPayment\SubmitPaymentCommand.cs" />
+    <Compile Include="Commands\CommandProduct\AddProductCommand.cs" />
+    <Compile Include="Commands\CommandProduct\ImportProductCommand.cs" />
     <Compile Include="Commands\CommandReceipt\CloseCommand.cs" />
     <Compile Include="Commands\CommandReceipt\PrintReceiptCommand.cs" />
     <Compile Include="Commands\CommandSell\NavigationCommand.cs" />
@@ -244,7 +247,7 @@
     <Compile Include="DAOs\DiscountDAO.cs" />
     <Compile Include="DAOs\MenuDAO.cs" />
     <Compile Include="DAOs\ReceiptDAO.cs" />
-    <Compile Include="DAOs\SupplyDao.cs" />
+    <Compile Include="DAOs\SupplyDAO.cs" />
     <Compile Include="DAOs\TableDAO.cs" />
     <Compile Include="DAOs\ScheduleDAO.cs" />
     <Compile Include="DAOs\StaffDAO.cs" />
@@ -269,6 +272,7 @@
     <Compile Include="ViewModels\AdminCustomerViewModel.cs" />
     <Compile Include="ViewModels\AdminDashboardViewModel.cs" />
     <Compile Include="ViewModels\AdminDiscountViewModel.cs" />
+    <Compile Include="ViewModels\AdminMenuViewModel.cs" />
     <Compile Include="ViewModels\AdminProductViewModel.cs" />
     <Compile Include="ViewModels\AdminReceiptViewModel.cs" />
     <Compile Include="ViewModels\AdminStaffViewModel.cs" />
@@ -304,6 +308,9 @@
     </Compile>
     <Compile Include="Views\UserControlAdmin\DiscountManagementPage.xaml.cs">
       <DependentUpon>DiscountManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControlAdmin\MenuManagementPage.xaml.cs">
+      <DependentUpon>MenuManagementPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControlAdmin\ProductManagementPage.xaml.cs">
       <DependentUpon>ProductManagementPage.xaml</DependentUpon>
@@ -393,6 +400,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControlAdmin\DiscountManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControlAdmin\MenuManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

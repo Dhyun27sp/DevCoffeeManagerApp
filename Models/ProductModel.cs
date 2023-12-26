@@ -13,9 +13,6 @@ namespace DevCoffeeManagerApp.Models
     {
         [BsonElement("product_name"), BsonRepresentation(BsonType.String)]
         public String Product_name { get; set; }
-
-        [BsonElement("product_id"), BsonRepresentation(BsonType.String)]
-        public String Product_id { get; set; }
                
         [BsonElement("stock"), BsonRepresentation(BsonType.Int32)]
         public int Stock { get; set; }
@@ -26,16 +23,12 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("EXP"), BsonRepresentation(BsonType.DateTime)]
         public DateTime? EXP_date { get; set; }
 
-        [BsonElement("manufacturer"), BsonRepresentation(BsonType.String)]
-        public String Manufacturer { get; set; }
         public ProductModel(ProductModel model)
         {
-            this.Product_name = model.Product_name;
-            this.Product_id = model.Product_id;            
+            this.Product_name = model.Product_name;           
             this.Stock = model.Stock;
             this.Unit = model.Unit;
             this.EXP_date = model.EXP_date;
-            this.Manufacturer = model.Manufacturer;
         }
         public ProductModel()
         {

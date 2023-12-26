@@ -35,7 +35,9 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand CustomerCommand { get; }
         public ICommand DiscountCommand { get; }
         public ICommand ReceiptCommand { get; }
+        public ICommand MenuCommand { get; }
         public ICommand StaffPageCommand { get; }
+
 
         public AdminViewModel() {
             DashboardComand = new NavigateComand(this,"dashboard");
@@ -44,6 +46,7 @@ namespace DevCoffeeManagerApp.ViewModels
             CustomerCommand = new NavigateComand(this, "customer");
             DiscountCommand = new NavigateComand(this, "discount");
             ReceiptCommand = new NavigateComand(this, "receipt");
+            MenuCommand = new NavigateComand(this, "menu");
             StaffPageCommand = new NavigateComand(this, "staff");
             Exit = new ExitCommand();
         }

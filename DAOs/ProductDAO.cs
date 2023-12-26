@@ -27,16 +27,27 @@ namespace DevCoffeeManagerApp.DAOs
             return new ObservableCollection<ProductModel>(customers);
         }
 
-        public void CreateCustomer(ProductModel product)
+        public List<String> GetAllProductName()
+        {
+            List<ProductModel> customers = collection.Find(new BsonDocument()).ToList();
+            List<String> products = new List<String>();
+            foreach (var document in customers)
+            {
+                products.Add(document.Product_name);
+            }
+            return products;
+        }
+
+        public void CreateProduct(ProductModel product)
         {
             collection.InsertOne(product);
         }
 
-        //public void UpdateCustomer(ProductModel customer)
-        //{
-        //    var phone_number = Builders<ProductModel>.Filter.Eq("phone_number", customer.phone_number);
-        //    collection.ReplaceOne(phone_number, customer);
-        //}        
+        public void UpdateProduct(ProductModel product)
+        {
+            var phone_number = Builders<ProductModel>.Filter.Eq("product_name", product.Product_name);
+            collection.ReplaceOne(phone_number, product);
+        }
 
     }
 }

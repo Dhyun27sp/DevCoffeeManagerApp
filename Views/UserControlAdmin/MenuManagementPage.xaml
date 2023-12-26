@@ -1,0 +1,535 @@
+﻿<UserControl x:Class="DevCoffeeManagerApp.Views.UserControlAdmin.MenuManagementPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Medium"
+             TextElement.FontSize="14"
+             FontFamily="{materialDesign:MaterialDesignFont}"
+             xmlns:local="clr-namespace:DevCoffeeManagerApp.Views.UserControlAdmin"
+             xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="2000"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="myHeaderStyle"
+               TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility"
+                    Value="Collapsed" />
+        </Style>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <vms:AdminMenuViewModel />
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition Height="16*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.Background>
+                <SolidColorBrush Color="Transparent" />
+            </Grid.Background>
+            <materialDesign:ColorZone Padding="auto"
+                                      VerticalAlignment="Center"
+                                      Mode="PrimaryMid">
+                <materialDesign:ColorZone.Background>
+                    <SolidColorBrush Color="White"
+                                     Opacity="0" />
+                </materialDesign:ColorZone.Background>
+                <DockPanel>
+                    <TextBlock Text="Quản lý món ăn"
+                               FontSize="18"
+                               Foreground="Black"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="25 0 0 0" />
+                    <TextBlock Text="{Binding Date, StringFormat='dd MMM yyyy, dddd'}"
+                               Foreground="SlateGray"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Right"
+                               DockPanel.Dock="Right"
+                               Margin="0 0 25 0" />
+                </DockPanel>
+            </materialDesign:ColorZone>
+        </Grid>
+        <Grid Margin="25 0 25 10"
+              Grid.Row="1">
+            <Border BorderBrush="#5f5555"
+                    BorderThickness="0.5"
+                    CornerRadius="10"
+                    Margin="0,10,0,0"
+                    Background="White"
+                    Grid.Column="0">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="5*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="5*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <DockPanel Margin="25 10 0 10">
+                                <TextBlock Text="Danh sách món ăn:"
+                                           VerticalAlignment="Center" />
+                                <Grid Width="auto"
+                                      DockPanel.Dock="Right">
+                                    <ComboBox ItemsSource="{Binding types_dish}"
+                                              SelectedItem="{Binding Type, UpdateSourceTrigger=PropertyChanged}"
+                                              x:Name="ComboBoxType"
+                                              Padding="12"
+                                              Margin="0 0 20 0"
+                                              HorizontalAlignment="Right"
+                                              Width="180"
+                                              materialDesign:HintAssist.Hint="Lọc sản phẩm sắp SD hết"
+                                              Opacity="1"
+                                              FontSize="12"
+                                              BorderThickness="0"
+                                              Foreground="Black"
+                                              Background="#FFFAFAFA">
+                                        <ComboBox.Effect>
+                                            <DropShadowEffect  Direction="230"
+                                                               ShadowDepth="3"
+                                                               Color="Gray"
+                                                               Opacity="0.2"
+                                                               BlurRadius="2" />
+                                        </ComboBox.Effect>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding abc}"
+                                                                       CommandParameter="{Binding ElementName=ComboBoxType}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ComboBox>
+                                </Grid>
+                                <StackPanel materialDesign:RippleAssist.IsCentered="True"
+                                            Width="200"
+                                            Margin="0 5 20 0"
+                                            HorizontalAlignment="Right"
+                                            DockPanel.Dock="Right">
+
+                                    <materialDesign:ColorZone VerticalAlignment="Center"
+                                                              Padding="8,4,8,4"
+                                                              Panel.ZIndex="1"
+                                                              materialDesign:ElevationAssist.Elevation="Dp2"
+                                                              CornerRadius="1"
+                                                              Mode="Standard">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Button Style="{StaticResource MaterialDesignToolButton}"
+                                                    Grid.RowSpan="2"
+                                                    Grid.Column="0">
+                                                <materialDesign:PackIcon Kind="Search"
+                                                                         Opacity=".56" />
+                                            </Button>
+                                            <TextBox Grid.Column="1"
+                                                     x:Name="ProductNameSearch"
+                                                     Margin="8,4,0,0"
+                                                     VerticalAlignment="Top"
+                                                     materialDesign:HintAssist.Hint="Tìm kiếm theo tên sp"
+                                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                     BorderThickness="0"
+                                                     Grid.RowSpan="2"
+                                                     Text="{Binding types_dish_search , UpdateSourceTrigger=PropertyChanged}">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="KeyUp">
+                                                        <i:InvokeCommandAction Command="{Binding ChangeValueTexboxCommand}"
+                                                                               CommandParameter="{Binding ElementName=TexboxSearch}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </TextBox>
+                                        </Grid>
+                                    </materialDesign:ColorZone>
+                                </StackPanel>
+                            </DockPanel>
+
+                        </Grid>
+                        <Border BorderBrush="#5f5555"
+                                BorderThickness="0.5"
+                                CornerRadius="10"
+                                Grid.Row="1"
+                                Margin="25 0 20 0"
+                                Height="490">
+                            <Grid>
+                                <ListView ItemsSource="{Binding CombineList}">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridView.ColumnHeaderContainerStyle>
+                                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                                    <Setter Property="FontSize"
+                                                            Value="15" />
+                                                    <Setter Property="FontFamily"
+                                                            Value="Nunito" />
+                                                    <Setter Property="Margin"
+                                                            Value="0" />
+                                                    <Setter Property="Padding"
+                                                            Value="10" />
+                                                    <Setter Property="Foreground"
+                                                            Value="Black" />
+                                                    <Setter Property="HorizontalContentAlignment"
+                                                            Value="Left" />
+                                                </Style>
+                                            </GridView.ColumnHeaderContainerStyle>
+                                            <GridViewColumn Width="70">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent"
+                                                                      Padding="0"
+                                                                      Margin="10 0 0 0">
+                                                    STT
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Item2}"
+                                                                   FontSize="13" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Width="300">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent">
+                                                    Tên món
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Item1.Product_name}"
+                                                                   FontSize="13" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Width="150">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent">
+                                                    Loại món
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Item1.Product_name}"
+                                                                   FontSize="13" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Width="180">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent">
+                                                    Nguyên liệu
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Item1.Stock}"
+                                                                   FontSize="13" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Width="100">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent">
+                                                    Giá
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Item1.Unit, UpdateSourceTrigger=PropertyChanged}"
+                                                                   FontSize="13" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Width="200">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent">
+                                                    Ảnh
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Image Height="120"
+                                                               Width="auto"
+                                                               Source="{Binding Item1.imageconvert}"
+                                                               Stretch="UniformToFill" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Grid>
+                        </Border>
+
+                        <Border BorderBrush="#5f5555"
+                                BorderThickness="0.5"
+                                CornerRadius="10"
+                                Grid.Row="3"
+                                Margin="25 20 20 20">
+                            <Grid Margin="25 10 25 20"
+                                  Height="500">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="460"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <TextBlock Text="Thêm món ăn:"
+                                               VerticalAlignment="Center"
+                                               Margin="0 10 0 0"
+                                               FontSize="16"
+                                               FontWeight="Bold" />
+                                    <Border BorderBrush="Black"
+                                            BorderThickness="0 0 0 0.5" />
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        <RowDefinition Height="360"></RowDefinition>
+                                        <RowDefinition Height="50"></RowDefinition>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0"
+                                          VerticalAlignment="Center">
+                                        <WrapPanel>
+                                            <TextBlock VerticalAlignment="Center"
+                                                       Text="Tên món ăn:" />
+                                            <TextBox Text="{Binding DishName, UpdateSourceTrigger=PropertyChanged}"
+                                                     materialDesign:HintAssist.Hint="Nhập tên món ăn"
+                                                     IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                                                     TextWrapping="Wrap"
+                                                     Width="163"
+                                                     Height="auto"
+                                                     Background="#f0f0f0"
+                                                     Margin="10 0 10 0"
+                                                     Padding="5 0 5 0">
+                                            </TextBox>
+                                        </WrapPanel>
+                                    </Grid>
+
+                                    <Border BorderBrush="#5f5555"
+                                            BorderThickness="0.5"
+                                            CornerRadius="10"
+                                            Grid.Row="1"
+                                            Margin="0 0 0 10">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="30"></RowDefinition>
+                                                <RowDefinition Height="auto"
+                                                               MaxHeight="380"></RowDefinition>
+                                                <RowDefinition Height="50"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid Grid.Row="0">
+                                                <TextBlock Text="Nguyên liệu:"
+                                                           VerticalAlignment="Bottom"
+                                                           Margin="10 0 0 0" />
+                                            </Grid>
+                                            <Grid Grid.Row="1"
+                                                  Margin="10 10 10 0">
+                                                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                          ItemsSource="{Binding CombineList}"
+                                                          MaxHeight="250">
+                                                    <ListView.View>
+                                                        <GridView ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                                                            <GridViewColumn Width="70">
+                                                                <GridViewColumn.CellTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock Text="{Binding Item2}"
+                                                                                   FontSize="13" />
+                                                                    </DataTemplate>
+                                                                </GridViewColumn.CellTemplate>
+                                                            </GridViewColumn>
+                                                            <GridViewColumn Width="100">
+                                                                <GridViewColumn.CellTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock Text="{Binding Item1.product_name}"
+                                                                                   FontSize="13" />
+                                                                    </DataTemplate>
+                                                                </GridViewColumn.CellTemplate>
+                                                            </GridViewColumn>
+                                                            <GridViewColumn Width="85">
+                                                                <GridViewColumn.CellTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock Text="{Binding Item1.quantity}"
+                                                                                   FontSize="13" />
+                                                                    </DataTemplate>
+                                                                </GridViewColumn.CellTemplate>
+                                                            </GridViewColumn>
+                                                            <GridViewColumn Width="90">
+                                                                <GridViewColumn.CellTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock Text="{Binding Item1.unit}"
+                                                                                   FontSize="13" />
+                                                                    </DataTemplate>
+                                                                </GridViewColumn.CellTemplate>
+                                                            </GridViewColumn>
+                                                        </GridView>
+                                                    </ListView.View>
+                                                </ListView>
+
+                                            </Grid>
+                                            <Grid Grid.Row="2"
+                                                  Margin="10 0 10 0">
+                                                <WrapPanel>
+                                                    <Grid Width="162.5"
+                                                          HorizontalAlignment="Left"
+                                                          Margin="10 0 15 0">
+                                                        <TextBox VerticalAlignment="Center"
+                                                                 FontSize="15"
+                                                                 Text="{Binding abc}"
+                                                                 materialDesign:TextFieldAssist.HasClearButton="True"
+                                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                                            <materialDesign:HintAssist.Hint>
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                                             Width="25px"
+                                                                                             Height="20px"
+                                                                                             Kind="CardPlusOutline" />
+                                                                    <TextBlock FontSize="14px"
+                                                                               Text="Tên nguyên liệu"
+                                                                               VerticalAlignment="Center" />
+                                                                </StackPanel>
+                                                            </materialDesign:HintAssist.Hint>
+                                                        </TextBox>
+                                                    </Grid>
+                                                    <Grid Width="100"
+                                                          HorizontalAlignment="Left"
+                                                          Margin="0 0 15 0">
+                                                        <TextBox VerticalAlignment="Center"
+                                                                 FontSize="15"
+                                                                 Text="{Binding abc}"
+                                                                 materialDesign:TextFieldAssist.HasClearButton="True"
+                                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                                            <materialDesign:HintAssist.Hint>
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <materialDesign:PackIcon VerticalAlignment="Center"
+                                                                                             Width="25px"
+                                                                                             Height="20px"
+                                                                                             Kind="CardPlusOutline" />
+                                                                    <TextBlock FontSize="14px"
+                                                                               Text="Số lượng"
+                                                                               VerticalAlignment="Center" />
+                                                                </StackPanel>
+                                                            </materialDesign:HintAssist.Hint>
+                                                        </TextBox>
+                                                    </Grid>
+                                                    <Grid>
+                                                        <Button materialDesign:ButtonAssist.CornerRadius="10"
+                                                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                                                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                                                ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                                                VerticalAlignment="Bottom"
+                                                                Command="{Binding AddCommand}"
+                                                                Width="100">
+                                                            <Button.BorderBrush>
+                                                                <ImageBrush />
+                                                            </Button.BorderBrush>
+                                                            <Button.Background>
+                                                                <SolidColorBrush Color="#e87f14" />
+                                                            </Button.Background>
+                                                            <TextBlock FontFamily="Nunito"
+                                                                       Text="Thêm"
+                                                                       Foreground="White" />
+                                                        </Button>
+                                                    </Grid>
+                                                </WrapPanel>
+                                            </Grid>
+                                        </Grid>
+                                    </Border>
+
+
+                                    <Grid Grid.Row="2"
+                                          VerticalAlignment="Center">
+                                        <WrapPanel>
+                                            <Grid>
+                                                <WrapPanel>
+                                                    <TextBlock VerticalAlignment="Center"
+                                                               Text="Mô tả:" />
+                                                    <TextBox Text="{Binding DishName, UpdateSourceTrigger=PropertyChanged}"
+                                                             materialDesign:HintAssist.Hint="Nhập mô tả"
+                                                             IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                                                             TextWrapping="Wrap"
+                                                             Width="400"
+                                                             Height="auto"
+                                                             Background="#f0f0f0"
+                                                             Margin="10 0 0 0"
+                                                             Padding="5 0 5 0">
+                                                    </TextBox>
+                                                </WrapPanel>
+                                            </Grid>
+
+                                            <Grid Margin="20 0 20 0">
+                                                <WrapPanel>
+                                                    <TextBlock VerticalAlignment="Center"
+                                                               Text="Loại món:" />
+                                                    <TextBox Text="{Binding DishName, UpdateSourceTrigger=PropertyChanged}"
+                                                             materialDesign:HintAssist.Hint="Nhập loại món"
+                                                             IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                                                             TextWrapping="Wrap"
+                                                             Width="170"
+                                                             Height="auto"
+                                                             Background="#f0f0f0"
+                                                             Margin="10 0 0 0"
+                                                             Padding="5 0 5 0">
+                                                    </TextBox>
+                                                </WrapPanel>
+                                            </Grid>
+                                            <Grid>
+                                                <WrapPanel>
+                                                    <TextBlock VerticalAlignment="Center"
+                                                               Text="Đơn giá:" />
+                                                    <TextBox Text="{Binding DishName, UpdateSourceTrigger=PropertyChanged}"
+                                                             materialDesign:HintAssist.Hint="Nhập đơn giá"
+                                                             IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                                                             TextWrapping="Wrap"
+                                                             Width="140"
+                                                             Height="auto"
+                                                             Background="#f0f0f0"
+                                                             Margin="10 0 0 0"
+                                                             Padding="5 0 5 0">
+                                                    </TextBox>
+                                                </WrapPanel>
+                                            </Grid>
+                                            <Grid VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"
+                                                  Margin="20 0 0 0">
+                                                <Button materialDesign:ButtonAssist.CornerRadius="10"
+                                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                                        Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                                        ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                                        Command="{Binding AddCommand, UpdateSourceTrigger=PropertyChanged}"
+                                                        Width="130">
+                                                    <Button.BorderBrush>
+                                                        <ImageBrush />
+                                                    </Button.BorderBrush>
+                                                    <Button.Background>
+                                                        <SolidColorBrush Color="#e87f14" />
+                                                    </Button.Background>
+                                                    <TextBlock FontFamily="Nunito"
+                                                               Text="Thêm"
+                                                               Foreground="White" />
+                                                </Button>
+                                            </Grid>
+                                        </WrapPanel>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

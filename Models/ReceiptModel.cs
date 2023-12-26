@@ -16,6 +16,9 @@ namespace DevCoffeeManagerApp.Models
         [BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
         public ObjectId _id { get; set; }
 
+        [BsonElement("receipt_code"), BsonRepresentation(BsonType.String)]
+        public String receipt_code { get; set; }
+
         [BsonElement("time"), BsonRepresentation(BsonType.DateTime)]
         public DateTime time { get; set; }
 
@@ -49,8 +52,9 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("change"), BsonRepresentation(BsonType.Int32)]
         public int change { get; set; }
 
-        public ReceiptModel(DateTime time, CustomerModel customer, ObservableCollection<TableModel> tables, string staff_phone, List<DishModel> dishes, List<DiscountModel> discounts, string payments, int used_point,int total_amount, int guest_monney, int change)
+        public ReceiptModel(string receipt_code, DateTime time, CustomerModel customer, ObservableCollection<TableModel> tables, string staff_phone, List<DishModel> dishes, List<DiscountModel> discounts, string payments, int used_point,int total_amount, int guest_monney, int change)
         {
+            this.receipt_code = receipt_code;
             this.time = time;
             this.customer = customer;
             this.tables = tables;

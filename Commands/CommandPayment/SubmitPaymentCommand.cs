@@ -39,6 +39,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
             int total = PaymentOrderViewModel.Total;
             int plus_point = PaymentOrderViewModel.PlusPoint;
             int used_point = int.Parse(PaymentOrderViewModel.UsedPoint);
+            string receipt_code = GenerateInvoiceNumber();
             DateTime current_date = PaymentOrderViewModel.CurrentDate;
             string guest_monney = PaymentOrderViewModel.InputMoney.Replace(" ", "");
             int change = PaymentOrderViewModel.Change;
@@ -63,7 +64,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                 {
                     if (is_direct_payment == true && total != 0)
                     {
-                        ReceiptModel receiptModel = new ReceiptModel(current_date, SessionStatic.Customer, tables, staff_phonenumber,
+                        ReceiptModel receiptModel = new ReceiptModel(receipt_code, current_date, SessionStatic.Customer, tables, staff_phonenumber,
                             dishesdb, discounts, "Thanh toán bằng tiền mặt", used_point, total_amount, int.Parse(guest_monney), change);
                         receiptDAO.AddReceipt(receiptModel);
                         SessionStatic.SetReceipt = receiptModel;
@@ -86,7 +87,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                 {
                     if (is_direct_payment == true && total != 0)
                     {
-                        ReceiptModel receiptModel = new ReceiptModel(current_date, null, tables, staff_phonenumber,
+                        ReceiptModel receiptModel = new ReceiptModel(receipt_code, current_date, null, tables, staff_phonenumber,
                             dishesdb, discounts, "Thanh toán bằng tiền mặt", used_point, total_amount, int.Parse(guest_monney), change);
                         receiptDAO.AddReceipt(receiptModel);
                         SessionStatic.SetReceipt = receiptModel;
@@ -147,6 +148,12 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                     return false;
                 } 
             }
+        }
+        private static string GenerateInvoiceNumber()
+        {
+            // Sử dụng thời gian hiện tại để tạo mã hóa đơn
+            string invoiceNumber = $"INV-{DateTime.Now.ToString("yyyyMMddHHmmss")}";
+            return invoiceNumber;
         }
     }
 }

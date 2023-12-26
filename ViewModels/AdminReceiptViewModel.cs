@@ -1,4 +1,6 @@
-﻿using DevCoffeeManagerApp.Commands.AdminCommand.ReceiptCommands;
+﻿using DevCoffeeManagerApp.Commands.AdminCommand.CustomerCommands;
+using DevCoffeeManagerApp.Commands.AdminCommand.ReceiptCommands;
+using DevCoffeeManagerApp.Commands.CommandAdminReceipt;
 using DevCoffeeManagerApp.DAOs;
 using DevCoffeeManagerApp.Models;
 using System;
@@ -182,7 +184,9 @@ namespace DevCoffeeManagerApp.ViewModels
                 else
                 {
                     Receipts = new ObservableCollection<ReceiptModel>(receiptDAO.ReadAll());
-                }    
+                }
+                FilterReceiptCommand receiptCommand = new FilterReceiptCommand(this, "search");
+                receiptCommand.Search();
             }
         }
 
@@ -234,9 +238,16 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(CombineListDish));
             }
         }
-
+        private string _receiptSearch;
+        public string ReceiptSearch
+        {
+            get { return _receiptSearch; }
+            set { _receiptSearch = value; OnPropertyChanged(nameof(ReceiptSearch)); }
+        }
         public ICommand DeleteReceiptCommand { get; }
         public ICommand ChoosedReceiptCommand { get; }
+        public ICommand ChangeValueTexboxCommand { get; }
+
         public DateTime Date { get; set; }
 
         public AdminReceiptViewModel()
@@ -245,6 +256,7 @@ namespace DevCoffeeManagerApp.ViewModels
             Receipts = new ObservableCollection<ReceiptModel>(receiptDAO.ReadAll());
             DeleteReceiptCommand = new ReceiptClickCommand(this, "deleted");
             ChoosedReceiptCommand = new ReceiptClickCommand(this, "choose");
+            ChangeValueTexboxCommand = new FilterReceiptCommand(this, "search");
         }
     }
 }

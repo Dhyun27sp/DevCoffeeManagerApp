@@ -56,6 +56,19 @@ namespace DevCoffeeManagerApp.ViewModels
             }
         }
 
+        private string _receiptCode;
+        public string ReceiptCode
+        {
+            get { return _receiptCode; }
+            set
+            {
+                if (_receiptCode != value)
+                {
+                    _receiptCode = value;
+                    OnPropertyChanged(nameof(ReceiptCode));
+                }
+            }
+        }
 
         private string _staffPhoneNumber;
         public string StaffPhoneNumber
@@ -118,6 +131,7 @@ namespace DevCoffeeManagerApp.ViewModels
 
         public ICommand PrintReceiptCommand { get; set; }
         public ICommand CloseCommand { get; }
+
         public ReceiptViewModel() {
             CloseCommand = new CloseCommand();
             PrintReceiptCommand = new PrintReceiptCommand();
@@ -126,6 +140,7 @@ namespace DevCoffeeManagerApp.ViewModels
                 CustomerName = SessionStatic.GetReceipt.customer.name;
             }
             if (SessionStatic.GetReceipt != null) {
+                ReceiptCode = SessionStatic.GetReceipt.receipt_code;
                 UsedPoint = SessionStatic.GetReceipt.used_point.ToString();
                 CurrentDate = SessionStatic.GetReceipt.time;
                 StaffPhoneNumber = SessionStatic.GetReceipt.staff_phone;

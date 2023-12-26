@@ -203,19 +203,6 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="140">
-                                                <GridViewColumnHeader FontFamily="Nunito"
-                                                                      FontWeight="DemiBold"
-                                                                      Background="Transparent">
-                                                    Mã SP
-                                                </GridViewColumnHeader>
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.Product_id}"
-                                                                   FontSize="13" />
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
                                             <GridViewColumn Width="110">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
@@ -250,7 +237,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.EXP_date}"
+                                                        <TextBlock Text="{Binding Item1.EXP_date, ConverterCulture='fr-FR', StringFormat=d}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -266,11 +253,33 @@
                                                     <DataTemplate>
                                                         <Button Panel.ZIndex="0"
                                                                 Style="{StaticResource MaterialDesignToolForegroundButton}"
-                                                                Command="{Binding DataContext.UpdateProductCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                Command="{Binding DataContext.ImportCommand, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
                                                                 CommandParameter="{Binding Item1}">
                                                             <materialDesign:PackIcon Foreground="#5F5555"
                                                                                      Opacity=".80"
                                                                                      Kind="Update"
+                                                                                     Width="30"
+                                                                                     Height="25" />
+                                                        </Button>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+
+                                            <GridViewColumn Width="100">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent">
+                                                    Delete
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Button Panel.ZIndex="0"
+                                                                Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                                                Command="{Binding DataContext.DeleteCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                CommandParameter="{Binding Item1}">
+                                                            <materialDesign:PackIcon Foreground="#5F5555"
+                                                                                     Opacity=".80"
+                                                                                     Kind="DeleteForever"
                                                                                      Width="30"
                                                                                      Height="25" />
                                                         </Button>
@@ -305,45 +314,7 @@
                                         </materialDesign:HintAssist.Hint>
                                     </TextBox>
                                 </Grid>
-                                <Grid Width="120"
-                                      HorizontalAlignment="Left"
-                                      Margin="0 0 25 0">
-                                    <TextBox VerticalAlignment="Center"
-                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                             Text="{Binding newproduct.Product_id}"
-                                             FontSize="15">
-                                        <materialDesign:HintAssist.Hint>
-                                            <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                         Width="25px"
-                                                                         Height="20px"
-                                                                         Kind="CardPlusOutline" />
-                                                <TextBlock FontSize="16px"
-                                                           Text="Mã sản phẩm" />
-                                            </StackPanel>
-                                        </materialDesign:HintAssist.Hint>
-                                    </TextBox>
-                                </Grid>
-                                <Grid Width="100"
-                                      HorizontalAlignment="Left"
-                                      Margin="0 0 25 0">
-                                    <TextBox VerticalAlignment="Center"
-                                             FontSize="15"
-                                             Text="{Binding abc}"
-                                             materialDesign:TextFieldAssist.HasClearButton="True"
-                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                                        <materialDesign:HintAssist.Hint>
-                                            <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon VerticalAlignment="Center"
-                                                                         Width="25px"
-                                                                         Height="20px"
-                                                                         Kind="CardPlusOutline" />
-                                                <TextBlock FontSize="16px"
-                                                           Text="Tồn kho" />
-                                            </StackPanel>
-                                        </materialDesign:HintAssist.Hint>
-                                    </TextBox>
-                                </Grid>
+                                
                                 <Grid Width="140"
                                       HorizontalAlignment="Left"
                                       Margin="0 0 25 0">
@@ -372,7 +343,7 @@
                                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                                             ToolTip="MaterialDesignRaisedLightButton with Round Corners"
                                             Margin="15 0 10 0"
-                                            Command="{Binding abcCommand, UpdateSourceTrigger=PropertyChanged}">
+                                            Command="{Binding AddCommand}">
                                         <Button.BorderBrush>
                                             <ImageBrush />
                                         </Button.BorderBrush>
@@ -381,6 +352,25 @@
                                         </Button.Background>
                                         <TextBlock FontFamily="Nunito"
                                                    Text="Thêm SP"
+                                                   Foreground="White" />
+                                    </Button>
+                                </Grid>
+
+                                <Grid>
+                                    <Button materialDesign:ButtonAssist.CornerRadius="10"
+                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                            Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                            ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                            Margin="10,5,15,5"
+                                            Command="{Binding UpdateCusCommand, UpdateSourceTrigger=PropertyChanged}">
+                                        <Button.BorderBrush>
+                                            <ImageBrush />
+                                        </Button.BorderBrush>
+                                        <Button.Background>
+                                            <SolidColorBrush Color="#c87780" />
+                                        </Button.Background>
+                                        <TextBlock FontFamily="Nunito"
+                                                   Text="Cập nhật"
                                                    Foreground="White" />
                                     </Button>
                                 </Grid>

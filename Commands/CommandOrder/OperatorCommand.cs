@@ -43,7 +43,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                         case "Plus":
                             datageted.Quantity++;
                             total_money(datageted);
-                            return;
+                            break;
                         case "Minus":
                             datageted.Quantity--;
                             if (datageted.Quantity == 0)
@@ -53,15 +53,14 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                                 break;
                             }
                             total_money(datageted);
-                            return;
+                            break;
                         case "Delete":
                             optionOrderViewModel.OrderedFood.Remove(dish);
                             total_money(datageted);
                             
-                            return;
+                            break;
                     }
                     SessionStatic.SetOrdereds = optionOrderViewModel.OrderedFood;
-                    optionOrderViewModel.OrderedFood = optionOrderViewModel.OrderedFood;
                 }   
                 else
                 {

@@ -124,6 +124,15 @@
                                                Margin="5"
                                                FontWeight="DemiBold" />
                                 </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Mã hóa đơn:"
+                                               FontSize="13"
+                                               Margin="5" />
+                                    <TextBlock Text="{Binding ReceiptCode}"
+                                               FontSize="13"
+                                               Margin="5"
+                                               FontWeight="DemiBold" />
+                                </StackPanel>
                             </StackPanel>
                             <StackPanel Grid.Column="1"
                                         Margin="10">
