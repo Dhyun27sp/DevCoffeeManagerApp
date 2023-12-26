@@ -44,7 +44,7 @@ namespace DevCoffeeManagerApp.DAOs
             StaffModel StaffModel = collection.Find(phoneFilter).FirstOrDefault(); // Thực hiện truy vấn và lấy bản ghi đầu tiên hoặc null nếu không tìm thấy.
             return StaffModel;
         }
-        public void Createsalary()
+        public void Createsalary()//tạo ra salary trong tháng của năm đó cho nhân viên
         {
             List<StaffModel> listStaff = ReadAll();
             foreach (var item in listStaff)
@@ -53,13 +53,13 @@ namespace DevCoffeeManagerApp.DAOs
                 bool allowedcreatesalary = false;// biến cho phép tạo mới nếu nhân viên chưa có salary trong tháng
                 foreach (var item1 in item.salary)// để vòng lặp ngược sẽ tốt hơn 
                 {
-                    if(item1.Month.Month == DateTime.Now.Month && item1.Month.Year == DateTime.Now.Year)
+                    if(item1.Month.Month == DateTime.Now.Month && item1.Month.Year == DateTime.Now.Year)// nếu mà có một Object của salary có thắng và năm đã có thì cờ cho phép tạo salary sẽ được bật 
                     {
-                        allowedcreatesalary = true; 
+                        allowedcreatesalary = true; // cờ được bật
                         break;
                     }
                 }
-                if(allowedcreatesalary == false)//nếu chưa có tạo thêm
+                if(allowedcreatesalary == false)//nếu nếu cờ không bật thì cho phép tạo (cảm giác hơi ngược)
                 {
                     salary.Month = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 4);
                     salary.Money = 0;
@@ -77,44 +77,44 @@ namespace DevCoffeeManagerApp.DAOs
             StaffModel = ReadAll();
             List<ScheduleModel> filteredSchedules = scheduleModels.Where(s => s.shift.Contains(DateTime.Now.ToString("MM/yyyy"))).ToList();//lấy lịch trong tháng hiện tại
             List<EvaluateModel> evaluateModels = new List<EvaluateModel>();//lây danh sách evalua
-            List<Dictionary<ObjectId, int>> staffDics = new List<Dictionary<ObjectId, int>>();//Dictionary bộ key-value, mục dích tìm kiếm trong 
-            foreach (var i in StaffModel)
+            List<Dictionary<ObjectId, int>> staffDics = new List<Dictionary<ObjectId, int>>();//Dictionary bộ key-value, mục dích tìm kiếm trong nạp objectid của nhân viên là key và value là số lượng cồn chẩm
+            foreach (var i in StaffModel) // tạo bộ dự liệu objectid-worked count
             {
                 Dictionary<ObjectId, int> staffDic = new Dictionary<ObjectId, int>();
-                staffDic[i.staffid] = 0;
+                staffDic[i.staffid] = 0;// value là 0 
                 staffDics.Add(staffDic);
             }
-            foreach (var i in filteredSchedules)
+            foreach (var i in filteredSchedules)/// lấy từng phần tử trong danh sách tháng trong năm
             {
-                foreach (var item in i.evaluate)
+                foreach (var item in i.evaluate)// lấy từng phần tử evaluate trong từng buổi làm 
                 {
-                    foreach (var item1 in staffDics)
+                    foreach (var item1 in staffDics)// lấy từng phần tử trong staffDics mục đích để tăng count worked cho nhân viên với _id là key
                     {
-                        if (item1.ContainsKey(item.staff_id))
+                        if (item1.ContainsKey(item.staff_id))// nếu nhân viên đó có trong evaluate
                         {
-                            if(item.worked == true)
+                            if(item.worked == true)//nếu nhân viên đó có worked == true 
                             {
-                                item1[item.staff_id]++;
-                                break;
+                                item1[item.staff_id]++;// tăng count worked nhân viên đó lên 1 đơn vị
+                                break;// thấy nhân viên đó rồi thôi thoát 
                             } 
                         }
                     }
                 }
             }
-            foreach (var item2 in StaffModel)
+            foreach (var item2 in StaffModel)// lấy ra từng nhân viên để lấy ra ObjectId
             {
-                foreach (var item1 in staffDics)
+                foreach (var item1 in staffDics)// lấy từng phần tử của staffDics
                 {
-                    if (item1.ContainsKey(item2.staffid))
+                    if (item1.ContainsKey(item2.staffid))// nếu _id nhân viên đó là key
                     {
-                        var filter = Builders<StaffModel>.Filter.Eq("_id", item2.staffid);
-                        foreach(var i in item2.salary)
+                        var filter = Builders<StaffModel>.Filter.Eq("_id", item2.staffid);//tạo filter tim nhân viên đó theo id
+                        foreach(var i in item2.salary)// lọc tìm vị trí index để update
                         {
-                            if(i.Month.Month == DateTime.Now.Month)
+                            if(i.Month.Month == DateTime.Now.Month && i.Month.Year == DateTime.Now.Year)// vị trí index là vị trí có month là hiện tại
                             {
-                                int index = item2.salary.IndexOf(i);
-                                var update = Builders<StaffModel>.Update.Set($"salary.{index}.money", item1[item2.staffid]*100000);
-                                collection.UpdateOne(filter, update);
+                                int index = item2.salary.IndexOf(i);//lấy được index
+                                var update = Builders<StaffModel>.Update.Set($"salary.{index}.money", item1[item2.staffid]*100000);//mỗi worked là 100000đ
+                                collection.UpdateOne(filter, update);//cập nhật salary
                                 break;
                             }
                         }
