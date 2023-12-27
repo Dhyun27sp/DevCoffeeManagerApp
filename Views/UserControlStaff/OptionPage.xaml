@@ -141,7 +141,7 @@
                                             </GridViewColumnHeader>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding Item1.Amount, UpdateSourceTrigger=PropertyChanged}"
+                                                    <TextBlock Text="{Binding Item1.Amount, StringFormat='{}{0:N0}đ', UpdateSourceTrigger=PropertyChanged}"
                                                                FontSize="13" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
@@ -184,7 +184,7 @@
                                        Grid.Column="0">
                                 Tổng tiền:
                             </TextBlock>
-                            <TextBlock Text="{Binding Total, UpdateSourceTrigger=PropertyChanged}"
+                            <TextBlock Text="{Binding Total, StringFormat='{}{0:N0}đ', UpdateSourceTrigger=PropertyChanged}"
                                        FontSize="15"
                                        FontFamily="Nunito"
                                        FontWeight="DemiBold"
@@ -371,7 +371,7 @@
                                            Margin="15,0,0,0"
                                            Grid.Column="1">
                                     Điểm tổng:
-                                    <TextBlock Text="{Binding Point, UpdateSourceTrigger=PropertyChanged}"
+                                    <TextBlock Text="{Binding Point, StringFormat='{}{0:N0}', UpdateSourceTrigger=PropertyChanged}"
                                                FontSize="13"
                                                FontFamily="Nunito"
                                                Margin="10 0 0 0" />
@@ -382,7 +382,7 @@
                                            Margin="15,0,0,0"
                                            Grid.Column="2">
                                     Điểm cộng:
-                                    <TextBlock Text="{Binding PlusPoint}"
+                                    <TextBlock Text="{Binding PlusPoint, StringFormat='{}{0:N0}'}"
                                                FontSize="13"
                                                FontFamily="Nunito"
                                                Margin="10 0 0 0" />
