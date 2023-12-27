@@ -383,23 +383,22 @@
                                                     <Grid Width="162.5"
                                                           HorizontalAlignment="Left"
                                                           Margin="10 0 15 0">
-                                                        <TextBox VerticalAlignment="Center"
-                                                                 FontSize="15"
-                                                                 Text="{Binding abc}"
-                                                                 materialDesign:TextFieldAssist.HasClearButton="True"
-                                                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                                                        <ComboBox Padding="0 5.5 0 0"
+                                                                  Style="{StaticResource MaterialDesignFilledComboBox}"
+                                                                  Background="Transparent"
+                                                                  ItemsSource="{Binding ProductList}"
+                                                                  SelectedItem="{Binding newsupply.Product_name}">
                                                             <materialDesign:HintAssist.Hint>
                                                                 <StackPanel Orientation="Horizontal">
                                                                     <materialDesign:PackIcon VerticalAlignment="Center"
                                                                                              Width="25px"
                                                                                              Height="20px"
                                                                                              Kind="CardPlusOutline" />
-                                                                    <TextBlock FontSize="14px"
-                                                                               Text="Tên nguyên liệu"
-                                                                               VerticalAlignment="Center" />
+                                                                    <TextBlock FontSize="16px"
+                                                                               Text="Tên sản phẩm" />
                                                                 </StackPanel>
                                                             </materialDesign:HintAssist.Hint>
-                                                        </TextBox>
+                                                        </ComboBox>
                                                     </Grid>
                                                     <Grid Width="100"
                                                           HorizontalAlignment="Left"
