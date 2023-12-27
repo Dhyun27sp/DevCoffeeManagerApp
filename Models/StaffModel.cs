@@ -34,5 +34,12 @@ namespace DevCoffeeManagerApp.Models
             this.account = account;
             this.salary = salary;
         }
+        public StaffModel(string staffname, string phone_staff, AccountModel account, List<SalaryModel> salary)
+        {
+            this.staffname = staffname;
+            this.phone_staff = phone_staff;
+            this.account = account;
+            this.salary = salary;
+        }
     }
 }

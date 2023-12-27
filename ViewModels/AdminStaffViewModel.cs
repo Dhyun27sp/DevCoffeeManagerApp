@@ -136,13 +136,49 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(PasswordStaff));
             }
         }
-
+        private bool _statusupdate = false;
+        public bool StatusUpdate
+        {
+            get
+            {
+                return _statusupdate;
+            }
+            set
+            {
+                _statusupdate = value;
+                OnPropertyChanged(nameof(StatusUpdate));
+            }
+        }
+        private string _staffsearch = "";
+        public string Staffsearch
+        {
+            get
+            {
+                return _staffsearch;
+            }
+            set
+            {
+                _staffsearch = value;
+                OnPropertyChanged(nameof(Staffsearch));
+            }
+        }
+        
         public ICommand ChoosedStaffCommand { get; }
+        public ICommand AddStaffCommand { get; }
+        public ICommand DeleteStaffCommand { get; }
+        public ICommand DeletefieldStaffCommand { get; }
+        public ICommand UpdateStaffCommand { get; }
+        public ICommand ChangeValueTexboxCommand { get; }
         public AdminStaffViewModel() {
             Staffs = new ObservableCollection<StaffModel>(staffDAO.ReadAll());
             staffDAO.Createsalary();// tạo tháng lương cho nhân viên
             staffDAO.salaryInMoth();
             ChoosedStaffCommand = new CommandClickStaffAd(this, "choose");
+            AddStaffCommand = new CommandClickStaffAd(this, "add");
+            DeleteStaffCommand = new CommandClickStaffAd(this, "deletestaff");
+            DeletefieldStaffCommand = new CommandClickStaffAd(this, "deletef");
+            UpdateStaffCommand = new CommandClickStaffAd(this, "update");
+            ChangeValueTexboxCommand = new FilterStaffCommand(this, "search");
         }
     }
 }

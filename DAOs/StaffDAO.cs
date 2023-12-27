@@ -44,6 +44,19 @@ namespace DevCoffeeManagerApp.DAOs
             StaffModel StaffModel = collection.Find(phoneFilter).FirstOrDefault(); // Thực hiện truy vấn và lấy bản ghi đầu tiên hoặc null nếu không tìm thấy.
             return StaffModel;
         }
+        public void DeleteStaffByPhoneNumber(string phoneNumber)
+        {
+            var filter = Builders<StaffModel>.Filter.Eq("phone_number", phoneNumber);
+            collection.DeleteOne(filter);
+        }
+        public void updateNamePass(StaffModel staff)
+        {
+            var filter = Builders<StaffModel>.Filter.Eq("phone_number", staff.phone_staff);
+            var update_name = Builders<StaffModel>.Update.Set("name", staff.staffname);
+            var update_Pass = Builders<StaffModel>.Update.Set("account.password", staff.account.Password);
+            collection.UpdateOne(filter, update_name);
+            collection.UpdateOne(filter, update_Pass);
+        }
         public void Createsalary()//tạo ra salary trong tháng của năm đó cho nhân viên
         {
             List<StaffModel> listStaff = ReadAll();
