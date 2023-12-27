@@ -208,6 +208,7 @@
     </ApplicationDefinition>
     <Compile Include="Commands\CommandAdminReceipt\FilterReceiptCommand.cs" />
     <Compile Include="Commands\CommandAdminStaff\CommandClickStaffAd.cs" />
+    <Compile Include="Commands\CommandAdminStaff\FilterStaffCommand.cs" />
     <Compile Include="Commands\CommandCustomer\CustomerComand.cs" />
     <Compile Include="Commands\CommandCustomer\FilterCustomerCommand.cs" />
     <Compile Include="Commands\CommandDiscount\ClickButtonCommand.cs" />
