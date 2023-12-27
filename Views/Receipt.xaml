@@ -197,7 +197,7 @@
                                   Width="466">
                             <ListView.View>
                                 <GridView ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
-                                    <GridViewColumn Width="205">
+                                    <GridViewColumn Width="210">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock Text="{Binding dish_name}"
@@ -205,10 +205,10 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Width="100">
+                                    <GridViewColumn Width="95">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Saleprice}"
+                                                <TextBlock Text="{Binding Saleprice, StringFormat='{}{0:N0}'}"
                                                            FontSize="13" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -224,7 +224,7 @@
                                     <GridViewColumn Width="90">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Amount}"
+                                                <TextBlock Text="{Binding Amount, StringFormat='{}{0:N0}'}"
                                                            FontSize="13" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -262,7 +262,7 @@
                                            HorizontalAlignment="Right"
                                            Foreground="#FF62013C"
                                            Margin="5 0 0 5" />
-                                <TextBlock Text="{Binding TotalAmount}"
+                                <TextBlock Text="{Binding TotalAmount, StringFormat='{}{0:N0}đ'}"
                                            FontSize="13"
                                            HorizontalAlignment="Right"
                                            Foreground="#FF62013C"

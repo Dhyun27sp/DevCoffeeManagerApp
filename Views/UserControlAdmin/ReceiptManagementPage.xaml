@@ -265,7 +265,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.total_amount, UpdateSourceTrigger=PropertyChanged}"
+                                                        <TextBlock Text="{Binding Item1.total_amount, StringFormat='{}{0:N0}đ', UpdateSourceTrigger=PropertyChanged}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -278,7 +278,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.guest_monney, UpdateSourceTrigger=PropertyChanged}"
+                                                        <TextBlock Text="{Binding Item1.guest_monney, StringFormat='{}{0:N0}đ', UpdateSourceTrigger=PropertyChanged}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -291,7 +291,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.change, UpdateSourceTrigger=PropertyChanged}"
+                                                        <TextBlock Text="{Binding Item1.change, StringFormat='{}{0:N0}đ', UpdateSourceTrigger=PropertyChanged}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -482,7 +482,7 @@
                                                                 </GridViewColumnHeader>
                                                                 <GridViewColumn.CellTemplate>
                                                                     <DataTemplate>
-                                                                        <TextBlock Text="{Binding Item1.price}"
+                                                                        <TextBlock Text="{Binding Item1.price, StringFormat='{}{0:N0}đ'}"
                                                                                    FontSize="13" />
                                                                     </DataTemplate>
                                                                 </GridViewColumn.CellTemplate>
@@ -495,7 +495,7 @@
                                                                 </GridViewColumnHeader>
                                                                 <GridViewColumn.CellTemplate>
                                                                     <DataTemplate>
-                                                                        <TextBlock Text="{Binding Item1.Saleprice}"
+                                                                        <TextBlock Text="{Binding Item1.Saleprice, StringFormat='{}{0:N0}đ'}"
                                                                                    FontSize="13" />
                                                                     </DataTemplate>
                                                                 </GridViewColumn.CellTemplate>
@@ -521,7 +521,7 @@
                                                                 </GridViewColumnHeader>
                                                                 <GridViewColumn.CellTemplate>
                                                                     <DataTemplate>
-                                                                        <TextBlock Text="{Binding Item1.Amount}"
+                                                                        <TextBlock Text="{Binding Item1.Amount, StringFormat='{}{0:N0}đ'}"
                                                                                    FontSize="13" />
                                                                     </DataTemplate>
                                                                 </GridViewColumn.CellTemplate>
