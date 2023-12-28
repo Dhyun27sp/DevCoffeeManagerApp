@@ -42,5 +42,10 @@ namespace DevCoffeeManagerApp.DAOs
             UpdateResult result = collection.UpdateOne(nameFilter, status_update);
         }
 
+        public void DeleteSupplyByProductName(string productName)
+        {
+            var filter = Builders<SupplyModel>.Filter.Eq("product_name", productName);
+            collection.DeleteOne(filter);
+        }
     }
 }

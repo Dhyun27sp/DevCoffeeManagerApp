@@ -60,6 +60,8 @@ namespace DevCoffeeManagerApp.ViewModels
         public SupplyModel newsupply { get; set; }
         public ICommand UpDateCommand { get; set; }
         public ICommand AddCommand { get; set; }
+        public ICommand DeleteSupplyCommand { get; set; }
+
         public DateTime Date { get; set; }
         public AdminSupplyViewModel()
         {
@@ -73,7 +75,7 @@ namespace DevCoffeeManagerApp.ViewModels
             Date = DateTime.Now;
             UpDateCommand = new UpdateStatusCommand(this);
             AddCommand = new AddSupplyCommand(this);
-
+            DeleteSupplyCommand = new DeleteSupplyCommand(this);
         }
 
         static List<string> GenerateMonthList()

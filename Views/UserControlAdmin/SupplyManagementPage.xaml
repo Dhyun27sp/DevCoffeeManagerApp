@@ -219,7 +219,7 @@
                                                             Value="Left" />
                                                 </Style>
                                             </GridView.ColumnHeaderContainerStyle>
-                                            <GridViewColumn Width="60">
+                                            <GridViewColumn Width="50">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent"
@@ -273,11 +273,11 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="120">
+                                            <GridViewColumn Width="60">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
-                                                    Số lượng nhập
+                                                    SL
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
@@ -338,7 +338,7 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Width="140">
+                                            <GridViewColumn Width="120">
                                                 <GridViewColumnHeader FontFamily="Nunito"
                                                                       FontWeight="DemiBold"
                                                                       Background="Transparent">
@@ -350,6 +350,27 @@
                                                                   ItemsSource="{Binding DataContext.SupplyStatus, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
                                                                   SelectedItem="{Binding Item1.Status, UpdateSourceTrigger=PropertyChanged}">
                                                         </ComboBox>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Width="80">
+                                                <GridViewColumnHeader FontFamily="Nunito"
+                                                                      FontWeight="DemiBold"
+                                                                      Background="Transparent">
+                                                    Delete
+                                                </GridViewColumnHeader>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Button Panel.ZIndex="0"
+                                                                Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                                                Command="{Binding DataContext.DeleteSupplyCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                CommandParameter="{Binding Item1}">
+                                                            <materialDesign:PackIcon Foreground="#5F5555"
+                                                                                     Opacity=".80"
+                                                                                     Kind="DeleteForever"
+                                                                                     Width="30"
+                                                                                     Height="25" />
+                                                        </Button>
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>

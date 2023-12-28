@@ -225,6 +225,7 @@
     <Compile Include="Commands\CommandPayment\MoneyReceivedCommand.cs" />
     <Compile Include="Commands\CommandPayment\SubmitPaymentCommand.cs" />
     <Compile Include="Commands\CommandProduct\AddProductCommand.cs" />
+    <Compile Include="Commands\CommandProduct\DeleteProductCommand.cs" />
     <Compile Include="Commands\CommandProduct\ImportProductCommand.cs" />
     <Compile Include="Commands\CommandReceipt\CloseCommand.cs" />
     <Compile Include="Commands\CommandReceipt\PrintReceiptCommand.cs" />
@@ -236,6 +237,7 @@
     <Compile Include="Commands\CommandOption\SearchCustomerCommand.cs" />
     <Compile Include="Commands\CommandOption\UsePointCommand.cs" />
     <Compile Include="Commands\CommandSupply\AddSupplyCommand.cs" />
+    <Compile Include="Commands\CommandSupply\DeleteSupplyCommand.cs" />
     <Compile Include="Commands\CommandSupply\UpdateStatusCommand.cs" />
     <Compile Include="Commands\CommandTable\CancelallTableCommand.cs" />
     <Compile Include="Commands\CommandTable\CommandSubmitTable.cs" />

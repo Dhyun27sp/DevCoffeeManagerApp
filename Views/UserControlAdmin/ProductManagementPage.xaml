@@ -275,7 +275,7 @@
                                                     <DataTemplate>
                                                         <Button Panel.ZIndex="0"
                                                                 Style="{StaticResource MaterialDesignToolForegroundButton}"
-                                                                Command="{Binding DataContext.DeleteCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                Command="{Binding DataContext.DeleteProductCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
                                                                 CommandParameter="{Binding Item1}">
                                                             <materialDesign:PackIcon Foreground="#5F5555"
                                                                                      Opacity=".80"

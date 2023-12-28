@@ -48,6 +48,11 @@ namespace DevCoffeeManagerApp.DAOs
             var phone_number = Builders<ProductModel>.Filter.Eq("product_name", product.Product_name);
             collection.ReplaceOne(phone_number, product);
         }
+        public void DeleteProductByProductName(string productName)
+        {
+            var filter = Builders<ProductModel>.Filter.Eq("product_name", productName);
+            collection.DeleteOne(filter);
+        }
 
     }
 }

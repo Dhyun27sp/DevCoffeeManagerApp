@@ -54,6 +54,8 @@ namespace DevCoffeeManagerApp.ViewModels
         public List<string> UnitList { get; set; }
         public ICommand AddCommand {  get; set; }
         public ICommand ImportCommand { get; set; }
+        public ICommand DeleteProductCommand { get; }
+
         public AdminProductViewModel() 
         {
             Products = productDAO.GetAllProducts();
@@ -62,6 +64,7 @@ namespace DevCoffeeManagerApp.ViewModels
             Date = DateTime.Now;
             AddCommand = new AddProductCommand(this);
             ImportCommand = new ImportProductCommand(this);
+            DeleteProductCommand = new DeleteProductCommand(this);
         }
         static List<String> AddUnit()
         {
