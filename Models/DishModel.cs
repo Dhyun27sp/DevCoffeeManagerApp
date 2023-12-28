@@ -111,9 +111,5 @@ namespace DevCoffeeManagerApp.Models
         }
         public DishModel() { }
 
-        public override string ToString()
-        {
-            return this.
-        }
     }
 }
