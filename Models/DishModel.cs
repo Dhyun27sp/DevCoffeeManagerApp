@@ -20,7 +20,7 @@ namespace DevCoffeeManagerApp.Models
         public string dish_name { get; set; }
 
         [BsonElement("ingredient"), BsonIgnoreIfNull]
-        public List<IngredientModel> ingredient { get; set; }
+        public List<ProductModel> ingredient { get; set; }
 
         [BsonElement("price"), BsonRepresentation(BsonType.Int32), BsonIgnoreIfNull]
         public int? price { get; set; }
@@ -95,7 +95,7 @@ namespace DevCoffeeManagerApp.Models
             this.price = price;
         }
 
-        public DishModel(ObjectId _id,string dishName,List<IngredientModel> ingredients,int? dishPrice,string dishImage,
+        public DishModel(ObjectId _id,string dishName,List<ProductModel> ingredients,int? dishPrice,string dishImage,
         string dateAdd,string dishCategory,int? salePrice,int quantity,int amount)
         {
             this._id = _id;
@@ -110,5 +110,10 @@ namespace DevCoffeeManagerApp.Models
             this.Amount = amount;
         }
         public DishModel() { }
+
+        public override string ToString()
+        {
+            return this.
+        }
     }
 }

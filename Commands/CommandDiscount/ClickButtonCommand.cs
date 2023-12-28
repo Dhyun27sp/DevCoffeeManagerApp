@@ -239,7 +239,7 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
             {
                 _id = source._id,
                 dish_name = source.dish_name,
-                ingredient = new List<IngredientModel>(source.ingredient),
+                ingredient = new List<ProductModel>(source.ingredient),
                 price = source.price,
                 image = source.image,
                 date_add = source.date_add,
