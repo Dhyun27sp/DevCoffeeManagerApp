@@ -35,8 +35,8 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("EXP"), BsonRepresentation(BsonType.DateTime)]
         public DateTime? EXP_date { get; set; }
 
-        [BsonElement("company"), BsonRepresentation(BsonType.String)]
-        public String Company { get; set; }
+        [BsonElement("manufacturer"), BsonRepresentation(BsonType.String)]
+        public String Manufacturer { get; set; }
         public SupplyModel(SupplyModel model)
         {
             this.Product_name = model.Product_name;
@@ -47,7 +47,7 @@ namespace DevCoffeeManagerApp.Models
             this.Unit = model.Unit;
             this.MFG_date = model.MFG_date;
             this.EXP_date = model.EXP_date;
-            this.Company = model.Company;
+            this.Manufacturer = model.Manufacturer;
         }
         public SupplyModel()
         {

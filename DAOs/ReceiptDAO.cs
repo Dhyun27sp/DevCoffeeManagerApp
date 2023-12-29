@@ -51,12 +51,13 @@ namespace DevCoffeeManagerApp.DAOs
         }
         public List<ReceiptModel> FindReceiptOnDate(DateTime date)
         {
-            DateTime startDate = date;
-            DateTime endDate = startDate.AddHours(23).AddMinutes(59).AddSeconds(59);
+            DateTime startDate = date.AddDays(-2);
+            DateTime endDate = date.AddDays(2);
             var filter = Builders<ReceiptModel>.Filter.Gte("time", startDate) &
                          Builders<ReceiptModel>.Filter.Lt("time", endDate);
             List<ReceiptModel> receiptsOnDate = collection.Find(filter).ToList();
-            return receiptsOnDate;
+            List<ReceiptModel> receiptsOnDatereal = receiptsOnDate.Where(receipt => receipt.time.Day == date.Day).ToList();
+            return receiptsOnDatereal;
         }
     }
 }
