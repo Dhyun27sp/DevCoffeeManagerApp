@@ -67,8 +67,10 @@
                 </Grid>
             </Border>
             <Grid Grid.Row="1">
+                <ScrollViewer>
                 <StackPanel>
-                    <Button Command="{Binding DashboardComand}"
+                    
+                        <Button Command="{Binding DashboardComand}"
                             Style="{StaticResource MaterialDesignFlatButton}"
                             ToolTip="MaterialDesignFlatButton"
                             Height="70"
@@ -249,7 +251,28 @@
                                        VerticalAlignment="Center" />
                         </WrapPanel>
                     </Button>
+                    <Button Command="{Binding SchedulePageCommand}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            ToolTip="MaterialDesignFlatButton"
+                            Height="70"
+                            Background="White">
+                        <WrapPanel Orientation="Horizontal"
+                                   Width="220">
+                                <materialDesign:PackIcon Kind="StoreClock"
+                                                     Margin="0 0 10 0"
+                                                     Foreground="Black"
+                                                     Height="30"
+                                                     Width="30" />
+                            <TextBlock FontSize="16"
+                                       FontFamily="Nunito"
+                                       Text="Quản lý lịch"
+                                       Foreground="Black"
+                                       VerticalAlignment="Center" />
+                        </WrapPanel>
+                    </Button>
+                    
                 </StackPanel>
+                </ScrollViewer>
             </Grid>
 
             <Grid Width="120"
@@ -350,6 +373,9 @@
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type vms:AdminStaffViewModel}">
                         <views:StaffManagementPage />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vms:AdminScheduleViewModel}">
+                        <views:ScheduleManagement />
                     </DataTemplate>
                 </Grid.Resources>
                 <ContentControl Content="{Binding CurrentViewModel}" />

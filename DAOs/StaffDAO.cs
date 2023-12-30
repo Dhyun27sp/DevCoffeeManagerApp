@@ -13,6 +13,7 @@ using System.Collections.ObjectModel;
 using System.Collections;
 using MaterialDesignThemes.Wpf;
 using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace DevCoffeeManagerApp.DAOs
 {
@@ -49,6 +50,11 @@ namespace DevCoffeeManagerApp.DAOs
             var filter = Builders<StaffModel>.Filter.Eq("phone_number", phoneNumber);
             collection.DeleteOne(filter);
         }
+        public StaffModel GetStaffbyid(ObjectId id)
+        {
+            var filter = Builders<StaffModel>.Filter.Eq("_id", id);
+            return collection.Find(filter).FirstOrDefault();
+        }
         public void updateNamePass(StaffModel staff)
         {
             var filter = Builders<StaffModel>.Filter.Eq("phone_number", staff.phone_staff);
@@ -84,11 +90,11 @@ namespace DevCoffeeManagerApp.DAOs
         }
         public void salaryInMoth()
         {
-            List<ScheduleModel> scheduleModels = new List<ScheduleModel>();//lấy hết lịch nhân viên 
+
+            List<ScheduleModel> filteredSchedules = new List<ScheduleModel>();//lấy lịch nhân viên trong tháng hiện tại
             List<StaffModel> StaffModel = new List<StaffModel>();// lấy hết danh sách ra 
-            scheduleModels = scheduledao.GetAllSchedule();
+            filteredSchedules = scheduledao.findSchedulebymothCurrent();
             StaffModel = ReadAll();
-            List<ScheduleModel> filteredSchedules = scheduleModels.Where(s => s.shift.Contains(DateTime.Now.ToString("MM/yyyy"))).ToList();//lấy lịch trong tháng hiện tại
             List<EvaluateModel> evaluateModels = new List<EvaluateModel>();//lây danh sách evalua
             List<Dictionary<ObjectId, int>> staffDics = new List<Dictionary<ObjectId, int>>();//Dictionary bộ key-value, mục dích tìm kiếm trong nạp objectid của nhân viên là key và value là số lượng cồn chẩm
             foreach (var i in StaffModel) // tạo bộ dự liệu objectid-worked count

@@ -229,6 +229,8 @@
     <Compile Include="Commands\CommandProduct\ImportProductCommand.cs" />
     <Compile Include="Commands\CommandReceipt\CloseCommand.cs" />
     <Compile Include="Commands\CommandReceipt\PrintReceiptCommand.cs" />
+    <Compile Include="Commands\CommandSchedule\ClickCommandSchedule.cs" />
+    <Compile Include="Commands\CommandSchedule\FilterSchedule.cs" />
     <Compile Include="Commands\CommandSell\NavigationCommand.cs" />
     <Compile Include="Commands\CommandStaff\ExitCommand.cs" />
     <Compile Include="Commands\CommandStaff\SellCommand.cs" />
@@ -278,6 +280,7 @@
     <Compile Include="ViewModels\AdminMenuViewModel.cs" />
     <Compile Include="ViewModels\AdminProductViewModel.cs" />
     <Compile Include="ViewModels\AdminReceiptViewModel.cs" />
+    <Compile Include="ViewModels\AdminScheduleViewModel.cs" />
     <Compile Include="ViewModels\AdminStaffViewModel.cs" />
     <Compile Include="ViewModels\AdminSupplyViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
@@ -320,6 +323,9 @@
     </Compile>
     <Compile Include="Views\UserControlAdmin\ReceiptManagementPage.xaml.cs">
       <DependentUpon>ReceiptManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControlAdmin\ScheduleManagement.xaml.cs">
+      <DependentUpon>ScheduleManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControlAdmin\StaffManagementPage.xaml.cs">
       <DependentUpon>StaffManagementPage.xaml</DependentUpon>
@@ -415,6 +421,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControlAdmin\ReceiptManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControlAdmin\ScheduleManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

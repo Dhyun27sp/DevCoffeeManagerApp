@@ -50,6 +50,9 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.NavigateSidebarCommand
                 case "staff":
                     _adminViewModel.CurrentViewModel = new AdminStaffViewModel();
                     return;
+                case "schedule":
+                    _adminViewModel.CurrentViewModel = new AdminScheduleViewModel();
+                    return;
             }
         }
     }
