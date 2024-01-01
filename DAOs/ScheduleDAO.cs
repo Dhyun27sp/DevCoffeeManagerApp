@@ -56,6 +56,17 @@ namespace DevCoffeeManagerApp.DAOs
 
             return latestSchedule;
         }
+        public List<ScheduleModel> GetNSchedules(int n)
+        {
+            // Sắp xếp các document theo trường "_id" giảm dần (từ mới đến cũ).
+            var sortDefinition = Builders<ScheduleModel>.Sort.Descending("_id");
+
+            // Lấy n document cuối cùng sau khi đã sắp xếp.
+            var schedules = collection.Find(new BsonDocument()).Sort(sortDefinition).Limit(n).ToList();
+
+            return schedules;
+        }
+
         public List<ScheduleModel> findSchedulebymothCurrent() {
             var regexPattern = new BsonRegularExpression(new Regex(Regex.Escape(DateTime.Now.ToString("MM/yyyy")), RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace));
 

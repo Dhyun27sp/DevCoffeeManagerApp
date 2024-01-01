@@ -88,6 +88,9 @@ namespace DevCoffeeManagerApp.Commands.CommandSchedule
             scheduleDAO.createSchedule(scheduleC);
             scheduleDAO.createSchedule(scheduleT);
             viewModel.Schedules = new ObservableCollection<ScheduleModel>(scheduleDAO.GetAllSchedule());
+            viewModel.consoleListSchedule = viewModel.Schedules;
+            FilterSchedule FilterSchedule = new FilterSchedule(viewModel, "search");
+            FilterSchedule.Filter();
         }
         private void addstaff(object parameter)
         {

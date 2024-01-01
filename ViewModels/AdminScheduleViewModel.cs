@@ -151,7 +151,7 @@ namespace DevCoffeeManagerApp.ViewModels
 
         public List<string> ScheduleIntime { get; set; }
         
-        private string _itemcbb = "On day";
+        private string _itemcbb = "All";
         public string itemcbb
         {
             get { return _itemcbb; }

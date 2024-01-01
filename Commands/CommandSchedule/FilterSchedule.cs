@@ -48,7 +48,7 @@ namespace DevCoffeeManagerApp.Commands.CommandSchedule
         {
             Filter();
         }
-        private void Filter()
+        public void Filter()
         {
             if (viewModel.itemcbb == "All")
             {
@@ -84,34 +84,14 @@ namespace DevCoffeeManagerApp.Commands.CommandSchedule
             else
             {
                 ObservableCollection<ScheduleModel> scheduleModels = new ObservableCollection<ScheduleModel>();
-                ObservableCollection<ScheduleModel> scheduleModelsinmoth = new ObservableCollection<ScheduleModel>(scheduleDAO.findSchedulebymothCurrent());
+                ObservableCollection<ScheduleModel> scheduleModelsinWeek = new ObservableCollection<ScheduleModel>(scheduleDAO.GetNSchedules(21));
                 if (!string.IsNullOrWhiteSpace(viewModel.Schedulesearch))
                 {
-                    if(scheduleModelsinmoth.Count > 21)
+                    foreach (ScheduleModel s in scheduleModelsinWeek)
                     {
-                        int breakfor = 0;
-                        for(int i = scheduleModelsinmoth.Count-1; i < scheduleModelsinmoth.Count; i--)
+                        if (s.shift.Replace(" ", "").IndexOf(viewModel.Schedulesearch.Replace(" ", ""), StringComparison.OrdinalIgnoreCase) >= 0)
                         {
-                            if (scheduleModelsinmoth[i].shift.Replace(" ", "").IndexOf(viewModel.Schedulesearch.Replace(" ", ""), StringComparison.OrdinalIgnoreCase) >= 0)
-                            {
-                                scheduleModels.Add(scheduleModelsinmoth[i]);
-                            }
-                            else
-                            {
-                                scheduleModels.Add(scheduleModelsinmoth[i]);
-                            }
-                            breakfor++;
-                            if (breakfor == 21) break;
-                        }
-                    }
-                    else
-                    {
-                        foreach (ScheduleModel s in scheduleModelsinmoth)
-                        {
-                            if (s.shift.Replace(" ", "").IndexOf(viewModel.Schedulesearch.Replace(" ", ""), StringComparison.OrdinalIgnoreCase) >= 0)
-                            {
-                                scheduleModels.Add(s);
-                            }
+                            scheduleModels.Add(s);
                         }
                     }
                     viewModel.Schedules = scheduleModels;
@@ -122,7 +102,7 @@ namespace DevCoffeeManagerApp.Commands.CommandSchedule
                 }
                 else
                 {
-                    viewModel.Schedules = viewModel.consoleListSchedule;
+                    viewModel.Schedules = scheduleModelsinWeek;
                 }
             }
         }
