@@ -53,6 +53,10 @@ namespace DevCoffeeManagerApp.DAOs
             var filter = Builders<ProductModel>.Filter.Eq("product_name", productName);
             collection.DeleteOne(filter);
         }
-
+        public int CountProducts()
+        {
+            int productCount = Convert.ToInt32(collection.CountDocuments(new BsonDocument()));
+            return productCount;
+        }
     }
 }

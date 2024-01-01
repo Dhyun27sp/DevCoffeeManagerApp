@@ -82,7 +82,7 @@
                                    VerticalAlignment="Center"
                                    FontWeight="Bold"
                                    Style="{StaticResource MaterialDesignBody2TextBlock}"
-                                   Text="30000 VND" />
+                                   Text="{Binding TotalRevenue, StringFormat='{}{0:N0} VNĐ'}" />
                     </Grid>
                 </materialDesign:Card>
             </Grid>
@@ -121,7 +121,7 @@
                                        VerticalAlignment="Center"
                                        FontWeight="Bold"
                                        Style="{StaticResource MaterialDesignBody2TextBlock}"
-                                       Text="30" />
+                                       Text="{Binding TotalProduct, StringFormat='{}{0} sản phẩm'}" />
                         </Grid>
                     </materialDesign:Card>
                 </Grid>
@@ -154,7 +154,7 @@
                                        VerticalAlignment="Center"
                                        FontWeight="Bold"
                                        Style="{StaticResource MaterialDesignBody2TextBlock}"
-                                       Text="30" />
+                                       Text="{Binding TotalStaff, StringFormat='{}{0} nhân viên'}" />
                         </Grid>
                     </materialDesign:Card>
                 </Grid>
@@ -187,7 +187,7 @@
                                        VerticalAlignment="Center"
                                        FontWeight="Bold"
                                        Style="{StaticResource MaterialDesignBody2TextBlock}"
-                                       Text="30" />
+                                       Text="{Binding TotalDish, StringFormat='{}{0} món'}" />
                         </Grid>
                     </materialDesign:Card>
                 </Grid>

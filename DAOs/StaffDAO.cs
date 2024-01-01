@@ -141,5 +141,10 @@ namespace DevCoffeeManagerApp.DAOs
                 }
             }
         }
+        public int CountStaffs()
+        {
+            int staffCount = Convert.ToInt32(collection.CountDocuments(new BsonDocument()));
+            return staffCount;
+        }
     }
 }

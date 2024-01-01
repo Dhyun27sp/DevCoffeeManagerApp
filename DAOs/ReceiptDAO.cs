@@ -9,6 +9,7 @@ using DevCoffeeManagerApp.Models;
 using MongoDB.Bson;
 using System.Security.Cryptography;
 using System.Runtime.InteropServices.ComTypes;
+using DevCoffeeManagerApp.Views;
 
 namespace DevCoffeeManagerApp.DAOs
 {
@@ -58,6 +59,13 @@ namespace DevCoffeeManagerApp.DAOs
             List<ReceiptModel> receiptsOnDate = collection.Find(filter).ToList();
             List<ReceiptModel> receiptsOnDatereal = receiptsOnDate.Where(receipt => receipt.time.Day == date.Day).ToList();
             return receiptsOnDatereal;
+        }
+
+        public int GetTotalRevenue()
+        {
+            var totalAmountSum = collection.AsQueryable()
+                .Sum(receipt => receipt.total_amount);
+            return totalAmountSum;
         }
     }
 }

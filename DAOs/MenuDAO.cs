@@ -1,6 +1,7 @@
 ﻿using DevCoffeeManagerApp.Config;
 using DevCoffeeManagerApp.Models;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -38,14 +39,15 @@ namespace DevCoffeeManagerApp.DAOs
         public List<DishModel> ReadAll_Dish()// Tách DAO Cho Dish
         {
             ObservableCollection<MenuModel> All_Type_dish = ReadAll_Type_dish();
-            List<DishModel> All_Dishs = new List< DishModel>();
+            List<DishModel> All_Dishs = new List<DishModel>();
             foreach (var item in All_Type_dish)
             {
                 All_Dishs.AddRange(item.dish);
             }
             return All_Dishs;
         }
-        public MenuModel ReadMenuOnly(ObjectId _id) {
+        public MenuModel ReadMenuOnly(ObjectId _id)
+        {
             var Id = Builders<MenuModel>.Filter.Eq("_id", _id);
             MenuModel Menu = collection.Find(Id).FirstOrDefault();
             return Menu;
@@ -58,14 +60,14 @@ namespace DevCoffeeManagerApp.DAOs
         }
         public List<DishModel> ReadAll_NewDish()
         {
-            DateTime DayCurrent = DateTime.Now; 
+            DateTime DayCurrent = DateTime.Now;
             List<DishModel> All_Dishs_Sort = new List<DishModel>();
             List<DishModel> New_Dish = new List<DishModel>();
             List<DishModel> All_Dishs = new List<DishModel>();
             All_Dishs = ReadAll_Dish();
             All_Dishs_Sort = All_Dishs.OrderByDescending(x => x.date_add).ToList();//xắp sếp món theo ngày dảm dần
             int index = 0; // index này lưu giá trị cuối cùng của điều kiện 60 ngày
-            for(int i = 0 ;i< All_Dishs_Sort.Count(); i++)
+            for (int i = 0; i < All_Dishs_Sort.Count(); i++)
             {
                 DateTime Dayaddish = DateTime.Parse(All_Dishs_Sort[i].date_add);
                 TimeSpan Distancetime = Dayaddish - DayCurrent;
@@ -78,7 +80,7 @@ namespace DevCoffeeManagerApp.DAOs
             }
             if (New_Dish.Count() < 3)//nếu số lượng ko đủ 3 món trong món mới 2 tháng thêm mới nhì
             {
-                if((index+1) != All_Dishs_Sort.Count())
+                if ((index + 1) != All_Dishs_Sort.Count())
                 {
                     for (int i = index + 1; i < All_Dishs_Sort.Count(); i++)
                     {
@@ -88,6 +90,28 @@ namespace DevCoffeeManagerApp.DAOs
                 }
             }
             return New_Dish;
+        }
+        public int CountDishesInMenu()
+        {
+                var unwindDishes = new BsonDocument("$unwind", "$dish");
+                var groupByDishName = new BsonDocument("$group", new BsonDocument
+                {
+                    { "_id", "$dish.dish_name" },
+                    { "count", new BsonDocument("$sum", 1) }
+                });
+                var pipeline = new[] { unwindDishes, groupByDishName };
+                var result = collection.Aggregate<MenuDishCount>(pipeline).ToList();
+                int totalDishes = Convert.ToInt32(result.Sum(x => x.Count));
+                return totalDishes;
+        }
+
+        private class MenuDishCount
+        {
+            [BsonElement("_id")]
+            public string DishName { get; set; }
+
+            [BsonElement("count")]
+            public int Count { get; set; }
         }
     }
 }
