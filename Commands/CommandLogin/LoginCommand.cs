@@ -97,9 +97,9 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
                         {
                             if (parameter is Window window)
                             {
-                                window.Hide();
                                 AdminPage mainWindowAdmin = new AdminPage();
                                 mainWindowAdmin.Show();
+                                window.Close();
                             }
                         }
                         break;
@@ -169,12 +169,12 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
                 SessionStatic.SetPhoneNumber = Viewmodellogin.Phonenumber;
                 SessionStatic.SetStaffName = staffdao.GetStaff(Viewmodellogin.Phonenumber).staffname;
                 SessionStatic.SetPassWord = int.Parse(Viewmodellogin.Password);
-                if (parameter is Window window)
-                {
-                    window.Hide();
-                }
                 MainWindowStaff mainWindowstaff = new MainWindowStaff();
                 mainWindowstaff.Show();
+                if (parameter is Window window)
+                {
+                    window.Close();
+                }
             }
             else if (Viewmodellogin.ItemShift == "Waiters")
             {

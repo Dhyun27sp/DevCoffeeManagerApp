@@ -79,7 +79,6 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                     applymenu(selectedItem.Item1.discountid);
                 }
             }
-
         }
         private void addDiscount(object parameter) {
             if (viewModel.NotallowedAdd == true)
@@ -94,14 +93,49 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                 }
                 else
                 {
-                    ApplyModel applyModel = new ApplyModel();
-                    DiscountModel newdiscount = new DiscountModel(viewModel.DiscountID, viewModel.Discountname, viewModel.Description, applyModel, viewModel.Daystart.Value, viewModel.Dayend.Value, viewModel.Value);
-                    discountDAO.createdistcount(newdiscount);
-                    MessageBox.Show("Thêm Khuyến mãi thành công");
-                    viewModel.Discounts.Add(newdiscount);
-                    viewModel.Discounts = viewModel.Discounts;
+                    if(checkedinput() == true)
+                    {
+                        ApplyModel applyModel = new ApplyModel();
+                        List<MenuModel> menus = new List<MenuModel>();
+                        List<DishModel> dishs = new List<DishModel>();
+                        applyModel.menu = menus;
+                        applyModel.dish = dishs;
+                        DiscountModel newdiscount = new DiscountModel(viewModel.DiscountID, viewModel.Discountname, viewModel.Description, applyModel, viewModel.Daystart.Value, viewModel.Dayend.Value, viewModel.Value);
+                        discountDAO.createdistcount(newdiscount);
+                        MessageBox.Show("Thêm Khuyến mãi thành công");
+                        viewModel.Discounts.Add(newdiscount);
+                        viewModel.Discounts = viewModel.Discounts;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Thông tin Không hợp lệ");
+                    }
                 }
             }
+        }
+        private bool checkedinput()
+        {
+            if (string.IsNullOrWhiteSpace(viewModel.DiscountID))
+            {
+                return false;
+            }
+            else if (string.IsNullOrWhiteSpace(viewModel.Discountname))
+            {
+                return false;
+            }
+            else if(viewModel.Daystart == null)
+            {
+                return false;
+            }
+            else if (viewModel.Dayend == null)
+            {
+                return false;
+            }
+            else if (viewModel.Value == null)
+            {
+                return false;
+            }
+            return true;
         }
         private void DeletefieldDiscount(object parameter) {
             viewModel.NotallowedAdd = false;
@@ -152,24 +186,23 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
             DiscountModel discountchoosed = discountDAO.findisbyId(discountid);
             ObservableCollection<DishModel> listdish = new ObservableCollection<DishModel>();
             viewModel.TypeDishitem = "All Dishs";
-            
-                listdish = new ObservableCollection<DishModel>(menuDao.ReadAll_Dish());
-            
-            
+            listdish = new ObservableCollection<DishModel>(menuDao.ReadAll_Dish());
             viewModel.ListDishs = new ObservableCollection<DishModel>();
-            foreach (DishModel dishdc in discountchoosed.apply.dish) {
-                foreach (DishModel dish in listdish)
+            if(discountchoosed.apply.dish.Count > 0)
+            {
+                foreach (DishModel dishdc in discountchoosed.apply.dish)
                 {
-                    if (dishdc._id == dish._id)
+                    foreach (DishModel dish in listdish)
                     {
-                        viewModel.ListDishs.Add(dish);
-                        break;
+                        if (dishdc._id == dish._id)
+                        {
+                            viewModel.ListDishs.Add(dish);
+                            break;
+                        }
                     }
                 }
             }
-           
-                viewModel.ListDishs = viewModel.ListDishs;
-            
+            viewModel.ListDishs = viewModel.ListDishs;
             var result = listdish.Where(cm => !viewModel.ListDishs.Any(cma => cma._id == cm._id)).ToList();
             viewModel.ListDishsNotDC = new ObservableCollection<DishModel>(result);
         }
@@ -179,14 +212,17 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
             DiscountModel discountchoosed = discountDAO.findisbyId(discountid);
             ObservableCollection<MenuModel> listmenu = new ObservableCollection<MenuModel>(menuDao.ReadAll_Type_dish());
             viewModel.ListMenu = new ObservableCollection<MenuModel>();
-            foreach (MenuModel menudc in discountchoosed.apply.menu)
+            if(discountchoosed.apply.menu.Count > 0)
             {
-                foreach (MenuModel menu in listmenu)
+                foreach (MenuModel menudc in discountchoosed.apply.menu)
                 {
-                    if (menudc.id == menu.id)
+                    foreach (MenuModel menu in listmenu)
                     {
-                        viewModel.ListMenu.Add(menu);
-                        break;
+                        if (menudc.id == menu.id)
+                        {
+                            viewModel.ListMenu.Add(menu);
+                            break;
+                        }
                     }
                 }
             }

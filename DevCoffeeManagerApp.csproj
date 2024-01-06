@@ -215,6 +215,8 @@
     <Compile Include="Commands\CommandDiscount\FilterDiscountCommand.cs" />
     <Compile Include="Commands\CommandAdmin\NavigateComand.cs" />
     <Compile Include="Commands\CommandAdminReceipt\ReceiptClickCommand.cs" />
+    <Compile Include="Commands\CommandMenu\ClickMenuCommand.cs" />
+    <Compile Include="Commands\CommandMenu\FilterMenuCommand.cs" />
     <Compile Include="Commands\CommandOption\SubmitOptionCommand.cs" />
     <Compile Include="Commands\CommandOrder\SearchCommand.cs" />
     <Compile Include="Commands\CommandOrder\OrderConfirmCommand.cs" />

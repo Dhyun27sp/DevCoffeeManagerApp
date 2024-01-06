@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevCoffeeManagerApp.StaticClass;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,10 @@ namespace DevCoffeeManagerApp.Commands.CommandStaff
                 if (parameter is Window window)
                 {
                     window.Hide();
+                    if(SessionStatic.Dishs != null)
+                    {
+                        SessionStatic.Dishs = null;
+                    }
                 }
                 LoginPage login = new LoginPage();
                 login.Show();

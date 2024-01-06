@@ -26,7 +26,11 @@ namespace DevCoffeeManagerApp.DAOs
             List<ProductModel> customers = collection.Find(new BsonDocument()).ToList();
             return new ObservableCollection<ProductModel>(customers);
         }
-
+        public ProductModel GetProductbyName(string name)
+        {
+            var filter = Builders<ProductModel>.Filter.Eq("Product_name", name);
+            return collection.Find(filter).FirstOrDefault();
+        }
         public List<String> GetAllProductName()
         {
             List<ProductModel> customers = collection.Find(new BsonDocument()).ToList();

@@ -91,6 +91,13 @@ namespace DevCoffeeManagerApp.DAOs
             }
             return New_Dish;
         }
+        public void AddDishInMenu(string type_dish, DishModel newDish)
+        {
+            var filter = Builders<MenuModel>.Filter.Eq("type_of_dish", type_dish);
+            var update = Builders<MenuModel>.Update.Push("dish", newDish);
+            // Thực hiện cập nhật
+            collection.UpdateOne(filter, update);
+        }
         public int CountDishesInMenu()
         {
                 var unwindDishes = new BsonDocument("$unwind", "$dish");
