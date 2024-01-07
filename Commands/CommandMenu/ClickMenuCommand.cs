@@ -73,7 +73,7 @@ namespace DevCoffeeManagerApp.Commands.CommandMenu
         {
             ProductModel product = new ProductModel();
             product.Product_name = viewmodel.Product_name;
-            product.Quantity = viewmodel.Quantity;
+            product.Stock = viewmodel.Stock;
             product.Unit = productDAO.GetProductbyName(viewmodel.Product_name).Unit;
             viewmodel.Ingredient.Add(product);
             viewmodel.Ingredient = viewmodel.Ingredient;
@@ -106,13 +106,12 @@ namespace DevCoffeeManagerApp.Commands.CommandMenu
                     LoadTypeDish();
                 }
 
-                // thêm món xong làm mới Property 
-                viewmodel.Ingredient = new ObservableCollection<ProductModel>();
-                viewmodel.DishName = "";
-                viewmodel.Pathimage = "";
-                viewmodel.Quantity = 0;
-                viewmodel.PriceDish = 0;
-            }
+            // thêm món xong làm mới Property 
+            viewmodel.Ingredient = new ObservableCollection<ProductModel>();
+            viewmodel.DishName = "";
+            viewmodel.Pathimage = "";
+            viewmodel.Stock = 0;
+            viewmodel.PriceDish = 0;
         }
 
         // mã hóa ảnh từ byte sang string 

@@ -62,5 +62,18 @@ namespace DevCoffeeManagerApp.DAOs
             int productCount = Convert.ToInt32(collection.CountDocuments(new BsonDocument()));
             return productCount;
         }
+        public void MinusProduct(ObservableCollection<DishModel> dish)
+        {
+            foreach(var item in dish)
+            {
+                int i = item.Quantity;
+                foreach(var product in item.ingredient)
+                {
+                    var filter = Builders<ProductModel>.Filter.Eq("product_name", product.Product_name);
+                    var update = Builders<ProductModel>.Update.Inc("stock", -product.Stock*i);
+                    collection.UpdateOne(filter, update);                    
+                }
+            }
+        }
     }
 }

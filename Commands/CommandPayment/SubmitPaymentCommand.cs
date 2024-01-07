@@ -21,6 +21,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
     {
         ReceiptDAO receiptDAO = new ReceiptDAO();
         CustomerDAO customerDAO = new CustomerDAO();
+        ProductDAO productDAO = new ProductDAO();
         private PaymentViewModel PaymentOrderViewModel;
         public SubmitPaymentCommand(PaymentViewModel PaymentOrderViewModel)
         {
@@ -70,6 +71,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                         SessionStatic.SetReceipt = receiptModel;
                         SessionStatic.Customer.point = (SessionStatic.Customer.point + plus_point) - used_point;
                         customerDAO.UpdateCustomer(SessionStatic.Customer);
+                        productDAO.MinusProduct(SessionStatic.GetOrdereds);
                         MessageBox.Show("Thanh toán thành công");
                         Receipt receipt = new Receipt();
                         receipt.Show();
