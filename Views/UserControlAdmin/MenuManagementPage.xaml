@@ -9,12 +9,13 @@
              TextElement.FontWeight="Medium"
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}"
-             xmlns:local="clr-namespace:DevCoffeeManagerApp.Views.UserControlAdmin"
+             xmlns:local="clr-namespace:DevCoffeeManagerApp.Config"
              xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
              mc:Ignorable="d"
              d:DesignHeight="2500"
              d:DesignWidth="1200">
     <UserControl.Resources>
+        <local:ToStringConverter x:Key="ToStringConverter"/>
         <Style x:Key="myHeaderStyle"
                TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Visibility"
@@ -190,7 +191,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.ingredient}"
+                                                        <TextBlock Text="{Binding Item1.ingredient, Converter={StaticResource ToStringConverter}}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
