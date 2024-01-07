@@ -24,6 +24,11 @@ namespace DevCoffeeManagerApp.DAOs
             collection = db.GetCollection<MenuModel>("Menu");
         }
 
+        public void CreateMenu(MenuModel menu)
+        {
+            collection.InsertOne(menu);
+        }
+
         public MenuModel ReadOnetype(string name_type)
         {
             var type_of_dish_Filter = Builders<MenuModel>.Filter.Eq("type_of_dish", name_type);
@@ -110,6 +115,19 @@ namespace DevCoffeeManagerApp.DAOs
                 var result = collection.Aggregate<MenuDishCount>(pipeline).ToList();
                 int totalDishes = Convert.ToInt32(result.Sum(x => x.Count));
                 return totalDishes;
+        }
+
+        public void DeleteMenuByMenuName(string menuName)
+        {
+            var filter = Builders<MenuModel>.Filter.Eq("type_of_dish", menuName);
+            collection.DeleteOne(filter);
+        }
+
+        public void DeleteDishByID(ObjectId dishId, string menuName)
+        {
+            var filter = Builders<MenuModel>.Filter.Eq("type_of_dish", menuName);
+            var update = Builders<MenuModel>.Update.PullFilter("dish", Builders<DishModel>.Filter.Eq("_id", dishId));
+            collection.UpdateOne(filter, update);
         }
 
         private class MenuDishCount

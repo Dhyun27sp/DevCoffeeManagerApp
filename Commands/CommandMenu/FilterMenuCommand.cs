@@ -39,6 +39,10 @@ namespace DevCoffeeManagerApp.Commands.CommandMenu
             {
                 viewmodel.Dishes = new ObservableCollection<DishModel>(viewmodel.LoadAllDish());
             }
+            else if(viewmodel.Type == null)
+            {
+                
+            }
             else
             {
                 LoadTypeDish();

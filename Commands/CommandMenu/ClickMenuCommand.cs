@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace DevCoffeeManagerApp.Commands.CommandMenu
 {
@@ -43,6 +44,15 @@ namespace DevCoffeeManagerApp.Commands.CommandMenu
                 case "adddish":
                     add_dish(parameter);
                     return;
+                case "addmenu":
+                    add_menu(parameter);
+                    return;
+                case "deleteMenu":
+                    delete_menu(parameter);
+                    return;
+                case "deleteDish":
+                    delete_dish(parameter);
+                    return;
             }
         }
 
@@ -56,10 +66,6 @@ namespace DevCoffeeManagerApp.Commands.CommandMenu
                 string path = fileDialog.FileName;
                 string fileName = fileDialog.SafeFileName;
                 viewmodel.Pathimage = path;
-            }
-            else
-            {
-
             }
         }
         // hàm thêm nguyên liệu
@@ -77,35 +83,36 @@ namespace DevCoffeeManagerApp.Commands.CommandMenu
         private void add_dish(object parameter)
         {
             DishModel dish = new DishModel();
-            dish.dish_name = viewmodel.DishName;
-            dish.price = viewmodel.PriceDish;
-            dish.image = encode();
-            dish.date_add = DateTime.Now.ToString("yyyy/MM/dd");
-            dish.ingredient = new List<ProductModel>(viewmodel.Ingredient);
-
-            menuDAO.AddDishInMenu(viewmodel.ItemMenu, dish);
-
-            MessageBox.Show("Thêm món thành công");
-
-            // sau khi thêm món thành công kiểm tra combobox xem đang ở trạng thái All hay loại món bất kỳ 
-            if (viewmodel.Type == "All")
+            if(checkInputDish())
             {
-                viewmodel.Dishes = new ObservableCollection<DishModel>(viewmodel.LoadAllDish());
-            }
-            else
-            {
-                LoadTypeDish();
-            }
+                dish._id = ObjectId.GenerateNewId();
+                dish.dish_name = viewmodel.DishName;
+                dish.price = viewmodel.PriceDish;
+                dish.image = encode();
+                dish.date_add = DateTime.Now.ToString("yyyy/MM/dd");
+                dish.ingredient = new List<ProductModel>(viewmodel.Ingredient);
 
-            // thêm món song làm mới Property 
-            viewmodel.Ingredient = new ObservableCollection<ProductModel>();
-            viewmodel.DishName = "";
-            viewmodel.Pathimage = "";
-            viewmodel.Quantity = 0;
-            viewmodel.DescriptionDish = "";
-            viewmodel.PriceDish = 0;
-            viewmodel.Product_name = "";
-            viewmodel.ItemMenu = "";
+                menuDAO.AddDishInMenu(viewmodel.ItemMenu, dish);
+
+                MessageBox.Show("Thêm món thành công");
+
+                // sau khi thêm món thành công kiểm tra combobox xem đang ở trạng thái All hay loại món bất kỳ 
+                if (viewmodel.Type == "All")
+                {
+                    viewmodel.Dishes = new ObservableCollection<DishModel>(viewmodel.LoadAllDish());
+                }
+                else
+                {
+                    LoadTypeDish();
+                }
+
+                // thêm món xong làm mới Property 
+                viewmodel.Ingredient = new ObservableCollection<ProductModel>();
+                viewmodel.DishName = "";
+                viewmodel.Pathimage = "";
+                viewmodel.Quantity = 0;
+                viewmodel.PriceDish = 0;
+            }
         }
 
         // mã hóa ảnh từ byte sang string 
@@ -127,10 +134,81 @@ namespace DevCoffeeManagerApp.Commands.CommandMenu
             }
             viewmodel.Dishes = dishs;
         }
-        
+
         //thêm loại món
-        //xem nguyên liệu món
+        private void add_menu(object parameter)
+        {
+            MenuModel menu = new MenuModel();
+            menu.type_of_dish = viewmodel.MenuName;
+            menu.detail = viewmodel.DescriptionMenu;
+            menu.dish = new List<DishModel>();
+            if (menuDAO.findMenubyname(viewmodel.MenuName) != null)
+            {
+                MessageBox.Show("Loại món đã tồn tại");
+            }
+            else
+            {
+                menuDAO.CreateMenu(menu);
+                viewmodel.LoadMenuInCombobox();
+                viewmodel.Menus = menuDAO.ReadAll_Type_dish();
+                MessageBox.Show("Thêm món thành công");
+            }    
+
+            // thêm món xong làm mới Property 
+            viewmodel.MenuName = "";
+            viewmodel.DescriptionMenu = "";
+        }
+
+        // xóa loại món
+        private void delete_menu(object parameter) 
+        {
+            if (parameter is MenuModel menu)
+            {
+                MessageBoxResult result = MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận xóa", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    menuDAO.DeleteMenuByMenuName(menu.type_of_dish);
+                    MessageBox.Show("Xóa thành công");
+                    viewmodel.Menus = menuDAO.ReadAll_Type_dish();
+                    viewmodel.LoadMenuInCombobox();
+                }
+            }
+        }
+
         //kiểm tra null
+        public bool checkInputDish()
+        {
+            if (string.IsNullOrWhiteSpace(viewmodel.DishName) || string.IsNullOrWhiteSpace(viewmodel.Pathimage) || string.IsNullOrWhiteSpace(viewmodel.ItemMenu) || viewmodel.Ingredient.Count == 0 || viewmodel.PriceDish == 0)
+            {
+                MessageBox.Show("Dữ liệu còn thiếu hoặc không hợp lệ, hãy nhập lại!");
+                return false;
+            }    
+            return true;
+        }
+
         //xóa món ăn
+        public void delete_dish(object parameter)
+        {
+            if (parameter is DishModel dish)
+            {
+                MessageBoxResult result = MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận xóa", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    menuDAO.DeleteDishByID(dish._id, dish.category);
+                    MessageBox.Show("Xóa thành công");
+                    // sau khi thêm món thành công kiểm tra combobox xem đang ở trạng thái All hay loại món bất kỳ 
+                    if (viewmodel.Type == "All")
+                    {
+                        viewmodel.Dishes = new ObservableCollection<DishModel>(viewmodel.LoadAllDish());
+                    }
+                    else
+                    {
+                        LoadTypeDish();
+                    }
+                }
+            }
+        }
     }
 }

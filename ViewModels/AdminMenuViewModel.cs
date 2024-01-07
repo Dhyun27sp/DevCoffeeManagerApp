@@ -55,6 +55,45 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(CombineList));
             }
         }
+
+        // danh sách loại món
+        private ObservableCollection<MenuModel> _menus;
+        public ObservableCollection<MenuModel> Menus
+        {
+            get
+            {
+                return _menus;
+            }
+            set
+            {
+                _menus = value;
+                int index = 1;
+                CombineListMenu.Clear();
+                foreach (var O in Menus)
+                {
+                    CombineListMenu.Add(new Tuple<MenuModel, int>(O, index));
+                    index++;
+                }
+                OnPropertyChanged(nameof(Dishes));
+
+            }
+        }
+        private ObservableCollection<Tuple<MenuModel, int>> _combineListMenu = new ObservableCollection<Tuple<MenuModel, int>>();
+        //Kết thúc danh sách món
+
+        //Danh sách loại món kết hợp số thứ tự 
+        public ObservableCollection<Tuple<MenuModel, int>> CombineListMenu
+        {
+            get
+            {
+                return _combineListMenu;
+            }
+            set
+            {
+                _combineListMenu = value;
+                OnPropertyChanged(nameof(CombineListMenu));
+            }
+        }
         // Kết thúc Danh sách món ăn kết hợp số thứ tự 
         /// <summary>
         ///
@@ -137,16 +176,13 @@ namespace DevCoffeeManagerApp.ViewModels
         }
         // kết thúc Property của textboxSố lượng
 
-        // Property của textbox mô tả 
-        private string _descriptiondish = "";
-        public string DescriptionDish
-        {
-            get {return _descriptiondish;}
-            set {_descriptiondish = value; OnPropertyChanged(nameof(DescriptionDish));}
-        }
-        // kết thúc Property của textbox mô tả 
+        private ObservableCollection<string> _menu_list;
+        public ObservableCollection<string> MenuList 
+        { 
+            get { return _menu_list; }
+            set { _menu_list = value; OnPropertyChanged(nameof(MenuList)); } 
+        }// Property của cbb chọn loại món để thêm món
 
-        public ObservableCollection<string> MenuList { get; set; }// Property của cbb chọn loại món để thêm món
         // SelectedItem của MenuList 
         private string _itemMenu = "";
         public string ItemMenu
@@ -165,10 +201,15 @@ namespace DevCoffeeManagerApp.ViewModels
         }
         // kết thúc giá của Món ăn 
 
-        public ObservableCollection<string> types_dish { get; set; }// món theo loại
+        private ObservableCollection<string> _types_dish;
+        public ObservableCollection<string> types_dish
+        {
+            get { return _types_dish; }
+            set { _types_dish = value; OnPropertyChanged(nameof(types_dish)); }
+        }// Property của cbb chọn loại món để thêm món
 
         // SelectedItem của types_dish 
-        private string _type = "";
+        private string _type = "All";
         public string Type
         {
             get {return _type;}
@@ -176,30 +217,63 @@ namespace DevCoffeeManagerApp.ViewModels
         }
         // kết thúc SelectedItem của types_dish 
 
+        // Property của textbox tên menu
+        private string _menuname = "";
+        public string MenuName
+        {
+            get { return _menuname; }
+            set { _menuname = value; OnPropertyChanged(nameof(MenuName)); }
+        }
+        // kết thúc Property của textbox menu
+
+        // Property của textbox mô tả 
+        private string _descriptionmenu = "";
+        public string DescriptionMenu
+        {
+            get { return _descriptionmenu; }
+            set { _descriptionmenu = value; OnPropertyChanged(nameof(DescriptionMenu)); }
+        }
+        // kết thúc Property của textbox mô tả 
+
         public ObservableCollection<DishModel> AllSupplies { get; set; }
         public DateTime Date { get; set; }
         public ICommand ChooseimageCommand { get; set; }
         public ICommand AddIngredientCommand { get; set; }
         public ICommand AddDishCommand { get; set; }
         public ICommand SelectionChangeType { get; set; }
-        
+        public ICommand AddMenuCommand { get; set; }
+        public ICommand DeleteMenuCommand { get; set; }
+        public ICommand DeleteDishCommand { get; set; }
         public AdminMenuViewModel()
         {
             Ingredient = new ObservableCollection<ProductModel>();
             Dishes = new ObservableCollection<DishModel>(LoadAllDish());
+            Menus = new ObservableCollection<MenuModel>(menuDAO.ReadAll_Type_dish());
+
             Date = DateTime.Now;
 
             ChooseimageCommand = new ClickMenuCommand(this, "chooseimage");
             AddIngredientCommand = new ClickMenuCommand(this, "addIngredient");
             AddDishCommand = new ClickMenuCommand(this, "adddish");
             SelectionChangeType = new FilterMenuCommand(this, "cbb");
+            AddMenuCommand = new ClickMenuCommand(this, "addmenu");
+            DeleteMenuCommand = new ClickMenuCommand(this, "deleteMenu");
+            DeleteDishCommand = new ClickMenuCommand(this, "deleteDish");
 
             //nạp danh sách sản phẩm vào ProductList chỉ lấy tên
             ProductList = new List<string>();
             foreach(ProductModel p in productDAO.GetAllProducts()){
                 ProductList.Add(p.Product_name);
             }
+            LoadMenuInCombobox();
+        }
+
+        public void LoadMenuInCombobox()
+        {
             //nạp danh loại món vào MenuList,types_dish chỉ lấy tên
+            string type = "All";
+            type = Type; // dữ biến type trước khi cập nhật
+
             MenuList = new ObservableCollection<string>();
             types_dish = new ObservableCollection<string>();
             ObservableCollection<MenuModel> menuModels = menuDAO.ReadAll_Type_dish();
@@ -209,6 +283,9 @@ namespace DevCoffeeManagerApp.ViewModels
                 types_dish.Add(item.type_of_dish);
             }
             types_dish.Add("All");
+            MenuList = MenuList;
+
+            Type = type;
         }
 
         // hàm gán category cho món ăn

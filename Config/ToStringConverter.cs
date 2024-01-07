@@ -15,7 +15,7 @@ namespace DevCoffeeManagerApp.Config
         {
             if (value is IEnumerable<ProductModel> yourObjects)
             {
-                return string.Join(", ", yourObjects.Select(obj => $"{obj.Product_name}: {obj.Stock}{obj.Unit}"));
+                return string.Join(", ", yourObjects.Select(obj => $"{obj.Product_name}: {obj.Quantity}{obj.Unit}"));
             }
 
             return string.Empty;
