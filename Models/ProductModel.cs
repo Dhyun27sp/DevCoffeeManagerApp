@@ -17,9 +17,6 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("stock"), BsonRepresentation(BsonType.Int32)]
         public int Stock { get; set; }
 
-        [BsonElement("quantity"), BsonRepresentation(BsonType.Int32)]
-        public int Quantity { get; set; }
-
         [BsonElement("unit"), BsonRepresentation(BsonType.String)]
         public String Unit { get; set; }
 

@@ -104,8 +104,8 @@ namespace DevCoffeeManagerApp.ViewModels
         private string _pathimage = "";
         public string Pathimage
         {
-            get {return _pathimage;}
-            set {_pathimage = value; OnPropertyChanged(nameof(Pathimage));}
+            get { return _pathimage; }
+            set { _pathimage = value; OnPropertyChanged(nameof(Pathimage)); }
         }
         // Kết thúc Property cho textblock Pathimage lấy dường dẫn ảnh
 
@@ -113,8 +113,8 @@ namespace DevCoffeeManagerApp.ViewModels
         private string _dishName = "";
         public string DishName
         {
-            get {return _dishName;}
-            set {_dishName = value; OnPropertyChanged(nameof(DishName));}
+            get { return _dishName; }
+            set { _dishName = value; OnPropertyChanged(nameof(DishName)); }
         }
         // Kết thúc Property cho textbox Tên món ăn
 
@@ -123,17 +123,17 @@ namespace DevCoffeeManagerApp.ViewModels
         private string _product_name = "";
         public string Product_name
         {
-            get {return _product_name;}
-            set {_product_name = value;OnPropertyChanged(nameof(Product_name));}
+            get { return _product_name; }
+            set { _product_name = value; OnPropertyChanged(nameof(Product_name)); }
         }
         // Kết thúc Property cho SelectedItem của ProductList
 
         // Property textbox Số lượng của 
-        private int _quantity = 0;
-        public int Quantity
+        private int _stock = 0;
+        public int Stock
         {
-            get {return _quantity;}
-            set {_quantity = value;OnPropertyChanged(nameof(Quantity));}
+            get { return _stock; }
+            set { _stock = value; OnPropertyChanged(nameof(Stock)); }
         }
         // kết thúc Property của textboxSố lượng
 
@@ -141,8 +141,8 @@ namespace DevCoffeeManagerApp.ViewModels
         private string _descriptiondish = "";
         public string DescriptionDish
         {
-            get {return _descriptiondish;}
-            set {_descriptiondish = value; OnPropertyChanged(nameof(DescriptionDish));}
+            get { return _descriptiondish; }
+            set { _descriptiondish = value; OnPropertyChanged(nameof(DescriptionDish)); }
         }
         // kết thúc Property của textbox mô tả 
 
@@ -151,8 +151,8 @@ namespace DevCoffeeManagerApp.ViewModels
         private string _itemMenu = "";
         public string ItemMenu
         {
-            get {return _itemMenu;}
-            set {_itemMenu = value; OnPropertyChanged(nameof(ItemMenu));}
+            get { return _itemMenu; }
+            set { _itemMenu = value; OnPropertyChanged(nameof(ItemMenu)); }
         }
         // kết thúc SelectedItem của MenuList 
 
@@ -160,8 +160,8 @@ namespace DevCoffeeManagerApp.ViewModels
         private int _priceDish = 0;
         public int PriceDish
         {
-            get {return _priceDish;}
-            set {_priceDish = value; OnPropertyChanged(nameof(PriceDish)); }
+            get { return _priceDish; }
+            set { _priceDish = value; OnPropertyChanged(nameof(PriceDish)); }
         }
         // kết thúc giá của Món ăn 
 
@@ -171,8 +171,8 @@ namespace DevCoffeeManagerApp.ViewModels
         private string _type = "";
         public string Type
         {
-            get {return _type;}
-            set {_type = value; OnPropertyChanged(nameof(Type));}
+            get { return _type; }
+            set { _type = value; OnPropertyChanged(nameof(Type)); }
         }
         // kết thúc SelectedItem của types_dish 
 
@@ -182,7 +182,7 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand AddIngredientCommand { get; set; }
         public ICommand AddDishCommand { get; set; }
         public ICommand SelectionChangeType { get; set; }
-        
+
         public AdminMenuViewModel()
         {
             Ingredient = new ObservableCollection<ProductModel>();
@@ -196,7 +196,8 @@ namespace DevCoffeeManagerApp.ViewModels
 
             //nạp danh sách sản phẩm vào ProductList chỉ lấy tên
             ProductList = new List<string>();
-            foreach(ProductModel p in productDAO.GetAllProducts()){
+            foreach (ProductModel p in productDAO.GetAllProducts())
+            {
                 ProductList.Add(p.Product_name);
             }
             //nạp danh loại món vào MenuList,types_dish chỉ lấy tên
@@ -219,11 +220,11 @@ namespace DevCoffeeManagerApp.ViewModels
             {
                 List<DishModel> DishsTemp = new List<DishModel>();
 
-                    DishsTemp = menuDAO.ReadOnetype(type).dish;
-                    foreach (var dishtemp in DishsTemp)
-                    {
-                        dishtemp.category = type;
-                    }
+                DishsTemp = menuDAO.ReadOnetype(type).dish;
+                foreach (var dishtemp in DishsTemp)
+                {
+                    dishtemp.category = type;
+                }
                 DishsLocal.AddRange(DishsTemp);
             }
             return DishsLocal;
