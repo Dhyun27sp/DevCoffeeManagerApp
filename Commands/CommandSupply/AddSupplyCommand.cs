@@ -27,12 +27,17 @@ namespace DevCoffeeManagerApp.Commands.CommandSupply
         {
             DateTime date = DateTime.Now;
             SupplyModel model = new SupplyModel(adminSupplyViewModel.newsupply);
+            if (model.Product_name == null || model.Product_name == "" || model.Manufacturer == null || model.Manufacturer == "" || model.Unit == null || model.Unit == "" || model.Date == null || model.EXP_date == null || model.MFG_date == null || model.Price < 1000 || model.Quantity <= 0)
+            {
+                MessageBox.Show("Đơn hàng chưa đủ thông tin");
+                return;
+            }
             model.Date = date;
             model.Status = "Unused";
             supplyDAO.createSupply(model);
             adminSupplyViewModel.Supplies.Add(model);
             adminSupplyViewModel.Supplies = adminSupplyViewModel.Supplies;
-            MessageBox.Show("Đã thêm hàng hoá");            
+            MessageBox.Show("Đã thêm hàng hoá");
             return;
         }
     }
