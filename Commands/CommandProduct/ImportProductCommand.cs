@@ -29,8 +29,13 @@ namespace DevCoffeeManagerApp.Commands.CommandProduct
             if (parameter is ProductModel data)
             {
                 SupplyModel firstsupply = supplyDAO.GetSupplyByName(data.Product_name);
+                if (firstsupply == null)
+                {
+                    MessageBox.Show("Hàng chưa được nhập");
+                    return;
+                }
                 data.EXP_date = firstsupply.EXP_date;
-                data.Stock = firstsupply.Quantity*1000;
+                data.Stock = firstsupply.Quantity * 1000;
                 supplyDAO.SetStatus(firstsupply.Product_name, "In-use");
                 productDAO.UpdateProduct(data);
                 adminProductViewModel.Products = adminProductViewModel.Products;

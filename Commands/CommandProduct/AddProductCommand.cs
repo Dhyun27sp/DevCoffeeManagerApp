@@ -27,6 +27,11 @@ namespace DevCoffeeManagerApp.Commands.CommandProduct
         {
             DateTime date = DateTime.Now;
             ProductModel model = new ProductModel(adminProductViewModel.newproduct);
+            if (model.Product_name == null || model.Product_name == "" || model.Unit == null || model.Unit == "")
+            {
+                MessageBox.Show("Hàm hoá rõng không thể thêm");
+                return;
+            }                
             productDAO.CreateProduct(model);
             adminProductViewModel.Products.Add(model);
             adminProductViewModel.Products = adminProductViewModel.Products;

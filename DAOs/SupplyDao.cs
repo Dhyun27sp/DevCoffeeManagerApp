@@ -33,7 +33,9 @@ namespace DevCoffeeManagerApp.DAOs
         {
             var filter = Builders<SupplyModel>.Filter.Eq("product_name", name) & Builders<SupplyModel>.Filter.Ne("status", "unused");
             SupplyModel firstRecord = collection.Find(filter).FirstOrDefault();
-            return new  SupplyModel(firstRecord);
+            if (firstRecord !=null)
+                return new  SupplyModel(firstRecord);
+            else return null;
         }
         public void SetStatus(String name, String status)
         {
