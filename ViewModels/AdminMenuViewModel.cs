@@ -241,7 +241,10 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand AddIngredientCommand { get; set; }
         public ICommand AddDishCommand { get; set; }
         public ICommand SelectionChangeType { get; set; }
-        
+        public ICommand AddMenuCommand { get; set; }
+        public ICommand DeleteMenuCommand { get; set; }
+        public ICommand DeleteDishCommand { get; set; }
+
         public AdminMenuViewModel()
         {
             Ingredient = new ObservableCollection<ProductModel>();

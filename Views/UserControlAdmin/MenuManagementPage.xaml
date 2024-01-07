@@ -360,7 +360,7 @@
                                                             <GridViewColumn Width="85">
                                                                 <GridViewColumn.CellTemplate>
                                                                     <DataTemplate>
-                                                                        <TextBlock Text="{Binding Item1.Quantity}"
+                                                                        <TextBlock Text="{Binding Item1.Stock}"
                                                                                    FontSize="13" />
                                                                     </DataTemplate>
                                                                 </GridViewColumn.CellTemplate>
@@ -406,7 +406,7 @@
                                                           Margin="0 0 15 0">
                                                         <TextBox VerticalAlignment="Center"
                                                                  FontSize="15"
-                                                                 Text="{Binding Quantity}"
+                                                                 Text="{Binding Stock}"
                                                                  materialDesign:TextFieldAssist.HasClearButton="True"
                                                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                                                             <materialDesign:HintAssist.Hint>

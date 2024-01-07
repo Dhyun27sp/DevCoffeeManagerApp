@@ -83,7 +83,7 @@ namespace DevCoffeeManagerApp.Commands.CommandMenu
         private void add_dish(object parameter)
         {
             DishModel dish = new DishModel();
-            if(checkInputDish())
+            if (checkInputDish())
             {
                 dish._id = ObjectId.GenerateNewId();
                 dish.dish_name = viewmodel.DishName;
@@ -106,12 +106,13 @@ namespace DevCoffeeManagerApp.Commands.CommandMenu
                     LoadTypeDish();
                 }
 
-            // thêm món xong làm mới Property 
-            viewmodel.Ingredient = new ObservableCollection<ProductModel>();
-            viewmodel.DishName = "";
-            viewmodel.Pathimage = "";
-            viewmodel.Stock = 0;
-            viewmodel.PriceDish = 0;
+                // thêm món xong làm mới Property 
+                viewmodel.Ingredient = new ObservableCollection<ProductModel>();
+                viewmodel.DishName = "";
+                viewmodel.Pathimage = "";
+                viewmodel.Stock = 0;
+                viewmodel.PriceDish = 0;
+            }
         }
 
         // mã hóa ảnh từ byte sang string 
