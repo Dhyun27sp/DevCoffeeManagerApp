@@ -139,24 +139,27 @@ namespace DevCoffeeManagerApp.Commands.CommandMenu
         private void add_menu(object parameter)
         {
             MenuModel menu = new MenuModel();
-            menu.type_of_dish = viewmodel.MenuName;
-            menu.detail = viewmodel.DescriptionMenu;
-            menu.dish = new List<DishModel>();
-            if (menuDAO.findMenubyname(viewmodel.MenuName) != null)
+            if(checkInputMenu())
             {
-                MessageBox.Show("Loại món đã tồn tại");
-            }
-            else
-            {
-                menuDAO.CreateMenu(menu);
-                viewmodel.LoadMenuInCombobox();
-                viewmodel.Menus = menuDAO.ReadAll_Type_dish();
-                MessageBox.Show("Thêm món thành công");
-            }    
+                menu.type_of_dish = viewmodel.MenuName;
+                menu.detail = viewmodel.DescriptionMenu;
+                menu.dish = new List<DishModel>();
+                if (menuDAO.findMenubyname(viewmodel.MenuName) != null)
+                {
+                    MessageBox.Show("Loại món đã tồn tại");
+                }
+                else
+                {
+                    menuDAO.CreateMenu(menu);
+                    viewmodel.LoadMenuInCombobox();
+                    viewmodel.Menus = menuDAO.ReadAll_Type_dish();
+                    MessageBox.Show("Thêm món thành công");
+                }
 
-            // thêm món xong làm mới Property 
-            viewmodel.MenuName = "";
-            viewmodel.DescriptionMenu = "";
+                // thêm món xong làm mới Property 
+                viewmodel.MenuName = "";
+                viewmodel.DescriptionMenu = "";
+            }    
         }
 
         // xóa loại món
@@ -176,7 +179,7 @@ namespace DevCoffeeManagerApp.Commands.CommandMenu
             }
         }
 
-        //kiểm tra null
+        //kiểm tra null input món ăn
         public bool checkInputDish()
         {
             if (string.IsNullOrWhiteSpace(viewmodel.DishName) || string.IsNullOrWhiteSpace(viewmodel.Pathimage) || string.IsNullOrWhiteSpace(viewmodel.ItemMenu) || viewmodel.Ingredient.Count == 0 || viewmodel.PriceDish == 0)
@@ -187,6 +190,16 @@ namespace DevCoffeeManagerApp.Commands.CommandMenu
             return true;
         }
 
+        //kiểm tra null input loại món
+        public bool checkInputMenu()
+        {
+            if (string.IsNullOrWhiteSpace(viewmodel.MenuName))
+            {
+                MessageBox.Show("Dữ liệu còn thiếu hoặc không hợp lệ, hãy nhập lại!");
+                return false;
+            }
+            return true;
+        }
         //xóa món ăn
         public void delete_dish(object parameter)
         {

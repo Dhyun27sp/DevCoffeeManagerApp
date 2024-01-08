@@ -42,7 +42,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                     string name = Dish.dish_name;
                     int Quanlity = 1;
                     int? saleprice = Dish.Saleprice;
-                    DishModel ItemOrdered = new DishModel(Dish._id, name, Quanlity, saleprice, Dish.price);
+                    DishModel ItemOrdered = new DishModel(Dish._id, name, Quanlity, saleprice, Dish.price, Dish.ingredient);
                     OrderFoodViewModel.Ordereds.Add(ItemOrdered);                    
                 }
                 else

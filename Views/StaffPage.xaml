@@ -9,12 +9,13 @@
         xmlns:views="clr-namespace:DevCoffeeManagerApp.Views.UserControlStaff"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindowStaff"
+        Title="Trang nhân viên"
         WindowStyle="ThreeDBorderWindow"
         WindowState="Maximized"
         Name="WindowStaff"
         Height="auto"
-        Width="auto">
+        Width="auto"
+        Icon="/Img/logo.png">
     <Window.DataContext>
         <vms:StaffViewModel>
         </vms:StaffViewModel>

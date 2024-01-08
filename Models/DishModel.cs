@@ -86,13 +86,14 @@ namespace DevCoffeeManagerApp.Models
             }
         }
 
-        public DishModel(ObjectId _id, string dish_name, int _quantity, int? Saleprice, int? price)// này cho order nhé
+        public DishModel(ObjectId _id, string dish_name, int _quantity, int? Saleprice, int? price, List<ProductModel> ingredient)// này cho order nhé
         {
             this._id = _id;
             this.dish_name = dish_name;
             this._quantity = _quantity;
             this.Saleprice = Saleprice;
             this.price = price;
+            this.ingredient= ingredient;
         }
 
         public DishModel(ObjectId _id,string dishName,List<ProductModel> ingredients,int? dishPrice,string dishImage,

@@ -93,6 +93,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                             dishesdb, discounts, "Thanh toán bằng tiền mặt", used_point, total_amount, int.Parse(guest_monney), change);
                         receiptDAO.AddReceipt(receiptModel);
                         SessionStatic.SetReceipt = receiptModel;
+                        productDAO.MinusProduct(SessionStatic.GetOrdereds);
                         MessageBox.Show("Thanh toán thành công");
                         Receipt receipt = new Receipt();
                         receipt.Show();
