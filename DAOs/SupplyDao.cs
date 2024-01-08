@@ -29,12 +29,21 @@ namespace DevCoffeeManagerApp.DAOs
             return new ObservableCollection<SupplyModel>(supplies);
         }
 
-        public SupplyModel GetSupplyByName(String name)
+        public SupplyModel GetUnUsingSupplyByName(String name)
         {
-            var filter = Builders<SupplyModel>.Filter.Eq("product_name", name) & Builders<SupplyModel>.Filter.Ne("status", "unused");
+            var filter = Builders<SupplyModel>.Filter.Eq("product_name", name) & Builders<SupplyModel>.Filter.Eq("status", "Unused");
             SupplyModel firstRecord = collection.Find(filter).FirstOrDefault();
             if (firstRecord !=null)
                 return new  SupplyModel(firstRecord);
+            else return null;
+        }
+
+        public SupplyModel GetUsingSupplyByName(String name)
+        {
+            var filter = Builders<SupplyModel>.Filter.Eq("product_name", name) & Builders<SupplyModel>.Filter.Eq("status", "In-use");
+            SupplyModel firstRecord = collection.Find(filter).FirstOrDefault();
+            if (firstRecord != null)
+                return new SupplyModel(firstRecord);
             else return null;
         }
         public void SetStatus(String name, String status)
