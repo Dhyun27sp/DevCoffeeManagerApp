@@ -322,7 +322,7 @@
                                               Style="{StaticResource MaterialDesignFilledComboBox}"
                                               Background="Transparent"
                                               ItemsSource="{Binding UnitList}"
-                                              SelectedItem="{Binding newsupply.Unit}">
+                                              SelectedItem="{Binding newproduct.Unit}">
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Orientation="Horizontal">
                                                 <materialDesign:PackIcon VerticalAlignment="Center"
