@@ -31,7 +31,13 @@ namespace DevCoffeeManagerApp.Commands.CommandProduct
             {
                 MessageBox.Show("Hàm hoá rõng không thể thêm");
                 return;
-            }                
+            }
+            ProductModel existmodel = productDAO.GetProductbyName(model.Product_name);
+            if (existmodel == null)
+            {
+                MessageBox.Show("Đã có sản phẩm này");
+                return;
+            }
             productDAO.CreateProduct(model);
             adminProductViewModel.Products.Add(model);
             adminProductViewModel.Products = adminProductViewModel.Products;
