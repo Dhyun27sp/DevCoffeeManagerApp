@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZstdSharp;
 
 namespace DevCoffeeManagerApp.DAOs
 {
@@ -62,18 +63,42 @@ namespace DevCoffeeManagerApp.DAOs
             int productCount = Convert.ToInt32(collection.CountDocuments(new BsonDocument()));
             return productCount;
         }
-        public void MinusProduct(ObservableCollection<DishModel> dish)
+        public void MinusProduct (ObservableCollection<DishModel> dish)
         {
+            Dictionary<string,int> availableList = new Dictionary<string,int>();
             foreach(var item in dish)
             {
                 int i = item.Quantity;
                 foreach(var product in item.ingredient)
                 {
+                    int usedamount = product.Stock;
                     var filter = Builders<ProductModel>.Filter.Eq("product_name", product.Product_name);
-                    var update = Builders<ProductModel>.Update.Inc("stock", -product.Stock*i);
-                    collection.UpdateOne(filter, update);                    
+                    var update = Builders<ProductModel>.Update.Inc("stock", -usedamount*i);
+                    collection.UpdateOne(filter, update);
+                    if (!checkPositiveStock(filter,usedamount).Item1)
+                    {
+                        i -= checkPositiveStock(filter,usedamount).Item2;
+                        availableList.Add(product.Product_name, i);
+                        string result = $"Bạn có thể mua: {string.Join(", ", availableList.Select(kvp => $"{kvp.Value} {kvp.Key}"))}";
+                        throw new Exception(result);
+                    }
+                    else
+                        availableList.Add(product.Product_name , i);                        
                 }
             }
+        }
+        private Tuple<Boolean,int> checkPositiveStock (FilterDefinition<ProductModel> filter, int usedamount)
+        {
+            ProductModel product = collection.Find(filter).FirstOrDefault();
+            if (product.Stock < 0)
+            {
+                int unsellNum = - (product.Stock / usedamount);
+                if (unsellNum * usedamount + product.Stock < 0)
+                    unsellNum++;
+                return Tuple.Create(false,unsellNum);
+            }
+            else 
+                return Tuple.Create(false,0);
         }
     }
 }

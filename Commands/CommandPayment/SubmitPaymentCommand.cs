@@ -71,7 +71,14 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                         SessionStatic.SetReceipt = receiptModel;
                         SessionStatic.Customer.point = (SessionStatic.Customer.point + plus_point) - used_point;
                         customerDAO.UpdateCustomer(SessionStatic.Customer);
-                        productDAO.MinusProduct(SessionStatic.GetOrdereds);
+                        try
+                        {
+                            productDAO.MinusProduct(SessionStatic.GetOrdereds);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                         MessageBox.Show("Thanh toán thành công");
                         Receipt receipt = new Receipt();
                         receipt.Show();
@@ -93,7 +100,14 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                             dishesdb, discounts, "Thanh toán bằng tiền mặt", used_point, total_amount, int.Parse(guest_monney), change);
                         receiptDAO.AddReceipt(receiptModel);
                         SessionStatic.SetReceipt = receiptModel;
-                        productDAO.MinusProduct(SessionStatic.GetOrdereds);
+                        try
+                        {
+                            productDAO.MinusProduct(SessionStatic.GetOrdereds);
+                        }
+                        catch(Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }                        
                         MessageBox.Show("Thanh toán thành công");
                         Receipt receipt = new Receipt();
                         receipt.Show();
