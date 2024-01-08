@@ -291,7 +291,7 @@
                                                            Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                                                            Text="{Binding dish_name}" />
                                                 <WrapPanel>
-                                                    <TextBlock Text="{Binding price}"
+                                                    <TextBlock Text="{Binding price, StringFormat='{}{0:N0}đ'}"
                                                                FontSize="16"
                                                                VerticalAlignment="Center">
                                                         <TextBlock.Style>
@@ -315,7 +315,7 @@
                                                         </TextBlock.Style>
 
                                                     </TextBlock>
-                                                    <TextBlock Text="{Binding Saleprice}"
+                                                    <TextBlock Text="{Binding Saleprice, StringFormat='{}{0:N0}đ'}"
                                                                Margin="10 0 0 0"
                                                                Style="{StaticResource MaterialDesignBody1TextBlock}" />
                                                 </WrapPanel>
@@ -538,7 +538,7 @@
                                         FontFamily="Nunito"
                                         Margin="30 0 20 0"
                                         VerticalAlignment="Center"
-                                        Text="{Binding Total}"></TextBlock>
+                                        Text="{Binding Total, StringFormat='{}{0:N0}đ'}"></TextBlock>
                         </WrapPanel>
 
                     </Grid>

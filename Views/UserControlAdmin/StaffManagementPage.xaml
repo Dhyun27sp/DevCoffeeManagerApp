@@ -477,7 +477,7 @@
                                                                 </GridViewColumnHeader>
                                                                 <GridViewColumn.CellTemplate>
                                                                     <DataTemplate>
-                                                                        <TextBlock Text="{Binding Item1.Money}"
+                                                                        <TextBlock Text="{Binding Item1.Money, StringFormat='{}{0:N0}đ'}"
                                                                                    FontSize="13" />
                                                                     </DataTemplate>
                                                                 </GridViewColumn.CellTemplate>

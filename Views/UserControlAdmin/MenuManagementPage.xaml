@@ -204,7 +204,7 @@
                                                 </GridViewColumnHeader>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Item1.price, UpdateSourceTrigger=PropertyChanged}"
+                                                        <TextBlock Text="{Binding Item1.price, StringFormat='{}{0:N0}đ', UpdateSourceTrigger=PropertyChanged}"
                                                                    FontSize="13" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
