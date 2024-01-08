@@ -42,7 +42,7 @@ namespace DevCoffeeManagerApp.StaticClass
         public static ObservableCollection<DishModel> DeepCopyObservableCollection(ObservableCollection<DishModel> source)
         {
             return new ObservableCollection<DishModel>(
-                source.Select(d => new DishModel(d._id, d.dish_name, d.Quantity, d.Saleprice, d.price))
+                source.Select(d => new DishModel(d._id, d.dish_name, d.Quantity, d.Saleprice, d.price, d.ingredient))
             );
         }
         public static List<DishModel> Dishs { get; set; }

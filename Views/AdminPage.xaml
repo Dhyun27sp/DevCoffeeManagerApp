@@ -14,12 +14,13 @@
         FontFamily="{materialDesign:MaterialDesignFont}"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindowAdmin"
+        Title="Trang quản lý"
         WindowStyle="ThreeDBorderWindow"
         WindowState="Maximized"
         Name="MainWindowAdmin"
         Height="auto"
-        Width="auto">
+        Width="auto"
+        Icon="/Img/logo.png">
     <Window.DataContext>
         <vms:AdminViewModel>
         </vms:AdminViewModel>
