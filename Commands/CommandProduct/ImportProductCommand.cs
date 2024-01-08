@@ -22,7 +22,7 @@ namespace DevCoffeeManagerApp.Commands.CommandProduct
         }
         public override bool CanExecute(object parameter)
         {
-            if (parameter is ProductModel data && data.Stock >=0)
+            if (parameter is ProductModel data && data.Stock >= 100)
             {
                 return false;
             }
@@ -32,7 +32,7 @@ namespace DevCoffeeManagerApp.Commands.CommandProduct
         {
             if (parameter is ProductModel data)
             {
-                
+
                 SupplyModel firstsupply = supplyDAO.GetUnUsingSupplyByName(data.Product_name);
                 if (firstsupply == null)
                 {
@@ -40,16 +40,24 @@ namespace DevCoffeeManagerApp.Commands.CommandProduct
                     return;
                 }
                 data.EXP_date = firstsupply.EXP_date;
-                data.Stock = firstsupply.Quantity * 1000;
                 SupplyModel secondsupply = supplyDAO.GetUsingSupplyByName(data.Product_name);
                 if (secondsupply != null)
                 {
                     if (secondsupply.EXP_date >= DateTime.Now)
                     {
                         supplyDAO.SetStatus(secondsupply.Product_name, "Out of Date");
+                        data.Stock = firstsupply.Quantity * 1000;
                     }
-                    else supplyDAO.SetStatus(secondsupply.Product_name, "Exhausted");
+                        
+                    else
+                    {
+                        supplyDAO.SetStatus(secondsupply.Product_name, "Exhausted");
+                        data.Stock += firstsupply.Quantity * 1000;
+                    }
                 }
+                else
+                    data.Stock = firstsupply.Quantity * 1000;
+
                 supplyDAO.SetStatus(firstsupply.Product_name, "In-use");
                 productDAO.UpdateProduct(data);
                 adminProductViewModel.Products = adminProductViewModel.Products;
