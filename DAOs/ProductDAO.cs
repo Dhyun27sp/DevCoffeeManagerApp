@@ -66,26 +66,33 @@ namespace DevCoffeeManagerApp.DAOs
         public void MinusProduct (ObservableCollection<DishModel> dish)
         {
             Dictionary<string,int> availableList = new Dictionary<string,int>();
-            foreach(var item in dish)
+            bool flag = false;
+            foreach (var item in dish)
             {
-                int i = item.Quantity;
-                foreach(var product in item.ingredient)
+                int i = item.Quantity;                
+                foreach (var product in item.ingredient)
                 {
                     int usedamount = product.Stock;
                     var filter = Builders<ProductModel>.Filter.Eq("product_name", product.Product_name);
-                    var update = Builders<ProductModel>.Update.Inc("stock", -usedamount*i);
+                    var update = Builders<ProductModel>.Update.Inc("stock", -usedamount * i);
                     collection.UpdateOne(filter, update);
-                    if (!checkPositiveStock(filter,usedamount).Item1)
+                    Tuple<bool, int> unvailableDish = checkPositiveStock(filter, usedamount);
+                    if (!unvailableDish.Item1)
                     {
-                        i -= checkPositiveStock(filter,usedamount).Item2;
-                        availableList.Add(product.Product_name, i);
-                        string result = $"Bạn có thể mua: {string.Join(", ", availableList.Select(kvp => $"{kvp.Value} {kvp.Key}"))}";
-                        throw new Exception(result);
+                        i -= unvailableDish.Item2;
+                        if (!flag)
+                            flag = true;
                     }
-                    else
-                        availableList.Add(product.Product_name , i);                        
                 }
+                if (i > 0)
+                    availableList.Add(item.dish_name, i);
             }
+            if (flag)
+            {
+                string result = $"Bạn có thể mua: {string.Join(", ", availableList.Select(kvp => $"{kvp.Value} {kvp.Key}"))}";
+                throw new Exception(result);
+            }
+            return;
         }
         private Tuple<Boolean,int> checkPositiveStock (FilterDefinition<ProductModel> filter, int usedamount)
         {
