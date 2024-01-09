@@ -149,6 +149,8 @@ namespace DevCoffeeManagerApp.ViewModels
                 AllDishsVariable = SessionStatic.Dishs;
                 Dishs = AllDishsVariable;
             }
+            menuDao.ReadAll_HotDish();
+            menuDao.ReadAll_NewDish();
             PlusCommad = new OperatorCommand(this, "Plus");
             MinusCommad = new OperatorCommand(this, "Minus");
             DeleteCommand = new OperatorCommand(this, "Delete");
@@ -307,17 +309,28 @@ namespace DevCoffeeManagerApp.ViewModels
                 }
             }
             
-
             List<DishModel> DishsNew = new List<DishModel>();
             DishsNew = menuDao.ReadAll_NewDish();
-
-            for (int i = 0;i < DishsNew.Count();i++)
+            for (int i = 0; i < DishsLocal.Count(); i++)
             {
-                for (int j = i; j < DishsLocal.Count(); j++)
+                for (int j = 0; j < DishsNew.Count(); j++)
                 {
-                    if (DishsLocal[j]._id == DishsNew[i]._id)
+                    if (DishsLocal[i]._id == DishsNew[j]._id)
                     {
                         DishsLocal[i].newDish = true;
+                    }
+                }
+            }
+
+            List<DishModel> DishsHot = new List<DishModel>();
+            DishsHot = menuDao.ReadAll_HotDish();
+            for (int i = 0; i < DishsLocal.Count(); i++)
+            {
+                for (int j = 0; j < DishsHot.Count(); j++)
+                {
+                    if (DishsLocal[i]._id == DishsHot[j]._id)
+                    {
+                        DishsLocal[i].HotDish = true;
                     }
                 }
             }

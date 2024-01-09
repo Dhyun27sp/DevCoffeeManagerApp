@@ -178,15 +178,15 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
 
         private void AddToResultList(ref List<DishModel> Dishs_Search, DishModel item, string Type_Special)
         {
-            if (Type_Special == "Discounted" && item.SaleDish.Value)
+            if (Type_Special == "Discounted" && item.SaleDish != null)
             {
                 Dishs_Search.Add(item);
             }
-            else if (Type_Special == "New Dish" && item.newDish.Value)
+            else if (Type_Special == "New Dish" && item.newDish != null)
             {
                 Dishs_Search.Add(item);
             }
-            else if (Type_Special == "Hot Dish" && item.HotDish.Value)
+            else if (Type_Special == "Hot Dish" && item.HotDish != null)
             {
                 Dishs_Search.Add(item);
             }

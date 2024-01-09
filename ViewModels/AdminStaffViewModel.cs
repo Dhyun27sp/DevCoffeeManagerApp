@@ -30,17 +30,7 @@ namespace DevCoffeeManagerApp.ViewModels
                 {
                     SalaryModel salarynew  = new SalaryModel();
                     SalaryModel maxmonth = new SalaryModel();
-                    if (O.salary.Count != 0)
-                    {
-                        maxmonth = O.salary[0];
-                    }
-                    foreach (SalaryModel salary in O.salary)
-                    {
-                        if (maxmonth.Month.Month < salary.Month.Month)
-                        {
-                            maxmonth = salary;
-                        }
-                    }
+                    maxmonth = O.salary[O.salary.Count - 1];
                     CombineList.Add(new Tuple<StaffModel, int, string, int>(O, index, O.salary.Count != 0 ? maxmonth.Month.Month.ToString():"", maxmonth.Money));
                     index++;
                 }

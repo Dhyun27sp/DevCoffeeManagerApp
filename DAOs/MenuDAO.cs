@@ -18,6 +18,7 @@ namespace DevCoffeeManagerApp.DAOs
     public class MenuDAO
     {
         private IMongoCollection<MenuModel> collection;
+        ReceiptDAO receiptDAO = new ReceiptDAO();
         public MenuDAO()
         {
             IMongoDatabase db = ConnectionMongoDB.getdatabase();
@@ -96,6 +97,56 @@ namespace DevCoffeeManagerApp.DAOs
             }
             return New_Dish;
         }
+
+        public List<DishModel> ReadAll_HotDish()
+        {
+            List<ReceiptModel> receipts = new List<ReceiptModel>();
+            List<DishModel> dishsInreceipt = new List<DishModel>();
+            List<DishModel> hotdishs = new List<DishModel>();
+            receipts = receiptDAO.FindReceiptsInMonth();
+
+            foreach (ReceiptModel re in receipts)
+            {
+                dishsInreceipt.AddRange(re.Dishes);
+            }
+
+            var groupedDishes = dishsInreceipt
+            .GroupBy(d => d._id)
+            .Select(group => new
+            {
+                DishId = group.Key,
+                TotalQuantity = group.Sum(d => d.Quantity)
+            })
+            .OrderByDescending(group => group.TotalQuantity)
+            .ToList();
+
+            if(groupedDishes.Count <= 3)
+            {
+                foreach (var group in groupedDishes)
+                {
+                    DishModel dishhot = new DishModel();
+                    dishhot._id = group.DishId;
+                    hotdishs.Add(dishhot);
+                }
+            }
+            else
+            {
+                int stop = 0;
+                foreach (var group in groupedDishes)
+                {
+                    if (stop == 4) break;
+                    DishModel dishhot = new DishModel();
+                    dishhot._id = group.DishId;
+                    hotdishs.Add(dishhot);
+                    stop++;
+                }
+            }
+            
+
+            return hotdishs;
+        }
+
+
         public void AddDishInMenu(string type_dish, DishModel newDish)
         {
             var filter = Builders<MenuModel>.Filter.Eq("type_of_dish", type_dish);

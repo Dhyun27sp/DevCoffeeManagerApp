@@ -67,5 +67,29 @@ namespace DevCoffeeManagerApp.DAOs
                 .Sum(receipt => receipt.total_amount);
             return totalAmountSum;
         }
+        public List<ReceiptModel> FindReceiptsInMonth()
+        {
+            // Xác định tháng và năm hiện tại
+            DateTime currentDate = DateTime.UtcNow;  // Lấy ngày hiện tại (theo múi giờ UTC)
+            int currentMonth = currentDate.Month;
+            int currentYear = currentDate.Year;
+
+            // Tính toán ngày đầu tiên của tháng hiện tại
+            DateTime endDate = new DateTime(currentYear, currentMonth, DateTime.DaysInMonth(currentYear, currentMonth));
+
+            // Nếu tháng hiện tại là tháng 1, thì tháng trước đó là tháng 12 của năm trước
+            int previousMonth = currentMonth == 1 ? 12 : currentMonth - 1;
+            int previousYear = currentMonth == 1 ? currentYear - 1 : currentYear;
+
+            // Tính toán ngày cuối cùng của tháng trước đó
+            DateTime startDate = new DateTime(previousYear, previousMonth, 1);
+
+            // Lọc hóa đơn trong khoảng thời gian này
+            var filter = Builders<ReceiptModel>.Filter.Gte("time", startDate) &
+                         Builders<ReceiptModel>.Filter.Lte("time", endDate);
+
+            List<ReceiptModel> receiptsInTwoMonths = collection.Find(filter).ToList();
+            return receiptsInTwoMonths;
+        }
     }
 }

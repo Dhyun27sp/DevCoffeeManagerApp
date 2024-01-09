@@ -173,18 +173,60 @@
                                                        Source="{Binding imageconvert}"
                                                        Stretch="UniformToFill" />
                                                 <Grid Margin="5 5"
+                                                          Width="80"
+                                                          HorizontalAlignment="Left"
+                                                          VerticalAlignment="Top">
+                                                        <Border CornerRadius="10"
+                                                                Background="#8bbb00">
+                                                            <Border.Style>
+                                                                <Style TargetType="Border">
+                                                                    <Setter Property="Visibility"
+                                                                            Value="Hidden" />
+
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding newDish}"
+                                                                                     Value="True">
+                                                                            <Setter Property="Visibility"
+                                                                                    Value="Visible" />
+                                                                        </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding HotDish}"
+                                                                                 Value="True">
+                                                                        <Setter Property="Margin"
+                                                                                Value="90 0 -90 0" />
+                                                                    </DataTrigger>
+                                                                    <!-- Thêm các DataTrigger khác nếu cần -->
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Border.Style>
+
+                                                            <Grid HorizontalAlignment="Center">
+                                                                <TextBlock HorizontalAlignment="Center"
+                                                                           VerticalAlignment="Center">
+                                                                    <TextBlock.Style>
+                                                                        <Style TargetType="TextBlock">
+                                                                            <Setter Property="Foreground"
+                                                                                    Value="White" />
+                                                                        <Setter Property="Text"
+                                                                                Value="New" />
+                                                                    </Style>
+                                                                    </TextBlock.Style>
+                                                                </TextBlock>
+                                                            </Grid>
+                                                        </Border>
+                                                    </Grid>
+                                                <Grid Margin="5 5"
                                                       Width="80"
                                                       HorizontalAlignment="Left"
                                                       VerticalAlignment="Top">
                                                     <Border CornerRadius="10"
-                                                            Background="#8bbb00">
+                                                            Background="Red">
                                                         <Border.Style>
                                                             <Style TargetType="Border">
                                                                 <Setter Property="Visibility"
                                                                         Value="Hidden" />
 
                                                                 <Style.Triggers>
-                                                                    <DataTrigger Binding="{Binding newDish}"
+                                                                    <DataTrigger Binding="{Binding HotDish}"
                                                                                  Value="True">
                                                                         <Setter Property="Visibility"
                                                                                 Value="Visible" />
@@ -202,37 +244,10 @@
                                                                         <Setter Property="Foreground"
                                                                                 Value="White" />
                                                                         <Setter Property="Text"
-                                                                                Value="New" />
-                                                                        <Style.Triggers>
-                                                                            <DataTrigger Binding="{Binding newDish}"
-                                                                                         Value="false">
-                                                                                <Setter Property="Text"
-                                                                                        Value="" />
-                                                                            </DataTrigger>
-                                                                            <DataTrigger Binding="{Binding newDish}"
-                                                                                         Value="">
-                                                                                <Setter Property="Text"
-                                                                                        Value="" />
-                                                                            </DataTrigger>
-                                                                            <!-- Thêm các DataTrigger khác nếu cần -->
-                                                                        </Style.Triggers>
+                                                                                Value="Hot" />
                                                                     </Style>
                                                                 </TextBlock.Style>
                                                             </TextBlock>
-                                                        </Grid>
-                                                    </Border>
-                                                </Grid>
-                                                <Grid Visibility="Hidden"
-                                                      Margin="30 5"
-                                                      Width="50"
-                                                      HorizontalAlignment="Left"
-                                                      VerticalAlignment="Top">
-                                                    <Border CornerRadius="10"
-                                                            Background="Red"
-                                                            Margin="66,0,-66,0">
-                                                        <Grid HorizontalAlignment="Center">
-                                                            <TextBlock FontSize="10"
-                                                                       Text="Hot"></TextBlock>
                                                         </Grid>
                                                     </Border>
                                                 </Grid>
@@ -291,7 +306,7 @@
                                                            Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                                                            Text="{Binding dish_name}" />
                                                 <WrapPanel>
-                                                    <TextBlock Text="{Binding price, StringFormat='{}{0:N0}đ'}"
+                                                    <TextBlock Text="{Binding price, StringFormat='{}{0:N0}'}"
                                                                FontSize="16"
                                                                VerticalAlignment="Center">
                                                         <TextBlock.Style>
@@ -315,7 +330,7 @@
                                                         </TextBlock.Style>
 
                                                     </TextBlock>
-                                                    <TextBlock Text="{Binding Saleprice, StringFormat='{}{0:N0}đ'}"
+                                                    <TextBlock Text="{Binding Saleprice, StringFormat='{}{0:N0}'}"
                                                                Margin="10 0 0 0"
                                                                Style="{StaticResource MaterialDesignBody1TextBlock}" />
                                                 </WrapPanel>
@@ -538,7 +553,7 @@
                                         FontFamily="Nunito"
                                         Margin="30 0 20 0"
                                         VerticalAlignment="Center"
-                                        Text="{Binding Total, StringFormat='{}{0:N0}đ'}"></TextBlock>
+                                        Text="{Binding Total, StringFormat='{}{0:N0}'}"></TextBlock>
                         </WrapPanel>
 
                     </Grid>
