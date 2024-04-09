@@ -13,8 +13,8 @@
              d:DesignWidth="1080">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="70*"></ColumnDefinition>
+            <ColumnDefinition Width="45*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Border BorderBrush="#5f5555"
                 BorderThickness="0.5"
@@ -176,44 +176,44 @@
                                                           Width="80"
                                                           HorizontalAlignment="Left"
                                                           VerticalAlignment="Top">
-                                                        <Border CornerRadius="10"
+                                                    <Border CornerRadius="10"
                                                                 Background="#8bbb00">
-                                                            <Border.Style>
-                                                                <Style TargetType="Border">
-                                                                    <Setter Property="Visibility"
+                                                        <Border.Style>
+                                                            <Style TargetType="Border">
+                                                                <Setter Property="Visibility"
                                                                             Value="Hidden" />
 
-                                                                    <Style.Triggers>
-                                                                        <DataTrigger Binding="{Binding newDish}"
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding newDish}"
                                                                                      Value="True">
-                                                                            <Setter Property="Visibility"
+                                                                        <Setter Property="Visibility"
                                                                                     Value="Visible" />
-                                                                        </DataTrigger>
+                                                                    </DataTrigger>
                                                                     <DataTrigger Binding="{Binding HotDish}"
                                                                                  Value="True">
                                                                         <Setter Property="Margin"
                                                                                 Value="90 0 -90 0" />
                                                                     </DataTrigger>
                                                                     <!-- Thêm các DataTrigger khác nếu cần -->
-                                                                    </Style.Triggers>
-                                                                </Style>
-                                                            </Border.Style>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Border.Style>
 
-                                                            <Grid HorizontalAlignment="Center">
-                                                                <TextBlock HorizontalAlignment="Center"
+                                                        <Grid HorizontalAlignment="Center">
+                                                            <TextBlock HorizontalAlignment="Center"
                                                                            VerticalAlignment="Center">
-                                                                    <TextBlock.Style>
-                                                                        <Style TargetType="TextBlock">
-                                                                            <Setter Property="Foreground"
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Setter Property="Foreground"
                                                                                     Value="White" />
                                                                         <Setter Property="Text"
                                                                                 Value="New" />
                                                                     </Style>
-                                                                    </TextBlock.Style>
-                                                                </TextBlock>
-                                                            </Grid>
-                                                        </Border>
-                                                    </Grid>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                        </Grid>
+                                                    </Border>
+                                                </Grid>
                                                 <Grid Margin="5 5"
                                                       Width="80"
                                                       HorizontalAlignment="Left"
@@ -298,8 +298,6 @@
                                                     </TextBlock>
                                                 </Border>
                                             </Grid>
-
-
                                             <StackPanel Grid.Row="1"
                                                         Margin="8,24,8,4">
                                                 <TextBlock Margin="0"
@@ -363,8 +361,8 @@
                 BorderThickness="0.5"
                 CornerRadius="10"
                 Background="White"
-                Grid.Column="1"
-                Margin="10 0 0 0">
+                Grid.Column="2"
+                Margin="10,0,0,0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*"></RowDefinition>
@@ -412,45 +410,65 @@
                                               Grid.Row="0"
                                               Margin="0 2"
                                               Background="#FF38220F">
-                        <DockPanel>
-                            <StackPanel HorizontalAlignment="Center"
-                                        materialDesign:RippleAssist.IsCentered="True"
-                                        Orientation="Horizontal">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0"
+                        <DockPanel HorizontalAlignment="Stretch"
+                                       materialDesign:RippleAssist.IsCentered="True"
+                                        >
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7*"/>
+                                    <ColumnDefinition Width="4.5*"/>
+                                    <ColumnDefinition Width="6*"/>
+                                    <ColumnDefinition Width="6*"/>
+                                    <ColumnDefinition Width="4*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0"
+                                               Grid.Row="0"
                                                Foreground="Wheat"
                                                FontSize="15"
                                                FontFamily="Nunito"
-                                               VerticalAlignment="Center"
                                                Text="Dish Name"
-                                               Margin="0,0,15,0" />
-                                    <Grid  Grid.Column="1"
-                                           HorizontalAlignment="Right">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition />
-                                            <ColumnDefinition />
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock  Foreground="Wheat"
-                                                    FontSize="15"
-                                                    FontFamily="Nunito"
-                                                    Margin="25 0 25 0"
-                                                    VerticalAlignment="Center"
-                                                    Text="Quantity"></TextBlock>
-                                        <TextBox Grid.Column="1"
-                                                 Text="Delete"
-                                                 Foreground="Wheat"
-                                                 FontSize="15"
-                                                 FontFamily="Nunito"></TextBox>
-                                    </Grid>
-                                </Grid>
-                            </StackPanel>
+                                               Margin="10,4,15,0" />
+                                <TextBlock Grid.Column="1"
+                                               Grid.Row="0"
+                                               Foreground="Wheat"
+                                               FontSize="15"
+                                               FontFamily="Nunito"
+                                               Text="Ice"
+                                               TextAlignment="Center"
+                                               Margin="0,4,15,0"/>
+                                <TextBlock Grid.Column="2"
+                                               Grid.Row="0"
+                                               Foreground="Wheat"
+                                               FontSize="15"
+                                               FontFamily="Nunito"
+                                               Text="Sugar"
+                                               TextAlignment="Center"
+                                               Margin="0,4,15,0"/>
+                                <TextBlock Grid.Column="3"
+                                               Grid.Row="0"
+                                               Foreground="Wheat"
+                                               FontSize="15"
+                                               FontFamily="Nunito"
+                                               Margin="7,4,8,0"
+                                               Text="Quantity"
+                                               TextAlignment="Center"/>
+                                <TextBlock Grid.Column="4"
+                                               Grid.Row="0"
+                                               Foreground="Wheat"
+                                               FontSize="15"
+                                               FontFamily="Nunito"
+                                               Margin="0,4,0,0"
+                                               Text="Delete"
+                                               TextAlignment="Center"/>
+
+                            </Grid>
                         </DockPanel>
                     </materialDesign:ColorZone>
                     <ItemsControl Grid.Row="1"
+                                  x:Name="list"
                                   ItemsSource="{Binding Ordereds}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
@@ -458,49 +476,87 @@
                                                           Margin="0 2"
                                                           Background="#FF38220F">
                                     <DockPanel>
-                                        <StackPanel HorizontalAlignment="Right"
-                                                    materialDesign:RippleAssist.IsCentered="True"
-                                                    Orientation="Horizontal">
+                                        <DockPanel HorizontalAlignment="Stretch"
+                                                   materialDesign:RippleAssist.IsCentered="True">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="7*"/>
+                                                    <ColumnDefinition Width="4.5*"/>
+                                                    <ColumnDefinition Width="6*"/>
+                                                    <ColumnDefinition Width="6*"/>
+                                                    <ColumnDefinition Width="4*"/>
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Grid.Column="0"
                                                            Foreground="Wheat"
                                                            FontSize="15"
                                                            FontFamily="Nunito"
                                                            VerticalAlignment="Center"
+                                                           HorizontalAlignment="Left"
                                                            Text="{Binding dish_name , UpdateSourceTrigger=PropertyChanged}"
-                                                           Margin="0,0,15,0" />
-                                                <Grid  Grid.Column="1"
-                                                       HorizontalAlignment="Right">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition />
-                                                        <ColumnDefinition />
-                                                    </Grid.ColumnDefinitions>
-                                                    <materialDesign:ColorZone Margin="5,0,0,0"
+                                                           TextWrapping="WrapWithOverflow"
+                                                           TextAlignment="Left"
+                                                           Margin="10,0,15,0" />
+                                                <ComboBox
+                                                        Grid.Column="1"
+                                                        FontSize="15"
+                                                        FontFamily="Nunito"
+                                                        Margin="0 0 15 0"
+                                                        HorizontalContentAlignment="Center"
+                                                        Background="#FFFAFAFA"
+                                                        materialDesign:HintAssist.Hint="Select"
+                                                        materialDesign:HintAssist.HintOpacity=".26"
+                                                        SelectedItem="{Binding Ice, UpdateSourceTrigger=PropertyChanged}"
+                                                        ItemsSource="{Binding DataContext.Ice, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="SelectionChanged">
+                                                            <i:InvokeCommandAction Command="{Binding DataContext.UpdateSugarCommand , UpdateSourceTrigger=PropertyChanged, 
+                                                                                   RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}, AncestorLevel=2}}"
+                                                                                   CommandParameter="{Binding}"/>   
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </ComboBox>
+                                                <ComboBox
+                                                        Grid.Column="2"
+                                                        Background="#FFFAFAFA"
+                                                        FontSize="15"
+                                                        FontFamily="Nunito"
+                                                        Margin="0 0 15 0"
+                                                        
+                                                        materialDesign:HintAssist.Hint="Select"
+                                                        materialDesign:HintAssist.HintOpacity=".26"
+                                                        SelectedItem="{Binding Sugar, UpdateSourceTrigger=PropertyChanged}"
+                                                        ItemsSource="{Binding DataContext.Sugar, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="SelectionChanged">
+                                                            <i:InvokeCommandAction Command="{Binding DataContext.UpdateSugarCommand , UpdateSourceTrigger=PropertyChanged, 
+                                                                                   RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}, AncestorLevel=2}}"
+                                                                                   CommandParameter="{Binding}"/>
+                                                        </i:EventTrigger>                                                        
+                                                    </i:Interaction.Triggers>
+                                                </ComboBox>
+                                                <materialDesign:ColorZone Margin="5,0,0,0"
                                                                               Padding="0"
                                                                               Panel.ZIndex="1"
                                                                               materialDesign:ElevationAssist.Elevation="Dp2"
                                                                               CornerRadius="2"
-                                                                              Mode="Standard">
-                                                        <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="Auto" />
-                                                                <ColumnDefinition Width="*" />
-                                                                <ColumnDefinition Width="Auto" />
-                                                            </Grid.ColumnDefinitions>
-                                                            <Button Command="{Binding DataContext.MinusCommad ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                                                              Mode="Standard"
+                                                                              Grid.Column="3">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Button Command="{Binding DataContext.MinusCommad ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
                                                                     CommandParameter="{Binding}"
                                                                     Grid.Column="0"
                                                                     Style="{StaticResource MaterialDesignToolButton}">
-                                                                <materialDesign:PackIcon Kind="MinusBox"
+                                                            <materialDesign:PackIcon Kind="MinusBox"
                                                                                          Width="30"
                                                                                          Height="25"
                                                                                          Opacity=".56" />
-                                                            </Button>
-                                                            <TextBox Text="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        </Button>
+                                                        <TextBox Text="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                                      IsReadOnly="True"
                                                                      Grid.Column="1"
                                                                      MinWidth="10"
@@ -509,32 +565,31 @@
                                                                      materialDesign:HintAssist.Hint="0"
                                                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                                                      BorderThickness="0" />
-                                                            <Button Grid.Column="2"
+                                                        <Button Grid.Column="2"
                                                                     Style="{StaticResource MaterialDesignToolButton}"
                                                                     Command="{Binding DataContext.PlusCommad ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
                                                                     CommandParameter="{Binding}">
-                                                                <materialDesign:PackIcon Kind="PlusBox"
+                                                            <materialDesign:PackIcon Kind="PlusBox"
                                                                                          Width="30"
                                                                                          Height="25"
                                                                                          Opacity=".56" />
-                                                            </Button>
-                                                        </Grid>
-                                                    </materialDesign:ColorZone>
-                                                    <Button Grid.Column="1"
+                                                        </Button>
+                                                    </Grid>
+                                                </materialDesign:ColorZone>
+                                                <Button Grid.Column="4"
                                                             Panel.ZIndex="0"
                                                             Style="{StaticResource MaterialDesignToolForegroundButton}"
                                                             Command="{Binding DataContext.DeleteCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
                                                             CommandParameter="{Binding}"
-                                                            Margin="10 0 20 0">
-                                                        <materialDesign:PackIcon Foreground="White"
+                                                            Margin="15 0 15 0">
+                                                    <materialDesign:PackIcon Foreground="White"
                                                                                  Opacity=".80"
                                                                                  Kind="DeleteForever"
                                                                                  Width="30"
                                                                                  Height="25" />
-                                                    </Button>
-                                                </Grid>
+                                                </Button>
                                             </Grid>
-                                        </StackPanel>
+                                        </DockPanel>
                                     </DockPanel>
                                 </materialDesign:ColorZone>
                             </DataTemplate>
@@ -563,7 +618,7 @@
                       Height="50"
                       Grid.Row="2">
                     <Button materialDesign:ButtonAssist.CornerRadius="10"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Control}}}"
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                             ToolTip="MaterialDesignRaisedLightButton with Round Corners"
                             Margin="0 0 0 10"

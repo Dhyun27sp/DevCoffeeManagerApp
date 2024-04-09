@@ -261,7 +261,7 @@ namespace DevCoffeeManagerApp.ViewModels
                 }    
             }
             TotalAmount = Total - Int32.Parse(UsedPoint);
-            CurrentDate = DateTime.UtcNow;
+            CurrentDate = DateTime.Now;
             StaffPhoneNumber = SessionStatic.GetPhoneNumber;
         }
     }

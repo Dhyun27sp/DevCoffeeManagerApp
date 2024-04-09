@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Xamarin.Forms.Internals;
 
 namespace DevCoffeeManagerApp.Commands.CommandOrder
@@ -41,8 +42,8 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                     switch (sign)
                     {
                         case "Plus":
-                            datageted.Quantity++;
-                            total_money(datageted);
+                            datageted.Quantity++;                            
+                            total_money(datageted);                            
                             break;
                         case "Minus":
                             datageted.Quantity--;
@@ -69,6 +70,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                     {
                         case "Plus":
                             datageted.Quantity++;
+                            MessageBox.Show("111");
                             total_money(datageted);
                             return;
                         case "Minus":

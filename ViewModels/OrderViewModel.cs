@@ -19,6 +19,7 @@ using DevCoffeeManagerApp.Commands.CommandStaff;
 using DevCoffeeManagerApp.StaticClass;
 using DevCoffeeManagerApp.Store;
 using DevCoffeeManagerApp.Views.UserControlStaff;
+using System.Security.RightsManagement;
 
 namespace DevCoffeeManagerApp.ViewModels
 {
@@ -123,12 +124,15 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(Total));
             }
         }
+        public List<String> Ice { get; set; }
+        public List<String> Sugar { get; set; }
 
         public ICommand MinusCommad { get; set; }
         public ICommand PlusCommad { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand Deleteall { get; set; }
         public ICommand ReserveCommand { get; set; }
+        public ICommand UpdateSugarCommand { get; set; }
         public ICommand OrderFoodCommand { get; set; }
         public ICommand SelectionchangeTypeDish { get; set; }
         public ICommand ChangeValueTexboxCommand { get; set; }
@@ -151,11 +155,13 @@ namespace DevCoffeeManagerApp.ViewModels
             }
             menuDao.ReadAll_HotDish();
             menuDao.ReadAll_NewDish();
+            add_percent();
             PlusCommad = new OperatorCommand(this, "Plus");
             MinusCommad = new OperatorCommand(this, "Minus");
             DeleteCommand = new OperatorCommand(this, "Delete");
             Deleteall = new OperatorCommand(this, "DeleteAll");
             ReserveCommand = new AddDishCommand(this);
+            UpdateSugarCommand = new UpdateOrderCommand(this);
             SelectionchangeTypeDish = new SearchCommand(this);
             ChangeValueTexboxCommand = new SearchCommand(this);
             SelectionchangeTypeSpecial = new SearchCommand(this);
@@ -198,6 +204,20 @@ namespace DevCoffeeManagerApp.ViewModels
             Specials.Add("Discounted");
 
             return Specials;
+        }
+        public void add_percent()
+        {
+            Ice = new List<string>();
+            Ice.Add("No Ice");
+            Ice.Add("30%");
+            Ice.Add("70%");
+            Ice.Add("100%");
+
+            Sugar = new List<string>();
+            Sugar.Add("No Sugar");
+            Sugar.Add("30%");
+            Sugar.Add("70%");
+            Sugar.Add("100%");
         }
 
         public List<DishModel> LoadAllDish()

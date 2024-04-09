@@ -31,7 +31,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
             {
                 foreach (var item in OrderFoodViewModel.Ordereds)
                 {
-                    if (item.dish_name == Dish.dish_name)
+                    if (item.dish_name == Dish.dish_name && item.Ice == null  && item.Sugar == null)
                     {
                         make = 1;
                         break;
@@ -42,7 +42,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                     string name = Dish.dish_name;
                     int Quanlity = 1;
                     int? saleprice = Dish.Saleprice;
-                    DishModel ItemOrdered = new DishModel(Dish._id, name, Quanlity, saleprice, Dish.price, Dish.ingredient);
+                    DishModel ItemOrdered = new DishModel(Dish._id, name, Quanlity, saleprice, Dish.price, Dish.ingredient, Dish.Sugar, Dish.Ice);
                     OrderFoodViewModel.Ordereds.Add(ItemOrdered);                    
                 }
                 else
@@ -50,7 +50,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                     int result;
                     foreach (var item in OrderFoodViewModel.Ordereds)
                     {
-                        if (item.dish_name == Dish.dish_name)
+                        if (item.dish_name == Dish.dish_name && item.Ice == null && item.Sugar == null)
                         {
                             if (int.TryParse((item.Quantity).ToString(), out result))
                             {

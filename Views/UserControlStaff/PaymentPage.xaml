@@ -214,8 +214,15 @@
                                         </GridViewColumnHeader>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Item1.dish_name}"
-                                                           FontSize="13" />
+                                                <StackPanel>
+                                                    <WrapPanel>
+                                                        <TextBlock Text="{Binding Item1.dish_name}" FontSize="13" />
+                                                        <TextBlock Text="; Ice: " FontSize="13" />
+                                                        <TextBlock Text="{Binding Item1.Ice, TargetNullValue='None'}" FontSize="13" />
+                                                        <TextBlock Text="; Sugar: " FontSize="13" />
+                                                        <TextBlock Text="{Binding Item1.Sugar, TargetNullValue='None'}" FontSize="13" />
+                                                    </WrapPanel>
+                                                </StackPanel>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>

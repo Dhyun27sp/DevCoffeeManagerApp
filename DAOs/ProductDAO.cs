@@ -85,7 +85,14 @@ namespace DevCoffeeManagerApp.DAOs
                     }
                 }
                 if (i > 0)
-                    availableList.Add(item.dish_name, i);
+                    if (availableList.ContainsKey(item.dish_name))
+                    {
+                        availableList[item.dish_name] += i;
+                    }
+                    else
+                    {
+                        availableList.Add(item.dish_name, i);
+                    }
             }
             if (flag)
             {

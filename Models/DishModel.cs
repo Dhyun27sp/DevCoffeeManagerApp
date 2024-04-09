@@ -61,6 +61,9 @@ namespace DevCoffeeManagerApp.Models
 
         private int _quantity;
 
+        private string _ice;
+        private string _sugar;
+
         public int Quantity
         {
             get
@@ -85,8 +88,34 @@ namespace DevCoffeeManagerApp.Models
                 OnPropertyChanged(nameof(Amount));
             }
         }
+        public string Ice
+        {
+            get
+            {
+                return _ice;
+            }
+            set
+            {
+                _ice = value;
+                OnPropertyChanged(nameof(Ice));
+            }
+        }
 
-        public DishModel(ObjectId _id, string dish_name, int _quantity, int? Saleprice, int? price, List<ProductModel> ingredient)// này cho order nhé
+        public string Sugar
+        {
+            get
+            {
+                return _sugar;
+            }
+            set
+            {
+                _sugar = value;
+                OnPropertyChanged(nameof(Sugar));
+            }
+        }
+
+
+        public DishModel(ObjectId _id, string dish_name, int _quantity, int? Saleprice, int? price, List<ProductModel> ingredient, string Sugar, string Ice)// này cho order nhé
         {
             this._id = _id;
             this.dish_name = dish_name;
@@ -94,6 +123,8 @@ namespace DevCoffeeManagerApp.Models
             this.Saleprice = Saleprice;
             this.price = price;
             this.ingredient= ingredient;
+            this.Sugar = Sugar;
+            this.Ice = Ice;
         }
 
         public DishModel(ObjectId _id,string dishName,List<ProductModel> ingredients,int? dishPrice,string dishImage,
