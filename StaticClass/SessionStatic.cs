@@ -5,6 +5,7 @@ using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,6 +51,16 @@ namespace DevCoffeeManagerApp.StaticClass
         public static CustomerModel Customer { get; set; }
 
         public static ObservableCollection<DishModel> copy = new ObservableCollection<DishModel>();
+        public static Image Img { get; set; }
+
+        private static string partnerCode = "MOMO"; // thay bang key cua minh
+        private static string accessKey = "F8BBA842ECF85";   // thay bang key cua minh
+        private static string serectkey = "K951B6PE1waDMi640xX08PD3vg6EkVlz"; // thay bang key cua minh
+
+        public static string PartnerCode { get { return partnerCode; } }
+        public static string AccessKey { get { return accessKey; } }
+        public static string SerectKey { get {return serectkey; } }
+
 
     }
 }

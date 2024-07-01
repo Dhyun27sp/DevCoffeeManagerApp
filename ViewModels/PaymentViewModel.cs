@@ -1,6 +1,7 @@
 ﻿using DevCoffeeManagerApp.Commands.CommandPayment;
 using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.StaticClass;
+using DevCoffeeManagerApp.Store;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -57,7 +58,7 @@ namespace DevCoffeeManagerApp.ViewModels
             }
         }
 
-        private bool _isMoMoChecked;
+        private bool _isMoMoChecked = false;
         public bool IsMoMoChecked
         {
             get { return _isMoMoChecked; }
@@ -71,7 +72,7 @@ namespace DevCoffeeManagerApp.ViewModels
             }
         }
 
-        private bool _isDirectPaymentChecked;
+        private bool _isDirectPaymentChecked = false;
         public bool IsDirectPaymentChecked
         {
             get { return _isDirectPaymentChecked; }
@@ -241,9 +242,11 @@ namespace DevCoffeeManagerApp.ViewModels
         }
         public ICommand SelectionchangeInputMoney { get; set; }
         public ICommand SubmitPaymentCommand { get; set; }
+        public ICommand CheckPaymentCommand { get; set; }
         public PaymentViewModel() {
             SelectionchangeInputMoney = new MoneyReceivedCommand(this);
             SubmitPaymentCommand = new SubmitPaymentCommand(this);
+            CheckPaymentCommand = new CheckPaymentCommand();
             if (SessionStatic.Customer != null)
             {
                 CustomerName = SessionStatic.Customer.name;
