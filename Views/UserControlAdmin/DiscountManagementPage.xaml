@@ -54,7 +54,7 @@
         </Grid>
         <Grid Margin="25 0 25 10"
               Grid.Row="1">
-            <Border BorderBrush="#5f5555"
+            <Border BorderBrush="#408064"
                     BorderThickness="0.5"
                     CornerRadius="10"
                     Background="White"
@@ -129,7 +129,7 @@
 
                                 </DockPanel>
                             </Grid>
-                            <Border BorderBrush="#5f5555"
+                            <Border BorderBrush="#408064"
                                     BorderThickness="0.5"
                                     CornerRadius="10"
                                     Grid.Row="1"
@@ -275,7 +275,7 @@
                                                                     Style="{StaticResource MaterialDesignToolForegroundButton}"
                                                                     Command="{Binding DataContext.DeleteDisCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
                                                                     CommandParameter="{Binding Item1}">
-                                                                <materialDesign:PackIcon Foreground="#5F5555"
+                                                                <materialDesign:PackIcon Foreground="#408064"
                                                                                          Opacity=".80"
                                                                                          Kind="DeleteForever"
                                                                                          Width="30"
@@ -577,7 +577,7 @@
                             </Grid>
                             <Grid Grid.Row="1">
                                 <StackPanel Margin="25 0 20 10">
-                                    <Border BorderBrush="#5f5555"
+                                    <Border BorderBrush="#408064"
                                             BorderThickness="0.5"
                                             CornerRadius="10"
                                             Height="400">
@@ -689,7 +689,7 @@
                                     <TextBlock Margin="0 10"
                                                Text="Danh sách món không trong khuyến mãi"
                                                VerticalAlignment="Center" />
-                                    <Border BorderBrush="#5f5555"
+                                    <Border BorderBrush="#408064"
                                             BorderThickness="0.5"
                                             CornerRadius="10"
                                             Height="400">
@@ -813,7 +813,7 @@
                                         <TextBlock Text="Danh sách Loại Món khuyến mãi:"
                                                    Margin="0 10"
                                                    VerticalAlignment="Center" />
-                                        <Border BorderBrush="#5f5555"
+                                        <Border BorderBrush="#408064"
                                                 BorderThickness="0.5"
                                                 CornerRadius="10"
                                                 Height="320">
@@ -896,7 +896,7 @@
                                         <TextBlock Margin="0 10"
                                                    Text="Danh sách Loại Món không trong khuyến mãi"
                                                    VerticalAlignment="Center" />
-                                        <Border BorderBrush="#5f5555"
+                                        <Border BorderBrush="#408064"
                                                 BorderThickness="0.5"
                                                 CornerRadius="10"
                                                 Height="320">

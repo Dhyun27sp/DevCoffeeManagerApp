@@ -16,7 +16,7 @@
             <ColumnDefinition Width="70*"></ColumnDefinition>
             <ColumnDefinition Width="45*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Border BorderBrush="#5f5555"
+        <Border BorderBrush="#408064"
                 BorderThickness="0.5"
                 CornerRadius="10"
                 Background="White"
@@ -357,7 +357,7 @@
                 </Grid>
             </Grid>
         </Border>
-        <Border BorderBrush="#5f5555"
+        <Border BorderBrush="#408064"
                 BorderThickness="0.5"
                 CornerRadius="10"
                 Background="White"
@@ -394,7 +394,11 @@
                                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                     Style="{StaticResource MaterialDesignFlatLightBgButton}"
                                     ToolTip="MaterialDesignFlatLightButton"
-                                    Command="{Binding Deleteall , UpdateSourceTrigger=PropertyChanged}" />
+                                    Command="{Binding Deleteall , UpdateSourceTrigger=PropertyChanged}">
+                                <Button.BorderBrush>
+                                    <ImageBrush />
+                                </Button.BorderBrush>
+                            </Button>
                         </Grid>
                     </WrapPanel>
                 </Grid>
@@ -409,7 +413,7 @@
                     <materialDesign:ColorZone Padding="3"
                                               Grid.Row="0"
                                               Margin="0 2"
-                                              Background="#FF38220F">
+                                              Background="#6d5235">
                         <DockPanel HorizontalAlignment="Stretch"
                                        materialDesign:RippleAssist.IsCentered="True"
                                         >
@@ -474,7 +478,7 @@
                             <DataTemplate>
                                 <materialDesign:ColorZone Padding="3"
                                                           Margin="0 2"
-                                                          Background="#FF38220F">
+                                                          Background="#6d5235">
                                     <DockPanel>
                                         <DockPanel HorizontalAlignment="Stretch"
                                                    materialDesign:RippleAssist.IsCentered="True">
@@ -627,7 +631,7 @@
                             <ImageBrush />
                         </Button.BorderBrush>
                         <Button.Background>
-                            <SolidColorBrush Color="#FF38220F" />
+                            <SolidColorBrush Color="#6d5235" />
                         </Button.Background>
                         <TextBlock FontFamily="Nunito"
                                    Text="Đặt Món"

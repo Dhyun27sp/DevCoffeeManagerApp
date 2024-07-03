@@ -80,7 +80,7 @@
                                    VerticalAlignment="Center"
                                    FontSize="35"
                                    FontWeight="Bold"
-                                   Foreground="#5F5555"
+                                   Foreground="#408064"
                                    Margin="20 0 0 0" />
                     </StackPanel>
                     <StackPanel Grid.Row="1"
@@ -102,7 +102,7 @@
                                 <ImageBrush />
                             </Button.BorderBrush>
                             <Button.Background>
-                                <SolidColorBrush Color="#FF38220F" />
+                                <SolidColorBrush Color="#6d5235" />
                             </Button.Background>
                             <TextBlock FontFamily="Nunito"
                                        Text="Tra địa chỉ"

@@ -1,11 +1,5 @@
 ﻿using DevCoffeeManagerApp.Store;
 using DevCoffeeManagerApp.ViewModels;
-using DevCoffeeManagerApp.Views.UserControlStaff;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DevCoffeeManagerApp.Commands.CommandSell
 {

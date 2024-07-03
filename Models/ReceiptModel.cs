@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -34,11 +31,11 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("Dishes")]
         public List<DishModel> Dishes { get; set; }
 
-        [BsonElement("discounts")]
-        public List<DiscountModel> discounts { get; set; }
-
         [BsonElement("payments"), BsonRepresentation(BsonType.String)]
         public string payments { get; set; }
+
+        [BsonElement("ship_code"), BsonRepresentation(BsonType.String), BsonIgnoreIfNull]
+        public string ship_code { get; set; }
 
         [BsonElement("total_amount"), BsonRepresentation(BsonType.Int32)]
         public int total_amount { get; set; }
@@ -52,7 +49,7 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("change"), BsonRepresentation(BsonType.Int32)]
         public int change { get; set; }
 
-        public ReceiptModel(string receipt_code, DateTime time, CustomerModel customer, ObservableCollection<TableModel> tables, string staff_phone, List<DishModel> dishes, List<DiscountModel> discounts, string payments, int used_point,int total_amount, int guest_monney, int change)
+        public ReceiptModel(string receipt_code, DateTime time, CustomerModel customer, ObservableCollection<TableModel> tables, string staff_phone, List<DishModel> dishes, string payments, int used_point,int total_amount, int guest_monney, int change)
         {
             this.receipt_code = receipt_code;
             this.time = time;
@@ -60,7 +57,6 @@ namespace DevCoffeeManagerApp.Models
             this.tables = tables;
             this.staff_phone = staff_phone;
             this.Dishes = dishes;
-            this.discounts = discounts;
             this.payments = payments;
             this.used_point = used_point;
             this.total_amount = total_amount;

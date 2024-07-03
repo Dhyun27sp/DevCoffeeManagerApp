@@ -12,7 +12,7 @@
              d:DesignHeight="450"
              d:DesignWidth="800">
     <UserControl.Resources>
-        <ObjectDataProvider x:Key="MainSellProvider" ObjectType="{x:Type vms:SellViewModel}" >
+        <ObjectDataProvider x:Key="MainSellProvider" ObjectType="{x:Type vms:ShopViewModel}" >
             <ObjectDataProvider.ConstructorParameters>
                 <navi:NavigationStore></navi:NavigationStore>
             </ObjectDataProvider.ConstructorParameters>
@@ -54,7 +54,7 @@
                                    Text="Đặt Bàn"
                                    Margin="0 15 0 0" />
                         <Button.Background>
-                            <SolidColorBrush Color="#5F5555" />
+                            <SolidColorBrush Color="#408064" />
                         </Button.Background>
                     </Button>
                 </Grid>
@@ -78,7 +78,7 @@
                                    Text="Đặt Món"
                                    Margin="0 15 0 0" />
                         <Button.Background>
-                            <SolidColorBrush Color="#5F5555" />
+                            <SolidColorBrush Color="#408064" />
                         </Button.Background>
                     </Button>
                 </Grid>
@@ -102,7 +102,7 @@
                                    Text="Tùy Chọn"
                                    Margin="0 15 0 0" />
                         <Button.Background>
-                            <SolidColorBrush Color="#5F5555" />
+                            <SolidColorBrush Color="#408064" />
                         </Button.Background>
                     </Button>
                 </Grid>
@@ -127,7 +127,7 @@
                                    Text="Thanh Toán"
                                    Margin="0 15 0 0" />
                         <Button.Background>
-                            <SolidColorBrush Color="#5F5555" />
+                            <SolidColorBrush Color="#408064" />
                         </Button.Background>
                     </Button>
                 </Grid>

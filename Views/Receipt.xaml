@@ -92,7 +92,7 @@
                                    VerticalAlignment="Center"
                                    FontSize="35"
                                    FontWeight="Bold"
-                                   Foreground="#5F5555"
+                                   Foreground="#408064"
                                    Margin="20 0 0 0" />
                     </StackPanel>
                     <StackPanel Grid.Row="1"

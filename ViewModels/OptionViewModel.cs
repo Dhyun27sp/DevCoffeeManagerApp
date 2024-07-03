@@ -1,16 +1,11 @@
 ﻿using DevCoffeeManagerApp.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DevCoffeeManagerApp.StaticClass;
 using System.Windows.Input;
 using DevCoffeeManagerApp.Commands.CommandOrder;
-using DevCoffeeManagerApp.Commands.CommandSell;
 using DevCoffeeManagerApp.Commands.CommandOption;
-using System.Windows;
 using DevCoffeeManagerApp.Store;
 
 namespace DevCoffeeManagerApp.ViewModels

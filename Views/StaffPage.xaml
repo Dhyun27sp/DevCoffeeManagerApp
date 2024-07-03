@@ -20,7 +20,7 @@
         <vms:StaffViewModel>
         </vms:StaffViewModel>
     </Window.DataContext>
-    <Grid Background="#8f8888">
+    <Grid Background="#7d8c6d">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="5*"></ColumnDefinition>
@@ -34,7 +34,7 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Border BorderBrush="#5f5555"
+            <Border BorderBrush="#408064"
                     BorderThickness="0 0 0 1">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -57,7 +57,7 @@
                                    Margin="0 0 20 0"
                                    FontSize="20"
                                    FontStretch="Normal"
-                                   Foreground="#FFECE0D1"
+                                   Foreground="#FFECE3BA"
                                    Text="Dev Coffee Shop" />
                     </Grid>
                 </Grid>
@@ -70,7 +70,7 @@
                             Height="50"
                             Margin="0 0 0 2">
                         <Button.Background>
-                            <SolidColorBrush Color="#5F5555" />
+                            <SolidColorBrush Color="#408064" />
                         </Button.Background>
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Food"
@@ -87,9 +87,11 @@
                             Style="{StaticResource MaterialDesignFlatButton}"
                             ToolTip="MaterialDesignFlatButton"
                             Height="50"
-                            Margin="0 0 0 2">
+                            Margin="0 0 0 2"
+                            AutomationProperties.IsColumnHeader="True"
+                            Foreground="White">
                         <Button.Background>
-                            <SolidColorBrush Color="#5F5555" />
+                            <SolidColorBrush Color="#408064" />
                         </Button.Background>
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon  Kind="FolderInformationOutline"
@@ -107,7 +109,7 @@
                             ToolTip="MaterialDesignFlatButton"
                             Height="50">
                         <Button.Background>
-                            <SolidColorBrush Color="#5F5555" />
+                            <SolidColorBrush Color="#408064" />
                         </Button.Background>
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="CalendarMultipleCheck"
@@ -192,7 +194,7 @@
                             <ImageBrush />
                         </Button.BorderBrush>
                         <Button.Background>
-                            <SolidColorBrush Color="#5F5555" />
+                            <SolidColorBrush Color="#408064" />
                         </Button.Background>
                         <StackPanel Orientation="Horizontal">
                             <!-- Sử dụng StackPanel để chứa cả biểu tượng và văn bản -->
@@ -223,7 +225,7 @@
                         <ImageBrush />
                     </Button.BorderBrush>
                     <Button.Background>
-                        <SolidColorBrush Color="#FF38220F" />
+                        <SolidColorBrush Color="#6d5235" />
                     </Button.Background>
                     <StackPanel Orientation="Horizontal">
                         <!-- Sử dụng StackPanel để chứa cả biểu tượng và văn bản -->
@@ -246,7 +248,7 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.Background>
-                    <SolidColorBrush Color="#5F5555" />
+                    <SolidColorBrush Color="#408064" />
                 </Grid.Background>
                 <materialDesign:ColorZone Padding="auto"
                                           VerticalAlignment="Center"
@@ -255,15 +257,16 @@
                         <SolidColorBrush Color="#FFFFFF"
                                          Opacity="0" />
                     </materialDesign:ColorZone.Background>
-                    <DockPanel>
-                        <Grid DockPanel.Dock="Right">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
                                 <Image Source="/Img/user.png"
-                                       Width="35"/>
+                                       Width="35" />
                             </Grid>
                             <Grid Grid.Column="1">
                                 <TextBlock Text="{Binding StaffName}"
@@ -271,27 +274,21 @@
                                            FontSize="18"
                                            Margin="10 0 10 0"
                                            Foreground="White"
-                                           VerticalAlignment="Center"/>
+                                           VerticalAlignment="Center" />
                             </Grid>
                         </Grid>
-                        <StackPanel materialDesign:RippleAssist.IsCentered="True"
-                                    Orientation="Horizontal">
-                            <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
-
-                            <Button Margin="8,0,0,0"
-                                    Panel.ZIndex="0"
-                                    Style="{StaticResource MaterialDesignToolForegroundButton}" />
-                        </StackPanel>
-                    </DockPanel>
+                    </StackPanel>
                 </materialDesign:ColorZone>
             </Grid>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1"
+                  Background="#d7d1c5">
                 <Grid.Resources>
-                    <DataTemplate DataType="{x:Type vms:SellViewModel}">
+                    <DataTemplate DataType="{x:Type vms:ShopViewModel}">
                         <views:ShopPage />
                     </DataTemplate>
                 </Grid.Resources>
-                <ContentControl Content="{Binding CurrentViewModel}" />
+                <ContentControl Content="{Binding CurrentViewModel}"
+                                />
             </Grid>
         </Grid>
     </Grid>

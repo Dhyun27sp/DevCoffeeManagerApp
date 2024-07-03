@@ -60,7 +60,7 @@
                 <ColumnDefinition Width="4.5*"></ColumnDefinition>
                 <ColumnDefinition Width="5.5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Border BorderBrush="#5f5555"
+            <Border BorderBrush="#408064"
                     BorderThickness="0.5"
                     CornerRadius="10"
                     Grid.Column="0"
@@ -160,7 +160,7 @@
 
                 </Grid>
             </Border>
-            <Border BorderBrush="#5f5555"
+            <Border BorderBrush="#408064"
                     BorderThickness="0.5"
                     CornerRadius="10"
                     Grid.Column="1">
@@ -305,7 +305,7 @@
                            Text="Trả Bàn"
                            VerticalAlignment="Center" />
                 <Button.Background>
-                    <SolidColorBrush Color="#5F5555" />
+                    <SolidColorBrush Color="#408064" />
                 </Button.Background>
             </Button>
             <Button Height="50"
@@ -329,7 +329,7 @@
                            Text="Đặt Bàn"
                            VerticalAlignment="Center" />
                 <Button.Background>
-                    <SolidColorBrush Color="#5F5555" />
+                    <SolidColorBrush Color="#408064" />
                 </Button.Background>
             </Button>
         </Grid>

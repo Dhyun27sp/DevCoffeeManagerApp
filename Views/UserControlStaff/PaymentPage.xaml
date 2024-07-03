@@ -16,7 +16,7 @@
                 <ColumnDefinition Width="10*"></ColumnDefinition>
                 <ColumnDefinition Width="15*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Border BorderBrush="#5f5555"
+            <Border BorderBrush="#408064"
                     BorderThickness="0.5"
                     CornerRadius="10"
                     Background="White"
@@ -33,7 +33,7 @@
                             <StackPanel>
                                 <Grid Margin="10 5 10 0">
                                     <TextBlock FontSize="20"
-                                               Foreground="#FF38220F"
+                                               Foreground="#6d5235"
                                                FontWeight="Bold">Thông tin khách hàng</TextBlock>
                                 </Grid>
                                 <Grid Margin="10">
@@ -120,7 +120,7 @@
                                 <Grid Margin="10 5 10 0">
                                     <StackPanel>
                                         <TextBlock FontSize="20"
-                                                   Foreground="#FF38220F"
+                                                   Foreground="#6d5235"
                                                    FontWeight="Bold">Thông tin bổ sung</TextBlock>
                                         <TextBlock FontSize="15"
                                                    FontStyle="Oblique"
@@ -142,7 +142,7 @@
                     </Grid>
                 </ScrollViewer>
             </Border>
-            <Border BorderBrush="#5f5555"
+            <Border BorderBrush="#408064"
                     BorderThickness="0.5"
                     CornerRadius="10"
                     Background="White"
@@ -164,7 +164,7 @@
 
                             <Grid Margin="10 5 10 0" Grid.Row="0">
                             <TextBlock FontSize="20"
-                                       Foreground="#FF38220F"
+                                       Foreground="#6d5235"
                                        FontWeight="Bold">Order của khách hàng</TextBlock>
                             </Grid>
 
@@ -352,7 +352,7 @@
                                                     <ImageBrush />
                                                 </Button.BorderBrush>
                                                 <Button.Background>
-                                                    <SolidColorBrush Color="#FF38220F" />
+                                                    <SolidColorBrush Color="#6d5235" />
                                                 </Button.Background>
                                                 <TextBlock FontFamily="Nunito"
                                                            Text="Xuất Mã"
@@ -368,7 +368,7 @@
                                                     <ImageBrush />
                                                 </Button.BorderBrush>
                                                 <Button.Background>
-                                                    <SolidColorBrush Color="#FF38220F" />
+                                                    <SolidColorBrush Color="#6d5235" />
                                                 </Button.Background>
                                                 <TextBlock FontFamily="Nunito"
                                                            Text="Kiểm tra"
@@ -414,7 +414,7 @@
                                 <ImageBrush />
                             </Button.BorderBrush>
                             <Button.Background>
-                                <SolidColorBrush Color="#FF38220F" />
+                                <SolidColorBrush Color="#6d5235" />
                             </Button.Background>
                             <TextBlock FontFamily="Nunito"
                                        Text="Thanh toán"

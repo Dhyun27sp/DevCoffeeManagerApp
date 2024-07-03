@@ -1,19 +1,10 @@
 ﻿using DevCoffeeManagerApp.Models;
-using DevCoffeeManagerApp.StaticClass;
-using DevCoffeeManagerApp.Store;
 using DevCoffeeManagerApp.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Xml.Linq;
 
 namespace DevCoffeeManagerApp.Commands.CommandOrder
 {

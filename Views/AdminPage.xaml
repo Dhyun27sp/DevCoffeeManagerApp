@@ -39,7 +39,7 @@
                 <RowDefinition Height="2*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Border BorderBrush="#5f5555"
+            <Border BorderBrush="#408064"
                     BorderThickness="0 0 0 1">
                 <Grid>
                     <Grid.ColumnDefinitions>

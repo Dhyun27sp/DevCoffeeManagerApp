@@ -1,21 +1,10 @@
-﻿using DevCoffeeManagerApp.Commands.CommandStaff;
-using DevCoffeeManagerApp.Commands.CommandSell;
+﻿using DevCoffeeManagerApp.Commands.CommandSell;
 using DevCoffeeManagerApp.Store;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
-using Xamarin.Forms;
-using DevCoffeeManagerApp.Views.UserControlStaff;
 
 namespace DevCoffeeManagerApp.ViewModels
 {
-    public class SellViewModel : BaseViewModel
+    public class ShopViewModel : BaseViewModel
     {
         public ICommand CommandTable { get; set; }
         public ICommand CommandOrder { get; set; }
@@ -24,7 +13,7 @@ namespace DevCoffeeManagerApp.ViewModels
         private readonly NavigationStore _navigationStore;
         public BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel;
 
-        public SellViewModel(NavigationStore navigationStore)
+        public ShopViewModel(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
             _navigationStore.CurrentViewModelChaged += OnCurrentViewModelChanged;

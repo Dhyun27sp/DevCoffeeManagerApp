@@ -1,18 +1,12 @@
 ﻿using DevCoffeeManagerApp.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Threading.Tasks;
 using DevCoffeeManagerApp.DAOs;
 using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.StaticClass;
 using MongoDB.Bson;
 using DevCoffeeManagerApp.Views;
 using System.Text.RegularExpressions;
-using static MongoDB.Bson.Serialization.Serializers.SerializerHelper;
 
 namespace DevCoffeeManagerApp.Commands.CommandLogin
 {

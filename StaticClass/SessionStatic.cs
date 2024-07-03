@@ -1,16 +1,9 @@
-﻿using DevCoffeeManagerApp.DAOs;
-using DevCoffeeManagerApp.Models;
+﻿using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.Shipping;
-using DevCoffeeManagerApp.Views;
-using MongoDB.Bson;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DevCoffeeManagerApp.StaticClass
 {
@@ -70,7 +63,6 @@ namespace DevCoffeeManagerApp.StaticClass
             coordinates = new Coordinates { latitude = "10.8284142", longitude = "106.8130875" },
             address = "9/4 Đường số 2, KP Phước Hiệp, Trường Thạnh, Q9"
         };
-        public static ObservableCollection<Stop> stops = new ObservableCollection<Stop>() {ShopStop, CusStop };
-        
+
     }
 }

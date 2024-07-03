@@ -3,23 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Documents;
 using DevCoffeeManagerApp.DAOs;
-using System.Windows;
 using System.Windows.Input;
-using System.Windows.Controls;
 using MongoDB.Driver;
-using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
 using DevCoffeeManagerApp.Commands.CommandOrder;
-using DevCoffeeManagerApp.Commands.CommandOption;
-using DevCoffeeManagerApp.Commands.CommandStaff;
 using DevCoffeeManagerApp.StaticClass;
 using DevCoffeeManagerApp.Store;
-using DevCoffeeManagerApp.Views.UserControlStaff;
-using System.Security.RightsManagement;
 
 namespace DevCoffeeManagerApp.ViewModels
 {

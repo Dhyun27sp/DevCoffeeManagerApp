@@ -1,10 +1,5 @@
 ﻿using DevCoffeeManagerApp.Store;
 using DevCoffeeManagerApp.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DevCoffeeManagerApp.Commands.CommandStaff
 {
@@ -21,7 +16,7 @@ namespace DevCoffeeManagerApp.Commands.CommandStaff
         }
         public override void Execute(object parameter)
         {
-            MainStaffViewModel.CurrentViewModel = new SellViewModel(navigation);
+            MainStaffViewModel.CurrentViewModel = new ShopViewModel(navigation);
         }
     }
 }

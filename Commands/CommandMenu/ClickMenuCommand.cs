@@ -1,19 +1,13 @@
-﻿using DevCoffeeManagerApp.Config;
-using DevCoffeeManagerApp.DAOs;
+﻿using DevCoffeeManagerApp.DAOs;
 using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.ViewModels;
 using Microsoft.Win32;
 using MongoDB.Bson;
-using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace DevCoffeeManagerApp.Commands.CommandMenu
 {

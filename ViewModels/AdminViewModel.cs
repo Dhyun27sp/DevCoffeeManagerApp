@@ -1,10 +1,5 @@
 ﻿using DevCoffeeManagerApp.Commands.AdminCommand.NavigateSidebarCommand;
 using DevCoffeeManagerApp.Commands.CommandStaff;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace DevCoffeeManagerApp.ViewModels

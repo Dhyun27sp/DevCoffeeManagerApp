@@ -189,7 +189,7 @@
                 </Button.Style>
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="#5F5555"
+                        <Border Background="#408064"
                                 BorderBrush="#C8C9CC"
                                 BorderThickness="2"
                                 CornerRadius="20">

@@ -1,19 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MongoDB.Driver;
 using DevCoffeeManagerApp.Config;
 using DevCoffeeManagerApp.Models;
 using MongoDB.Bson;
-using System.Windows;
-using System.Windows.Documents;
-using System.Collections.ObjectModel;
-using System.Collections;
-using MaterialDesignThemes.Wpf;
-using System.Xml.Linq;
-using System.Text.RegularExpressions;
 
 namespace DevCoffeeManagerApp.DAOs
 {

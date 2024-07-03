@@ -54,7 +54,7 @@
         </Grid>
         <Grid Margin="25 0 25 10"
               Grid.Row="1">
-            <Border BorderBrush="#5f5555"
+            <Border BorderBrush="#408064"
                     BorderThickness="0.5"
                     CornerRadius="10"
                     Background="White"
@@ -147,7 +147,7 @@
                                 </Grid>
                             </DockPanel>
                         </Grid>
-                        <Border BorderBrush="#5f5555"
+                        <Border BorderBrush="#408064"
                                 BorderThickness="0.5"
                                 CornerRadius="10"
                                 Grid.Row="1"
@@ -260,7 +260,7 @@
                                                                 Style="{StaticResource MaterialDesignToolForegroundButton}"
                                                                 Command="{Binding DataContext.DeleteCusCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
                                                                 CommandParameter="{Binding Item1}">
-                                                            <materialDesign:PackIcon Foreground="#5F5555"
+                                                            <materialDesign:PackIcon Foreground="#408064"
                                                                                      Opacity=".80"
                                                                                      Kind="DeleteForever"
                                                                                      Width="30"

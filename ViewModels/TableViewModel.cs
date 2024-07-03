@@ -1,13 +1,9 @@
-﻿using DevCoffeeManagerApp.Commands.CommandLogin;
-using DevCoffeeManagerApp.Commands.CommandTable;
+﻿using DevCoffeeManagerApp.Commands.CommandTable;
 using DevCoffeeManagerApp.DAOs;
 using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.StaticClass;
-using DevCoffeeManagerApp.Views.UserControlStaff;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Linq;
 using DevCoffeeManagerApp.Store;
 

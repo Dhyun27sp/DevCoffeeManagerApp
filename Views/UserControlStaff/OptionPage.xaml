@@ -22,7 +22,7 @@
                     <ColumnDefinition Width="7*"></ColumnDefinition>
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Border BorderBrush="#5f5555"
+                <Border BorderBrush="#408064"
                         BorderThickness="0.5"
                         CornerRadius="10"
                         Margin="0 0 0 10"
@@ -170,7 +170,7 @@
                                                             Style="{StaticResource MaterialDesignToolForegroundButton}"
                                                             Command="{Binding DataContext.DeleteCommand ,UpdateSourceTrigger=PropertyChanged  ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
                                                             CommandParameter="{Binding Item1}">
-                                                        <materialDesign:PackIcon Foreground="#5F5555"
+                                                        <materialDesign:PackIcon Foreground="#408064"
                                                                                  Opacity=".80"
                                                                                  Kind="DeleteForever"
                                                                                  Width="30"
@@ -211,7 +211,7 @@
                         <RowDefinition Height="5*"></RowDefinition>
                         <RowDefinition Height="5*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Border BorderBrush="#5f5555"
+                    <Border BorderBrush="#408064"
                             BorderThickness="0.5"
                             CornerRadius="10"
                             Grid.Row="0"
@@ -296,7 +296,7 @@
                             </ScrollViewer>
                         </Grid>
                     </Border>
-                    <Border BorderBrush="#5f5555"
+                    <Border BorderBrush="#408064"
                             BorderThickness="0.5"
                             CornerRadius="10"
                             Grid.Row="1"
@@ -327,7 +327,7 @@
                                             ToolTip="MaterialDesignRaisedLightButton with Round Corners"
                                             Margin="30 0 30 10"
                                             Command="{Binding OpenCommand, UpdateSourceTrigger=PropertyChanged}"
-                                            Background="#FF38220F">
+                                            Background="#6d5235">
                                         <Button.BorderBrush>
                                             <ImageBrush />
                                         </Button.BorderBrush>
@@ -375,7 +375,7 @@
                                             ToolTip="MaterialDesignRaisedLightButton with Round Corners"
                                             Margin="30 0 30 10"
                                             Command="{Binding QuotationCommand, UpdateSourceTrigger=PropertyChanged}"
-                                            Background="#FF38220F">
+                                            Background="#6d5235">
                                         <Button.BorderBrush>
                                             <ImageBrush />
                                         </Button.BorderBrush>
@@ -392,7 +392,7 @@
 
             </Grid>
 
-            <Border BorderBrush="#5f5555"
+            <Border BorderBrush="#408064"
                     BorderThickness="0.5"
                     CornerRadius="10"
                     Grid.Row="1"
@@ -454,7 +454,7 @@
                                                Text="Tra"
                                                VerticalAlignment="Center" />
                                     <Button.Background>
-                                        <SolidColorBrush Color="#5F5555" />
+                                        <SolidColorBrush Color="#408064" />
                                     </Button.Background>
                                 </Button>
                             </WrapPanel>
@@ -573,7 +573,7 @@
                         </Grid>
                     </Grid>
                     <Grid Grid.Column="1">
-                        <Border Background="#5f5555"
+                        <Border Background="#408064"
                                 Width="0.5"
                                 Margin="5 10 0 10"
                                 VerticalAlignment="Stretch"
@@ -587,7 +587,7 @@
                                 ToolTip="MaterialDesignRaisedLightButton with Round Corners"
                                 Margin="35 0 35 10"
                                 Command="{Binding SubmitOptionCommand, UpdateSourceTrigger=PropertyChanged}"
-                                Background="#FF38220F"
+                                Background="#6d5235"
                                 Height="30">
                             <Button.BorderBrush>
                                 <ImageBrush />
@@ -600,7 +600,7 @@
                 </Grid>
             </Border>
         </Grid>
-        <!--<Border BorderBrush="#5f5555"
+        <!--<Border BorderBrush="#408064"
                 BorderThickness="0.5"
                 CornerRadius="10"
                 Grid.Column="1"
@@ -631,7 +631,7 @@
                             <ImageBrush />
                         </Button.BorderBrush>
                         <Button.Background>
-                            <SolidColorBrush Color="#FF38220F" />
+                            <SolidColorBrush Color="#6d5235" />
                         </Button.Background>
                         <TextBlock FontFamily="Nunito"
                                    Text="Xác Nhận"

@@ -1,14 +1,9 @@
-﻿using DevCoffeeManagerApp.Commands.AdminCommand.CustomerCommands;
-using DevCoffeeManagerApp.Commands.AdminCommand.ReceiptCommands;
+﻿using DevCoffeeManagerApp.Commands.AdminCommand.ReceiptCommands;
 using DevCoffeeManagerApp.Commands.CommandAdminReceipt;
 using DevCoffeeManagerApp.DAOs;
 using DevCoffeeManagerApp.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace DevCoffeeManagerApp.ViewModels

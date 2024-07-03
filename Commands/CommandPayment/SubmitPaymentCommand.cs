@@ -1,28 +1,16 @@
 ﻿using DevCoffeeManagerApp.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using DevCoffeeManagerApp.DAOs;
 using DevCoffeeManagerApp.StaticClass;
-using System.Threading.Tasks;
 using DevCoffeeManagerApp.Models;
 using System.Collections.ObjectModel;
-using static MongoDB.Driver.WriteConcern;
-using System.Diagnostics;
-using System.Security.Cryptography;
-using System.IO;
 using DevCoffeeManagerApp.Views;
 using DevCoffeeManagerApp.MomoPayment;
 using Newtonsoft.Json.Linq;
 using System.Windows.Forms;
 using QRCoder;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Windows.Media.Imaging;
-using System.Windows.Interop;
-using System.Web;
-using DevCoffeeManagerApp.Store;
 
 namespace DevCoffeeManagerApp.Commands.CommandPayment
 {
@@ -33,8 +21,8 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
         ProductDAO productDAO = new ProductDAO();
         private PaymentViewModel PaymentOrderViewModel;
 
-        private string partnerCode = SessionStatic.PartnerCode; 
-        private string accessKey = SessionStatic.AccessKey; 
+        private string partnerCode = SessionStatic.PartnerCode;
+        private string accessKey = SessionStatic.AccessKey;
         private string serectkey = SessionStatic.SerectKey;
         public SubmitPaymentCommand(PaymentViewModel PaymentOrderViewModel)
         {
@@ -47,7 +35,6 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
         public override void Execute(object parameter)
         {
             ObservableCollection<TableModel> tables = SessionStatic.GetTables;
-            List<DiscountModel> discounts = new List<DiscountModel>();
             List<DishModel> dishesdb = new List<DishModel>();
 
             string endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
@@ -76,38 +63,43 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                     dishesdb.Add(dishdb);
                 }
             }
-
-            if (SessionStatic.GetPhoneNumber == null && SessionStatic.Customer != null && SessionStatic.GetOrdereds != null)
+            else
             {
-                if (is_momo_payment)
+                MessageBox.Show("Hãy đặt món");
+                return;
+            }            
+            if (SessionStatic.GetPhoneNumber == null)
+                if (SessionStatic.Customer != null)
                 {
-                    string orderInfo = "Khách Hàng " + SessionStatic.Customer.name;
-                    string redirectUrl = "https://www.google.com/";//Link trang Web cua doanh nghiep
-                    string ipnUrl = "https://www.google.com/";//
-                    string requestType = "captureWallet";
-                    string tongtieng = total_amount.ToString();
-                    string orderId = receipt_code;
-                    string requestId = receipt_code;
-                    string extraData = "";
-                    ;
-                    //Before sign HMAC SHA256 signature
-                    string rawHash = "accessKey=" + accessKey +
-                        "&amount=" + tongtieng +
-                        "&extraData=" + extraData +
-                        "&ipnUrl=" + ipnUrl +
-                        "&orderId=" + orderId +
-                        "&orderInfo=" + orderInfo +
-                        "&partnerCode=" + partnerCode +
-                        "&redirectUrl=" + redirectUrl +
-                        "&requestId=" + requestId +
-                        "&requestType=" + requestType;
+                    if (is_momo_payment)
+                    {
+                        string orderInfo = "Khách Hàng " + SessionStatic.Customer.name;
+                        string redirectUrl = "https://www.google.com/";//Link trang Web cua doanh nghiep
+                        string ipnUrl = "https://www.google.com/";//
+                        string requestType = "captureWallet";
+                        string tongtieng = total_amount.ToString();
+                        string orderId = receipt_code;
+                        string requestId = receipt_code;
+                        string extraData = "";
+                        ;
+                        //Before sign HMAC SHA256 signature
+                        string rawHash = "accessKey=" + accessKey +
+                            "&amount=" + tongtieng +
+                            "&extraData=" + extraData +
+                            "&ipnUrl=" + ipnUrl +
+                            "&orderId=" + orderId +
+                            "&orderInfo=" + orderInfo +
+                            "&partnerCode=" + partnerCode +
+                            "&redirectUrl=" + redirectUrl +
+                            "&requestId=" + requestId +
+                            "&requestType=" + requestType;
 
-                    MoMoSecurity crypto = new MoMoSecurity();
-                    //sign signature SHA256
-                    string signature = crypto.signSHA256(rawHash, serectkey);
+                        MoMoSecurity crypto = new MoMoSecurity();
+                        //sign signature SHA256
+                        string signature = crypto.signSHA256(rawHash, serectkey);
 
-                    //build body json request
-                    JObject message = new JObject
+                        //build body json request
+                        JObject message = new JObject
                     {
                                     { "partnerCode", partnerCode },
                                     { "partnerName", "Cửa hàng Cà phê DevShop" },
@@ -123,77 +115,85 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                                     { "requestType", requestType },
                                     { "signature", signature }
                     };
-                    string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
-                    JObject jmessage = JObject.Parse(responseFromMomo);
-                    DialogResult result = MessageBox.Show("Ấn OK để tới trang thanh toán", "Thông báo", MessageBoxButtons.OKCancel);
-                    if (result == DialogResult.OK)
-                    {
-                        //yes...
-                        //MessageBox.Show(jmessage.GetValue("qrCodeUrl").ToString()); //**tra ve wf nhung yeu cau xac thuc tk doanh nghiep
-                        System.Diagnostics.Process.Start(jmessage.GetValue("payUrl").ToString());
+                        string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
+                        JObject jmessage = JObject.Parse(responseFromMomo);
+                        DialogResult result = MessageBox.Show("Ấn OK để tới trang thanh toán", "Thông báo", MessageBoxButtons.OKCancel);
+                        if (result == DialogResult.OK)
+                        {
+                            ReceiptModel receiptModel = new ReceiptModel(receipt_code, current_date, SessionStatic.Customer, tables, staff_phonenumber,
+                                dishesdb, "Thanh toán bằng Momo", used_point, total_amount, 0, 0);
+                            SessionStatic.SetReceipt = receiptModel;
+                            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                            QRCodeData qrCodeData = qrGenerator.CreateQrCode(jmessage.GetValue("qrCodeUrl").ToString(), QRCodeGenerator.ECCLevel.Q);
+                            QRCode qrCode = new QRCode(qrCodeData);
+                            Bitmap qrCodeImage = qrCode.GetGraphic(20);
+                            SessionStatic.Img = qrCodeImage;
+                            //qrCodeImage.Save("D:\\hyu\\img.png",ImageFormat.Png);
+                            Qr qr = new Qr();
+                            qr.Show();
 
+                        }
+                    }
+                    else if (CheckGuestMonney(total_amount, guest_monney))
+                    {
+                        if (is_direct_payment == true && total != 0)
+                        {
+                            ReceiptModel receiptModel = new ReceiptModel(receipt_code, current_date, SessionStatic.Customer, tables, staff_phonenumber,
+                                dishesdb, "Thanh toán bằng tiền mặt", used_point, total_amount, int.Parse(guest_monney), change);
+                            receiptDAO.AddReceipt(receiptModel);
+                            SessionStatic.SetReceipt = receiptModel;
+                            SessionStatic.Customer.point = (SessionStatic.Customer.point + plus_point) - used_point;
+                            customerDAO.UpdateCustomer(SessionStatic.Customer);
+                            try
+                            {
+                                productDAO.MinusProduct(SessionStatic.GetOrdereds);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+                            MessageBox.Show("Thanh toán thành công");
+                            Receipt receipt = new Receipt();
+                            receipt.Show();
+                            SessionStatic.SetTables = null;
+                            SessionStatic.SetOrdereds = null;
+                            SessionStatic.Customer = null;
+                            SessionStatic.SetReceipt = null;
+                        }
+                        else MessageBox.Show("Đơn đặt món chưa có đầy đủ thông tin1");
                     }
                 }
-                else if (CheckGuestMonney(total_amount, guest_monney))
+                else if (SessionStatic.Customer == null)
                 {
-                    if (is_direct_payment == true && total != 0)
+                    if (is_momo_payment)
                     {
-                        ReceiptModel receiptModel = new ReceiptModel(receipt_code, current_date, SessionStatic.Customer, tables, staff_phonenumber,
-                            dishesdb, discounts, "Thanh toán bằng tiền mặt", used_point, total_amount, int.Parse(guest_monney), change);
-                        receiptDAO.AddReceipt(receiptModel);
-                        SessionStatic.SetReceipt = receiptModel;
-                        SessionStatic.Customer.point = (SessionStatic.Customer.point + plus_point) - used_point;
-                        customerDAO.UpdateCustomer(SessionStatic.Customer);
-                        try
-                        {
-                            productDAO.MinusProduct(SessionStatic.GetOrdereds);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                        MessageBox.Show("Thanh toán thành công");
-                        Receipt receipt = new Receipt();
-                        receipt.Show();
-                        SessionStatic.SetTables = null;
-                        SessionStatic.SetOrdereds = null;
-                        SessionStatic.Customer = null;
-                        SessionStatic.SetReceipt = null;
-                    }
-                    else MessageBox.Show("Đơn đặt món chưa có đầy đủ thông tin1");
-                }
-            }
-            else if (SessionStatic.GetPhoneNumber == null && SessionStatic.Customer == null && SessionStatic.GetOrdereds != null)
-            {
-                if (is_momo_payment)
-                {
-                    string orderInfo = "Khách Hàng";
-                    string redirectUrl = "https://www.google.com/";//Link trang Web cua doanh nghiep
-                    string ipnUrl = "https://www.google.com/";//
-                    string requestType = "captureWallet";
-                    string tongtieng = total_amount.ToString();
-                    string orderId = receipt_code;
-                    string requestId = receipt_code;
-                    string extraData = "";
-                    ;
-                    //Before sign HMAC SHA256 signature
-                    string rawHash = "accessKey=" + accessKey +
-                        "&amount=" + tongtieng +
-                        "&extraData=" + extraData +
-                        "&ipnUrl=" + ipnUrl +
-                        "&orderId=" + orderId +
-                        "&orderInfo=" + orderInfo +
-                        "&partnerCode=" + partnerCode +
-                        "&redirectUrl=" + redirectUrl +
-                        "&requestId=" + requestId +
-                        "&requestType=" + requestType;
+                        string orderInfo = "Khách Hàng";
+                        string redirectUrl = "https://www.google.com/";//Link trang Web cua doanh nghiep
+                        string ipnUrl = "https://www.google.com/";//
+                        string requestType = "captureWallet";
+                        string tongtieng = total_amount.ToString();
+                        string orderId = receipt_code;
+                        string requestId = receipt_code;
+                        string extraData = "";
+                        ;
+                        //Before sign HMAC SHA256 signature
+                        string rawHash = "accessKey=" + accessKey +
+                            "&amount=" + tongtieng +
+                            "&extraData=" + extraData +
+                            "&ipnUrl=" + ipnUrl +
+                            "&orderId=" + orderId +
+                            "&orderInfo=" + orderInfo +
+                            "&partnerCode=" + partnerCode +
+                            "&redirectUrl=" + redirectUrl +
+                            "&requestId=" + requestId +
+                            "&requestType=" + requestType;
 
-                    MoMoSecurity crypto = new MoMoSecurity();
-                    //sign signature SHA256
-                    string signature = crypto.signSHA256(rawHash, serectkey);
+                        MoMoSecurity crypto = new MoMoSecurity();
+                        //sign signature SHA256
+                        string signature = crypto.signSHA256(rawHash, serectkey);
 
-                    //build body json request
-                    JObject message = new JObject
+                        //build body json request
+                        JObject message = new JObject
                                     {
                                     { "partnerCode", partnerCode },
                                     { "partnerName", "Cửa hàng Cà phê DevShop" },
@@ -209,56 +209,53 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                                     { "requestType", requestType },
                                     { "signature", signature }
                                 };
-                    string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
-                    JObject jmessage = JObject.Parse(responseFromMomo);
-                    DialogResult result = MessageBox.Show("Ấn OK để tới trang thanh toán", "Thông báo", MessageBoxButtons.OKCancel);
-                    if (result == DialogResult.OK)
-                    {
-                        //yes...
-                        //MessageBox.Show(jmessage.GetValue("qrCodeUrl").ToString()); //**tra ve wf nhung yeu cau xac thuc tk doanh nghiep                        
-                        //System.Diagnostics.Process.Start(jmessage.GetValue("payUrl").ToString());
-                        ReceiptModel receiptModel = new ReceiptModel(receipt_code, current_date, null, tables, staff_phonenumber,
-                            dishesdb, discounts, "Thanh toán bằng Momo", used_point, total_amount, 0, 0);
-                        SessionStatic.SetReceipt = receiptModel;
+                        string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
+                        JObject jmessage = JObject.Parse(responseFromMomo);
+                        DialogResult result = MessageBox.Show("Ấn OK để tới trang thanh toán", "Thông báo", MessageBoxButtons.OKCancel);
+                        if (result == DialogResult.OK)
+                        {
 
-                        QRCodeGenerator qrGenerator = new QRCodeGenerator();
-                        QRCodeData qrCodeData = qrGenerator.CreateQrCode(jmessage.GetValue("qrCodeUrl").ToString(), QRCodeGenerator.ECCLevel.Q);
-                        QRCode qrCode = new QRCode(qrCodeData);
-                        Bitmap qrCodeImage = qrCode.GetGraphic(20);
-                        SessionStatic.Img = qrCodeImage;
-                        //qrCodeImage.Save("D:\\hyu\\img.png",ImageFormat.Png);
-                        Qr qr = new Qr();                       
-                        qr.Show();
+                            ReceiptModel receiptModel = new ReceiptModel(receipt_code, current_date, null, tables, staff_phonenumber,
+                                dishesdb, "Thanh toán bằng Momo", used_point, total_amount, 0, 0);
+                            SessionStatic.SetReceipt = receiptModel;
+                            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                            QRCodeData qrCodeData = qrGenerator.CreateQrCode(jmessage.GetValue("qrCodeUrl").ToString(), QRCodeGenerator.ECCLevel.Q);
+                            QRCode qrCode = new QRCode(qrCodeData);
+                            Bitmap qrCodeImage = qrCode.GetGraphic(20);
+                            SessionStatic.Img = qrCodeImage;
+                            //qrCodeImage.Save("D:\\hyu\\img.png",ImageFormat.Png);
+                            Qr qr = new Qr();
+                            qr.Show();
+                        }
                     }
-                }
-                else if (CheckGuestMonney(total_amount, guest_monney))
-                {
-                    if (is_direct_payment == true && total != 0)
+                    else if (CheckGuestMonney(total_amount, guest_monney))
                     {
-                        ReceiptModel receiptModel = new ReceiptModel(receipt_code, current_date, null, tables, staff_phonenumber,
-                            dishesdb, discounts, "Thanh toán bằng tiền mặt", used_point, total_amount, int.Parse(guest_monney), change);
-                        receiptDAO.AddReceipt(receiptModel);
-                        SessionStatic.SetReceipt = receiptModel;
-                        try
+                        if (is_direct_payment == true && total != 0)
                         {
-                            productDAO.MinusProduct(SessionStatic.GetOrdereds);
+                            ReceiptModel receiptModel = new ReceiptModel(receipt_code, current_date, null, tables, staff_phonenumber,
+                                dishesdb, "Thanh toán bằng tiền mặt", used_point, total_amount, int.Parse(guest_monney), change);
+                            receiptDAO.AddReceipt(receiptModel);
+                            SessionStatic.SetReceipt = receiptModel;
+                            try
+                            {
+                                productDAO.MinusProduct(SessionStatic.GetOrdereds);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+                            MessageBox.Show("Thanh toán thành công");
+                            Receipt receipt = new Receipt();
+                            receipt.Show();
+                            SessionStatic.SetTables = null;
+                            SessionStatic.SetOrdereds = null;
+                            SessionStatic.Customer = null;
+                            SessionStatic.SetReceipt = null;
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                        MessageBox.Show("Thanh toán thành công");
-                        Receipt receipt = new Receipt();
-                        receipt.Show();
-                        SessionStatic.SetTables = null;
-                        SessionStatic.SetOrdereds = null;
-                        SessionStatic.Customer = null;
-                        SessionStatic.SetReceipt = null;
+                        else MessageBox.Show("Đơn đặt món chưa có đầy đủ thông tin2");
                     }
-                    else MessageBox.Show("Đơn đặt món chưa có đầy đủ thông tin2");
                 }
-            }
-            else MessageBox.Show("Đơn đặt món chưa có đầy đủ thông tin3");
+                else MessageBox.Show("Đơn đặt món chưa có đầy đủ thông tin3");
         }
 
         private bool CheckGuestMonney(int totalAmount, string guestMonney)

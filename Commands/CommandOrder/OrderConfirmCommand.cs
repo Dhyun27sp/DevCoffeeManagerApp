@@ -1,14 +1,7 @@
-﻿using DevCoffeeManagerApp.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DevCoffeeManagerApp.StaticClass;
+﻿using DevCoffeeManagerApp.StaticClass;
 using DevCoffeeManagerApp.Store;
+using DevCoffeeManagerApp.ViewModels;
 using System.Windows;
-using DevCoffeeManagerApp.Models;
-using System.Collections.ObjectModel;
 
 namespace DevCoffeeManagerApp.Commands.CommandOrder
 {

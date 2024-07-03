@@ -1,10 +1,4 @@
-﻿using DevCoffeeManagerApp.DAOs;
-using DevCoffeeManagerApp.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DevCoffeeManagerApp.ViewModels;
 using System.Windows;
 
 namespace DevCoffeeManagerApp.Commands.CommandOption

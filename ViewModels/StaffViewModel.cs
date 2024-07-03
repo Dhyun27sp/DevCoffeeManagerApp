@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using DevCoffeeManagerApp.Commands.CommandStaff;
-using DevCoffeeManagerApp.Models;
-using DevCoffeeManagerApp.DAOs;
-using System.Windows;
 using DevCoffeeManagerApp.StaticClass;
 
 namespace DevCoffeeManagerApp.ViewModels

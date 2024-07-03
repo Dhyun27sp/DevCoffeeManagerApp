@@ -1,5 +1,4 @@
-﻿using DevCoffeeManagerApp.DAOs;
-using DevCoffeeManagerApp.Models;
+﻿using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.StaticClass;
 using DevCoffeeManagerApp.ViewModels;
 using System;
@@ -8,16 +7,12 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.IO;
 using Newtonsoft.Json.Linq;
 using DevCoffeeManagerApp.Shipping;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
-using DevCoffeeManagerApp.Views;
 using System.Net.Http;
-using System.Net.Sockets;
 using System.Security.Cryptography;
-using Xamarin.Forms.PlatformConfiguration;
 using System.Net.Http.Headers;
 
 namespace DevCoffeeManagerApp.Commands.CommandOption
