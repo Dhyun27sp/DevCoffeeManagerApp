@@ -129,6 +129,20 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(PhoneNumber));
             }
         }
+        private string _address;
+        public string Address
+        {
+            get
+            {
+                return _address;
+            }
+            set
+            {
+                _address = SessionStatic.CusStop.address;
+                OnPropertyChanged(nameof(Address));
+                OnPropertyChanged(nameof(SessionStatic.stops));
+            }
+        }
 
         private ObservableCollection<TableModel> _bookedTable;
         public ObservableCollection<TableModel> BookedTable
@@ -162,12 +176,28 @@ namespace DevCoffeeManagerApp.ViewModels
             }
         }
 
+        private int _shipfee = 0;
+        public int Shipfee
+        {
+            get
+            {
+                return _shipfee;
+            }
+            set
+            {
+                _shipfee = value;
+                OnPropertyChanged(nameof(Shipfee));
+            }
+        }
+
         public ICommand MinusCommad { get; set; }
         public ICommand PlusCommad { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand SearchCustomerCommand { get; set; }
         public ICommand UsePointCommand { get; set; }
+        public ICommand QuotationCommand { get; set; }
         public ICommand SubmitOptionCommand { get; set; }
+        public ICommand OpenCommand { get; }
         public OptionViewModel(NavigationStore navigationStore) 
         {
             if(SessionStatic.Customer != null)
@@ -191,12 +221,17 @@ namespace DevCoffeeManagerApp.ViewModels
             {
                 BookedTable = TableSort();
             }
-            
+
+            Address = SessionStatic.CusStop.address;
+            Console.WriteLine(SessionStatic.CusStop.address);
+
             PlusCommad = new OperatorCommand(this, "Plus");
             MinusCommad = new OperatorCommand(this, "Minus");
             DeleteCommand = new OperatorCommand(this, "Delete");
             SearchCustomerCommand = new SearchCustomerCommand(this);      
             UsePointCommand = new UsePointCommand(this);
+            OpenCommand = new OpenCommand();
+            QuotationCommand = new QuotationCommand(this);
             SubmitOptionCommand = new SubmitOptionCommand(this, navigationStore);
         }
 
@@ -216,6 +251,7 @@ namespace DevCoffeeManagerApp.ViewModels
             }
             SortBookTable = new ObservableCollection<TableModel>(SessionStatic.GetTables.OrderBy(table => table.No_));
             return SortBookTable;
+            
         }
     }
 }

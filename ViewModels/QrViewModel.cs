@@ -15,20 +15,7 @@ using Xamarin.Forms;
 namespace DevCoffeeManagerApp.ViewModels
 {
     public class QrViewModel : BaseViewModel
-    {
-        private ObservableCollection<DishModel> _ordereds;
-        public ObservableCollection<DishModel> Ordereds
-        {
-            get
-            {
-                return _ordereds;
-            }
-            set
-            {
-                _ordereds = value;
-                OnPropertyChanged(nameof(Ordereds));
-            }
-        }
+    {        
 
         private string _customerName = "";
         public string CustomerName
@@ -145,7 +132,6 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(Img));
             }
         }
-        public ICommand PrintReceiptCommand { get; set; }
         public ICommand CloseCommand { get; }
 
         public QrViewModel()
@@ -160,8 +146,7 @@ namespace DevCoffeeManagerApp.ViewModels
                 UsedPoint = SessionStatic.GetReceipt.used_point.ToString();
                 CurrentDate = SessionStatic.GetReceipt.time;
                 StaffPhoneNumber = SessionStatic.GetReceipt.staff_phone;
-                TotalAmount = SessionStatic.GetReceipt.total_amount;
-                Ordereds = new ObservableCollection<DishModel> (SessionStatic.GetReceipt.Dishes);
+                TotalAmount = SessionStatic.GetReceipt.total_amount;                
             }
 
             BitmapImage image = new BitmapImage();

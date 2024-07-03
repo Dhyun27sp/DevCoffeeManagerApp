@@ -144,7 +144,7 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.CustomerCommands
                     }
                     catch (FormatException ex)
                     {
-
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }

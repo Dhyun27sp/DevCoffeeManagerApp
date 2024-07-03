@@ -43,7 +43,11 @@ namespace DevCoffeeManagerApp.ViewModels
 
         private void OnMessagePublished(object sender, MessageEventArgs e)
         {
-            _navigationStore.CurrentViewModel = new TableViewModel(_navigationStore);
+            if (e.Message == "default")
+                _navigationStore.CurrentViewModel = new TableViewModel(_navigationStore);
+            if (e.Message == "option")
+                _navigationStore.CurrentViewModel = new OptionViewModel(_navigationStore);
+
         }
     }
         

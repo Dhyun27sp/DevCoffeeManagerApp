@@ -1,0 +1,117 @@
+﻿<Window x:Class="DevCoffeeManagerApp.Views.Map"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DevCoffeeManagerApp.Views"
+        xmlns:vms="clr-namespace:DevCoffeeManagerApp.ViewModels"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Invoice"
+        Height="800"
+        Width="1200"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        FontFamily="Roboto"
+        Name="MapWindows"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="myHeaderStyle"
+               TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility"
+                    Value="Collapsed" />
+        </Style>
+    </Window.Resources>
+    <Window.DataContext>
+        <vms:MapViewModel />
+    </Window.DataContext>
+    <Border BorderBrush="Black"
+            BorderThickness="1">
+        <ScrollViewer>
+            <Grid>
+                <WrapPanel HorizontalAlignment="Right">
+                    <Image Height="25"
+                           Width="25"
+                           Margin="10,14,10,0"
+                           Canvas.Left="1000"
+                           Canvas.Top="25"
+                           Source="/Img/close.png"
+                           Stretch="Fill"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Cursor="Hand">
+
+                        <Image.InputBindings>
+                            <MouseBinding Gesture="LeftClick"
+                                          Command="{Binding CloseCommand, Mode=OneTime}"
+                                          CommandParameter="{Binding ElementName=MapWindows}" />
+                        </Image.InputBindings>
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Opacity"
+                                        Value="0.5" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver"
+                                             Value="True">
+                                        <Setter Property="Opacity"
+                                                Value="1" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </WrapPanel>
+                <Grid x:Name="print"
+                      Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="5*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="30"
+                                Grid.Row="0">
+                        <Image Source="/img/logo.png"
+                               Width="120"
+                               Height="120"
+                               VerticalAlignment="Center" />
+                        <TextBlock Text="Tìm địa chỉ"
+                                   VerticalAlignment="Center"
+                                   FontSize="35"
+                                   FontWeight="Bold"
+                                   Foreground="#5F5555"
+                                   Margin="20 0 0 0" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1"
+                                Margin="10,10,10,10">
+                        <wv2:WebView2 x:Name="webview"
+                                      Source="{Binding Url, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"
+                                      HorizontalAlignment="Stretch"
+                                      Height="500"
+                                      Margin="30,0,30,15" />
+                        <Button materialDesign:ButtonAssist.CornerRadius="10"
+                                HorizontalAlignment="Center"
+                                Height="40"
+                                HorizontalContentAlignment="Stretch"
+                                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                Margin="0 0 0 10"
+                                Command="{Binding GetCommand, UpdateSourceTrigger=PropertyChanged}">
+                            <Button.BorderBrush>
+                                <ImageBrush />
+                            </Button.BorderBrush>
+                            <Button.Background>
+                                <SolidColorBrush Color="#FF38220F" />
+                            </Button.Background>
+                            <TextBlock FontFamily="Nunito"
+                                       Text="Tra địa chỉ"
+                                       FontSize="15"
+                                       Foreground="White" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Border>
+</Window>

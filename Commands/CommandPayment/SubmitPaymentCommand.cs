@@ -14,7 +14,6 @@ using System.Security.Cryptography;
 using System.IO;
 using DevCoffeeManagerApp.Views;
 using DevCoffeeManagerApp.MomoPayment;
-using System.Xml.Linq;
 using Newtonsoft.Json.Linq;
 using System.Windows.Forms;
 using QRCoder;

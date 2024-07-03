@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DevCoffeeManagerApp.Commands.CommandReceipt
+namespace DevCoffeeManagerApp.Commands.CommandMap
 {
-    public class CloseCommand : CommandBase
+    public class OpenCommand : CommandBase
     {
         public override bool CanExecute(object parameter)
         {
@@ -17,7 +17,7 @@ namespace DevCoffeeManagerApp.Commands.CommandReceipt
         public override void Execute(object parameter)
         {
             // Hiển thị hộp thoại xác nhận
-            MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn đóng hóa đơn?",
+            MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn đóng popup?",
                                                       "Xác nhận đóng",
                                                       MessageBoxButton.YesNo,
                                                       MessageBoxImage.Question);
@@ -29,7 +29,8 @@ namespace DevCoffeeManagerApp.Commands.CommandReceipt
                 {
                     window.Close();
                 }
-                EventAggregator.Instance.PublishMessage("default");
+                EventAggregator.Instance.PublishMessage("option");
+
             }
         }
     }

@@ -1,10 +1,12 @@
 ﻿using DevCoffeeManagerApp.DAOs;
 using DevCoffeeManagerApp.Models;
+using DevCoffeeManagerApp.Shipping;
 using DevCoffeeManagerApp.Views;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -59,8 +61,16 @@ namespace DevCoffeeManagerApp.StaticClass
 
         public static string PartnerCode { get { return partnerCode; } }
         public static string AccessKey { get { return accessKey; } }
-        public static string SerectKey { get {return serectkey; } }
+        public static string SerectKey { get { return serectkey; } }
 
+        public static Stop CusStop = new Stop();
 
+        public static Stop ShopStop = new Stop
+        {
+            coordinates = new Coordinates { latitude = "10.8284142", longitude = "106.8130875" },
+            address = "9/4 Đường số 2, KP Phước Hiệp, Trường Thạnh, Q9"
+        };
+        public static ObservableCollection<Stop> stops = new ObservableCollection<Stop>() {ShopStop, CusStop };
+        
     }
 }
