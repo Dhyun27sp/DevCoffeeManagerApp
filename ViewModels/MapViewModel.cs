@@ -11,20 +11,44 @@ namespace DevCoffeeManagerApp.ViewModels
             get { return _url; }
             set
             {
-                if (_url != value)
-                {
-                    _url = value;
-                    OnPropertyChanged(nameof(Url));
-                }
+                _url = value;
+                OnPropertyChanged(nameof(Url));
+
             }
         }
+
+        private string _customername;
+        public string CustomerName
+        {
+            get { return _customername; }
+            set
+            {
+
+                _customername = value;
+                OnPropertyChanged(nameof(CustomerName));
+
+            }
+        }
+
+        private string _customerphone;
+        public string CustomerPhone
+        {
+            get { return _customerphone; }
+            set
+            {
+                _customerphone = "+84" + value.Substring(1);
+                OnPropertyChanged(nameof(CustomerPhone));
+
+            }
+        }
+
         public ICommand CloseCommand { get; }
         public ICommand GetCommand { get; }
 
         public MapViewModel()
         {
             CloseCommand = new OpenCommand();
-            GetCommand = new GetCoordinatesCommand(this);    
+            GetCommand = new GetCoordinatesCommand(this);
         }
     }
 }

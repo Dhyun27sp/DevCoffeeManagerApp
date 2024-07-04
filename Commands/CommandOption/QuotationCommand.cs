@@ -46,17 +46,30 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
                     MessageBox.Show("Không báo giá đc");
                     return;
                 }
+                else if (message == null)
+                    return;
                 JObject jmessage = JObject.Parse(message);
+
+                string quotationId = jmessage["data"]["quotationId"].ToString();
+                SessionStatic.QuotationId = quotationId;
+
                 int fee = Int32.Parse(jmessage["data"]["priceBreakdown"]["total"].ToString());
-                OptionOrderViewModel.Shipfee = fee;
+                int total_fee = IncreasePriceRoundUpToThousand(fee);
+                OptionOrderViewModel.Shipfee = total_fee;
+
+                string[] stopsId= new string[2];
+                stopsId[0] = jmessage["data"]["stops"][0]["stopId"].ToString();
+                stopsId[1] = jmessage["data"]["stops"][1]["stopId"].ToString();
+                SessionStatic.StopsId = stopsId;
+
+                SessionStatic.ShipFlag = true;
+                MessageBox.Show(fee.ToString());
             }
             else
                 MessageBox.Show("có lỗi");
             return;
 
         }
-
-
 
         private OrderItem ChangeOrderedstoOrderItem(ObservableCollection<DishModel> dishes)
         {
@@ -84,47 +97,40 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
             dictionary.Add("language", "vi_VN");
             dictionary.Add("stops", stops);
             dictionary.Add("isRouteOptimized", true);
+            if (orderItem == null)
+            {
+                MessageBox.Show("Chưa đặt món");
+                return null;
+            }    
             dictionary.Add("item", orderItem);
             var data = new Dictionary<string, object>();
             data.Add("data", dictionary);
             string postdata = JsonConvert.SerializeObject(data);
 
-            var token = GenerateToken(postdata, HttpMethod.Post, path);
+            var token = Security_Request.GenerateToken(postdata, key, secret, HttpMethod.Post, path);
 
             var client = new HttpClient();
-            var request = CreateRequestMessage(HttpMethod.Post, path, token, postdata);
+            var request = Security_Request.CreateRequestMessage(HttpMethod.Post, baseUrl, path, token, postdata);
             var response = await client.SendAsync(request);
             var result = await response.Content.ReadAsStringAsync();
-            if (response.StatusCode == HttpStatusCode.OK)
+            Console.WriteLine(result);
+            if (response.StatusCode == HttpStatusCode.Created)
             { return result; }
             return "ERROR";
         }
 
-        static HttpRequestMessage CreateRequestMessage(HttpMethod method, string path, string token, string body)
+        static int IncreasePriceRoundUpToThousand(int inputPrice)
         {
-            var url = $"{baseUrl}{path}";
-            //var requestId = Guid.NewGuid().ToString();
-            var request = new HttpRequestMessage(HttpMethod.Post, url);
-            request.Headers.TryAddWithoutValidation("Authorization", $"hmac {token}");
-            request.Headers.TryAddWithoutValidation("Market", "VN");
-            request.Content = new StringContent(body);
-            request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/x-www-form-urlencoded");
+            // Tính toán giá trị tăng thêm 20%
+            double increaseAmount = inputPrice * 0.3;
 
-            return request;
-        }
+            // Cộng giá trị tăng thêm vào giá gốc
+            double totalPrice = inputPrice + increaseAmount;
 
-        static string GenerateToken(string body, HttpMethod httpMethod, string path)
-        {
-            var time = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            var method = httpMethod.Method.ToUpper();
-            var rawSignature = $"{time}\r\n{method}\r\n{path}\r\n\r\n{body}";
-            byte[] keyByte = Encoding.UTF8.GetBytes(secret);
-            byte[] messageBytes = Encoding.UTF8.GetBytes(rawSignature);
-            byte[] hashmessage = new HMACSHA256(keyByte).ComputeHash(messageBytes);
-            var signature = string.Concat(Array.ConvertAll(hashmessage, x => x.ToString("x2")));
-            var token = $"{key}:{time}:{signature}";
+            // Làm tròn giá trị lên hàng nghìn
+            int roundedPrice = (int)Math.Ceiling(totalPrice / 1000) * 1000;
 
-            return token;
+            return roundedPrice;
         }
     }
 }

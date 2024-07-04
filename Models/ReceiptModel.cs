@@ -49,6 +49,7 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("change"), BsonRepresentation(BsonType.Int32)]
         public int change { get; set; }
 
+
         public ReceiptModel(string receipt_code, DateTime time, CustomerModel customer, ObservableCollection<TableModel> tables, string staff_phone, List<DishModel> dishes, string payments, int used_point,int total_amount, int guest_monney, int change)
         {
             this.receipt_code = receipt_code;

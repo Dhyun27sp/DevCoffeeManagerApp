@@ -89,11 +89,13 @@ namespace DevCoffeeManagerApp.ViewModels
 
         public ICommand Exit { get; }
         public ICommand FoodOrder { get; }
+        public ICommand BookShip { get; }
         public ICommand RegisterCommand { get; }
         public StaffViewModel()
         {
             RegisterCommand = new RegisterCommand(this);
             FoodOrder = new SellCommand(this);
+            BookShip = new ShipCommand(this);
             Exit = new ExitCommand();
             if(SessionStatic.GetStaffName != null)
             {

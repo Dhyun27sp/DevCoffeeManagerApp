@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using DevCoffeeManagerApp.Config;
 using DevCoffeeManagerApp.Models;
 using MongoDB.Bson;
+using static QRCoder.PayloadGenerator;
 
 namespace DevCoffeeManagerApp.DAOs
 {
@@ -28,6 +29,33 @@ namespace DevCoffeeManagerApp.DAOs
         {
             collection.InsertOne(receipt);
         }
+
+        public ReceiptModel FindReceiptbyReceiptCode(string receipt)
+        {
+            var filter = Builders<ReceiptModel>.Filter.Eq("receipt_code", receipt);
+            var item = collection.Find(filter).FirstOrDefault();
+            return item;
+        }
+
+        public List<DishModel> FindOrderbyReceiptCode(string receipt)
+        {
+            var filter = Builders<ReceiptModel>.Filter.Eq("receipt_code", receipt);
+            var item = collection.Find(filter).FirstOrDefault();
+            return item.Dishes;            
+        }
+
+        public void UpdateOrder (string receipt, string ship)
+        {
+            // Điều kiện để tìm bản ghi duy nhất
+            var filter = Builders<ReceiptModel>.Filter.Eq("receipt_code", receipt);
+
+            // Trường mới cần thêm vào bản ghi
+            var update = Builders<ReceiptModel>.Update.Set("ship_code", ship);
+
+            // Tùy chọn cập nhật: cập nhật một bản ghi duy nhất
+            var updateOptions = new UpdateOptions { IsUpsert = false };
+            collection.UpdateOne(filter, update, updateOptions);
+        } 
 
         public List<ReceiptModel> FindReceiptInYear()
         {

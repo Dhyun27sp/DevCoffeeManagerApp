@@ -48,6 +48,11 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                 MessageBox.Show("Giao dịch thành công!");
                 Receipt receipt = new Receipt();
                 receipt.Show();
+                SessionStatic.SetTables = null;
+                SessionStatic.SetOrdereds = null;
+                SessionStatic.Customer = null;
+                if (!SessionStatic.ShipFlag)
+                    SessionStatic.SetReceipt = null;
             }
             else
                 MessageBox.Show("Giao dịch thất bại");

@@ -45,8 +45,14 @@ namespace DevCoffeeManagerApp.Commands.CommandMap
                 coordinates = new Coordinates { latitude = lat, longitude = lng},
                 address = address
             };
+            Contact contact = new Contact
+            {
+                Phone = mapViewModel.CustomerPhone,
+                Name = mapViewModel.CustomerName,
+            };
             SessionStatic.CusStop = stops;
-            MessageBox.Show(address+" "+lat+" "+lng);            
+            SessionStatic.CusContact = contact;
+            MessageBox.Show(address+" "+lat+" "+lng +" "+contact.Name+" "+contact.Phone);            
         }
 
         public static string CheckAndDecodeUrlEncoding(string inputString)

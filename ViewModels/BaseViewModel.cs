@@ -6,9 +6,14 @@ namespace DevCoffeeManagerApp.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged(string propertyName = null)
+        protected void OnPropertyChanged(string propertyName = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChangedEventHandler handler = this.PropertyChanged;
+            if (handler != null)
+            {
+                var e = new PropertyChangedEventArgs(propertyName);
+                handler(this, e);
+            }
         }
 
         public virtual void Dispose() { }

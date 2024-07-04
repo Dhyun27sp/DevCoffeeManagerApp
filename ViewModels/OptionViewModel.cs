@@ -135,7 +135,6 @@ namespace DevCoffeeManagerApp.ViewModels
             {
                 _address = SessionStatic.CusStop.address;
                 OnPropertyChanged(nameof(Address));
-                OnPropertyChanged(nameof(SessionStatic.stops));
             }
         }
 

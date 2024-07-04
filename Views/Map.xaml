@@ -90,25 +90,60 @@
                                       HorizontalAlignment="Stretch"
                                       Height="500"
                                       Margin="30,0,30,15" />
-                        <Button materialDesign:ButtonAssist.CornerRadius="10"
-                                HorizontalAlignment="Center"
-                                Height="40"
-                                HorizontalContentAlignment="Stretch"
-                                Style="{StaticResource MaterialDesignRaisedLightButton}"
-                                ToolTip="MaterialDesignRaisedLightButton with Round Corners"
-                                Margin="0 0 0 10"
-                                Command="{Binding GetCommand, UpdateSourceTrigger=PropertyChanged}">
-                            <Button.BorderBrush>
-                                <ImageBrush />
-                            </Button.BorderBrush>
-                            <Button.Background>
-                                <SolidColorBrush Color="#6d5235" />
-                            </Button.Background>
-                            <TextBlock FontFamily="Nunito"
-                                       Text="Tra địa chỉ"
-                                       FontSize="15"
-                                       Foreground="White" />
-                        </Button>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Margin="30,0,30,15">
+                            <Button materialDesign:ButtonAssist.CornerRadius="10"
+                                    HorizontalAlignment="Center"
+                                    Height="40"
+                                    HorizontalContentAlignment="Stretch"
+                                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                    ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                    Margin="35 0 0 10"
+                                    Command="{Binding GetCommand, UpdateSourceTrigger=PropertyChanged}">
+                                <Button.BorderBrush>
+                                    <ImageBrush />
+                                </Button.BorderBrush>
+                                <Button.Background>
+                                    <SolidColorBrush Color="#6d5235" />
+                                </Button.Background>
+                                <TextBlock FontFamily="Nunito"
+                                           Text="Tra địa chỉ"
+                                           FontSize="15"
+                                           Foreground="White" />
+                            </Button>
+                            <TextBox Width="200"
+                                     Height="40"
+                                     HorizontalAlignment="Center"
+                                     materialDesign:HintAssist.Hint="Nhập tên"
+                                     AcceptsReturn="True"
+                                     Text="{Binding CustomerName}"
+                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                     BorderBrush="Transparent"                                     
+                                     TextWrapping="Wrap"
+                                     FontSize="15"
+                                     FontFamily="Nunito"
+                                     Padding="10 5 0 5"
+                                     Background="#6d5235"
+                                     Foreground="White"
+                                     Margin="50,0,0,10" />
+                            <TextBox Width="200"
+                                     Height="40"
+                                     HorizontalAlignment="Center"
+                                     materialDesign:HintAssist.Hint="Nhập SĐT"
+                                     AcceptsReturn="True"
+                                     Text="{Binding CustomerPhone}"
+                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                     BorderBrush="Transparent"
+                                     TextWrapping="Wrap"
+                                     FontSize="15"
+                                     FontFamily="Nunito"
+                                     Padding="10 5 0 5"
+                                     Background="#6d5235"
+                                     Foreground="White"
+                                     Margin="50,0,0,10" />
+                        </StackPanel>
+                        
                     </StackPanel>
                 </Grid>
             </Grid>

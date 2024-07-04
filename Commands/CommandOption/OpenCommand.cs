@@ -5,8 +5,6 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
 {
     public class OpenCommand : CommandBase
     {
-        NavigationStore navigationStore;
-
         public override bool CanExecute(object parameter)
         {
             return true;

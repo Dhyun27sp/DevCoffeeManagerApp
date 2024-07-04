@@ -158,7 +158,8 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                             SessionStatic.SetTables = null;
                             SessionStatic.SetOrdereds = null;
                             SessionStatic.Customer = null;
-                            SessionStatic.SetReceipt = null;
+                            if (!SessionStatic.ShipFlag)
+                                SessionStatic.SetReceipt = null;
                         }
                         else MessageBox.Show("Đơn đặt món chưa có đầy đủ thông tin1");
                     }
@@ -250,7 +251,8 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                             SessionStatic.SetTables = null;
                             SessionStatic.SetOrdereds = null;
                             SessionStatic.Customer = null;
-                            SessionStatic.SetReceipt = null;
+                            if (!SessionStatic.ShipFlag)
+                                SessionStatic.SetReceipt = null;
                         }
                         else MessageBox.Show("Đơn đặt món chưa có đầy đủ thông tin2");
                     }

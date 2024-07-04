@@ -29,7 +29,7 @@
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"></RowDefinition>
-                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
                 <RowDefinition Height="10*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
@@ -83,7 +83,7 @@
                         </StackPanel>
                     </Button>
 
-                    <Button IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    <Button Command="{Binding BookShip}"
                             Style="{StaticResource MaterialDesignFlatButton}"
                             ToolTip="MaterialDesignFlatButton"
                             Height="50"
@@ -99,40 +99,22 @@
                                                       Foreground="White" />
                             <TextBlock FontSize="18"
                                        FontFamily="Nunito"
-                                       Text="Information"
+                                       Text="Book Ship"
                                        Foreground="White" />
                         </StackPanel>
                     </Button>
 
-                    <Button IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            Style="{StaticResource MaterialDesignFlatButton}"
-                            ToolTip="MaterialDesignFlatButton"
-                            Height="50">
-                        <Button.Background>
-                            <SolidColorBrush Color="#408064" />
-                        </Button.Background>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="CalendarMultipleCheck"
-                                                     Margin="0 0 5 0"
-                                                     Foreground="White" />
-                            <TextBlock FontSize="18"
-                                       FontFamily="Nunito"
-                                       Text="Check In"
-                                       Foreground="White"
-                                       Width="97" />
-                        </StackPanel>
-                    </Button>
                 </StackPanel>
-                
+
             </Grid>
-            
+
             <Border BorderBrush="Transparent"
                     BorderThickness="0.5"
                     Grid.Column="1"
                     Margin="5 10 5 10"
                     Background="Transparent"
                     Grid.Row="2">
-                <StackPanel x:Name ="RegisterForm">
+                <StackPanel x:Name="RegisterForm">
                     <TextBlock Text="Customer Register"
                                FontFamily="Nunito"
                                FontSize="18"
@@ -147,12 +129,11 @@
                              materialDesign:HintAssist.Hint="Nhập tên"
                              AcceptsReturn="True"
                              Text="{Binding CustomerName}"
-                             IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
                              Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              BorderBrush="Transparent"
                              TextWrapping="Wrap"
                              Background="White"
-                             Margin="10 0 10 20"/>
+                             Margin="10 0 10 20" />
 
                     <TextBox Name="CusPhone"
                              MaxWidth="400"
@@ -160,12 +141,11 @@
                              materialDesign:HintAssist.Hint="Nhập số điện thoại"
                              AcceptsReturn="True"
                              Text="{Binding CustomerPhoneNumber}"
-                             IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
                              Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              BorderBrush="Transparent"
                              TextWrapping="Wrap"
                              Margin="10 0 10 20"
-                             Background="White"/>
+                             Background="White" />
 
                     <DatePicker Name="CusBirth"
                                 MaxWidth="400"
@@ -177,8 +157,8 @@
                                 Margin="10 0 10 20"
                                 Background="White">
                     </DatePicker>
-                    
-                    
+
+
 
 
 
@@ -286,9 +266,11 @@
                     <DataTemplate DataType="{x:Type vms:ShopViewModel}">
                         <views:ShopPage />
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type vms:ShipViewModel}">
+                        <views:ShipPage />
+                    </DataTemplate>
                 </Grid.Resources>
-                <ContentControl Content="{Binding CurrentViewModel}"
-                                />
+                <ContentControl Content="{Binding CurrentViewModel}" />
             </Grid>
         </Grid>
     </Grid>

@@ -11,5 +11,10 @@ namespace DevCoffeeManagerApp.Views.UserControlStaff
         {
             InitializeComponent();
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

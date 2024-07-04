@@ -1,5 +1,6 @@
 ﻿using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.Shipping;
+using DevCoffeeManagerApp.ViewModels;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
@@ -45,7 +46,6 @@ namespace DevCoffeeManagerApp.StaticClass
 
         public static CustomerModel Customer { get; set; }
 
-        public static ObservableCollection<DishModel> copy = new ObservableCollection<DishModel>();
         public static Image Img { get; set; }
 
         private static string partnerCode = "MOMO"; // thay bang key cua minh
@@ -63,6 +63,18 @@ namespace DevCoffeeManagerApp.StaticClass
             coordinates = new Coordinates { latitude = "10.8284142", longitude = "106.8130875" },
             address = "9/4 Đường số 2, KP Phước Hiệp, Trường Thạnh, Q9"
         };
+
+        public static Contact CusContact = new Contact();
+        public static Contact ShopContact = new Contact()
+        {
+            Phone = "+84365012177",
+            Name = "DevShop Coffee",
+        };
+
+        public static bool ShipFlag = false;
+
+        public static string QuotationId { get; set; }
+        public static string[] StopsId { get; set; }
 
     }
 }

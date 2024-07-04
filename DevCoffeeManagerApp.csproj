@@ -239,6 +239,8 @@
     <Compile Include="Commands\CommandAdminReceipt\FilterReceiptCommand.cs" />
     <Compile Include="Commands\CommandAdminStaff\CommandClickStaffAd.cs" />
     <Compile Include="Commands\CommandAdminStaff\FilterStaffCommand.cs" />
+    <Compile Include="Commands\CommandBook\BookCommand.cs" />
+    <Compile Include="Commands\CommandCheck\CheckCommand.cs" />
     <Compile Include="Commands\CommandCustomer\CustomerComand.cs" />
     <Compile Include="Commands\CommandCustomer\FilterCustomerCommand.cs" />
     <Compile Include="Commands\CommandDiscount\ClickButtonCommand.cs" />
@@ -271,12 +273,14 @@
     <Compile Include="Commands\CommandSchedule\ClickCommandSchedule.cs" />
     <Compile Include="Commands\CommandSchedule\FilterSchedule.cs" />
     <Compile Include="Commands\CommandSell\NavigationCommand.cs" />
+    <Compile Include="Commands\CommandShip\NavigationCommand.cs" />
     <Compile Include="Commands\CommandStaff\ExitCommand.cs" />
     <Compile Include="Commands\CommandStaff\SellCommand.cs" />
     <Compile Include="Commands\CommandStaff\RegisterCommand.cs" />
     <Compile Include="Commands\CommandOrder\OperatorCommand.cs" />
     <Compile Include="Commands\CommandOption\SearchCustomerCommand.cs" />
     <Compile Include="Commands\CommandOption\UsePointCommand.cs" />
+    <Compile Include="Commands\CommandStaff\ShipCommand.cs" />
     <Compile Include="Commands\CommandSupply\AddSupplyCommand.cs" />
     <Compile Include="Commands\CommandSupply\DeleteSupplyCommand.cs" />
     <Compile Include="Commands\CommandSupply\UpdateStatusCommand.cs" />
@@ -315,6 +319,7 @@
     <Compile Include="MomoPayment\MomoSecurity.cs" />
     <Compile Include="MomoPayment\PaymentRequest.cs" />
     <Compile Include="Shipping\Lalamove.cs" />
+    <Compile Include="Shipping\Security_Request.cs" />
     <Compile Include="StaticClass\SessionStatic.cs" />
     <Compile Include="Store\NavigationStore.cs" />
     <Compile Include="ViewModels\AdminCustomerViewModel.cs" />
@@ -328,17 +333,21 @@
     <Compile Include="ViewModels\AdminSupplyViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\BookViewModel.cs" />
+    <Compile Include="ViewModels\CheckViewModel.cs" />
     <Compile Include="ViewModels\EventAggregator.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PaymentViewModel.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
     <Compile Include="ViewModels\QrViewModel.cs" />
     <Compile Include="ViewModels\ReceiptViewModel.cs" />
+    <Compile Include="ViewModels\ShipViewModel.cs" />
     <Compile Include="ViewModels\StaffViewModel.cs" />
     <Compile Include="ViewModels\OptionViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\ShopViewModel.cs" />
     <Compile Include="ViewModels\TableViewModel.cs" />
+    <Compile Include="ViewModels\UpdateViewModel.cs" />
     <Compile Include="Views\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
@@ -381,11 +390,20 @@
     <Compile Include="Views\UserControlAdmin\SupplyManagementPage.xaml.cs">
       <DependentUpon>SupplyManagementPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControlStaff\BookPage.xaml.cs">
+      <DependentUpon>BookPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControlStaff\CheckPage.xaml.cs">
+      <DependentUpon>CheckPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControlStaff\PaymentPage.xaml.cs">
       <DependentUpon>PaymentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Map.xaml.cs">
       <DependentUpon>Map.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControlStaff\ShipPage.xaml.cs">
+      <DependentUpon>ShipPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControlStaff\ShopPage.xaml.cs">
       <DependentUpon>ShopPage.xaml</DependentUpon>
@@ -491,6 +509,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControlStaff\BookPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControlStaff\CheckPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControlStaff\PaymentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -498,6 +524,10 @@
     <Page Include="Views\Map.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControlStaff\ShipPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControlStaff\ShopPage.xaml">
       <SubType>Designer</SubType>
