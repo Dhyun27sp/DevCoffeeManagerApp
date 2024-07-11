@@ -60,7 +60,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
             {
                 foreach (var Ordd in OrderFoodViewModel.Ordereds)
                 {
-                    foreach (var dish in OrderFoodViewModel.AllDishsVariable)
+                    foreach (var dish in OrderFoodViewModel.AllDishs)
                     {
                         if (dish.dish_name == Ordd.dish_name)
                         {

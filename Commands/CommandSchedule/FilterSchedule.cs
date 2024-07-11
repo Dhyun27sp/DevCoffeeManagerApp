@@ -80,7 +80,7 @@ namespace DevCoffeeManagerApp.Commands.CommandSchedule
             else
             {
                 ObservableCollection<ScheduleModel> scheduleModels = new ObservableCollection<ScheduleModel>();
-                ObservableCollection<ScheduleModel> scheduleModelsinWeek = new ObservableCollection<ScheduleModel>(scheduleDAO.GetNSchedules(21));
+                ObservableCollection<ScheduleModel> scheduleModelsinWeek = new ObservableCollection<ScheduleModel>(scheduleDAO.findSchedulebyWeekCurrent());
                 if (!string.IsNullOrWhiteSpace(viewModel.Schedulesearch))
                 {
                     foreach (ScheduleModel s in scheduleModelsinWeek)

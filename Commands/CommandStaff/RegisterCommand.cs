@@ -29,7 +29,7 @@ namespace DevCoffeeManagerApp.Commands.CommandStaff
             {
                 string name = mainStaffViewModel.CustomerName;
                 string phone = mainStaffViewModel.CustomerPhoneNumber;
-                string date = mainStaffViewModel.CustomerBirthday.GetValueOrDefault().ToString("dd/MM/yyyy");
+                string date = mainStaffViewModel.CustomerBirthday.ToString("dd/MM/yyyy");
                 if (checkInput(name, phone, date) == false)
                 {
                     return;
@@ -39,7 +39,7 @@ namespace DevCoffeeManagerApp.Commands.CommandStaff
                 MessageBox.Show("Đăng ký khách hàng thành công");
                 mainStaffViewModel.CustomerName = null;
                 mainStaffViewModel.CustomerPhoneNumber = null;
-                mainStaffViewModel.CustomerBirthday = null;
+                mainStaffViewModel.CustomerBirthday = DateTime.UtcNow;
             }
         }
 

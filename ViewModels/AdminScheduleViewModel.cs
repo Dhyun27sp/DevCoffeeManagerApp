@@ -168,6 +168,8 @@ namespace DevCoffeeManagerApp.ViewModels
             set { _schedulesearch = value; OnPropertyChanged(nameof(Schedulesearch)); }
         }
         public List<EvaluateModel> evaluateWhenchooseSchedule { get; set; }
+
+        public DateTime Date { get; set; }
         public ICommand ChoosedScheduleCommand { get; }
         public ICommand AddSchedule { get; }
         public ICommand ChoosedStafftoShiftCommand { get; }
@@ -177,10 +179,11 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand ChangeValueTexboxCommand { get; }
         public ObservableCollection<ScheduleModel> consoleListSchedule;
         public AdminScheduleViewModel() {
+            Date = DateTime.Now;
             Schedules = new ObservableCollection<ScheduleModel>(scheduleDAO.GetAllSchedule());
             consoleListSchedule = Schedules;
             ChoosedScheduleCommand = new ClickCommandSchedule(this, "choose");
-            AddSchedule = new ClickCommandSchedule(this, "add");
+            AddSchedule = new OpenCommand();
             ChoosedStafftoShiftCommand = new ClickCommandSchedule(this, "addstaff");
             RemoveStaffOutScheduleCommand = new ClickCommandSchedule(this, "removestaff");
             DeleteScheduleCommand = new ClickCommandSchedule(this, "delete");

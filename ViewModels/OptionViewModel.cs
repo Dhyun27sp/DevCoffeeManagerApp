@@ -133,7 +133,7 @@ namespace DevCoffeeManagerApp.ViewModels
             }
             set
             {
-                _address = SessionStatic.CusStop.address;
+                _address = value;
                 OnPropertyChanged(nameof(Address));
             }
         }
@@ -184,6 +184,8 @@ namespace DevCoffeeManagerApp.ViewModels
             }
         }
 
+        public bool Flag = false;
+
         public ICommand MinusCommad { get; set; }
         public ICommand PlusCommad { get; set; }
         public ICommand DeleteCommand { get; set; }
@@ -216,8 +218,10 @@ namespace DevCoffeeManagerApp.ViewModels
                 BookedTable = TableSort();
             }
 
-            Address = SessionStatic.CusStop.address;
-            Console.WriteLine(SessionStatic.CusStop.address);
+            Flag = SessionStatic.ShipFlag;
+            if(SessionStatic.CusStop!=null)
+                Address = SessionStatic.CusStop.address;
+            else Address = "";
 
             PlusCommad = new OperatorCommand(this, "Plus");
             MinusCommad = new OperatorCommand(this, "Minus");

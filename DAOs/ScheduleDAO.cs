@@ -52,16 +52,6 @@ namespace DevCoffeeManagerApp.DAOs
 
             return latestSchedule;
         }
-        public List<ScheduleModel> GetNSchedules(int n)
-        {
-            // Sắp xếp các document theo trường "_id" giảm dần (từ mới đến cũ).
-            var sortDefinition = Builders<ScheduleModel>.Sort.Descending("_id");
-
-            // Lấy n document cuối cùng sau khi đã sắp xếp.
-            var schedules = collection.Find(new BsonDocument()).Sort(sortDefinition).Limit(n).ToList();
-
-            return schedules;
-        }
 
         public List<ScheduleModel> findSchedulebymothCurrent() {
             var regexPattern = new BsonRegularExpression(new Regex(Regex.Escape(DateTime.Now.ToString("MM/yyyy")), RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace));
@@ -78,6 +68,21 @@ namespace DevCoffeeManagerApp.DAOs
             // Tìm kiếm dữ liệu
             var filter = Builders<ScheduleModel>.Filter.Regex("shift", regexPattern);
             var result = collection.Find(filter).ToList();
+            return result;
+        }
+        public List<ScheduleModel> findSchedulebyWeekCurrent()
+        {
+            List<ScheduleModel> result = new List<ScheduleModel>();
+            var i = 0;
+            while (i<7)            
+            {
+                var date = DateTime.Now.AddDays(-i);
+                var regexPattern = new BsonRegularExpression(new Regex(Regex.Escape(date.ToString("dd/MM/yyyy")), RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace));
+                // Tìm kiếm dữ liệu
+                var filter = Builders<ScheduleModel>.Filter.Regex("shift", regexPattern);
+                result.AddRange(collection.Find(filter).ToList());
+                i++;
+            }
             return result;
         }
         public void DeleteScheduleByid(ObjectId Id)

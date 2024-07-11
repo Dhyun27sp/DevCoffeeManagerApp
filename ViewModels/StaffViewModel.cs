@@ -72,8 +72,8 @@ namespace DevCoffeeManagerApp.ViewModels
             }
         }
 
-        private DateTime? _customerBirthday = null;
-        public DateTime? CustomerBirthday
+        private DateTime _customerBirthday = DateTime.UtcNow;
+        public DateTime CustomerBirthday
         {
             get
             {

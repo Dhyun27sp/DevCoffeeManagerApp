@@ -13,7 +13,7 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("status"), BsonRepresentation(BsonType.String)]
         public String Status { get; set; }
 
-        [BsonElement("date"), BsonRepresentation(BsonType.DateTime)]
+        [BsonElement("date"), BsonRepresentation(BsonType.DateTime), BsonDateTimeOptions(Kind = DateTimeKind.Unspecified)]
         public DateTime Date { get; set; }
 
         [BsonElement("price"), BsonRepresentation(BsonType.Int32)]
@@ -25,11 +25,11 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("unit"), BsonRepresentation(BsonType.String)]
         public String Unit { get; set; }
 
-        [BsonElement("MFG"), BsonRepresentation(BsonType.DateTime)]
-        public DateTime? MFG_date { get; set; }
+        [BsonElement("MFG"), BsonRepresentation(BsonType.DateTime), BsonDateTimeOptions(Kind = DateTimeKind.Unspecified)]
+        public DateTime MFG_date { get; set; }
 
-        [BsonElement("EXP"), BsonRepresentation(BsonType.DateTime)]
-        public DateTime? EXP_date { get; set; }
+        [BsonElement("EXP"), BsonRepresentation(BsonType.DateTime), BsonDateTimeOptions(Kind = DateTimeKind.Unspecified)]
+        public DateTime EXP_date { get; set; }
 
         [BsonElement("manufacturer"), BsonRepresentation(BsonType.String)]
         public String Manufacturer { get; set; }

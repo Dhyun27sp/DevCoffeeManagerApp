@@ -66,14 +66,14 @@ namespace DevCoffeeManagerApp.ViewModels
             get { return _description; }
             set { _description = value; OnPropertyChanged(nameof(Description)); }
         }
-        private DateTime? _daystart = null;
-        public DateTime? Daystart
+        private DateTime _daystart = DateTime.UtcNow;
+        public DateTime Daystart
         {
             get { return _daystart; }
             set { _daystart = value; OnPropertyChanged(nameof(Daystart)); }
         }
-        private DateTime? _dayend = null;
-        public DateTime? Dayend
+        private DateTime _dayend = DateTime.UtcNow;
+        public DateTime Dayend
         {
             get { return _dayend; }
             set { _dayend = value; OnPropertyChanged(nameof(Dayend)); }
@@ -109,7 +109,8 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand UpdateDisCommand { get; }
         public ICommand DeletefieldDisCommand { get; }
         public ICommand DeleteDisCommand { get; }
-        public ICommand DiscountCbbCommand { get; }
+        public ICommand FilterCommand { get; }
+
         //Khối Property và Command Hộ Trợ DistcountList : End
         /// <summary>
         /// /////////
@@ -201,6 +202,14 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand TypedishCbbCommand { get; }
         public ICommand ChoosedDishCommand { get; }
         public ICommand ChoosedDisCommandFromNotDC { get; }
+
+        private bool _flag;
+        public bool Flag
+        {
+            get { return _flag; }
+            set { _flag = value; OnPropertyChanged(nameof(Flag)); }
+        }
+
         //Khối Property và Command Hộ Trợ DishList : End
         /// <summary>
         /// /////////
@@ -277,16 +286,18 @@ namespace DevCoffeeManagerApp.ViewModels
         }
         
         public ICommand ChoosedMenuCommand { get; }
+        public ICommand SearchCommand { get; }
         public ICommand ChoosedMenuNotDCCommand { get; }
         //Khối Property và Command Hộ Trợ MenuList : End
         public DateTime Date { get; set; }
+        public DateTime? DateFilter { get; set; }
 
         public AdminDiscountViewModel()
         {
             Date = DateTime.Now;
             //Khối Config Hộ Trợ DistcountList :Start
             DeletefieldDisCommand = new ClickButtonCommand(this, "deletef");
-            DiscountCbbCommand = new FilterDiscountCommand(this, "cbb");
+            FilterCommand = new FilterDiscountCommand(this, "filter");
             ChoosedDisCommand = new ClickButtonCommand(this, "choose");
             DeleteDisCommand = new ClickButtonCommand(this, "deleted");
             UpdateDisCommand = new ClickButtonCommand(this, "update");

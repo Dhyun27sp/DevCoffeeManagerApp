@@ -28,7 +28,9 @@ namespace DevCoffeeManagerApp.Commands.CommandProduct
                 {
                     productDAO.DeleteProductByProductName(product.Product_name);
                     MessageBox.Show("Xóa thành công");
-                    adminProductViewModel.Products = productDAO.GetAllProducts();
+                    adminProductViewModel.Products.Remove(product);
+                    adminProductViewModel.Products = adminProductViewModel.Products;
+                    adminProductViewModel.AllProducts = productDAO.GetAllProducts();
                 }
             }
         }

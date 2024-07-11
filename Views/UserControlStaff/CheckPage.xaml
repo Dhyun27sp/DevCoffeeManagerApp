@@ -20,7 +20,7 @@
                 Background="White"
                 Grid.Column="0">
             <Grid>
-                <wv2:WebView2 x:Name="webview"
+                <wv2:WebView2 x:Name="webview"                              
                               HorizontalAlignment="Stretch"
                               Height="500"
                               Margin="30,15,30,15" />
@@ -125,8 +125,7 @@
                             Địa chỉ
                             <TextBlock Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}"
                                        VerticalAlignment="Top"
-                                       Width="130"
-                                       TextWrapping="Wrap"
+                                       Width="200"
                                        Padding="5 0 0 0" />
                         </TextBlock>
                     <StackPanel>

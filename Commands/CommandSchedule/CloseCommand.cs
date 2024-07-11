@@ -1,9 +1,8 @@
-﻿using DevCoffeeManagerApp.ViewModels;
-using System.Windows;
+﻿using System.Windows;
 
-namespace DevCoffeeManagerApp.Commands.CommandMap
+namespace DevCoffeeManagerApp.Commands.CommandSchedule
 {
-    public class OpenCommand : CommandBase
+    internal class CloseCommand : CommandBase
     {
         public override bool CanExecute(object parameter)
         {
@@ -20,11 +19,10 @@ namespace DevCoffeeManagerApp.Commands.CommandMap
             // Kiểm tra kết quả của hộp thoại xác nhận
             if (result == MessageBoxResult.Yes)
             {
-                if(parameter is Window window)
+                if (parameter is Window window)
                 {
-                    window.Hide();
+                    window.Close();
                 }
-                EventAggregator.Instance.PublishMessage("option");
 
             }
         }

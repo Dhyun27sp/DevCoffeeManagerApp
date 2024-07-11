@@ -1,10 +1,5 @@
 ﻿using DevCoffeeManagerApp.Commands.CommandShip;
 using DevCoffeeManagerApp.Store;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace DevCoffeeManagerApp.ViewModels
@@ -25,7 +20,7 @@ namespace DevCoffeeManagerApp.ViewModels
 
             CommandShip = new NavigationCommand(navigationStore, "bookPage");
             CommandCheck = new NavigationCommand(navigationStore, "checkPage");
-            CommandUpdate = new NavigationCommand(navigationStore, "updatePage");
+            CommandUpdate = new QuotationCommand();
 
             EventAggregator.Instance.MessagePublished += OnMessagePublished;
         }

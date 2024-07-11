@@ -1,6 +1,5 @@
 ﻿using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.Shipping;
-using DevCoffeeManagerApp.ViewModels;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
@@ -56,7 +55,7 @@ namespace DevCoffeeManagerApp.StaticClass
         public static string AccessKey { get { return accessKey; } }
         public static string SerectKey { get { return serectkey; } }
 
-        public static Stop CusStop = new Stop();
+        public static Stop CusStop { get; set; }
 
         public static Stop ShopStop = new Stop
         {
@@ -64,7 +63,7 @@ namespace DevCoffeeManagerApp.StaticClass
             address = "9/4 Đường số 2, KP Phước Hiệp, Trường Thạnh, Q9"
         };
 
-        public static Contact CusContact = new Contact();
+        public static Contact CusContact { get; set; }
         public static Contact ShopContact = new Contact()
         {
             Phone = "+84365012177",
@@ -72,6 +71,7 @@ namespace DevCoffeeManagerApp.StaticClass
         };
 
         public static bool ShipFlag = false;
+        public static int ShipFee;
 
         public static string QuotationId { get; set; }
         public static string[] StopsId { get; set; }

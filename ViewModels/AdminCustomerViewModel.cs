@@ -58,8 +58,8 @@ namespace DevCoffeeManagerApp.ViewModels
             get { return _phonecustom; }
             set { _phonecustom = value; OnPropertyChanged(nameof(PhoneCustom)); }
         }
-        private DateTime? _dobcustom = null;
-        public DateTime? Dobcustom
+        private DateTime _dobcustom = DateTime.UtcNow;
+        public DateTime Dobcustom
         {
             get { return _dobcustom; }
             set { _dobcustom = value; OnPropertyChanged(nameof(Dobcustom)); }

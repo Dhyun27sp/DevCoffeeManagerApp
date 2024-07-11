@@ -33,7 +33,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -99,6 +99,9 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Bcl.Numerics, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.Numerics.8.0.0\lib\net462\Microsoft.Bcl.Numerics.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.1\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
@@ -135,9 +138,19 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="OxyPlot, Version=2.1.2.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>packages\OxyPlot.Core.2.1.2\lib\net45\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Wpf, Version=2.1.2.0, Culture=neutral, PublicKeyToken=75e952ba404cdbb0, processorArchitecture=MSIL">
+      <HintPath>packages\OxyPlot.Wpf.2.1.2\lib\net45\OxyPlot.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Wpf.Shared, Version=2.1.2.0, Culture=neutral, PublicKeyToken=75e952ba404cdbb0, processorArchitecture=MSIL">
+      <HintPath>packages\OxyPlot.Wpf.Shared.2.1.2\lib\net45\OxyPlot.Wpf.Shared.dll</HintPath>
+    </Reference>
     <Reference Include="QRCoder, Version=1.6.0.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
       <HintPath>packages\QRCoder.1.6.0\lib\net40\QRCoder.dll</HintPath>
     </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="SharpCompress, Version=0.36.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
       <HintPath>packages\SharpCompress.0.36.0\lib\net462\SharpCompress.dll</HintPath>
     </Reference>
@@ -147,6 +160,12 @@
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.CodeDom, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.CodeDom.4.5.0\lib\net461\System.CodeDom.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -166,9 +185,13 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Tensors, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Tensors.8.0.0\lib\net462\System.Numerics.Tensors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
+    <Reference Include="System.Printing" />
     <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
       <Private>True</Private>
@@ -210,6 +233,9 @@
     </Reference>
     <Reference Include="System.Text.Encoding.CodePages, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Text.Encoding.CodePages.8.0.0\lib\net462\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Channels.4.7.1\lib\net461\System.Threading.Channels.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
@@ -267,13 +293,20 @@
     <Compile Include="Commands\CommandProduct\DeleteProductCommand.cs" />
     <Compile Include="Commands\CommandProduct\ImportProductCommand.cs" />
     <Compile Include="Commands\CommandPayment\CheckPaymentCommand.cs" />
+    <Compile Include="Commands\CommandProduct\SearchCommand.cs" />
+    <Compile Include="Commands\CommandProduct\UpdateProductCommand.cs" />
     <Compile Include="Commands\CommandQr\CloseCommand.cs" />
     <Compile Include="Commands\CommandReceipt\CloseCommand.cs" />
     <Compile Include="Commands\CommandReceipt\PrintReceiptCommand.cs" />
+    <Compile Include="Commands\CommandSchedule\AddScheduleCommand.cs" />
+    <Compile Include="Commands\CommandSchedule\ClickButtonCommand.cs" />
     <Compile Include="Commands\CommandSchedule\ClickCommandSchedule.cs" />
+    <Compile Include="Commands\CommandSchedule\CloseCommand.cs" />
     <Compile Include="Commands\CommandSchedule\FilterSchedule.cs" />
+    <Compile Include="Commands\CommandSchedule\OpenCommand.cs" />
     <Compile Include="Commands\CommandSell\NavigationCommand.cs" />
     <Compile Include="Commands\CommandShip\NavigationCommand.cs" />
+    <Compile Include="Commands\CommandShip\QuotationCommand.cs" />
     <Compile Include="Commands\CommandStaff\ExitCommand.cs" />
     <Compile Include="Commands\CommandStaff\SellCommand.cs" />
     <Compile Include="Commands\CommandStaff\RegisterCommand.cs" />
@@ -283,6 +316,7 @@
     <Compile Include="Commands\CommandStaff\ShipCommand.cs" />
     <Compile Include="Commands\CommandSupply\AddSupplyCommand.cs" />
     <Compile Include="Commands\CommandSupply\DeleteSupplyCommand.cs" />
+    <Compile Include="Commands\CommandSupply\SearchCommand.cs" />
     <Compile Include="Commands\CommandSupply\UpdateStatusCommand.cs" />
     <Compile Include="Commands\CommandTable\CancelallTableCommand.cs" />
     <Compile Include="Commands\CommandTable\CommandSubmitTable.cs" />
@@ -291,6 +325,7 @@
     </Compile>
     <Compile Include="Config\BooleanNegationConverter.cs" />
     <Compile Include="Config\ConnectionMongoDB.cs" />
+    <Compile Include="Config\SearchMethod.cs" />
     <Compile Include="Config\ToStringConverter.cs" />
     <Compile Include="DAOs\CustomerDAO.cs" />
     <Compile Include="DAOs\DiscountDAO.cs" />
@@ -322,6 +357,7 @@
     <Compile Include="Shipping\Security_Request.cs" />
     <Compile Include="StaticClass\SessionStatic.cs" />
     <Compile Include="Store\NavigationStore.cs" />
+    <Compile Include="ViewModels\AdminAddScheduleViewModel.cs" />
     <Compile Include="ViewModels\AdminCustomerViewModel.cs" />
     <Compile Include="ViewModels\AdminDashboardViewModel.cs" />
     <Compile Include="ViewModels\AdminDiscountViewModel.cs" />
@@ -392,6 +428,9 @@
     </Compile>
     <Compile Include="Views\UserControlStaff\BookPage.xaml.cs">
       <DependentUpon>BookPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddSchedule.xaml.cs">
+      <DependentUpon>AddSchedule.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControlStaff\CheckPage.xaml.cs">
       <DependentUpon>CheckPage.xaml</DependentUpon>
@@ -513,6 +552,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddSchedule.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\UserControlStaff\CheckPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -603,6 +646,7 @@
     <Analyzer Include="packages\AWSSDK.SecurityToken.3.7.300.113\analyzers\dotnet\cs\AWSSDK.SecurityToken.CodeAnalysis.dll" />
     <Analyzer Include="packages\AWSSDK.SecurityToken.3.7.300.113\analyzers\dotnet\cs\SharedAnalysisCode.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

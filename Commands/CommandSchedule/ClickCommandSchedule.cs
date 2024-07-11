@@ -4,7 +4,6 @@ using DevCoffeeManagerApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,9 +31,6 @@ namespace DevCoffeeManagerApp.Commands.CommandSchedule
             {
                 case "choose":
                     chooseschedule(parameter);
-                    return;
-                case "add":
-                    addschedule(parameter);
                     return;
                 case "delete":
                     DeleteS(parameter);
@@ -69,27 +65,6 @@ namespace DevCoffeeManagerApp.Commands.CommandSchedule
                 }
             }
         }
-        private void addschedule(object parameter)
-        {
-            string shift = scheduleDAO.GetLatestSchedule().shift;
-            char charToRemove = shift[shift.Length-1];
-            string newString = new string(shift.Where(c => c != charToRemove).ToArray());
-            DateTime dateTime = DateTime.ParseExact(newString, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            List<EvaluateModel> evaluate = new List<EvaluateModel>();
-            string ShiftS = dateTime.AddDays(1).ToString("dd/MM/yyyy") + "S";
-            string ShiftC = dateTime.AddDays(1).ToString("dd/MM/yyyy") + "C";
-            string ShiftT = dateTime.AddDays(1).ToString("dd/MM/yyyy") + "T";
-            ScheduleModel scheduleS = new ScheduleModel(ShiftS,0, evaluate);
-            ScheduleModel scheduleC = new ScheduleModel(ShiftC,0, evaluate);
-            ScheduleModel scheduleT = new ScheduleModel(ShiftT,0, evaluate);
-            scheduleDAO.createSchedule(scheduleS);
-            scheduleDAO.createSchedule(scheduleC);
-            scheduleDAO.createSchedule(scheduleT);
-            viewModel.Schedules = new ObservableCollection<ScheduleModel>(scheduleDAO.GetAllSchedule());
-            viewModel.consoleListSchedule = viewModel.Schedules;
-            FilterSchedule FilterSchedule = new FilterSchedule(viewModel, "search");
-            FilterSchedule.Filter();
-        }
         private void addstaff(object parameter)
         {
             if (parameter is ListView liststaff)
@@ -99,7 +74,6 @@ namespace DevCoffeeManagerApp.Commands.CommandSchedule
                     Tuple<StaffModel, int> selectedItem = (Tuple<StaffModel, int>)liststaff.SelectedItem;
                     EvaluateModel evaluate = new EvaluateModel();
                     evaluate.staff_id = selectedItem.Item1.staffid;
-                    evaluate.score = 0;
                     evaluate.worked = false;
                     scheduleDAO.AddEvaluteWithIdSchedule(evaluate,viewModel.ScheduleclickCurrent.ScheduleId);
                     viewModel.evaluateWhenchooseSchedule.Add(evaluate);
@@ -120,7 +94,6 @@ namespace DevCoffeeManagerApp.Commands.CommandSchedule
                     Tuple<StaffModel, int,string> selectedItem = (Tuple<StaffModel, int,string>)liststaff.SelectedItem;
                     EvaluateModel evaluate = new EvaluateModel();
                     evaluate.staff_id = selectedItem.Item1.staffid;
-                    evaluate.score = 0;
                     evaluate.worked = false;
                     scheduleDAO.RemoveEvaluateFromSchedule(evaluate, viewModel.ScheduleclickCurrent.ScheduleId);
                     foreach(EvaluateModel e in viewModel.evaluateWhenchooseSchedule)

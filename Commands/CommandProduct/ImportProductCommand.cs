@@ -18,7 +18,7 @@ namespace DevCoffeeManagerApp.Commands.CommandProduct
         }
         public override bool CanExecute(object parameter)
         {
-            if (parameter is ProductModel data && data.Stock >= 100)
+            if (parameter is ProductModel data && data.Stock >= 100 && data.EXP_date >= DateTime.Now)
             {
                 return false;
             }
@@ -39,7 +39,7 @@ namespace DevCoffeeManagerApp.Commands.CommandProduct
                 SupplyModel secondsupply = supplyDAO.GetUsingSupplyByName(data.Product_name);
                 if (secondsupply != null)
                 {
-                    if (secondsupply.EXP_date >= DateTime.Now)
+                    if (secondsupply.EXP_date <= DateTime.Now)
                     {
                         supplyDAO.SetStatus(secondsupply.Product_name, "Out of Date");
                         data.Stock = firstsupply.Quantity * 1000;

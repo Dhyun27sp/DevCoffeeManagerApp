@@ -127,7 +127,7 @@
                                                          MinWidth="200"
                                                          Margin="8,4,0,0"
                                                          VerticalAlignment="Top"
-                                                         materialDesign:HintAssist.Hint="Build a search bar"
+                                                         materialDesign:HintAssist.Hint="Nhập mã ca"
                                                          materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                                          BorderThickness="0"
                                                          Grid.RowSpan="2"

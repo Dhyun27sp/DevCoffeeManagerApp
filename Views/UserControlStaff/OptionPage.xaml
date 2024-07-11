@@ -49,6 +49,8 @@
                                                         Value="Black" />
                                                 <Setter Property="HorizontalContentAlignment"
                                                         Value="Left" />
+                                                <Setter Property="BorderBrush"
+                                                        Value="Transparent" />
                                             </Style>
                                         </GridView.ColumnHeaderContainerStyle>
                                         <GridViewColumn Width="50">
@@ -234,6 +236,9 @@
                                                             Value="Black" />
                                                     <Setter Property="HorizontalContentAlignment"
                                                             Value="Left" />
+                                                    <Setter Property="BorderBrush"
+                                                            Value="Transparent" />
+
                                                 </Style>
                                             </GridView.ColumnHeaderContainerStyle>
                                             <GridViewColumn Width="100">
@@ -301,89 +306,75 @@
                             Margin="10 0 0 10"
                             Background="White">
                         <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"></RowDefinition>
-                                <RowDefinition Height="4*"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <TextBlock VerticalAlignment="Center"
-                                           HorizontalAlignment="Left"
-                                           FontSize="20"
-                                           Margin="20 0 0 0"
-                                           FontFamily="Nunito"
-                                           FontWeight="DemiBold"
-                                           Grid.Column="0">
-                                    Đặt giao
-                                </TextBlock>
-                            </Grid>
-                            <Grid Grid.Row="1">
-                                <StackPanel>
-                                    <Button materialDesign:ButtonAssist.CornerRadius="10"
-                                            Width="150"
-                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                            Style="{StaticResource MaterialDesignRaisedLightButton}"
-                                            ToolTip="MaterialDesignRaisedLightButton with Round Corners"
-                                            Margin="30 0 30 10"
-                                            Command="{Binding OpenCommand, UpdateSourceTrigger=PropertyChanged}"
-                                            Background="#6d5235">
-                                        <Button.BorderBrush>
-                                            <ImageBrush />
-                                        </Button.BorderBrush>
-                                        <TextBlock FontFamily="Nunito"
-                                                   Text="Nhập địa chỉ"
-                                                   Foreground="White" />
-                                    </Button>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock FontSize="13"
-                                                   FontFamily="Nunito"
-                                                   Margin="20,5,15,5"
-                                                   Width="60"
-                                                   Height="20"
-                                                   Text="Phí ship:"
-                                                   HorizontalAlignment="Left" />
-                                        <TextBlock Text="{Binding Shipfee, StringFormat='{}{0:N0} VNĐ', UpdateSourceTrigger=PropertyChanged}"
-                                                   Width="auto"
-                                                   HorizontalAlignment="Left"
-                                                   FontSize="13"
-                                                   FontFamily="Nunito"
-                                                   Margin="15 5 0 0" />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock FontSize="13"
-                                                   FontFamily="Nunito"
-                                                   Margin="20,0,15,15"
-                                                   Width="60"
-                                                   Height="30"
-                                                   Text="Địa chỉ:"
-                                                   VerticalAlignment="Stretch"
-                                                   HorizontalAlignment="Left" />
-                                        <TextBlock Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}"
-                                                   Width="200"
-                                                   HorizontalAlignment="Left"
-                                                   TextWrapping="Wrap"
-                                                   Height="30"
-                                                   FontSize="13"
-                                                   FontFamily="Nunito"
-                                                   Margin="15 0 0 15" />
-                                    </StackPanel>
-                                    <Button materialDesign:ButtonAssist.CornerRadius="10"
-                                            HorizontalAlignment="Stretch"
-                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                            Style="{StaticResource MaterialDesignRaisedLightButton}"
-                                            ToolTip="MaterialDesignRaisedLightButton with Round Corners"
-                                            Margin="30 0 30 10"
-                                            Command="{Binding QuotationCommand, UpdateSourceTrigger=PropertyChanged}"
-                                            Background="#6d5235">
-                                        <Button.BorderBrush>
-                                            <ImageBrush />
-                                        </Button.BorderBrush>
-                                        <TextBlock FontFamily="Nunito"
-                                                   Text="Tính phí ship"
-                                                   Foreground="White" />
-                                    </Button>
+                            <StackPanel>
+                                <Button materialDesign:ButtonAssist.CornerRadius="10"
+                                        Width="150"
+                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                        Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                        ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                        Margin="30 15 30 10"
+                                        Command="{Binding OpenCommand, UpdateSourceTrigger=PropertyChanged}"
+                                        Background="#6d5235">
+                                    <Button.BorderBrush>
+                                        <ImageBrush />
+                                    </Button.BorderBrush>
+                                    <TextBlock FontFamily="Nunito"
+                                               Text="Nhập địa chỉ"
+                                               Foreground="White" />
+                                </Button>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="13"
+                                               FontFamily="Nunito"
+                                               Margin="20,5,15,5"
+                                               Width="60"
+                                               Height="20"
+                                               Text="Phí ship:"
+                                               HorizontalAlignment="Left" />
+                                    <TextBlock Text="{Binding Shipfee, StringFormat='{}{0:N0} VNĐ', UpdateSourceTrigger=PropertyChanged}"
+                                               Width="auto"
+                                               HorizontalAlignment="Left"
+                                               FontSize="13"
+                                               FontFamily="Nunito"
+                                               Margin="15 5 0 5" />
                                 </StackPanel>
-
-                            </Grid>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="13"
+                                               FontFamily="Nunito"
+                                               Margin="20,0,15,5"
+                                               Width="60"
+                                               Height="20"
+                                               Text="Địa chỉ:"
+                                               VerticalAlignment="Stretch"
+                                               HorizontalAlignment="Left" />
+                                    <TextBlock Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}"
+                                               Width="130"
+                                               HorizontalAlignment="Left"
+                                               TextWrapping="Wrap"
+                                               Height="20"
+                                               FontSize="13"
+                                               FontFamily="Nunito"
+                                               Margin="20 0 0 5" />
+                                </StackPanel>
+                                <RadioButton IsChecked="{Binding Flag, UpdateSourceTrigger=PropertyChanged}"
+                                             HorizontalAlignment="Left"
+                                             Margin="20 0 0 25"
+                                             Content="Đặt giao hàng" />
+                                <Button materialDesign:ButtonAssist.CornerRadius="10"
+                                        HorizontalAlignment="Stretch"
+                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                        Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                        ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                        Margin="30 0 30 10"
+                                        Command="{Binding QuotationCommand, UpdateSourceTrigger=PropertyChanged}"
+                                        Background="#6d5235">
+                                    <Button.BorderBrush>
+                                        <ImageBrush />
+                                    </Button.BorderBrush>
+                                    <TextBlock FontFamily="Nunito"
+                                               Text="Tính phí ship"
+                                               Foreground="White" />
+                                </Button>
+                            </StackPanel>
                         </Grid>
                     </Border>
                 </Grid>

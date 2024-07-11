@@ -13,14 +13,10 @@ namespace DevCoffeeManagerApp.Models
         [BsonElement("worked"), BsonRepresentation(BsonType.Boolean)]
         public Boolean worked { get; set; }
 
-        [BsonElement("score"), BsonRepresentation(BsonType.Int32)]
-        public int score { get; set; }
-
-       public EvaluateModel(ObjectId staff_id, bool worked, int score)
+       public EvaluateModel(ObjectId staff_id, bool worked)
         {
             this.staff_id = staff_id;
             this.worked = worked;
-            this.score = score;
         }
 
         public EvaluateModel() { }

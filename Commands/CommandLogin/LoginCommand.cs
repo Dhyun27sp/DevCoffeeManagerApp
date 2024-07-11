@@ -148,7 +148,7 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
                     }
                 }
 
-                EvaluateModel evaluate = new EvaluateModel(_idstaff, true, 0);
+                EvaluateModel evaluate = new EvaluateModel(_idstaff, true);
                 scheduledao.AddEvaluate(shift, evaluate); // thêm staff_id vào evalute của schedule                        
                 MessageBox.Show("Bạn đã chấm công hôm nay");
             }

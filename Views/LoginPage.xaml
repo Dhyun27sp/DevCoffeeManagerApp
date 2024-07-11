@@ -53,7 +53,7 @@
                        VerticalAlignment="Top"
                        Stretch="Fill">
                 <Rectangle.Fill>
-                    <SolidColorBrush Color="#4D4545" />
+                    <SolidColorBrush Color="#408064" />
                 </Rectangle.Fill>
                 <Rectangle.RenderTransform>
                     <TranslateTransform X="96"
@@ -80,7 +80,7 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center">
                 <Rectangle.Fill>
-                    <SolidColorBrush Color="#D3D3D3" />
+                    <SolidColorBrush Color="#d7d1c5" />
                 </Rectangle.Fill>
                 <Rectangle.RenderTransform>
                     <TranslateTransform X="456"
@@ -142,7 +142,6 @@
                 <TextBox MaxWidth="400"
                          Text="{Binding Phonenumber, UpdateSourceTrigger=PropertyChanged}"
                          materialDesign:HintAssist.Hint="Phone Number"
-                         IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
                          Style="{StaticResource MaterialDesignFilledTextBox}"
                          TextWrapping="Wrap"
                          Width="403" />

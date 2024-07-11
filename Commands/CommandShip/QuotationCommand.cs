@@ -1,6 +1,5 @@
 ﻿using DevCoffeeManagerApp.Models;
 using DevCoffeeManagerApp.StaticClass;
-using DevCoffeeManagerApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -11,19 +10,19 @@ using DevCoffeeManagerApp.Shipping;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.Net.Http;
+using DevCoffeeManagerApp.DAOs;
 
-namespace DevCoffeeManagerApp.Commands.CommandOption
+namespace DevCoffeeManagerApp.Commands.CommandShip
 {
     internal class QuotationCommand : CommandBase
     {
-        OptionViewModel OptionOrderViewModel;
+        ReceiptDAO receiptDAO = new ReceiptDAO();
         const string key = "pk_test_0aaaabba78a336de774fbbd3de8a299d";    // put your lalamove API key here
         const string secret = "sk_test_vzTqN6KnvN9g/zpml//HB0p+tO7V6h0xV2/TMaSWP1tjLa1grVb8FrdG03egcjHn"; // put your lalamove API secret here
         const string baseUrl = "https://rest.sandbox.lalamove.com";
 
-        public QuotationCommand(OptionViewModel optionOrderViewModel)
+        public QuotationCommand()
         {
-            this.OptionOrderViewModel = optionOrderViewModel;
         }
 
         public override bool CanExecute(object parameter)
@@ -35,11 +34,12 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
         {
             if (SessionStatic.CusStop == null)
             {
-                MessageBox.Show("Chưa nhập địa chỉ");
+                MessageBox.Show("Chưa đặt hàng");
                 return;
             }
             Stop[] stops = new Stop[] { SessionStatic.ShopStop, SessionStatic.CusStop };
-            OrderItem item = ChangeOrderedstoOrderItem(OptionOrderViewModel.OrderedFood);
+            var orders = new ObservableCollection<DishModel>(receiptDAO.FindOrderbyReceiptCode(SessionStatic.GetReceipt.receipt_code));
+            OrderItem item = ChangeOrderedstoOrderItem(orders);
             if (stops[1] != null)
             {
                 string message = await CalculateRequest(stops, item);
@@ -57,12 +57,14 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
 
                 int fee = Int32.Parse(jmessage["data"]["priceBreakdown"]["total"].ToString());
                 int total_fee = Security_Request.IncreasePriceRoundUpToThousand(fee);
-                OptionOrderViewModel.Shipfee = total_fee;
+                SessionStatic.ShipFee = total_fee;
 
-                string[] stopsId= new string[2];
+                string[] stopsId = new string[2];
                 stopsId[0] = jmessage["data"]["stops"][0]["stopId"].ToString();
                 stopsId[1] = jmessage["data"]["stops"][1]["stopId"].ToString();
                 SessionStatic.StopsId = stopsId;
+
+                SessionStatic.ShipFlag = true;
                 MessageBox.Show(total_fee.ToString());
             }
             else
@@ -101,7 +103,7 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
             {
                 MessageBox.Show("Chưa đặt món");
                 return null;
-            }    
+            }
             dictionary.Add("item", orderItem);
             var data = new Dictionary<string, object>();
             data.Add("data", dictionary);

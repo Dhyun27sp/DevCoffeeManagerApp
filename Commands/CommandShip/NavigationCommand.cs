@@ -1,5 +1,7 @@
-﻿using DevCoffeeManagerApp.Store;
+﻿using DevCoffeeManagerApp.StaticClass;
+using DevCoffeeManagerApp.Store;
 using DevCoffeeManagerApp.ViewModels;
+using System.Windows;
 
 namespace DevCoffeeManagerApp.Commands.CommandShip
 {
@@ -22,13 +24,15 @@ namespace DevCoffeeManagerApp.Commands.CommandShip
             switch (page)
             {
                 case "bookPage":
+                    if (SessionStatic.GetReceipt == null)
+                    {
+                        MessageBox.Show("Chưa đặt hàng");
+                        return;
+                    }    
                     _navigationStore.CurrentViewModel = new BookViewModel(_navigationStore);
                     return;
                 case "checkPage":
                     _navigationStore.CurrentViewModel = new CheckViewModel(_navigationStore);
-                    return;
-                case "updatePage":
-                    _navigationStore.CurrentViewModel = new UpdateViewModel(_navigationStore);
                     return;
             }
         }

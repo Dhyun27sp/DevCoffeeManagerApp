@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
 {
-    public class FilterDiscountCommand: CommandBase
+    public class FilterDiscountCommand : CommandBase
     {
         public FilterDiscountCommand() { }
 
@@ -29,10 +29,8 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
         {
             switch (action)
             {
-                case "cbb":
-                    combbdiscount();
-                    return;
-                case "search":
+                case "filter":
+                    filterdiscount();
                     return;
             }
             switch (action)
@@ -42,7 +40,8 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                     return;
             }
         }
-        private void combbdiscount() {
+        private void filterdiscount()
+        {
             ObservableCollection<DiscountModel> TypeDiscount = new ObservableCollection<DiscountModel>();
             TypeDiscount = new ObservableCollection<DiscountModel>(discountDAO.ReadDiscountAll());
             if (viewModel.ExpiryDateitem == "All")
@@ -52,16 +51,16 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
             else if (viewModel.ExpiryDateitem == "Expired")
             {
                 ObservableCollection<DiscountModel> ExpiredDiscount = new ObservableCollection<DiscountModel>();
-                foreach(DiscountModel discount in TypeDiscount)
+                foreach (DiscountModel discount in TypeDiscount)
                 {
-                    if(discount.dayend < DateTime.UtcNow)
+                    if (discount.dayend < DateTime.UtcNow)
                     {
                         ExpiredDiscount.Add(discount);
                     }
                 }
                 viewModel.Discounts = ExpiredDiscount;
             }
-            else if(viewModel.ExpiryDateitem == "valid")
+            else if (viewModel.ExpiryDateitem == "valid")
             {
                 ObservableCollection<DiscountModel> ExpiredDiscount = new ObservableCollection<DiscountModel>();
                 foreach (DiscountModel discount in TypeDiscount)
@@ -73,11 +72,24 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                 }
                 viewModel.Discounts = ExpiredDiscount;
             }
+
+            if (viewModel.DateFilter.HasValue)
+            {
+                ObservableCollection<DiscountModel> Dishs_Search = new ObservableCollection<DiscountModel>();
+                foreach (var discount in viewModel.Discounts)
+                {
+                    if (viewModel.DateFilter >= discount.daystart && viewModel.DateFilter <= discount.dayend)
+                    {
+                        Dishs_Search.Add(discount);
+                    }
+                }
+                viewModel.Discounts = Dishs_Search;
+            }
         }
 
         private void changetypedish(string discountid)
         {
-            if(discountid != null)
+            if (discountid != null)
             {
                 DiscountModel discountchoosed = discountDAO.findisbyId(discountid);
                 ObservableCollection<DishModel> listdish = new ObservableCollection<DishModel>();

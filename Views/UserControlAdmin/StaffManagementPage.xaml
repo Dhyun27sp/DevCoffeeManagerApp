@@ -97,7 +97,7 @@
                                                      MinWidth="200"
                                                      Margin="8,4,0,0"
                                                      VerticalAlignment="Top"
-                                                     materialDesign:HintAssist.Hint="Build a search bar"
+                                                     materialDesign:HintAssist.Hint="Nhập số điện thoại nhân viên"
                                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                                      BorderThickness="0"
                                                      Grid.RowSpan="2"

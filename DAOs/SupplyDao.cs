@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 
 namespace DevCoffeeManagerApp.DAOs
 {
@@ -48,7 +49,24 @@ namespace DevCoffeeManagerApp.DAOs
         {
             var nameFilter = Builders<SupplyModel>.Filter.Eq("product_name", name);
             var status_update = Builders<SupplyModel>.Update.Set("status", status);
-            UpdateResult result = collection.UpdateOne(nameFilter, status_update);
+            var result = collection.UpdateOne(nameFilter, status_update);
+            if (result.IsAcknowledged)
+            {
+                MessageBox.Show(result.MatchedCount.ToString());
+                return;
+            }
+        }
+
+        public void SetStatusMany(String name, String status)
+        {
+            var nameFilter = Builders<SupplyModel>.Filter.Eq("product_name", name);
+            var status_update = Builders<SupplyModel>.Update.Set("status", status);
+            var result = collection.UpdateMany(nameFilter, status_update);
+            if (result.IsAcknowledged)
+            {
+                MessageBox.Show(result.MatchedCount.ToString());
+                return;
+            }
         }
 
         public void DeleteSupplyByProductName(string productName)

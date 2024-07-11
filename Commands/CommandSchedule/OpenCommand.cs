@@ -1,17 +1,20 @@
 ﻿using DevCoffeeManagerApp.Views;
 
-namespace DevCoffeeManagerApp.Commands.CommandOption
+namespace DevCoffeeManagerApp.Commands.CommandSchedule
 {
-    public class OpenCommand : CommandBase
+    internal class OpenCommand: CommandBase
     {
+        public OpenCommand() { }
+
         public override bool CanExecute(object parameter)
         {
             return true;
         }
+
         public override void Execute(object parameter)
         {
-            Map map = new Map();
-            map.Show();
+            AddSchedule view = new AddSchedule();
+            view.Show();
             return;
         }
     }

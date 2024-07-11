@@ -26,5 +26,9 @@ namespace DevCoffeeManagerApp.Models
             this.staff_number = staff_number;
             this.evaluate = evaluate;
         }
+
+        public ScheduleModel()
+        {
+        }
     }
 }

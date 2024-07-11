@@ -109,8 +109,8 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(PhoneStaff));
             }
         }
-        private int? _password = null;
-        public int? PasswordStaff
+        private string _password = null;
+        public string PasswordStaff
         {
             get
             {
@@ -158,7 +158,7 @@ namespace DevCoffeeManagerApp.ViewModels
         public AdminStaffViewModel() {
             Staffs = new ObservableCollection<StaffModel>(staffDAO.ReadAll());
             staffDAO.Createsalary();// tạo tháng lương cho nhân viên
-            staffDAO.salaryInMoth();
+            staffDAO.salaryInMonth();
             ChoosedStaffCommand = new CommandClickStaffAd(this, "choose");
             AddStaffCommand = new CommandClickStaffAd(this, "add");
             DeleteStaffCommand = new CommandClickStaffAd(this, "deletestaff");

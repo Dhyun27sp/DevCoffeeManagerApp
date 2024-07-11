@@ -98,7 +98,7 @@
                                         </ComboBox.Effect>
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="SelectionChanged">
-                                                <i:InvokeCommandAction Command="{Binding abc}"
+                                                <i:InvokeCommandAction Command="{Binding FilterCommand}"
                                                                        CommandParameter="{Binding ElementName=ComboBoxType}" />
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
@@ -135,11 +135,11 @@
                                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                                      BorderThickness="0"
                                                      Grid.RowSpan="2"
-                                                     Text="{Binding types_dish_search , UpdateSourceTrigger=PropertyChanged}">
+                                                     Text="{Binding Search , UpdateSourceTrigger=PropertyChanged}">
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="KeyUp">
-                                                        <i:InvokeCommandAction Command="{Binding ChangeValueTexboxCommand}"
-                                                                               CommandParameter="{Binding ElementName=TexboxSearch}" />
+                                                        <i:InvokeCommandAction Command="{Binding SearchCommand}"
+                                                                               CommandParameter="{Binding ElementName=ProductNameSearch}" />
                                                     </i:EventTrigger>
                                                 </i:Interaction.Triggers>
                                             </TextBox>
@@ -156,7 +156,14 @@
                                 Margin="25 0 20 0"
                                 Height="490">
                             <Grid>
-                                <ListView ItemsSource="{Binding CombineList}">
+                                <ListView x:Name="lvProduct"
+                                    ItemsSource="{Binding CombineList}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding ChooseCommand}"
+                                                                   CommandParameter="{Binding ElementName=lvProduct}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                     <ListView.View>
                                         <GridView>
                                             <GridView.ColumnHeaderContainerStyle>
@@ -173,6 +180,8 @@
                                                             Value="Black" />
                                                     <Setter Property="HorizontalContentAlignment"
                                                             Value="Left" />
+                                                    <Setter Property="BorderBrush"
+                                                            Value="Transparent" />
                                                 </Style>
                                             </GridView.ColumnHeaderContainerStyle>
                                             <GridViewColumn Width="70">
@@ -300,7 +309,7 @@
                                       Margin="0 0 25 0">
                                     <TextBox VerticalAlignment="Center"
                                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                             Text="{Binding newproduct.Product_name}"
+                                             Text="{Binding Products_name, UpdateSourceTrigger=PropertyChanged}"
                                              FontSize="15">
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Orientation="Horizontal">
@@ -322,7 +331,7 @@
                                               Style="{StaticResource MaterialDesignFilledComboBox}"
                                               Background="Transparent"
                                               ItemsSource="{Binding UnitList}"
-                                              SelectedItem="{Binding newproduct.Unit}">
+                                              SelectedItem="{Binding Products_unit, UpdateSourceTrigger=PropertyChanged}">
                                         <materialDesign:HintAssist.Hint>
                                             <StackPanel Orientation="Horizontal">
                                                 <materialDesign:PackIcon VerticalAlignment="Center"
@@ -352,6 +361,24 @@
                                         </Button.Background>
                                         <TextBlock FontFamily="Nunito"
                                                    Text="Thêm SP"
+                                                   Foreground="White" />
+                                    </Button>
+                                </Grid>
+                                <Grid>
+                                    <Button materialDesign:ButtonAssist.CornerRadius="10"
+                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                            Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                            ToolTip="MaterialDesignRaisedLightButton with Round Corners"
+                                            Margin="10,5,15,5"
+                                            Command="{Binding UpdateCommand, UpdateSourceTrigger=PropertyChanged}">
+                                        <Button.BorderBrush>
+                                            <ImageBrush />
+                                        </Button.BorderBrush>
+                                        <Button.Background>
+                                            <SolidColorBrush Color="#c87780" />
+                                        </Button.Background>
+                                        <TextBlock FontFamily="Nunito"
+                                                   Text="Cập nhật Sản Phẩm"
                                                    Foreground="White" />
                                     </Button>
                                 </Grid>

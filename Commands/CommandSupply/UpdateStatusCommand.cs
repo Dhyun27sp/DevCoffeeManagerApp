@@ -26,9 +26,10 @@ namespace DevCoffeeManagerApp.Commands.CommandSupply
                 if (date >= supply.EXP_date)
                 {
                     supply.Status = "Out of date";
-                    supplyDAO.SetStatus(supply.Product_name, supply.Status);
+                    supplyDAO.SetStatusMany(supply.Product_name, supply.Status);
                 }
             }
+            adminSupplyViewModel.AllSupplies = supplyDAO.GetAllSupplies();
             adminSupplyViewModel.Supplies = adminSupplyViewModel.Supplies;
             MessageBox.Show("Đã cập nhật");
         }

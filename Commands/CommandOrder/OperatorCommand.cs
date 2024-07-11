@@ -2,7 +2,6 @@
 using DevCoffeeManagerApp.StaticClass;
 using DevCoffeeManagerApp.ViewModels;
 using System.Linq;
-using System.Windows;
 
 namespace DevCoffeeManagerApp.Commands.CommandOrder
 {
@@ -64,7 +63,6 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
                     {
                         case "Plus":
                             datageted.Quantity++;
-                            MessageBox.Show("111");
                             total_money(datageted);
                             return;
                         case "Minus":

@@ -33,7 +33,8 @@ namespace DevCoffeeManagerApp.Models
         {
             get
             {
-                if(image != null) {
+                if (image != null)
+                {
                     string resuildimg = image;
                     byte[] imageBytes = Convert.FromBase64String(resuildimg);
                     return imageBytes;
@@ -77,10 +78,12 @@ namespace DevCoffeeManagerApp.Models
         private int _amount;
         public int Amount
         {
-            get {
+            get
+            {
                 return _amount;
             }
-            set {
+            set
+            {
                 _amount = value;
                 OnPropertyChanged(nameof(Amount));
             }
@@ -119,13 +122,13 @@ namespace DevCoffeeManagerApp.Models
             this._quantity = _quantity;
             this.Saleprice = Saleprice;
             this.price = price;
-            this.ingredient= ingredient;
+            this.ingredient = ingredient;
             this.Sugar = Sugar;
             this.Ice = Ice;
         }
 
-        public DishModel(ObjectId _id,string dishName,List<ProductModel> ingredients,int? dishPrice,string dishImage,
-        string dateAdd,string dishCategory,int? salePrice,int quantity,int amount)
+        public DishModel(ObjectId _id, string dishName, List<ProductModel> ingredients, int? dishPrice, string dishImage,
+        string dateAdd, string dishCategory, int? salePrice, int quantity, int amount)
         {
             this._id = _id;
             this.dish_name = dishName;
@@ -137,6 +140,19 @@ namespace DevCoffeeManagerApp.Models
             this.Saleprice = salePrice;
             this.Quantity = quantity;
             this.Amount = amount;
+        }
+        public DishModel(DishModel dishModel) 
+        {
+            this._id = dishModel._id;
+            this.dish_name = dishModel.dish_name;
+            this.ingredient = dishModel.ingredient;
+            this.price = dishModel.price;
+            this.image = dishModel.image;
+            this.date_add = dishModel.date_add;
+            this.category = dishModel.category;
+            this.Saleprice = dishModel.Saleprice;
+            this.Quantity = dishModel.Quantity;
+            this.Amount = dishModel.Amount;
         }
         public DishModel() { }
 

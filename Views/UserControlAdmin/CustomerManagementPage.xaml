@@ -106,7 +106,7 @@
                                                               VerticalAlignment="Center"
                                                               HorizontalAlignment="Right"
                                                               Padding="8,4,8,4"
-                                                              Panel.ZIndex="1"
+                                                              Panel.ZIndex="1"                                                              
                                                               materialDesign:ElevationAssist.Elevation="Dp2"
                                                               CornerRadius="2"
                                                               Mode="Standard">
@@ -130,7 +130,7 @@
                                                      MinWidth="200"
                                                      Margin="8,4,0,0"
                                                      VerticalAlignment="Top"
-                                                     materialDesign:HintAssist.Hint="Build a search bar"
+                                                     materialDesign:HintAssist.Hint="Nhập số điện thoại"
                                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                                      BorderThickness="0"
                                                      Grid.RowSpan="2"
@@ -178,6 +178,8 @@
                                                             Value="Black" />
                                                     <Setter Property="HorizontalContentAlignment"
                                                             Value="Left" />
+                                                    <Setter Property="BorderBrush"
+                                                            Value="Transparent" />
                                                 </Style>
                                             </GridView.ColumnHeaderContainerStyle>
                                             <GridViewColumn Width="70">

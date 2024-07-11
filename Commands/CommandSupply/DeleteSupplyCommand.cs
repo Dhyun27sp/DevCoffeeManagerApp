@@ -27,8 +27,10 @@ namespace DevCoffeeManagerApp.Commands.CommandSupply
                 if (result == MessageBoxResult.Yes)
                 {
                     supplytDAO.DeleteSupplyByProductName(supply.Product_name);
+                    adminSupplyViewModel.Supplies.Remove(supply);
+                    adminSupplyViewModel.Supplies = adminSupplyViewModel.Supplies;
                     MessageBox.Show("Xóa thành công");
-                    adminSupplyViewModel.Supplies = supplytDAO.GetAllSupplies();
+                    adminSupplyViewModel.AllSupplies = supplytDAO.GetAllSupplies();
                 }
             }
         }

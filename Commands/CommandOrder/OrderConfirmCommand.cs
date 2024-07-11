@@ -1,12 +1,16 @@
-﻿using DevCoffeeManagerApp.StaticClass;
+﻿using DevCoffeeManagerApp.DAOs;
+using DevCoffeeManagerApp.StaticClass;
 using DevCoffeeManagerApp.Store;
 using DevCoffeeManagerApp.ViewModels;
+using System.Linq;
+using System;
 using System.Windows;
 
 namespace DevCoffeeManagerApp.Commands.CommandOrder
 {
     public class OrderConfirmCommand : CommandBase
     {
+        ProductDAO productDAO = new ProductDAO();
         private OrderViewModel orderFoodViewModel;
         private readonly NavigationStore _navigationStore;
         public OrderConfirmCommand(OrderViewModel orderFoodViewModel, NavigationStore navigationStore) { 
@@ -27,6 +31,15 @@ namespace DevCoffeeManagerApp.Commands.CommandOrder
             }
             else
             {
+                try
+                {
+                    productDAO.CheckAvailableProduct(orderFoodViewModel.Ordereds.ToList());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
                 MessageBox.Show("Đặt Món thành công");
                 SessionStatic.SetOrdereds = orderFoodViewModel.Ordereds;
                 _navigationStore.CurrentViewModel = new OptionViewModel(_navigationStore);

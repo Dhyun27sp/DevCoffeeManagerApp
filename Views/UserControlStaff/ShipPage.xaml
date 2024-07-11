@@ -116,9 +116,6 @@
                         <DataTemplate DataType="{x:Type vms:CheckViewModel}">
                             <views:CheckPage />
                         </DataTemplate>
-                        <DataTemplate DataType="{x:Type vms:UpdateViewModel}">
-                            <views:OptionPage />
-                        </DataTemplate>
                     </ContentControl.Resources>
                 </ContentControl>
             </Grid>

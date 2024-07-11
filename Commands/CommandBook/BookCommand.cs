@@ -27,7 +27,7 @@ namespace DevCoffeeManagerApp.Commands.CommandBook
 
         public override bool CanExecute(object parameter)
         {
-            return base.CanExecute(parameter);
+            return true;
         }
 
         public override async void Execute(object parameter)
@@ -35,7 +35,7 @@ namespace DevCoffeeManagerApp.Commands.CommandBook
             string[] stops = SessionStatic.StopsId;
             Contact[] contacts = new Contact[] { SessionStatic.ShopContact, SessionStatic.CusContact };
 
-            if (stops[1] != null)
+            if (stops[1] != null && contacts[1] != null)
             {
                 string message = await OrderRequest(stops, contacts);
                 if (message == "ERROR")
@@ -51,16 +51,18 @@ namespace DevCoffeeManagerApp.Commands.CommandBook
                 string orderId = jmessage["data"]["orderId"].ToString();
                 receiptDAO.UpdateOrder(receiptId, orderId);
                 int fee = Int32.Parse(jmessage["data"]["priceBreakdown"]["total"].ToString());
-                MessageBox.Show("Đã đặt thành công giao hàng với phí giao hàng là "+fee.ToString()+"VNĐ.");
-                SessionStatic.CusStop = new Stop();
-                SessionStatic.CusContact = new Contact();
+                int total_fee = Security_Request.IncreasePriceRoundUpToThousand(fee);
+                MessageBox.Show("Đã đặt thành công giao hàng với phí giao hàng là "+ total_fee.ToString()+"VNĐ.");
+                SessionStatic.CusStop = null;
+                SessionStatic.CusContact = null;
                 SessionStatic.SetReceipt = null;
                 SessionStatic.ShipFlag = false;
                 SessionStatic.QuotationId = null;
                 SessionStatic.StopsId = null;
+                SessionStatic.ShipFee = 0;
             }
             else
-                MessageBox.Show("có lỗi");
+                MessageBox.Show("Chưa có vị trí khách hàng hoặc chưa có thông tin liên lạc");
             return;
         }
         private async Task<string> OrderRequest(string[] stops, Contact[] contacts)

@@ -11,13 +11,14 @@ using System.Windows.Controls;
 
 namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
 {
-    public class ClickButtonCommand: CommandBase
+    public class ClickButtonCommand : CommandBase
     {
         private AdminDiscountViewModel viewModel;
         private string action;
         DiscountDAO discountDAO = new DiscountDAO();
         MenuDAO menuDao = new MenuDAO();
-        public ClickButtonCommand(AdminDiscountViewModel viewModel, string action) { 
+        public ClickButtonCommand(AdminDiscountViewModel viewModel, string action)
+        {
             this.action = action;
             this.viewModel = viewModel;
         }
@@ -59,7 +60,8 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
             }
         }
 
-        private void chooseDiscount(object parameter) {
+        private void chooseDiscount(object parameter)
+        {
             if (parameter is ListView listdiscount)
             {
                 if (listdiscount.SelectedItem != null)
@@ -77,7 +79,8 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                 }
             }
         }
-        private void addDiscount(object parameter) {
+        private void addDiscount(object parameter)
+        {
             if (viewModel.NotallowedAdd == true)
             {
                 MessageBox.Show("Khuyến mã tồn tại");
@@ -90,14 +93,14 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                 }
                 else
                 {
-                    if(checkedinput() == true)
+                    if (checkedinput() == true)
                     {
                         ApplyModel applyModel = new ApplyModel();
                         List<MenuModel> menus = new List<MenuModel>();
                         List<DishModel> dishs = new List<DishModel>();
                         applyModel.menu = menus;
                         applyModel.dish = dishs;
-                        DiscountModel newdiscount = new DiscountModel(viewModel.DiscountID, viewModel.Discountname, viewModel.Description, applyModel, viewModel.Daystart.Value, viewModel.Dayend.Value, viewModel.Value);
+                        DiscountModel newdiscount = new DiscountModel(viewModel.DiscountID, viewModel.Discountname, viewModel.Description, applyModel, viewModel.Daystart, viewModel.Dayend, viewModel.Value);
                         discountDAO.createdistcount(newdiscount);
                         MessageBox.Show("Thêm Khuyến mãi thành công");
                         viewModel.Discounts.Add(newdiscount);
@@ -120,7 +123,7 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
             {
                 return false;
             }
-            else if(viewModel.Daystart == null)
+            else if (viewModel.Daystart == null)
             {
                 return false;
             }
@@ -134,17 +137,20 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
             }
             return true;
         }
-        private void DeletefieldDiscount(object parameter) {
+        private void DeletefieldDiscount(object parameter)
+        {
             viewModel.NotallowedAdd = false;
+            MessageBox.Show("Đã xoá khuyến mãi");
             viewModel.DiscountID = "";
             viewModel.Discountname = "";
             viewModel.Description = "";
-            viewModel.Daystart = null ;
-            viewModel.Dayend = null;
+            viewModel.Daystart = DateTime.Now;
+            viewModel.Dayend = DateTime.Now;
             viewModel.Value = "";
 
         }
-        private void UpdateDistcount(object parameter) {
+        private void UpdateDistcount(object parameter)
+        {
             DiscountModel discountModel = discountDAO.findisbyId(viewModel.DiscountID);
             if (discountModel != null)
             {
@@ -154,8 +160,10 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
 
                 applyModel.dish = DeepCloneListDish(listdish);
                 applyModel.menu = DeepCloneListMenu(listmenu);
-                DiscountModel newdiscount = new DiscountModel(viewModel.DiscountID, viewModel.Discountname, viewModel.Description, applyModel, viewModel.Daystart.Value, viewModel.Dayend.Value, viewModel.Value);
+                DiscountModel newdiscount = new DiscountModel(viewModel.DiscountID, viewModel.Discountname, viewModel.Description, applyModel, viewModel.Daystart, viewModel.Dayend, viewModel.Value);
+                Console.WriteLine(viewModel.Daystart + " " + viewModel.Dayend);
                 discountDAO.UpdateDiscount(newdiscount);
+                Console.WriteLine(newdiscount.daystart + " " + newdiscount.dayend);
                 MessageBox.Show("Cập nhật thành công");
                 viewModel.Discounts = new ObservableCollection<DiscountModel>(discountDAO.ReadDiscountAll());
             }
@@ -164,7 +172,8 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                 MessageBox.Show("Ko thể cập nhật khi vì discount ko tồn tại");
             }
         }
-        private void DeleteDiscount(object parameter) {
+        private void DeleteDiscount(object parameter)
+        {
             if (parameter is DiscountModel discount)
             {
                 MessageBoxResult result = MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận xóa", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -185,7 +194,7 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
             viewModel.TypeDishitem = "All Dishs";
             listdish = new ObservableCollection<DishModel>(menuDao.ReadAll_Dish());
             viewModel.ListDishs = new ObservableCollection<DishModel>();
-            if(discountchoosed.apply.dish.Count > 0)
+            if (discountchoosed.apply.dish.Count > 0)
             {
                 foreach (DishModel dishdc in discountchoosed.apply.dish)
                 {
@@ -198,6 +207,11 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                         }
                     }
                 }
+                viewModel.Flag = false;
+            }
+            else
+            {
+                viewModel.Flag = true;
             }
             viewModel.ListDishs = viewModel.ListDishs;
             var result = listdish.Where(cm => !viewModel.ListDishs.Any(cma => cma._id == cm._id)).ToList();
@@ -209,7 +223,7 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
             DiscountModel discountchoosed = discountDAO.findisbyId(discountid);
             ObservableCollection<MenuModel> listmenu = new ObservableCollection<MenuModel>(menuDao.ReadAll_Type_dish());
             viewModel.ListMenu = new ObservableCollection<MenuModel>();
-            if(discountchoosed.apply.menu.Count > 0)
+            if (discountchoosed.apply.menu.Count > 0)
             {
                 foreach (MenuModel menudc in discountchoosed.apply.menu)
                 {
@@ -222,6 +236,11 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                         }
                     }
                 }
+                viewModel.Flag = true;
+            }
+            else
+            {
+                viewModel.Flag = false;
             }
             viewModel.ListMenu = viewModel.ListMenu;
             var result = listmenu.Where(cm => !viewModel.ListMenu.Any(cma => cma.id == cm.id)).ToList();
@@ -237,7 +256,7 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                     string DiscountID = viewModel.DiscountID;
                     DishModel dish = new DishModel();
                     dish = selectedItem.Item1;
-                    discountDAO.RemoveDishFromDiscount(DiscountID ,dish);
+                    discountDAO.RemoveDishFromDiscount(DiscountID, dish);
                     MessageBox.Show("Xóa Món Trong danh sách thành công");
                     viewModel.ListDishs.Remove(selectedItem.Item1);
                     viewModel.ListDishsNotDC.Add(selectedItem.Item1);
@@ -260,6 +279,11 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                     viewModel.ListDishsNotDC.Remove(selectedItem.Item1);
                     viewModel.ListDishs = viewModel.ListDishs;
                     viewModel.ListDishsNotDC = viewModel.ListDishsNotDC;
+                    if (viewModel.ListMenu.Count > 0)
+                    {
+                        viewModel.ListMenu = new ObservableCollection<MenuModel>();
+                        viewModel.ListMenuNotDC = new ObservableCollection<MenuModel>(menuDao.ReadAll_Type_dish());
+                    }
                 }
             }
         }
@@ -311,6 +335,11 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.DiscountCommands
                     viewModel.ListMenuNotDC.Remove(selectedItem.Item1);
                     viewModel.ListMenu = viewModel.ListMenu;
                     viewModel.ListMenuNotDC = viewModel.ListMenuNotDC;
+                    if (viewModel.ListDishs.Count > 0)
+                    {
+                        viewModel.ListDishs = new ObservableCollection<DishModel>();
+                        viewModel.ListDishsNotDC = new ObservableCollection<DishModel>(menuDao.ReadAll_Dish());
+                    }
                 }
             }
         }

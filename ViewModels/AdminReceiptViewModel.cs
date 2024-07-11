@@ -172,7 +172,7 @@ namespace DevCoffeeManagerApp.ViewModels
             {
                 _receiptDate = value;
                 OnPropertyChanged(nameof(ReceiptDate));
-                if(_receiptDate != null)
+                if(_receiptDate.HasValue)
                 {
                     Receipts = new ObservableCollection<ReceiptModel>(receiptDAO.FindReceiptOnDate(ReceiptDate.Value));
                 }

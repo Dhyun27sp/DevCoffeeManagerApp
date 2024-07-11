@@ -1,4 +1,6 @@
-﻿using MongoDB.Driver;
+﻿
+
+using MongoDB.Driver;
 
 namespace DevCoffeeManagerApp.Config
 {
@@ -9,6 +11,7 @@ namespace DevCoffeeManagerApp.Config
         
         public static IMongoDatabase getdatabase()
         {
+
             MongoClient dbClient;
             try
             {

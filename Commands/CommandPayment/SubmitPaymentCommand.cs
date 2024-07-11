@@ -121,7 +121,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                         if (result == DialogResult.OK)
                         {
                             ReceiptModel receiptModel = new ReceiptModel(receipt_code, current_date, SessionStatic.Customer, tables, staff_phonenumber,
-                                dishesdb, "Thanh toán bằng Momo", used_point, total_amount, 0, 0);
+                                dishesdb, "Thanh toán bằng Momo", used_point, total_amount, 0, 0, PaymentOrderViewModel.Additionalinfor);
                             SessionStatic.SetReceipt = receiptModel;
                             QRCodeGenerator qrGenerator = new QRCodeGenerator();
                             QRCodeData qrCodeData = qrGenerator.CreateQrCode(jmessage.GetValue("qrCodeUrl").ToString(), QRCodeGenerator.ECCLevel.Q);
@@ -139,7 +139,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                         if (is_direct_payment == true && total != 0)
                         {
                             ReceiptModel receiptModel = new ReceiptModel(receipt_code, current_date, SessionStatic.Customer, tables, staff_phonenumber,
-                                dishesdb, "Thanh toán bằng tiền mặt", used_point, total_amount, int.Parse(guest_monney), change);
+                                dishesdb, "Thanh toán bằng tiền mặt", used_point, total_amount, int.Parse(guest_monney), change, PaymentOrderViewModel.Additionalinfor);
                             receiptDAO.AddReceipt(receiptModel);
                             SessionStatic.SetReceipt = receiptModel;
                             SessionStatic.Customer.point = (SessionStatic.Customer.point + plus_point) - used_point;
@@ -217,14 +217,13 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                         {
 
                             ReceiptModel receiptModel = new ReceiptModel(receipt_code, current_date, null, tables, staff_phonenumber,
-                                dishesdb, "Thanh toán bằng Momo", used_point, total_amount, 0, 0);
+                                dishesdb, "Thanh toán bằng Momo", used_point, total_amount, 0, 0, PaymentOrderViewModel.Additionalinfor);
                             SessionStatic.SetReceipt = receiptModel;
                             QRCodeGenerator qrGenerator = new QRCodeGenerator();
                             QRCodeData qrCodeData = qrGenerator.CreateQrCode(jmessage.GetValue("qrCodeUrl").ToString(), QRCodeGenerator.ECCLevel.Q);
                             QRCode qrCode = new QRCode(qrCodeData);
                             Bitmap qrCodeImage = qrCode.GetGraphic(20);
                             SessionStatic.Img = qrCodeImage;
-                            //qrCodeImage.Save("D:\\hyu\\img.png",ImageFormat.Png);
                             Qr qr = new Qr();
                             qr.Show();
                         }
@@ -234,17 +233,10 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                         if (is_direct_payment == true && total != 0)
                         {
                             ReceiptModel receiptModel = new ReceiptModel(receipt_code, current_date, null, tables, staff_phonenumber,
-                                dishesdb, "Thanh toán bằng tiền mặt", used_point, total_amount, int.Parse(guest_monney), change);
+                                dishesdb, "Thanh toán bằng tiền mặt", used_point, total_amount, int.Parse(guest_monney), change, PaymentOrderViewModel.Additionalinfor);
                             receiptDAO.AddReceipt(receiptModel);
                             SessionStatic.SetReceipt = receiptModel;
-                            try
-                            {
-                                productDAO.MinusProduct(SessionStatic.GetOrdereds);
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                            }
+                            productDAO.MinusProduct(SessionStatic.GetOrdereds);
                             MessageBox.Show("Thanh toán thành công");
                             Receipt receipt = new Receipt();
                             receipt.Show();

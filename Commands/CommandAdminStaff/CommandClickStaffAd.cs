@@ -66,7 +66,7 @@ namespace DevCoffeeManagerApp.Commands.CommandAdminStaff
             {
                 AccountModel account = new AccountModel();
                 List<SalaryModel> salaries = new List<SalaryModel>();
-                account.Password = viewModel.PasswordStaff.Value;
+                account.Password = viewModel.PasswordStaff;
                 account.Role = "staff";
                 StaffModel staff = new StaffModel(viewModel.NameStaff, viewModel.PhoneStaff, account, salaries);
                 if (staffDAO.GetStaff(viewModel.PhoneStaff) == null)
@@ -108,7 +108,7 @@ namespace DevCoffeeManagerApp.Commands.CommandAdminStaff
         {
             AccountModel account = new AccountModel();
             List<SalaryModel> salaries = new List<SalaryModel>();
-            account.Password = viewModel.PasswordStaff.Value;
+            account.Password = viewModel.PasswordStaff;
             account.Role = "staff";
             StaffModel staff = new StaffModel(viewModel.NameStaff, viewModel.PhoneStaff, account, salaries);
             if (checkinput() == true)

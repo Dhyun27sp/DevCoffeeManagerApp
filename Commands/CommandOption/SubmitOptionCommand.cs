@@ -5,9 +5,8 @@ using System.Windows;
 
 namespace DevCoffeeManagerApp.Commands.CommandOption
 {
-    public class SubmitOptionCommand:CommandBase
+    public class SubmitOptionCommand : CommandBase
     {
-
         private OptionViewModel optionViewModel;
         private readonly NavigationStore _navigationStore;
         public SubmitOptionCommand(OptionViewModel optionViewModel, NavigationStore navigationStore)
@@ -36,6 +35,8 @@ namespace DevCoffeeManagerApp.Commands.CommandOption
                 }
                 if (CheckValidPoint(usePoint, point, total))
                 {
+                    SessionStatic.ShipFlag = optionViewModel.Flag;
+                    SessionStatic.ShipFee = optionViewModel.Shipfee;
                     MessageBox.Show("Xác nhận Order thành công");
                     _navigationStore.CurrentViewModel = new PaymentViewModel();
                 }

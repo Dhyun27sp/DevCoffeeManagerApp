@@ -7,6 +7,8 @@ namespace DevCoffeeManagerApp.Models
     [Serializable, BsonIgnoreExtraElements]
     public class ProductModel
     {
+        [BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId Id { get; set; }
         [BsonElement("product_name"), BsonRepresentation(BsonType.String)]
         public String Product_name { get; set; }
                

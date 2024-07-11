@@ -1,4 +1,5 @@
-﻿using DevCoffeeManagerApp.StaticClass;
+﻿using DevCoffeeManagerApp.DAOs;
+using DevCoffeeManagerApp.StaticClass;
 using DevCoffeeManagerApp.Views;
 using Newtonsoft.Json.Linq;
 using System;
@@ -10,6 +11,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
 {
     internal class CheckPaymentCommand : CommandBase
     {
+        ProductDAO productDAO = new ProductDAO();
         public override bool CanExecute(object parameter)
         {
             return true;
@@ -46,6 +48,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
             if (kq == "0")
             {
                 MessageBox.Show("Giao dịch thành công!");
+                productDAO.MinusProduct(SessionStatic.GetOrdereds);
                 Receipt receipt = new Receipt();
                 receipt.Show();
                 SessionStatic.SetTables = null;

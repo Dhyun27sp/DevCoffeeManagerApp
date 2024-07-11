@@ -27,6 +27,8 @@ namespace DevCoffeeManagerApp.ViewModels
                 _supplies = value;
                 int index = 1;
                 CombineList.Clear();
+                if (value == null)
+                    return;
                 foreach (var O in Supplies)
                 {
                     CombineList.Add(new Tuple<SupplyModel, int>(O, index));
@@ -49,6 +51,22 @@ namespace DevCoffeeManagerApp.ViewModels
                 OnPropertyChanged(nameof(CombineList));
             }
         }
+
+        private string _search = "";
+        public string Search
+        {
+            get
+            {
+                return _search;
+            }
+            set
+            {
+                _search = value;
+                OnPropertyChanged(nameof(Search));
+            }
+        }
+        public string Status_Type { get; set; }
+        public string Month_Type { get; set; }
         public ObservableCollection<SupplyModel> AllSupplies { get; set; }
         public List<string> SupplyStatus { get; set; }
         public List<string> UnitList { get; set; }
@@ -58,6 +76,9 @@ namespace DevCoffeeManagerApp.ViewModels
         public ICommand UpDateCommand { get; set; }
         public ICommand AddCommand { get; set; }
         public ICommand DeleteSupplyCommand { get; set; }
+        public ICommand SearchCommand { get; set; }
+        public ICommand MonthCommand { get; set; }
+        public ICommand StatusCommand { get; set; }
 
         public DateTime Date { get; set; }
         public AdminSupplyViewModel()
@@ -73,11 +94,15 @@ namespace DevCoffeeManagerApp.ViewModels
             UpDateCommand = new UpdateStatusCommand(this);
             AddCommand = new AddSupplyCommand(this);
             DeleteSupplyCommand = new DeleteSupplyCommand(this);
+            SearchCommand = new SearchCommand(this);
+            MonthCommand = new SearchCommand(this);
+            StatusCommand = new SearchCommand(this);
         }
 
         static List<string> GenerateMonthList()
         {
             List<string> monthList = new List<string>();
+            monthList.Add("All");
             DateTime currentMonth = DateTime.Now;
             int numMonths = 12; // Số tháng cần tạo
 
@@ -93,6 +118,7 @@ namespace DevCoffeeManagerApp.ViewModels
         static List<String> AddStatus()
         {
             List<String> supplyStatus = new List<string>();
+            supplyStatus.Add("All");
             supplyStatus.Add("Unused");
             supplyStatus.Add("In-use");
             supplyStatus.Add("Exhausted");

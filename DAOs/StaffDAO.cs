@@ -79,15 +79,15 @@ namespace DevCoffeeManagerApp.DAOs
                 }
             }
         }
-        public void salaryInMoth()
+        public void salaryInMonth()
         {
 
             List<ScheduleModel> filteredSchedules = new List<ScheduleModel>();//lấy lịch nhân viên trong tháng hiện tại
             List<StaffModel> StaffModel = new List<StaffModel>();// lấy hết danh sách ra 
             filteredSchedules = scheduledao.findSchedulebymothCurrent();
             StaffModel = ReadAll();
-            List<EvaluateModel> evaluateModels = new List<EvaluateModel>();//lây danh sách evalua
-            List<Dictionary<ObjectId, int>> staffDics = new List<Dictionary<ObjectId, int>>();//Dictionary bộ key-value, mục dích tìm kiếm trong nạp objectid của nhân viên là key và value là số lượng cồn chẩm
+            List<EvaluateModel> evaluateModels = new List<EvaluateModel>(); //lấy danh sách evaluvate
+            List<Dictionary<ObjectId, int>> staffDics = new List<Dictionary<ObjectId, int>>(); //Dictionary bộ key-value, mục dích tìm kiếm trong nạp objectid của nhân viên là key và value là số lượng cần chấm công
             foreach (var i in StaffModel) // tạo bộ dự liệu objectid-worked count
             {
                 Dictionary<ObjectId, int> staffDic = new Dictionary<ObjectId, int>();
@@ -123,7 +123,7 @@ namespace DevCoffeeManagerApp.DAOs
                             if(i.Month.Month == DateTime.Now.Month && i.Month.Year == DateTime.Now.Year)// vị trí index là vị trí có month là hiện tại
                             {
                                 int index = item2.salary.IndexOf(i);//lấy được index
-                                var update = Builders<StaffModel>.Update.Set($"salary.{index}.money", item1[item2.staffid]*100000);//mỗi worked là 100000đ
+                                var update = Builders<StaffModel>.Update.Set($"salary.{index}.money", item1[item2.staffid]*150000);//mỗi worked là 150000đ
                                 collection.UpdateOne(filter, update);//cập nhật salary
                                 break;
                             }

@@ -74,7 +74,7 @@
                                                  materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                                  BorderThickness="0"
                                                  Grid.RowSpan="2"
-                                                 Text="{Binding types_dish_search , UpdateSourceTrigger=PropertyChanged}">
+                                                 Text="{Binding Search , UpdateSourceTrigger=PropertyChanged}">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="KeyUp">
                                                     <i:InvokeCommandAction Command="{Binding ChangeValueTexboxCommand}"
@@ -115,7 +115,7 @@
                                 </ComboBox>
                             </Grid>
                             <Grid Width="auto">
-                                <ComboBox ItemsSource="{Binding Specials}"
+                                <ComboBox ItemsSource="{Binding Tags}"
                                           SelectedItem="{Binding Type_Special, UpdateSourceTrigger=PropertyChanged}"
                                           Padding="12"
                                           x:Name="CbbTypeSpecial"

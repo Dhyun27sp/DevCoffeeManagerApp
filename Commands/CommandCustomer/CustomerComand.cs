@@ -76,10 +76,10 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.CustomerCommands
                         }
                         else
                         {
-                            customer.dob = viewModel.Dobcustom.Value.ToString("dd/MM/yyyy");
+                            customer.dob = viewModel.Dobcustom.ToString("dd/MM/yyyy");
                         }
                         customerdao.CreateCustomer(customer);
-                        viewModel.Dobcustom = null;
+                        viewModel.Dobcustom = DateTime.UtcNow;
                         MessageBox.Show("thêm khách hàng thành công");
                         viewModel.Custommers = customerdao.GetAllCustomers();
                     }
@@ -99,7 +99,7 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.CustomerCommands
             viewModel.NameCustom = null;
             viewModel.Point = 0;
             viewModel.PhoneCustom = null;
-            viewModel.Dobcustom = null;
+            viewModel.Dobcustom = DateTime.UtcNow;
             viewModel.StatusAdd = false;
         }
         private void Updatecustomer(object parameter)
@@ -114,7 +114,7 @@ namespace DevCoffeeManagerApp.Commands.AdminCommand.CustomerCommands
             }
             else
             {
-                customer.dob = viewModel.Dobcustom.Value.ToString("dd/MM/yyyy");
+                customer.dob = viewModel.Dobcustom.ToString("dd/MM/yyyy");
             }
             customerdao.UpdateCustomer(customer);
             MessageBox.Show("cập nhật thành công");

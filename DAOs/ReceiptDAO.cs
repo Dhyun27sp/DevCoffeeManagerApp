@@ -5,7 +5,6 @@ using MongoDB.Driver;
 using DevCoffeeManagerApp.Config;
 using DevCoffeeManagerApp.Models;
 using MongoDB.Bson;
-using static QRCoder.PayloadGenerator;
 
 namespace DevCoffeeManagerApp.DAOs
 {
@@ -113,6 +112,18 @@ namespace DevCoffeeManagerApp.DAOs
 
             List<ReceiptModel> receiptsInTwoMonths = collection.Find(filter).ToList();
             return receiptsInTwoMonths;
+        }
+
+        public List<ReceiptModel> GetData3Month()
+        {
+            var data = new List<ReceiptModel>();
+
+            // Lọc hóa đơn trong khoảng thời gian này
+            var startDate = DateTime.Now.AddMonths(-3);
+            var filter = Builders<ReceiptModel>.Filter.Gte("time", startDate);
+            List<ReceiptModel> receiptsInThreeMonths = collection.Find(filter).ToList();
+            data = receiptsInThreeMonths.OrderBy(x => x.time).ToList();
+            return data;
         }
     }
 }

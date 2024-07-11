@@ -22,7 +22,10 @@ namespace DevCoffeeManagerApp.Commands.CommandProduct
         public override void Execute(object parameter)
         {
             DateTime date = DateTime.Now;
-            ProductModel model = new ProductModel(adminProductViewModel.newproduct);
+            adminProductViewModel.Newproduct = new ProductModel();
+            adminProductViewModel.Newproduct.Product_name = adminProductViewModel.Products_name;
+            adminProductViewModel.Newproduct.Unit = adminProductViewModel.Products_unit;
+            ProductModel model = new ProductModel(adminProductViewModel.Newproduct);
             if (model.Product_name == null || model.Product_name == "" || model.Unit == null || model.Unit == "")
             {
                 MessageBox.Show("Hàng hóa rỗng, không thể thêm");
@@ -37,6 +40,7 @@ namespace DevCoffeeManagerApp.Commands.CommandProduct
             productDAO.CreateProduct(model);
             adminProductViewModel.Products.Add(model);
             adminProductViewModel.Products = adminProductViewModel.Products;
+            adminProductViewModel.AllProducts = productDAO.GetAllProducts();
             MessageBox.Show("Đã thêm hàng hoá");
             return;
         }

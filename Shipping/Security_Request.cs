@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Headers;
 using System.Net.Http;
-using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace DevCoffeeManagerApp.Shipping
 {
-    
+
     class Security_Request
     {
         public Security_Request() { }
@@ -45,6 +40,20 @@ namespace DevCoffeeManagerApp.Shipping
             var token = $"{key}:{time}:{signature}";
 
             return token;
+        }
+
+        public static int IncreasePriceRoundUpToThousand(int inputPrice)
+        {
+            // Tính toán giá trị tăng thêm 20%
+            double increaseAmount = inputPrice * 0.3;
+
+            // Cộng giá trị tăng thêm vào giá gốc
+            double totalPrice = inputPrice + increaseAmount;
+
+            // Làm tròn giá trị lên hàng nghìn
+            int roundedPrice = (int)Math.Ceiling(totalPrice / 1000) * 1000;
+
+            return roundedPrice;
         }
     }
 }
