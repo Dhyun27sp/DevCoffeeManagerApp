@@ -66,6 +66,7 @@ namespace DevCoffeeManagerApp.Commands.CommandMenu
         private void addIngredient(object parameter)
         {
             ProductModel product = new ProductModel();
+            product.Id = productDAO.GetProductbyName(viewmodel.Product_name).Id;
             product.Product_name = viewmodel.Product_name;
             product.Stock = viewmodel.Stock;
             product.Unit = productDAO.GetProductbyName(viewmodel.Product_name).Unit;

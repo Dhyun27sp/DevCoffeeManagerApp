@@ -184,7 +184,19 @@ namespace DevCoffeeManagerApp.ViewModels
             }
         }
 
-        public bool Flag = false;
+        private bool _flag = true;
+        public bool Flag
+        {
+            get
+            {
+                return _flag;
+            }
+            set
+            {
+                _flag = value;
+                OnPropertyChanged(nameof(Flag));
+            }
+        }
 
         public ICommand MinusCommad { get; set; }
         public ICommand PlusCommad { get; set; }

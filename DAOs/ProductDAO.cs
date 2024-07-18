@@ -73,7 +73,7 @@ namespace DevCoffeeManagerApp.DAOs
                 foreach (var product in item.ingredient)
                 {
                     int usedamount = product.Stock;
-                    var filter = Builders<ProductModel>.Filter.Eq("product_name", product.Product_name);
+                    var filter = Builders<ProductModel>.Filter.Eq("_id", product.Id);
                     var update = Builders<ProductModel>.Update.Inc("stock", -usedamount * i);
                     collection.UpdateOne(filter, update);
                 }
@@ -92,15 +92,28 @@ namespace DevCoffeeManagerApp.DAOs
                 foreach (var ingredient in item.ingredient)
                 {
                     ProductModel product = new ProductModel();
-                    product = this.GetProductbyName(ingredient.Product_name);
+                    product = this.GetProductbyId(ingredient.Id);
+                    if (product == null)
+                    {
+                        throw new Exception("Nguyên liệu món "+ item.dish_name+" chưa được nhập kho");
+                    }
+                    if (product.EXP_date < DateTime.Now)
+                    {
+                        throw new Exception("Nguyên liệu món " + item.dish_name + " đã hết hạn");
+                    }    
                     // Tính số lượng có thể phục vụ của món = số tồn kho / SL trong công thức món
-                    int available = product.Stock / ingredient.Stock; 
+                    int available = product.Stock / ingredient.Stock;
+                    Console.WriteLine(available);
                     if (count > available)
                     {
                         dish.Quantity = available;
                         count = dish.Quantity;
                         flag = true;
-                    }                        
+                    }
+                    else
+                    {
+                        dish.Quantity = count;
+                    }
                 }
                 list_dish.Add(dish);
             }

@@ -103,7 +103,6 @@ namespace DevCoffeeManagerApp.ViewModels
             Quotation = SessionStatic.QuotationId;
             BookCommand = new BookCommand(this);
             OrderedFood = new ObservableCollection<DishModel>(receiptDAO.FindOrderbyReceiptCode(receiptModel.receipt_code));
-            OrderedFood = SessionStatic.GetOrdereds;
         }
 
     }

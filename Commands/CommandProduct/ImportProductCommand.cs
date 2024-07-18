@@ -30,7 +30,7 @@ namespace DevCoffeeManagerApp.Commands.CommandProduct
             {
 
                 SupplyModel firstsupply = supplyDAO.GetUnUsingSupplyByName(data.Product_name);
-                if (firstsupply == null)
+                if (firstsupply == null || firstsupply.EXP_date <= DateTime.Now)
                 {
                     MessageBox.Show("Hàng chưa được nhập");
                     return;
@@ -41,7 +41,7 @@ namespace DevCoffeeManagerApp.Commands.CommandProduct
                 {
                     if (secondsupply.EXP_date <= DateTime.Now)
                     {
-                        supplyDAO.SetStatus(secondsupply.Product_name, "Out of Date");
+                        supplyDAO.SetStatus(secondsupply.Product_name, "Out of date");
                         data.Stock = firstsupply.Quantity * 1000;
                     }
                         

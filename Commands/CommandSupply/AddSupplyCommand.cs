@@ -28,6 +28,11 @@ namespace DevCoffeeManagerApp.Commands.CommandSupply
                 MessageBox.Show("Đơn hàng chưa đủ thông tin");
                 return;
             }
+            if (model.EXP_date <= date)
+            {
+                MessageBox.Show("Hàng nhập đã hết hạn");
+                return;
+            }
             model.Date = date;
             model.Status = "Unused";
             supplyDAO.createSupply(model);

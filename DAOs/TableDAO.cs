@@ -2,6 +2,7 @@
 using DevCoffeeManagerApp.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -27,13 +28,16 @@ namespace DevCoffeeManagerApp.DAOs
         }
         public void SetStatus(int no_)
         {
-            var shiftFilter = Builders<TableModel>.Filter.Eq("No.", no_);
+            var shiftFilter = Builders<TableModel>.Filter.Eq("No_", no_);
+            TableModel listTable = collection.Find(shiftFilter).First();
+            Console.WriteLine(no_);
             var false_update = Builders<TableModel>.Update.Set("Status", false); 
             UpdateResult result = collection.UpdateOne(shiftFilter, false_update);
             if (result.ModifiedCount == 0)
             {
                 var true_update = Builders<TableModel>.Update.Set("Status", true);
-                collection.UpdateOne(shiftFilter, true_update);
+                result = collection.UpdateOne(shiftFilter, true_update);
+                Console.WriteLine(result.ModifiedCount);
             }
         }
         

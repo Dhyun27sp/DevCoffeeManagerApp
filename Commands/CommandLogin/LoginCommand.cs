@@ -66,7 +66,7 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
             {
                 shift = daymonth + "C";
             }
-            else if (dt.Hour >= 17 && dt.Hour <= 23)// chỉnh lại 10 h
+            else if (dt.Hour >= 17 && dt.Hour < 22)// chỉnh lại 10 h
             {
                 shift = daymonth + "T";
             }
@@ -95,6 +95,10 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
                                 mainWindowAdmin.Show();
                                 window.Close();
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Sai Mật Khẩu Admin");
                         }
                         break;
                     case "staff":
@@ -162,7 +166,7 @@ namespace DevCoffeeManagerApp.Commands.CommandLogin
                 SessionStatic.SetTask = Viewmodellogin.ItemShift;
                 SessionStatic.SetPhoneNumber = Viewmodellogin.Phonenumber;
                 SessionStatic.SetStaffName = staffdao.GetStaff(Viewmodellogin.Phonenumber).staffname;
-                SessionStatic.SetPassWord = int.Parse(Viewmodellogin.Password);
+                SessionStatic.SetPassWord = Viewmodellogin.Password;
                 MainWindowStaff mainWindowstaff = new MainWindowStaff();
                 mainWindowstaff.Show();
                 if (parameter is Window window)

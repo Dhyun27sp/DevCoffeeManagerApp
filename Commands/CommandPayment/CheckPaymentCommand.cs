@@ -11,7 +11,10 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
 {
     internal class CheckPaymentCommand : CommandBase
     {
+        ReceiptDAO receiptDAO = new ReceiptDAO();
+        CustomerDAO customerDAO = new CustomerDAO();
         ProductDAO productDAO = new ProductDAO();
+        TableDAO tableDAO = new TableDAO();
         public override bool CanExecute(object parameter)
         {
             return true;
@@ -48,7 +51,15 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
             if (kq == "0")
             {
                 MessageBox.Show("Giao dịch thành công!");
+                receiptDAO.AddReceipt(SessionStatic.GetReceipt);
                 productDAO.MinusProduct(SessionStatic.GetOrdereds);
+                if (SessionStatic.GetReceipt.customer != null)
+                    customerDAO.UpdateCustomer(SessionStatic.Customer);
+                if (SessionStatic.GetTables != null)
+                {
+                    foreach (var item in SessionStatic.GetTables)
+                        tableDAO.SetStatus(item.No_);
+                }
                 Receipt receipt = new Receipt();
                 receipt.Show();
                 SessionStatic.SetTables = null;

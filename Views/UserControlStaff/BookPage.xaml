@@ -60,8 +60,7 @@
                             Mã đơn giá
                             <TextBlock Text="{Binding Quotation, UpdateSourceTrigger=PropertyChanged}"
                                        VerticalAlignment="Top"
-                                       Width="130"
-                                       TextWrapping="Wrap"
+                                       Width="250"
                                        Padding="5 0 0 0" />
                         </TextBlock>
                     <ScrollViewer>

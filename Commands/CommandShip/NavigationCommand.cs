@@ -28,7 +28,7 @@ namespace DevCoffeeManagerApp.Commands.CommandShip
                     {
                         MessageBox.Show("Chưa đặt hàng");
                         return;
-                    }    
+                    }
                     _navigationStore.CurrentViewModel = new BookViewModel(_navigationStore);
                     return;
                 case "checkPage":

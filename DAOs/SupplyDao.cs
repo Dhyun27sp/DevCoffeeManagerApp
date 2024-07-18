@@ -48,11 +48,20 @@ namespace DevCoffeeManagerApp.DAOs
         public void SetStatus(String name, String status)
         {
             var nameFilter = Builders<SupplyModel>.Filter.Eq("product_name", name);
+            var statusFilter = Builders<SupplyModel>.Filter.Empty;
+            if (status == "Out of date" || status == "Exhausted")
+            {
+                statusFilter = Builders<SupplyModel>.Filter.Eq("status", "In-use");
+            }
+            else
+            {
+                statusFilter = Builders<SupplyModel>.Filter.Eq("status", "Unused");
+            }                
             var status_update = Builders<SupplyModel>.Update.Set("status", status);
-            var result = collection.UpdateOne(nameFilter, status_update);
+            var result = collection.UpdateOne(nameFilter & statusFilter, status_update);
             if (result.IsAcknowledged)
             {
-                MessageBox.Show(result.MatchedCount.ToString());
+/*                MessageBox.Show(result.MatchedCount.ToString());*/
                 return;
             }
         }
@@ -64,7 +73,7 @@ namespace DevCoffeeManagerApp.DAOs
             var result = collection.UpdateMany(nameFilter, status_update);
             if (result.IsAcknowledged)
             {
-                MessageBox.Show(result.MatchedCount.ToString());
+               // MessageBox.Show(result.MatchedCount.ToString());
                 return;
             }
         }

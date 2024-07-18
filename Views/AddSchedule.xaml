@@ -29,7 +29,7 @@
                        Width="70"
                        Height="70"                       
                        VerticalAlignment="Center" />
-                <TextBlock Text="Tìm địa chỉ"
+                <TextBlock Text="Nhập ca làm"
                            VerticalAlignment="Center"
                            FontSize="25"
                            FontWeight="Bold"
@@ -103,7 +103,7 @@
                                        FontSize="13"
                                        Foreground="White"
                                        FontWeight="Normal"
-                                       Text="Tra"
+                                       Text="Thêm"
                                        VerticalAlignment="Center" />
                             <Button.Background>
                                 <SolidColorBrush Color="#408064" />

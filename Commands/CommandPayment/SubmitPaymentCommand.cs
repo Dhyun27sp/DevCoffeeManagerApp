@@ -19,6 +19,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
         ReceiptDAO receiptDAO = new ReceiptDAO();
         CustomerDAO customerDAO = new CustomerDAO();
         ProductDAO productDAO = new ProductDAO();
+        TableDAO tableDAO = new TableDAO();
         private PaymentViewModel PaymentOrderViewModel;
 
         private string partnerCode = SessionStatic.PartnerCode;
@@ -68,7 +69,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                 MessageBox.Show("Hãy đặt món");
                 return;
             }            
-            if (SessionStatic.GetPhoneNumber == null)
+            if (SessionStatic.GetPhoneNumber != null)
                 if (SessionStatic.Customer != null)
                 {
                     if (is_momo_payment)
@@ -123,6 +124,7 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                             ReceiptModel receiptModel = new ReceiptModel(receipt_code, current_date, SessionStatic.Customer, tables, staff_phonenumber,
                                 dishesdb, "Thanh toán bằng Momo", used_point, total_amount, 0, 0, PaymentOrderViewModel.Additionalinfor);
                             SessionStatic.SetReceipt = receiptModel;
+                            SessionStatic.Customer.point = (SessionStatic.Customer.point + plus_point) - used_point;
                             QRCodeGenerator qrGenerator = new QRCodeGenerator();
                             QRCodeData qrCodeData = qrGenerator.CreateQrCode(jmessage.GetValue("qrCodeUrl").ToString(), QRCodeGenerator.ECCLevel.Q);
                             QRCode qrCode = new QRCode(qrCodeData);
@@ -144,13 +146,11 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                             SessionStatic.SetReceipt = receiptModel;
                             SessionStatic.Customer.point = (SessionStatic.Customer.point + plus_point) - used_point;
                             customerDAO.UpdateCustomer(SessionStatic.Customer);
-                            try
+                            productDAO.MinusProduct(SessionStatic.GetOrdereds);
+                            if (SessionStatic.GetTables != null)
                             {
-                                productDAO.MinusProduct(SessionStatic.GetOrdereds);
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
+                                foreach (var item in SessionStatic.GetTables)
+                                    tableDAO.SetStatus(item.No_);
                             }
                             MessageBox.Show("Thanh toán thành công");
                             Receipt receipt = new Receipt();
@@ -237,6 +237,11 @@ namespace DevCoffeeManagerApp.Commands.CommandPayment
                             receiptDAO.AddReceipt(receiptModel);
                             SessionStatic.SetReceipt = receiptModel;
                             productDAO.MinusProduct(SessionStatic.GetOrdereds);
+                            if (SessionStatic.GetTables != null)
+                            {
+                                foreach (var item in SessionStatic.GetTables)
+                                    tableDAO.SetStatus(item.No_);
+                            }
                             MessageBox.Show("Thanh toán thành công");
                             Receipt receipt = new Receipt();
                             receipt.Show();

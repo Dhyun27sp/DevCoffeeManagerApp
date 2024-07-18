@@ -59,7 +59,7 @@ namespace DevCoffeeManagerApp.Commands.CommandSchedule
                 if (listdish.SelectedItem != null)
                 {
                     Tuple<StaffModel, int> selectedItem = (Tuple<StaffModel, int>)listdish.SelectedItem;
-                    MessageBox.Show("Thêm Món vào Giảm giá thành công");
+                    MessageBox.Show("Thêm nhân viên Trong danh sách thành công");
                     viewModel.ListStaff.Add(selectedItem.Item1);
                     viewModel.ListStaffNotShift.Remove(selectedItem.Item1);
                     viewModel.ListStaff = viewModel.ListStaff;

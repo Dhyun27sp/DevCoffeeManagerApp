@@ -259,7 +259,8 @@ namespace DevCoffeeManagerApp.ViewModels
                 }    
             }
             TotalAmount = Total - Int32.Parse(UsedPoint);
-            TotalAmount += SessionStatic.ShipFee;
+            if (SessionStatic.ShipFlag)
+                TotalAmount += SessionStatic.ShipFee;
             
             CurrentDate = DateTime.Now;
             StaffPhoneNumber = SessionStatic.GetPhoneNumber;

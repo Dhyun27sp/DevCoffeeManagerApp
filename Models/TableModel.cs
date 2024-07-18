@@ -7,7 +7,7 @@ namespace DevCoffeeManagerApp.Models
     [Serializable, BsonIgnoreExtraElements]
     public class TableModel
     {
-        [BsonElement("No."), BsonRepresentation(BsonType.Int32)]
+        [BsonElement("No_"), BsonRepresentation(BsonType.Int32)]
         public int No_ { get; set; }
 
         [BsonElement("Number_of_seat"), BsonRepresentation(BsonType.Int32), BsonIgnoreIfNull]

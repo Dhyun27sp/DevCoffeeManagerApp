@@ -59,7 +59,6 @@ namespace DevCoffeeManagerApp.Commands.CommandSchedule
                     viewModel.evaluateWhenchooseSchedule = selectedItem.Item1.evaluate;
                     viewModel.Staffinschedule = viewModel.Staffinschedule;
                     ObservableCollection<StaffModel> AllStaff = new ObservableCollection<StaffModel>(staffDAO.ReadAll());
-                    viewModel.Staffinschedule = viewModel.Staffinschedule;
                     var result = AllStaff.Where(cm => !viewModel.Staffinschedule.Any(cma => cma.staffid == cm.staffid)).ToList();
                     viewModel.Staffnotinschedule = new ObservableCollection<StaffModel>(result);
                 }
@@ -69,7 +68,7 @@ namespace DevCoffeeManagerApp.Commands.CommandSchedule
         {
             if (parameter is ListView liststaff)
             {
-                if (liststaff.SelectedItem != null)
+                if (liststaff.SelectedItem != null && viewModel.Date < DateTime.Now)
                 {
                     Tuple<StaffModel, int> selectedItem = (Tuple<StaffModel, int>)liststaff.SelectedItem;
                     EvaluateModel evaluate = new EvaluateModel();
@@ -89,7 +88,7 @@ namespace DevCoffeeManagerApp.Commands.CommandSchedule
         {
             if (parameter is ListView liststaff)
             {
-                if (liststaff.SelectedItem != null)
+                if (liststaff.SelectedItem != null && DateTime.Parse(viewModel.ScheduleclickCurrent.shift) < DateTime.Now)
                 {
                     Tuple<StaffModel, int,string> selectedItem = (Tuple<StaffModel, int,string>)liststaff.SelectedItem;
                     EvaluateModel evaluate = new EvaluateModel();

@@ -346,7 +346,7 @@
                                                Text="Địa chỉ:"
                                                VerticalAlignment="Stretch"
                                                HorizontalAlignment="Left" />
-                                    <TextBlock Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}"
+                                    <TextBlock Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                Width="130"
                                                HorizontalAlignment="Left"
                                                TextWrapping="Wrap"
@@ -355,7 +355,7 @@
                                                FontFamily="Nunito"
                                                Margin="20 0 0 5" />
                                 </StackPanel>
-                                <RadioButton IsChecked="{Binding Flag, UpdateSourceTrigger=PropertyChanged}"
+                                <CheckBox IsChecked="{Binding Flag, UpdateSourceTrigger=PropertyChanged}"
                                              HorizontalAlignment="Left"
                                              Margin="20 0 0 25"
                                              Content="Đặt giao hàng" />
